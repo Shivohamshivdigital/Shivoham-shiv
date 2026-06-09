@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { Compass, Sparkles, X, Heart, HelpCircle, PhoneCall, CheckCircle, Bell, ArrowRight } from "lucide-react";
 import { bookConsultation } from "./services/consultationService";
 import Navbar from "./components/Navbar";
@@ -20,9 +20,9 @@ import SEO from "./components/SEO";
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AppContent />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
