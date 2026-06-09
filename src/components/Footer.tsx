@@ -25,7 +25,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3">
               <Link to="/" className="h-16 w-auto px-1.5 rounded-xl bg-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shrink-0" aria-label="Shivoham Shiv Home">
                 <img
-                  src="/shivoham-shiv-logo.webp"
+                  src="/shivoham-shiv-logo.svg"
                   alt="Shivoham Shiv logo"
                   loading="lazy"
                   className="h-full w-auto object-contain rounded-lg"

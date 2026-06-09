@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Shivoham Shiv logo">
+  <defs>
+    <linearGradient id="ss_green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9BD64F"/>
+      <stop offset="1" stop-color="#2C8C2C"/>
+    </linearGradient>
+    <linearGradient id="ss_gl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#CDDB4B"/>
+      <stop offset="1" stop-color="#6CAB2C"/>
+    </linearGradient>
+    <linearGradient id="ss_gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8D15A"/>
+      <stop offset="1" stop-color="#E08A1C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Lotus -->
+  <g transform="translate(300,300)" stroke="#FAFBF7" stroke-width="3" stroke-linejoin="round">
+    <g id="ss_petals">
+      <!-- back gold bowl -->
+      <path transform="rotate(-150) scale(1.0)"  fill="url(#ss_gold)"  d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(150) scale(1.0)"   fill="url(#ss_gold)"  d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(-122) scale(1.05)" fill="url(#ss_gold)"  d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(122) scale(1.05)"  fill="url(#ss_gold)"  d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(-95) scale(0.95)"  fill="url(#ss_gold)"  d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(95) scale(0.95)"   fill="url(#ss_gold)"  d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <!-- transition -->
+      <path transform="rotate(-66) scale(0.92)"  fill="url(#ss_gl)"    d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(66) scale(0.92)"   fill="url(#ss_gl)"    d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <!-- green top -->
+      <path transform="rotate(-40) scale(0.96)"  fill="url(#ss_green)" d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(40) scale(0.96)"   fill="url(#ss_green)" d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(-18) scale(1.0)"   fill="url(#ss_green)" d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(18) scale(1.0)"    fill="url(#ss_green)" d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+      <path transform="rotate(0) scale(1.06)"    fill="url(#ss_green)" d="M0 0 C -36 -52 -26 -120 0 -168 C 26 -120 36 -52 0 0 Z"/>
+    </g>
+
+    <!-- Center chakra emblem -->
+    <g>
+      <circle cx="0" cy="0" r="66" fill="#FFFFFF" stroke="none"/>
+      <circle cx="0" cy="0" r="58" fill="none" stroke="#3DA935" stroke-width="3"/>
+      <circle cx="0" cy="0" r="54" fill="none" stroke="#3DA935" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="42" fill="none" stroke="#3DA935" stroke-width="2.5"/>
+      <path d="M0 -34 L29.4 17 L-29.4 17 Z" fill="none" stroke="#3DA935" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="0" cy="0" r="5" fill="#9A6326" stroke="none"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="300" y="540" text-anchor="middle"
+        font-family="'Segoe Script','Brush Script MT','Snell Roundhand','Apple Chancery',cursive"
+        font-size="96" font-style="italic" fill="#1C3C8C">Shivoham Shiv</text>
+</svg>

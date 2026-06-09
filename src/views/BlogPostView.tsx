@@ -108,7 +108,7 @@ export default function BlogPostView() {
       "name": "Shivoham Shiv",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://shivohamshiv.com/shivoham-shiv-logo.webp"
+        "url": "https://shivohamshiv.com/shivoham-shiv-logo.svg"
       }
     },
     "mainEntityOfPage": {
