@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { getCourses, getCourseById } from "../services/courseService";
 import { getUserStats, enrollInCourse, toggleBookmark } from "../services/userService";
 import { Course, UserStats } from "../types";
-import { Search, Star, Clock, BookOpen, Layers, CheckCircle2, Bookmark, Flame, Play, Eye, X, HelpCircle, Lock } from "lucide-react";
+import { Search, Star, Clock, BookOpen, Layers, CheckCircle2, Bookmark, Flame, Play, Eye, X, HelpCircle, Lock, CalendarDays } from "lucide-react";
 import CourseCard from "../components/CourseCard";
 import SEO from "../components/SEO";
 
@@ -258,12 +258,23 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
                 <span className="px-3 py-1 bg-[#EFAF3C] text-[#FAFBF7] text-[9px] font-bold tracking-widest uppercase rounded-full w-fit mb-2">
                   {selectedCourse.category}
                 </span>
+                {selectedCourse.altName && (
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-amber-200 mb-1">
+                    {selectedCourse.altName}
+                  </span>
+                )}
                 <h2 className="font-heading font-bold text-2xl sm:text-3xl tracking-tight leading-snug">
                   {selectedCourse.title}
                 </h2>
                 <p className="text-xs sm:text-sm text-green-100 tracking-wide font-medium italic mt-1">
                   "{selectedCourse.tagline}"
                 </p>
+                {selectedCourse.schedule && (
+                  <div className="inline-flex items-center gap-1.5 mt-3 px-3.5 py-2 rounded-xl bg-white/15 border border-white/20 text-xs font-semibold text-cream w-fit">
+                    <CalendarDays className="w-4 h-4 shrink-0" />
+                    <span>{selectedCourse.schedule}</span>
+                  </div>
+                )}
               </div>
             </div>
 
