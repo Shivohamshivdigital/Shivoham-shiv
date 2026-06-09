@@ -21,6 +21,7 @@ export async function bookConsultation(
       createdAt: new Date().toISOString()
     };
 
+    // Keep a local backup copy (used by the dashboard view).
     try {
       const existing = localStorage.getItem(BOOKINGS_KEY);
       const bookings: ConsultationBooking[] = existing ? JSON.parse(existing) : [];
@@ -30,9 +31,32 @@ export async function bookConsultation(
       console.warn("localStorage quota exceeded or blocked; saving in memory.", e);
     }
 
-    setTimeout(() => {
-      resolve(newBooking);
-    }, 400);
+    // Send the lead to Brevo via our serverless function so the team is
+    // notified by email and the contact is saved in Brevo.
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: fullName,
+        email,
+        whatsapp,
+        message,
+        source: preferredTime ? `Booking (${preferredTime})` : "Website",
+      }),
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const detail = await res.text().catch(() => "");
+          console.error("Lead delivery failed:", res.status, detail);
+        }
+        resolve(newBooking);
+      })
+      .catch((err) => {
+        // Never block the user on a network error — the lead is still in the
+        // local backup and the UI can show success.
+        console.error("Lead delivery error:", err);
+        resolve(newBooking);
+      });
   });
 }
 
