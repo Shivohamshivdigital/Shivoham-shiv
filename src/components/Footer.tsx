@@ -1,18 +1,16 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, ArrowUp, ChevronDown } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUp, ArrowRight } from "lucide-react";
 
 export default function Footer() {
-  const [isOpen, setIsOpen] = useState(false);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const otherPages = [
+  const treatments = [
+    { name: "Acupressure Therapy", path: "/courses/acupressure-therapy" },
     { name: "Corporate & Adult Wellness", path: "/courses/corporate-wellness" },
     { name: "Mudra Therapy Course", path: "/courses/mudra-therapy" },
     { name: "Mindfulness & Focus Training for Kids", path: "/courses/mindfulness-kids" },
-    { name: "View All Courses", path: "/courses" },
   ];
 
   return (
@@ -69,47 +67,32 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Our specialization */}
-          <div className="text-left relative">
+          {/* Column 3: Other Treatment */}
+          <div className="text-left">
             <h4 className="font-heading font-bold text-white text-xs tracking-wider uppercase mb-5">
-              Our specialization
+              Other Treatment
             </h4>
-            
-            <div className="space-y-4">
-              <Link 
-                to="/courses/acupressure-therapy" 
-                className="block text-emerald-50 hover:text-amber-200 font-semibold text-sm transition-colors py-1 hover:underline"
-              >
-                Acupressure Therapy
-              </Link>
 
-              <div className="relative">
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="w-full flex items-center justify-between px-4 py-2 bg-[#1F4D45]/40 hover:bg-[#1F4D45]/70 border border-white/10 rounded-xl text-xs font-bold uppercase tracking-wider text-amber-200 transition-all focus:outline-none"
-                  aria-haspopup="listbox"
-                  aria-expanded={isOpen}
-                >
-                  <span className="truncate">Other Courses</span>
-                  <ChevronDown className={`w-4 h-4 text-amber-200 shrink-0 transition-transform duration-250 ${isOpen ? "rotate-180" : ""}`} />
-                </button>
+            <ul className="space-y-3.5 text-sm">
+              {treatments.map((item, idx) => (
+                <li key={idx}>
+                  <Link
+                    to={item.path}
+                    className="text-emerald-50 hover:text-amber-200 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-                {isOpen && (
-                  <div className="absolute bottom-full left-0 mb-2 w-full bg-[#1F4D45] border border-white/15 rounded-xl shadow-xl py-2 z-30 animate-fadeIn text-left">
-                    {otherPages.map((page, idx) => (
-                      <Link
-                        key={idx}
-                        to={page.path}
-                        onClick={() => setIsOpen(false)}
-                        className="block px-4 py-2.5 text-xs font-semibold text-emerald-50 hover:bg-white/10 hover:text-amber-200 transition-colors"
-                      >
-                        {page.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+            <Link
+              to="/treatments"
+              className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-200 hover:text-amber-100 transition-colors"
+            >
+              View All Treatments
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           {/* Column 4: Contacts */}
