@@ -28,8 +28,8 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Lead service is not configured." });
   }
 
-  const NOTIFY_TO = process.env.LEAD_NOTIFY_EMAIL || "info@shivohamshiv.com";
-  const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || "info@shivohamshiv.com";
+  const NOTIFY_TO = process.env.LEAD_NOTIFY_EMAIL || "shivohamshivdigital@gmail.com";
+  const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || "shivohamshivdigital@gmail.com";
   const LIST_ID = process.env.BREVO_LIST_ID ? Number(process.env.BREVO_LIST_ID) : null;
 
   const brevoHeaders = {
