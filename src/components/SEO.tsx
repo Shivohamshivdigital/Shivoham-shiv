@@ -49,7 +49,7 @@ export default function SEO({
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-7317778215",
+      "telephone": "+91-9682051868",
       "contactType": "customer service"
     }
   };
@@ -61,7 +61,7 @@ export default function SEO({
     "url": "https://shivohamshiv.com",
     "logo": "https://shivohamshiv.com/shivoham-shiv-logo.svg",
     "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200",
-    "telephone": "+91 7317778215",
+    "telephone": "+91 9682051868",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Arya Kanya Chowraha, Sipri Bazar",

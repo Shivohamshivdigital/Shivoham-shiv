@@ -129,7 +129,7 @@ export default function CourseDetailView() {
         `Pranama, Shivoham Shiv! I have registered and booked an evaluation for the course: ${courseId === "corp-wellness" ? "Corporate & Adult Wellness" : courseId}. (Name: ${resolvedFullName}, Phone: ${whatsapp})`
       );
       setTimeout(() => {
-        window.open(`https://wa.me/917317778215?text=${customMsg}`, "_blank");
+        window.open(`https://wa.me/919682051868?text=${customMsg}`, "_blank");
       }, 1500);
 
     } catch (err) {
@@ -629,7 +629,7 @@ export default function CourseDetailView() {
                       Your details have been locked into the local dashboard. Conversing direct on WhatsApp with Pooja's certified team is now opening in a new tab!
                     </p>
                     <a 
-                      href="https://wa.me/917317778215" 
+                      href="https://wa.me/919682051868" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
@@ -1288,7 +1288,7 @@ export default function CourseDetailView() {
                       Your details have been locked into the local dashboard. Conversing direct on WhatsApp with Pooja's certified team is now opening in a new tab!
                     </p>
                     <a 
-                      href="https://wa.me/917317778215" 
+                      href="https://wa.me/919682051868" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0 text-center"
@@ -1728,10 +1728,10 @@ export default function CourseDetailView() {
                   <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto" />
                   <h4 className="font-bold text-base">Corporate diagnostic request saved!</h4>
                   <p className="text-xs leading-relaxed max-w-md mx-auto text-slate-705">
-                    We have successfully captured your organization's wellness inquiry. Initiating chat confirmation directly with Pooja Chaturvedi's consulting team on WhatsApp (+91 7317778215). Check dashboard entries to view saved data!
+                    We have successfully captured your organization's wellness inquiry. Initiating chat confirmation directly with Pooja Chaturvedi's consulting team on WhatsApp (+91 9682051868). Check dashboard entries to view saved data!
                   </p>
                   <a 
-                    href="https://wa.me/917317778215" 
+                    href="https://wa.me/919682051868" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
@@ -2332,7 +2332,7 @@ export default function CourseDetailView() {
                       Your details have been locked into the local dashboard. Conversing direct on WhatsApp with Pooja's certified team is now opening in a new tab!
                     </p>
                     <a 
-                      href="https://wa.me/917317778215" 
+                      href="https://wa.me/919682051868" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
@@ -2805,7 +2805,7 @@ export default function CourseDetailView() {
                   Your details have been locked into the local dashboard. Conversing direct on WhatsApp with Pooja's certified team is now opening in a new tab!
                 </p>
                 <a 
-                  href="https://wa.me/917317778215" 
+                  href="https://wa.me/919682051868" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
