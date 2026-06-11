@@ -814,7 +814,7 @@ export default function CourseDetailView() {
           breadcrumbItems={[
             { name: "Home", url: "/" },
             { name: "Courses", url: "/courses" },
-            { name: "Acupressure Therapy", url: "/courses/acupressure-therapy" }
+            { name: "Murm Dab Chikitsa", url: "/courses/acupressure-therapy" }
           ]}
         />
         
@@ -839,7 +839,7 @@ export default function CourseDetailView() {
               Online Acupressure Pathways
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-tight">
-              Acupressure Therapy: Energy Healing
+              Murm Dab Chikitsa: Energy Healing
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
               At Shivoham Shiv, experience the power of natural healing through Acupressure Therapy. This ancient practice works by activating specific pressure points in the body to relieve pain, restore energy balance, and support overall well-being – naturally and holistically.
@@ -2526,11 +2526,11 @@ export default function CourseDetailView() {
       ]
     },
     "acupressure-therapy": {
-      title: "Acupressure Therapy Course: Heal Through Energy Points",
+      title: "Murm Dab Chikitsa: Heal Through Energy Points",
       description: "An ancient holistic wellness system detailing key meridian sites of the nervous system. Learn how gentle stimulation of Marma points on the head, feet, hands, and shoulders directly benefits internal organ health, resolves persistent somatic blocks, and triggers immediate endorphin release.",
       seoFocusWord: "acupressure therapy course",
       heroSubtitle: "Release locked energy nodes (Marma points) across your meridian lines. Pre-register for next month's batch today.",
-      category: "Acupressure Therapy",
+      category: "Murm Dab Chikitsa",
       courseDuration: "5 Weeks (Fully Online Live Sessions)",
       studentCount: 194,
       lessons: 16,

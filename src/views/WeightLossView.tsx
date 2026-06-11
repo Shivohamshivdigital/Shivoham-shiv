@@ -474,7 +474,7 @@ export default function WeightLossView() {
               icon: "🖐️"
             },
             {
-              title: "Acupressure",
+              title: "Murm Dab Chikitsa",
               desc: "Focused physiological surface point activation to stimulate natural spleen, liver, and digestive meridian channels.",
               icon: "✨"
             },
