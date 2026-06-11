@@ -45,7 +45,7 @@ export default function SEO({
     "url": "https://shivohamshiv.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://shivohamshiv.com/shivoham-shiv-logo.svg"
+      "url": "https://shivohamshiv.com/shivoham-shiv-logo.jpg"
     },
     "contactPoint": {
       "@type": "ContactPoint",
@@ -59,7 +59,7 @@ export default function SEO({
     "@id": "https://shivohamshiv.com/#localbusiness",
     "name": "Shivoham Shiv Vedic Wellness Center",
     "url": "https://shivohamshiv.com",
-    "logo": "https://shivohamshiv.com/shivoham-shiv-logo.svg",
+    "logo": "https://shivohamshiv.com/shivoham-shiv-logo.jpg",
     "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200",
     "telephone": "+91 9682051868",
     "address": {
@@ -190,14 +190,14 @@ export default function SEO({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content="https://shivohamshiv.com/shivoham-shiv-logo.webp" />
+      <meta property="og:image" content="https://shivohamshiv.com/shivoham-shiv-logo.jpg" />
       <meta property="og:site_name" content="Shivoham Shiv" />
 
       {/* Twitter Cards platform */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://shivohamshiv.com/shivoham-shiv-logo.webp" />
+      <meta name="twitter:image" content="https://shivohamshiv.com/shivoham-shiv-logo.jpg" />
 
       {/* Embedded Rich Structured JSON-LD Data */}
       <script type="application/ld+json">
