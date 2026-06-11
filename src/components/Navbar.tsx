@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, User, Flame } from "lucide-react";
+import { Menu, X, User, Flame } from "lucide-react";
 import { getUserStats } from "../services/userService";
 import { UserStats } from "../types";
 
@@ -11,8 +11,6 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [coursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
-  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
   const [userStats, setUserStats] = useState<UserStats | null>(null);
   const location = useLocation();
 
@@ -20,16 +18,10 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
     getUserStats().then(setUserStats);
   }, [location.pathname, updateTrigger]);
 
-  // Close drawer and dropdowns on page change
+  // Close drawer on page change
   useEffect(() => {
     setIsOpen(false);
-    setCoursesDropdownOpen(false);
-    setMobileCoursesOpen(false);
   }, [location.pathname]);
-
-  const coursesList = [
-    { name: "Murm Dab Chikitsa", path: "/courses/acupressure-therapy" },
-  ];
 
   return (
     <header className="sticky top-0 z-50 bg-[#2F5D50] shadow-md transition-all duration-300">
@@ -63,39 +55,17 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               ABOUT US
             </NavLink>
 
-            {/* COURSES DROPDOWN */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setCoursesDropdownOpen(true)}
-              onMouseLeave={() => setCoursesDropdownOpen(false)}
+            {/* MURM DAB CHIKITSA (single link) */}
+            <NavLink
+              to="/courses/acupressure-therapy"
+              className={({ isActive }) =>
+                `text-xs font-bold uppercase tracking-wider transition-colors duration-200 py-2 ${
+                  isActive ? "text-amber-200" : "text-white hover:text-amber-100"
+                }`
+              }
             >
-              <button
-                className={`text-xs font-bold uppercase tracking-wider flex items-center space-x-1 py-3 text-white hover:text-amber-100 focus:outline-none transition-colors ${
-                  location.pathname === "/courses" ? "text-amber-200" : ""
-                }`}
-              >
-                <span>Murm dab Chikitsha</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${coursesDropdownOpen ? "rotate-180" : ""}`} />
-              </button>
-
-              {/* Popover Menu */}
-              {coursesDropdownOpen && (
-                <div className="absolute top-10 left-0 w-80 bg-white border border-green-100 rounded-2xl shadow-xl py-3 z-50 text-left animate-fadeIn">
-                  {coursesList.map((course, idx) => (
-                    <Link
-                      key={idx}
-                      to={course.path}
-                      onClick={() => setCoursesDropdownOpen(false)}
-                      className={`block px-5 py-2.5 text-xs font-medium text-slate-800 hover:bg-green-50 hover:text-[#2F5D50] transition-colors last:border-t last:border-green-100 last:font-bold last:text-green-700 ${
-                        idx === coursesList.length - 1 ? "mt-1 pt-3" : ""
-                      }`}
-                    >
-                      {course.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+              Murm Dab Chikitsa
+            </NavLink>
 
             {/* Ayurvedic / Natural Weight Loss */}
             <NavLink
@@ -217,31 +187,14 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               ABOUT US
             </Link>
 
-            {/* Mobile Expandable COURSES */}
-            <div className="flex flex-col">
-              <button
-                onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
-                className="w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10 focus:outline-none"
-              >
-                <span>Murm dab Chikitsha</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileCoursesOpen ? "rotate-180" : ""}`} />
-              </button>
-
-              {mobileCoursesOpen && (
-                <div className="flex flex-col pl-6 mt-1 space-y-2 border-l border-white/20">
-                  {coursesList.map((course, idx) => (
-                    <Link
-                      key={idx}
-                      to={course.path}
-                      onClick={() => setIsOpen(false)}
-                      className="py-1.5 px-2 rounded-lg text-xs font-semibold text-white/90 hover:bg-white/5 transition-colors"
-                    >
-                      {course.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            {/* Mobile MURM DAB CHIKITSA (single link) */}
+            <Link
+              to="/courses/acupressure-therapy"
+              onClick={() => setIsOpen(false)}
+              className="py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
+            >
+              Murm Dab Chikitsa
+            </Link>
 
             <Link
               to="/weight-loss"
