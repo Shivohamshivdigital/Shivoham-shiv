@@ -41,6 +41,10 @@ export interface Course {
   benefits: string[];
   isUpcoming?: boolean;
   upcomingStartDate?: string;
+  // Class schedule shown on course blocks, e.g. "3 Months · 3 days a week".
+  schedule?: string;
+  // Optional alternate / regional name, e.g. "Murm Dab Chikitsa" for Acupressure.
+  altName?: string;
 }
 
 export interface Mudra {

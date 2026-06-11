@@ -355,7 +355,7 @@ function AppContent() {
       >
         <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-slate-100 bg-white flex items-center justify-center shrink-0 shadow-md relative">
           <img
-            src="/shivoham-shiv-logo.webp"
+            src="/shivoham-shiv-logo.svg"
             alt="Shivoham Shiv logo"
             width={40}
             height={40}

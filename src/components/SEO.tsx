@@ -45,7 +45,7 @@ export default function SEO({
     "url": "https://shivohamshiv.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://shivohamshiv.com/shivoham-shiv-logo.webp"
+      "url": "https://shivohamshiv.com/shivoham-shiv-logo.svg"
     },
     "contactPoint": {
       "@type": "ContactPoint",
@@ -59,7 +59,7 @@ export default function SEO({
     "@id": "https://shivohamshiv.com/#localbusiness",
     "name": "Shivoham Shiv Vedic Wellness Center",
     "url": "https://shivohamshiv.com",
-    "logo": "https://shivohamshiv.com/shivoham-shiv-logo.webp",
+    "logo": "https://shivohamshiv.com/shivoham-shiv-logo.svg",
     "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200",
     "telephone": "+91 7317778215",
     "address": {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Course } from "../types";
-import { Star, Clock, BookOpen, Bookmark, BookmarkCheck } from "lucide-react";
+import { Star, Clock, BookOpen, Bookmark, BookmarkCheck, CalendarDays } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface CourseCardProps {
@@ -17,7 +17,7 @@ export default function CourseCard({
   isBookmarked = false,
   onToggleBookmark
 }: CourseCardProps) {
-  const { id, title, tagline, category, rating, reviewsCount, duration, lessonsCount, studentCount, image, isUpcoming, upcomingStartDate } = course;
+  const { id, title, tagline, category, rating, reviewsCount, duration, lessonsCount, studentCount, image, isUpcoming, upcomingStartDate, schedule, altName } = course;
 
   const getCoursePath = (uid: string) => {
     if (uid === "corp-wellness") return "/courses/corporate-wellness";
@@ -112,12 +112,25 @@ export default function CourseCard({
         </div>
 
         {/* Title & Tagline */}
-        <h3 className="font-heading font-bold text-lg text-green-900 mb-2 leading-snug group-hover:text-green-700 transition-colors line-clamp-2">
+        <h3 className="font-heading font-bold text-lg text-green-900 mb-1 leading-snug group-hover:text-green-700 transition-colors line-clamp-2">
           <Link to={coursePath}>{title}</Link>
         </h3>
+        {altName && (
+          <p className="text-[11px] font-bold uppercase tracking-wider text-[#E8943A] mb-2">
+            {altName}
+          </p>
+        )}
         <p className="text-xs text-slate-700 font-medium mb-4 italic leading-relaxed line-clamp-2">
           "{tagline}"
         </p>
+
+        {/* Class schedule */}
+        {schedule && (
+          <div className="flex items-center gap-1.5 mb-4 px-3 py-2 rounded-xl bg-green-50 border border-green-100 text-[11px] font-semibold text-green-900">
+            <CalendarDays className="w-3.5 h-3.5 text-green-700 shrink-0" />
+            <span>{schedule}</span>
+          </div>
+        )}
 
         {/* Details Footer */}
         <div className="mt-auto border-t border-green-50 pt-4 flex items-center justify-between">
