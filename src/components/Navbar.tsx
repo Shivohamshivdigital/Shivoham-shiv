@@ -28,7 +28,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
   }, [location.pathname]);
 
   const coursesList = [
-    { name: "Acupressure Therapy", path: "/courses/acupressure-therapy" },
+    { name: "Murm Dab Chikitsa", path: "/courses/acupressure-therapy" },
   ];
 
   return (

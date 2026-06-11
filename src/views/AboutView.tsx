@@ -230,7 +230,7 @@ export default function AboutView() {
                 icon: "👶"
               },
               {
-                title: "Acupressure",
+                title: "Murm Dab Chikitsa",
                 desc: "Stimulate localized nerve feedback loops and energy points to naturally relieve stress, remove blocks, and support whole-body recovery.",
                 icon: "✨"
               }

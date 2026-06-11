@@ -27,7 +27,7 @@ export interface Course {
   id: string;
   title: string;
   tagline: string;
-  category: "Corporate & Adult Wellness" | "Kids EQ" | "Meditation" | "Mudra Therapy" | "Acupressure Therapy";
+  category: "Corporate & Adult Wellness" | "Kids EQ" | "Meditation" | "Mudra Therapy" | "Murm Dab Chikitsa";
   description: string;
   rating: number;
   reviewsCount: number;
