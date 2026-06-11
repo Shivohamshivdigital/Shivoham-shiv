@@ -44,7 +44,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
     <div className="bg-[#FAFBF7] min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <SEO
         title="Contact Shivoham Shiv | Book a Free Wellness Consultation"
-        description="Get in touch with Shivoham Shiv in Jhansi for Vedic wellness courses and a free consultation. Call +91 7317778215."
+        description="Get in touch with Shivoham Shiv in Jhansi for Vedic wellness courses and a free consultation. Call +91 9682051868."
         focusKeyword="book wellness consultation"
         isBreadcrumb={true}
         breadcrumbItems={[
@@ -105,7 +105,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
                       Direct Whatsapp & Phone
                     </h3>
                     <p className="text-sm text-slate-700 font-semibold">
-                      +91 7317778215
+                      +91 9682051868
                     </p>
                     <p className="text-xs text-slate-500 mt-1">
                       Available Mon-Sat (9:00 AM - 7:00 PM IST)

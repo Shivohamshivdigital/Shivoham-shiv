@@ -1728,7 +1728,7 @@ export default function CourseDetailView() {
                   <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto" />
                   <h4 className="font-bold text-base">Corporate diagnostic request saved!</h4>
                   <p className="text-xs leading-relaxed max-w-md mx-auto text-slate-705">
-                    We have successfully captured your organization's wellness inquiry. Initiating chat confirmation directly with Pooja Chaturvedi's consulting team on WhatsApp (+91 7317778215). Check dashboard entries to view saved data!
+                    We have successfully captured your organization's wellness inquiry. Initiating chat confirmation directly with Pooja Chaturvedi's consulting team on WhatsApp (+91 9682051868). Check dashboard entries to view saved data!
                   </p>
                   <a 
                     href="https://wa.me/919682051868" 

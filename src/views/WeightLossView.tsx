@@ -834,7 +834,7 @@ export default function WeightLossView() {
                 <Check className="w-10 h-10 text-green-700 bg-white rounded-full p-2 mx-auto shadow-sm" />
                 <h4 className="font-bold text-base">Inquiry secured!</h4>
                 <p className="text-xs leading-relaxed max-w-md mx-auto">
-                  Pranama! We have logged your weight-loss diagnostic request. We are now redirecting you to converse with our lead counselor directly on WhatsApp (+91 7317778215) for your timeslot confirmation.
+                  Pranama! We have logged your weight-loss diagnostic request. We are now redirecting you to converse with our lead counselor directly on WhatsApp (+91 9682051868) for your timeslot confirmation.
                 </p>
                 <a
                   href="https://wa.me/919682051868"
@@ -946,7 +946,7 @@ export default function WeightLossView() {
                 <div>
                   <span className="block font-bold uppercase text-slate-600 text-[10px]">Mobile Contact</span>
                   <p className="text-slate-800 font-mono text-xs font-bold">
-                    +91 7317778215
+                    +91 9682051868
                   </p>
                 </div>
               </div>
