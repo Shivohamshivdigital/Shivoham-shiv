@@ -41,7 +41,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           <Link id="nav-logo" to="/" className="flex items-center group shrink-0" aria-label="Shivoham Shiv Home">
             <div className="h-12 sm:h-16 w-auto px-1 sm:px-1.5 rounded-xl bg-white flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
               <img
-                src="/shivoham-shiv-logo.svg"
+                src="/shivoham-shiv-logo.jpg"
                 alt="Shivoham Shiv logo"
                 className="h-full w-auto object-contain rounded-lg"
               />
