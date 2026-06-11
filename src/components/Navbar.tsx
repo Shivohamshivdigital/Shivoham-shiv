@@ -35,11 +35,11 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
     <header className="sticky top-0 z-50 bg-[#2F5D50] shadow-md transition-all duration-300">
       <nav aria-label="Main Navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-          
-          {/* Left: Brand Logo in small white rounded square/badge */}
+          <div className="flex items-center justify-between h-20 sm:h-24">
+
+          {/* Left: Brand Logo in white rounded badge */}
           <Link id="nav-logo" to="/" className="flex items-center group shrink-0" aria-label="Shivoham Shiv Home">
-            <div className="h-12 sm:h-16 w-auto px-1 sm:px-1.5 rounded-xl bg-white flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+            <div className="h-16 sm:h-20 w-auto px-2 sm:px-2.5 py-1 rounded-xl bg-white flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
               <img
                 src="/shivoham-shiv-logo.jpg"
                 alt="Shivoham Shiv logo"
