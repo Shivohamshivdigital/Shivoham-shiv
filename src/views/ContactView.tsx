@@ -133,7 +133,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
               {/* Directly WhatsApp CTA */}
               <div className="border-t border-green-100 pt-6 mt-6">
                 <a
-                  href="https://wa.me/917317778215"
+                  href="https://wa.me/919682051868"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-4 bg-[#25D366] hover:bg-[#1ebd5b] text-white rounded-2xl font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"

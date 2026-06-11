@@ -95,7 +95,7 @@ export default function WeightLossView() {
         `Pranama, Shivoham Shiv! I have registered for the 60-Day Natural Weight Loss Consultation. Please review my profile (Contact: ${contactNo}).`
       );
       setTimeout(() => {
-        window.open(`https://wa.me/917317778215?text=${encodedMsg}`, "_blank");
+        window.open(`https://wa.me/919682051868?text=${encodedMsg}`, "_blank");
       }, 1500);
 
     } catch (err) {
@@ -793,7 +793,7 @@ export default function WeightLossView() {
               Book Your FREE Consultation
             </button>
             <a
-              href="https://wa.me/917317778215"
+              href="https://wa.me/919682051868"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 bg-white hover:bg-neutral-50 text-[#3A4A40] border border-green-200 font-bold text-xs uppercase tracking-wider rounded-xl shadow-xs transition-all flex items-center gap-2"
@@ -837,7 +837,7 @@ export default function WeightLossView() {
                   Pranama! We have logged your weight-loss diagnostic request. We are now redirecting you to converse with our lead counselor directly on WhatsApp (+91 7317778215) for your timeslot confirmation.
                 </p>
                 <a
-                  href="https://wa.me/917317778215"
+                  href="https://wa.me/919682051868"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block mt-2 px-6 py-2.5 bg-[#4A7C59] hover:bg-[#2F5233] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-green-600"

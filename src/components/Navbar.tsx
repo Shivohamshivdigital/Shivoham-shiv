@@ -156,7 +156,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
 
             {/* Whatsapp pill button */}
             <a
-              href="https://wa.me/917317778215"
+              href="https://wa.me/919682051868"
               target="_blank"
               rel="noopener noreferrer"
               className="h-11 px-5 bg-white hover:bg-neutral-50 text-[#2F5D50] rounded-full text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2"
@@ -173,7 +173,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           <div className="lg:hidden flex items-center space-x-1.5 sm:space-x-2.5">
             {/* Whatsapp pill button (mobile) */}
             <a
-              href="https://wa.me/917317778215"
+              href="https://wa.me/919682051868"
               target="_blank"
               rel="noopener noreferrer"
               className="h-9 px-2.5 bg-white hover:bg-neutral-50 text-[#2F5D50] rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center space-x-1 shrink-0"
@@ -270,7 +270,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
             {/* Mobile WhatsApp CTA Button */}
             <div className="pt-4 border-t border-white/15">
               <a
-                href="https://wa.me/917317778215"
+                href="https://wa.me/919682051868"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 bg-white hover:bg-neutral-50 text-[#2F5D50] rounded-full text-xs font-bold uppercase tracking-widest shadow-md transition-all flex items-center justify-center space-x-2"
