@@ -28,6 +28,7 @@ import SEO from "../components/SEO";
 
 // Standard book function simulated or logged
 import { bookConsultation } from "../services/consultationService";
+import { startPayment, PaymentPlan } from "../services/paymentService";
 
 export default function WeightLossView() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
@@ -40,6 +41,30 @@ export default function WeightLossView() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [bannerText, setBannerText] = useState<string | null>(null);
+  const [payingPlan, setPayingPlan] = useState<PaymentPlan | null>(null);
+
+  const handlePay = async (plan: PaymentPlan) => {
+    if (payingPlan) return;
+    setPayingPlan(plan);
+    try {
+      await startPayment(plan, {
+        name: fullName || undefined,
+        email: email || undefined,
+        contact: contactNo || undefined,
+      });
+      setBannerText("Payment successful! 🎉 Our team will reach out on WhatsApp within 24 hours to begin your journey.");
+    } catch (err: any) {
+      if (err?.message && err.message !== "Payment cancelled.") {
+        setBannerText(err.message);
+      }
+    } finally {
+      setPayingPlan(null);
+    }
+  };
+
+  const scrollToEnroll = () => {
+    document.getElementById("enroll")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   // Smooth scroll links helper
   const handleScrollToSegment = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -128,6 +153,15 @@ export default function WeightLossView() {
 
   return (
     <div className="bg-[#FAFBF7] min-h-screen font-sans text-[#3A4A40] overflow-x-hidden selection:bg-green-150">
+      {/* Floating toast (payment + form messages) */}
+      {bannerText && (
+        <div className="fixed bottom-6 right-6 z-[60] max-w-sm w-[calc(100%-3rem)] sm:w-full bg-[#0F3320] text-cream shadow-2xl p-4 rounded-2xl flex items-start gap-3 animate-fadeIn border border-green-800">
+          <AlertCircle className="w-5 h-5 text-[#F3C969] shrink-0 mt-0.5" />
+          <span className="text-xs leading-relaxed font-medium flex-1">{bannerText}</span>
+          <button onClick={() => setBannerText(null)} className="text-green-200 hover:text-white shrink-0" aria-label="Close">✕</button>
+        </div>
+      )}
+
       <SEO
         title="Ayurvedic Natural Weight Loss | 60-Day Program — Shivoham Shiv"
         description="Lose weight naturally with Shivoham Shiv's 60-day Ayurvedic program — yoga, pranayama, mudra therapy and a prakriti diet. No pills, no crash diets."
@@ -169,7 +203,7 @@ export default function WeightLossView() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <button
-                onClick={handleHeroScroll}
+                onClick={scrollToEnroll}
                 className="px-8 py-4 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl transform hover:-translate-y-0.5 transition-all text-center border-b-2 border-amber-600 flex items-center justify-center gap-2"
               >
                 <Clock3 className="w-4 h-4" />
@@ -813,13 +847,95 @@ export default function WeightLossView() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-10">
             <button
-              onClick={handleHeroScroll}
+              onClick={scrollToEnroll}
               className="px-8 py-4 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 border-b-2 border-amber-600"
             >
               <Clock3 className="w-4 h-4" />
               Get Started in 24 Hrs
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* 10c. PRICING / ENROLL SECTION */}
+      <section id="enroll" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAFBF7] border-y border-green-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple Pricing</span>
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 mb-3 leading-tight">
+              Start your transformation today
+            </h2>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Reserve your seat with a small registration, or enroll in the full 60-Day Program —
+              both backed by our results guarantee.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Registration */}
+            <div className="bg-white border border-green-100 rounded-3xl shadow-sm p-8 flex flex-col">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">Reserve Your Seat</span>
+              <h3 className="font-heading font-bold text-xl text-[#2F5233] mt-2">Registration</h3>
+              <div className="flex items-end gap-1 mt-4 mb-1">
+                <span className="text-4xl font-bold text-green-900">₹999</span>
+                <span className="text-xs text-slate-500 mb-1.5">one-time</span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed mb-6">
+                Lock your spot in this week's batch and get your onboarding started within 24 hours.
+              </p>
+              <ul className="space-y-2.5 mb-7 mt-auto">
+                {["Seat reserved in current batch", "Onboarding call within 24 hrs", "Adjustable towards full program"].map((f, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-700">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={() => handlePay("register")}
+                disabled={payingPlan !== null}
+                className="w-full py-3.5 bg-white border-2 border-[#4A7C59] text-[#2F5233] hover:bg-[#E3F1E3] font-bold text-xs uppercase tracking-wider rounded-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {payingPlan === "register" ? "Processing…" : "Register for ₹999"}
+              </button>
+            </div>
+
+            {/* Full Program */}
+            <div className="relative bg-[#0F3320] text-cream rounded-3xl shadow-xl p-8 flex flex-col border border-green-800">
+              <span className="absolute -top-3 right-6 bg-[#E8943A] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                Best Value
+              </span>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969]">Full Transformation</span>
+              <h3 className="font-heading font-bold text-xl text-white mt-2">60-Day Natural Program</h3>
+              <div className="flex items-end gap-1 mt-4 mb-1">
+                <span className="text-4xl font-bold text-white">₹7,999</span>
+                <span className="text-xs text-green-100/70 mb-1.5">full course</span>
+              </div>
+              <p className="text-xs text-green-100/80 leading-relaxed mb-6">
+                The complete personalized program — backed by our "results or it's on us" guarantee.
+              </p>
+              <ul className="space-y-2.5 mb-7 mt-auto">
+                {["Prakriti-personalized diet & plan", "Yoga, Pranayama, Mudra & Marma guidance", "Results guarantee — until you reach your goal"].map((f, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-green-50">
+                    <Check className="w-4 h-4 text-[#F3C969] shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={() => handlePay("course")}
+                disabled={payingPlan !== null}
+                className="w-full py-3.5 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all border-b-2 border-amber-600 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {payingPlan === "course" ? "Processing…" : "Enroll for ₹7,999"}
+              </button>
+            </div>
+          </div>
+
+          <p className="text-center text-[11px] text-slate-500 mt-8 flex items-center justify-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
+            Secure payment via Razorpay — UPI, cards, net-banking &amp; wallets accepted.
+          </p>
         </div>
       </section>
 
@@ -870,13 +986,6 @@ export default function WeightLossView() {
               <h3 className="font-heading font-bold text-2xl text-[#2F5233]">Book your FREE consultation</h3>
               <p className="text-xs text-slate-500 mt-1">Submit your profile to map natural solutions with a counselor.</p>
             </div>
-
-            {bannerText && (
-              <div className="p-4 mb-6 bg-[#FAFBF7] border-l-4 border-[#E8943A] text-xs text-[#2F5233] flex items-center gap-2 rounded-r-lg font-medium">
-                <AlertCircle className="w-4 h-4 text-[#E8943A] shrink-0" />
-                <span>{bannerText}</span>
-              </div>
-            )}
 
             {isSuccess ? (
               <div className="p-8 bg-[#E3F1E3] border border-green-200 text-[#2F5233] rounded-2xl text-center space-y-3">
