@@ -10,6 +10,8 @@
 //   BREVO_SENDER_EMAIL   Verified Brevo sender address (default: info@shivohamshiv.com)
 //   BREVO_LIST_ID        Numeric Brevo contact list id to add leads to (optional)
 
+import { dbInsert } from "./_db.js";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -54,6 +56,9 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error("Brevo contact upsert failed:", err);
   }
+
+  // 1b) Save the lead to our database (best-effort) so it shows in /admin.
+  await dbInsert("leads", { name, email, whatsapp, message: message || "", source: source || "Website" });
 
   // 2) Send the notification email to the Shivoham Shiv team.
   try {

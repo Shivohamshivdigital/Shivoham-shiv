@@ -10,6 +10,7 @@
 //   BREVO_SENDER_EMAIL    Verified Brevo sender (default below)
 
 import crypto from "crypto";
+import { dbInsert } from "../_db.js";
 
 const PLAN_LABEL = {
   register: "Registration (₹999)",
@@ -58,9 +59,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Payment verification failed." });
   }
 
-  // Best-effort: pull the payer's email/contact from Razorpay and email the team.
+  // Best-effort: pull the payer's email/contact/amount from Razorpay.
   let payerEmail = email || "";
   let payerContact = contact || "";
+  let amount = null;
   try {
     const auth = Buffer.from(`${KEY_ID}:${KEY_SECRET}`).toString("base64");
     const pr = await fetch(`https://api.razorpay.com/v1/payments/${razorpay_payment_id}`, {
@@ -70,10 +72,23 @@ export default async function handler(req, res) {
       const p = await pr.json();
       payerEmail = payerEmail || p.email || "";
       payerContact = payerContact || p.contact || "";
+      if (typeof p.amount === "number") amount = Math.round(p.amount / 100); // paise → ₹
     }
   } catch (err) {
     console.error("Could not fetch payment details:", err);
   }
+
+  // Save the payment to our database (best-effort) so it shows in /admin.
+  await dbInsert("payments", {
+    plan,
+    name: name || "",
+    email: payerEmail,
+    contact: payerContact,
+    amount,
+    razorpay_payment_id,
+    razorpay_order_id,
+    status: "paid",
+  });
 
   await notifyTeam({ plan, name, email: payerEmail, contact: payerContact, razorpay_payment_id, razorpay_order_id });
 
