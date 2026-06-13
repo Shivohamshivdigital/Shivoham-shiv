@@ -19,7 +19,9 @@ import {
   HelpCircle,
   TrendingDown,
   ChevronRight,
-  AlertCircle
+  AlertCircle,
+  ShieldCheck,
+  Clock3
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
@@ -168,9 +170,10 @@ export default function WeightLossView() {
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <button
                 onClick={handleHeroScroll}
-                className="px-8 py-4 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl transform hover:-translate-y-0.5 transition-all text-center border-b-2 border-amber-600"
+                className="px-8 py-4 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl transform hover:-translate-y-0.5 transition-all text-center border-b-2 border-amber-600 flex items-center justify-center gap-2"
               >
-                Book FREE Consultation
+                <Clock3 className="w-4 h-4" />
+                Get Started in 24 Hrs
               </button>
               <a
                 href="#the-program"
@@ -771,6 +774,52 @@ export default function WeightLossView() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* 10b. RESULTS GUARANTEE / OFFER BAND */}
+      <section id="guarantee" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0F3320] text-cream">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1F4D45] rounded-full text-xs font-bold uppercase tracking-widest border border-green-800 text-[#F3C969]">
+            <ShieldCheck className="w-4 h-4" />
+            Our Results Guarantee
+          </span>
+
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl mt-5 mb-5 leading-tight text-white">
+            Results — or the rest of the journey is <span className="text-[#F3C969]">on us.</span>
+          </h2>
+
+          <p className="text-sm sm:text-lg leading-relaxed text-green-50/90 max-w-2xl mx-auto">
+            If you don't notice a real transition in your <strong className="text-white">first 14 days</strong>,
+            the rest of your journey is on us. We're so confident that even if there are
+            <strong className="text-white"> no tangible results after 1.5 months</strong>, we keep going
+            entirely at our cost — <strong className="text-[#F3C969]">until you reach your goal.</strong>
+          </p>
+
+          {/* Guarantee pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 text-left">
+            {[
+              { t: "14-Day Promise", d: "No real transition in the first 14 days? The rest is on us." },
+              { t: "Beyond 1.5 Months", d: "No tangible results? We continue free of cost." },
+              { t: "Until the Goal", d: "We don't stop until your target is achieved." },
+            ].map((item, idx) => (
+              <div key={idx} className="bg-[#1F4D45]/60 border border-green-800/60 rounded-2xl p-5">
+                <ShieldCheck className="w-5 h-5 text-[#F3C969] mb-2" />
+                <h3 className="font-bold text-sm text-white mb-1">{item.t}</h3>
+                <p className="text-xs text-green-100/80 leading-relaxed">{item.d}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-10">
+            <button
+              onClick={handleHeroScroll}
+              className="px-8 py-4 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 border-b-2 border-amber-600"
+            >
+              <Clock3 className="w-4 h-4" />
+              Get Started in 24 Hrs
+            </button>
+          </div>
         </div>
       </section>
 
