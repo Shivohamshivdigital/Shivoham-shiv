@@ -8,6 +8,7 @@ import HomeView from "./views/HomeView";
 import CoursesView from "./views/CoursesView";
 import CourseDetailView from "./views/CourseDetailView";
 import TreatmentsView from "./views/TreatmentsView";
+import AdminView from "./views/AdminView";
 import DashboardView from "./views/DashboardView";
 import AboutView from "./views/AboutView";
 import WeightLossView from "./views/WeightLossView";
@@ -144,6 +145,8 @@ function AppContent() {
           />
 
           <Route path="/treatments" element={<TreatmentsView />} />
+
+          <Route path="/admin" element={<AdminView />} />
 
           <Route
             path="/mudras"
