@@ -3,7 +3,7 @@
 //
 // Required environment variables:
 //   ADMIN_PASSWORD               the password for the /admin page
-//   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY   (see api/_db.js)
+//   FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY   (see api/_db.js)
 
 import { dbSelect } from "../_db.js";
 
