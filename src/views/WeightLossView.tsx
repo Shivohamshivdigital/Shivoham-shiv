@@ -704,8 +704,8 @@ export default function WeightLossView() {
               </ul>
             </div>
 
-            {/* Right: pricing box — sticks to the side while scrolling on desktop */}
-            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+            {/* Right: full pricing box — floats fixed on the right on desktop, in-flow on mobile */}
+            <div className="w-full max-w-md mx-auto lg:mx-0 lg:fixed lg:right-4 lg:top-1/2 lg:-translate-y-1/2 lg:z-40 lg:w-[340px] lg:max-w-none">
               {(() => {
               const plan = PLAN_INFO[selectedPlan];
               return (
@@ -1207,26 +1207,6 @@ export default function WeightLossView() {
           </div>
         </div>
       </footer>
-
-      {/* Floating price tag — pinned to the right edge on every page/scroll */}
-      {(() => {
-        const plan = PLAN_INFO[selectedPlan];
-        return (
-          <button
-            onClick={scrollToEnroll}
-            aria-label="See pricing and enroll"
-            className="fixed z-40 right-0 top-1/2 -translate-y-1/2 flex items-center gap-2.5 pl-3.5 pr-3 py-3 bg-[#0F3320] text-cream rounded-l-2xl shadow-2xl border border-r-0 border-green-800 hover:pr-4 transition-all"
-          >
-            <div className="flex flex-col items-start leading-tight">
-              <span className="text-[8px] uppercase font-bold tracking-widest text-[#F3C969]">
-                {plan.discount ? plan.discount : "Enroll from"}
-              </span>
-              <span className="text-lg font-bold text-white">{plan.price}</span>
-            </div>
-            <span className="w-7 h-7 rounded-full bg-[#E8943A] text-white flex items-center justify-center text-sm shrink-0">→</span>
-          </button>
-        );
-      })()}
 
     </div>
   );
