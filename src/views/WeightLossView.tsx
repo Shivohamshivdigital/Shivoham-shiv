@@ -911,7 +911,7 @@ export default function WeightLossView() {
                 Reserve your seat with a small registration, or enroll in the full 60-Day Program —
                 both backed by our results guarantee.
               </p>
-              <ul className="space-y-3.5">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3.5 lg:grid-cols-1">
                 {[
                   "Prakriti-personalized plan for your body type",
                   "Guided by experienced practitioners",
