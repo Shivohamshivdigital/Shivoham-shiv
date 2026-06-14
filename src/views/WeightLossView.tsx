@@ -192,7 +192,7 @@ export default function WeightLossView() {
   ];
 
   return (
-    <div className="bg-[#FAFBF7] min-h-screen font-sans text-[#3A4A40] overflow-x-hidden selection:bg-green-150">
+    <div className="bg-[#FAFBF7] min-h-screen font-sans text-[#3A4A40] overflow-x-clip selection:bg-green-150">
       {/* Floating toast (payment + form messages) */}
       {bannerText && (
         <div className="fixed bottom-6 right-6 z-[60] max-w-sm w-[calc(100%-3rem)] sm:w-full bg-[#0F3320] text-cream shadow-2xl p-4 rounded-2xl flex items-start gap-3 animate-fadeIn border border-green-800">
