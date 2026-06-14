@@ -1208,37 +1208,23 @@ export default function WeightLossView() {
         </div>
       </footer>
 
-      {/* Floating price card — fixed/floating on the right side, all screens */}
+      {/* Floating price tag — pinned to the right edge on every page/scroll */}
       {(() => {
         const plan = PLAN_INFO[selectedPlan];
         return (
-          <div className="flex fixed z-40 right-3 bottom-24 w-44 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:right-4 lg:w-56 flex-col bg-[#0F3320] text-cream rounded-2xl shadow-2xl border border-green-800 p-4 lg:p-5">
-            {plan.discount && (
-              <span className="self-start mb-2 bg-[#E8943A] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full">
-                {plan.discount}
+          <button
+            onClick={scrollToEnroll}
+            aria-label="See pricing and enroll"
+            className="fixed z-40 right-0 top-1/2 -translate-y-1/2 flex items-center gap-2.5 pl-3.5 pr-3 py-3 bg-[#0F3320] text-cream rounded-l-2xl shadow-2xl border border-r-0 border-green-800 hover:pr-4 transition-all"
+          >
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-[8px] uppercase font-bold tracking-widest text-[#F3C969]">
+                {plan.discount ? plan.discount : "Enroll from"}
               </span>
-            )}
-            <span className="text-[9px] uppercase font-bold tracking-widest text-[#F3C969]">{plan.title}</span>
-            <div className="flex items-end gap-1.5 mt-1 mb-3">
-              <span className="text-2xl lg:text-3xl font-bold text-white">{plan.price}</span>
-              {plan.original && (
-                <span className="text-xs lg:text-sm text-green-100/50 line-through mb-1">{plan.original}</span>
-              )}
+              <span className="text-lg font-bold text-white">{plan.price}</span>
             </div>
-            <button
-              onClick={() => handlePay(selectedPlan)}
-              disabled={payingPlan !== null}
-              className="w-full py-2.5 lg:py-3 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-[10px] lg:text-[11px] uppercase tracking-wider rounded-xl shadow-md transition-all border-b-2 border-amber-600 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {payingPlan === selectedPlan ? "Processing…" : plan.cta}
-            </button>
-            <button
-              onClick={scrollToEnroll}
-              className="mt-2 text-[10px] text-green-100/70 hover:text-white underline underline-offset-2"
-            >
-              Change plan
-            </button>
-          </div>
+            <span className="w-7 h-7 rounded-full bg-[#E8943A] text-white flex items-center justify-center text-sm shrink-0">→</span>
+          </button>
         );
       })()}
 
