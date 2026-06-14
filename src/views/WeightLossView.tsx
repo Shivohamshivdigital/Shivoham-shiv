@@ -304,7 +304,7 @@ export default function WeightLossView() {
 
       {/* Hero Stats Strip */}
       <section className="bg-green-950 text-cream py-8 px-4 sm:px-6 lg:px-8 border-y-4 border-[#E8943A]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
           {[
             { value: "6–9kg", label: "avg loss / 60 days" },
             { value: "1,200+", label: "Transformations Guided" },
@@ -378,7 +378,7 @@ export default function WeightLossView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
           {[
             {
               title: "Crash Diets",
@@ -533,7 +533,7 @@ export default function WeightLossView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {[
             {
               title: "Yoga",
@@ -639,7 +639,7 @@ export default function WeightLossView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
           {[
             {
               week: "Week 1",
