@@ -31,6 +31,8 @@ export default async function handler(req, res) {
     return res.status(200).json({ leads, payments });
   } catch (err) {
     console.error("Admin data fetch error:", err);
-    return res.status(500).json({ error: "Could not load data." });
+    // Surface the underlying reason so setup issues (e.g. a malformed
+    // FIREBASE_PRIVATE_KEY) are visible on the password-protected admin page.
+    return res.status(500).json({ error: `Could not load data: ${String((err && err.message) || err)}` });
   }
 }

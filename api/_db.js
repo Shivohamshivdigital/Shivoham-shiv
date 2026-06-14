@@ -15,7 +15,20 @@ import crypto from "crypto";
 
 const PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
 const CLIENT_EMAIL = process.env.FIREBASE_CLIENT_EMAIL;
-const PRIVATE_KEY = (process.env.FIREBASE_PRIVATE_KEY || "").replace(/\\n/g, "\n");
+const PRIVATE_KEY = normalizePrivateKey(process.env.FIREBASE_PRIVATE_KEY);
+
+// Vercel (and copy-paste) often wrap the key in quotes or keep literal "\n"
+// sequences instead of real newlines. Normalise both so the PEM parses.
+function normalizePrivateKey(raw) {
+  let key = (raw || "").trim();
+  if (
+    (key.startsWith('"') && key.endsWith('"')) ||
+    (key.startsWith("'") && key.endsWith("'"))
+  ) {
+    key = key.slice(1, -1);
+  }
+  return key.replace(/\\n/g, "\n");
+}
 
 const FIRESTORE_BASE = PROJECT_ID
   ? `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`
