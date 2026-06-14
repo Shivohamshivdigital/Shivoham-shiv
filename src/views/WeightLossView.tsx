@@ -675,6 +675,109 @@ export default function WeightLossView() {
         </div>
       </section>
 
+      {/* 10c. PRICING / ENROLL SECTION */}
+      <section id="enroll" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAFBF7] border-y border-green-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            {/* Left: heading + trust points */}
+            <div className="lg:pt-4">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple Pricing</span>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 mb-3 leading-tight">
+                Start your transformation today
+              </h2>
+              <p className="text-sm text-slate-700 leading-relaxed mb-7">
+                Reserve your seat with a small registration, or enroll in the full 60-Day Program —
+                both backed by our results guarantee.
+              </p>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3.5 lg:grid-cols-1">
+                {[
+                  "Prakriti-personalized plan for your body type",
+                  "Guided by experienced practitioners",
+                  "Results guarantee — until you reach your goal",
+                  "100% natural — no crash diets or pills",
+                ].map((f, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right: pricing box — sticks to the side while scrolling on desktop */}
+            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+              {(() => {
+              const plan = PLAN_INFO[selectedPlan];
+              return (
+                <div className="relative bg-[#0F3320] text-cream rounded-3xl shadow-xl p-8 flex flex-col border border-green-800">
+                  {plan.discount && (
+                    <span className="absolute -top-3 right-6 bg-[#E8943A] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                      {plan.discount}
+                    </span>
+                  )}
+
+                  {/* Plan selector dropdown */}
+                  <label htmlFor="plan-select" className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969] mb-2 block">
+                    Choose your plan
+                  </label>
+                  <div className="relative mb-7">
+                    <select
+                      id="plan-select"
+                      value={selectedPlan}
+                      onChange={(e) => setSelectedPlan(e.target.value as PaymentPlan)}
+                      className="w-full appearance-none bg-white/10 border border-green-700 text-white font-semibold text-sm rounded-xl py-3.5 pl-4 pr-11 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F3C969]"
+                    >
+                      {(Object.keys(PLAN_INFO) as PaymentPlan[]).map((key) => (
+                        <option key={key} value={key} className="text-slate-900">
+                          {PLAN_INFO[key].dropdownLabel}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-5 h-5 text-[#F3C969] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  </div>
+
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969]">{plan.badge}</span>
+                  <h3 className="font-heading font-bold text-xl text-white mt-2">{plan.title}</h3>
+
+                  <div className="flex items-end gap-2 mt-4 mb-1">
+                    <span className="text-4xl font-bold text-white">{plan.price}</span>
+                    {plan.original && (
+                      <span className="text-lg text-green-100/50 line-through mb-1.5">{plan.original}</span>
+                    )}
+                    <span className="text-xs text-green-100/70 mb-1.5">{plan.unit}</span>
+                  </div>
+
+                  <p className="text-xs text-green-100/80 leading-relaxed mb-6 mt-2">{plan.desc}</p>
+
+                  <ul className="space-y-2.5 mb-7">
+                    {plan.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-green-50">
+                        <Check className="w-4 h-4 text-[#F3C969] shrink-0 mt-0.5" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => handlePay(selectedPlan)}
+                    disabled={payingPlan !== null}
+                    className="w-full py-3.5 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all border-b-2 border-amber-600 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {payingPlan === selectedPlan ? "Processing…" : plan.cta}
+                  </button>
+                </div>
+                );
+              })()}
+            </div>
+          </div>
+
+          <p className="text-center text-[11px] text-slate-500 mt-8 flex items-center justify-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
+            Secure payment via Razorpay — UPI, cards, net-banking &amp; wallets accepted.
+          </p>
+        </div>
+      </section>
+
       {/* 8. REAL NUMBERS · REAL CLIENTS */}
       <section className="bg-[#F2F9F2] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E3F1E3]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -894,109 +997,6 @@ export default function WeightLossView() {
               Get Started in 24 Hrs
             </button>
           </div>
-        </div>
-      </section>
-
-      {/* 10c. PRICING / ENROLL SECTION */}
-      <section id="enroll" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAFBF7] border-y border-green-100">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            {/* Left: heading + trust points */}
-            <div className="lg:pt-4">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple Pricing</span>
-              <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 mb-3 leading-tight">
-                Start your transformation today
-              </h2>
-              <p className="text-sm text-slate-700 leading-relaxed mb-7">
-                Reserve your seat with a small registration, or enroll in the full 60-Day Program —
-                both backed by our results guarantee.
-              </p>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-3.5 lg:grid-cols-1">
-                {[
-                  "Prakriti-personalized plan for your body type",
-                  "Guided by experienced practitioners",
-                  "Results guarantee — until you reach your goal",
-                  "100% natural — no crash diets or pills",
-                ].map((f, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
-                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Right: pricing box — sticks to the side while scrolling on desktop */}
-            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
-              {(() => {
-              const plan = PLAN_INFO[selectedPlan];
-              return (
-                <div className="relative bg-[#0F3320] text-cream rounded-3xl shadow-xl p-8 flex flex-col border border-green-800">
-                  {plan.discount && (
-                    <span className="absolute -top-3 right-6 bg-[#E8943A] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
-                      {plan.discount}
-                    </span>
-                  )}
-
-                  {/* Plan selector dropdown */}
-                  <label htmlFor="plan-select" className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969] mb-2 block">
-                    Choose your plan
-                  </label>
-                  <div className="relative mb-7">
-                    <select
-                      id="plan-select"
-                      value={selectedPlan}
-                      onChange={(e) => setSelectedPlan(e.target.value as PaymentPlan)}
-                      className="w-full appearance-none bg-white/10 border border-green-700 text-white font-semibold text-sm rounded-xl py-3.5 pl-4 pr-11 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F3C969]"
-                    >
-                      {(Object.keys(PLAN_INFO) as PaymentPlan[]).map((key) => (
-                        <option key={key} value={key} className="text-slate-900">
-                          {PLAN_INFO[key].dropdownLabel}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="w-5 h-5 text-[#F3C969] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  </div>
-
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969]">{plan.badge}</span>
-                  <h3 className="font-heading font-bold text-xl text-white mt-2">{plan.title}</h3>
-
-                  <div className="flex items-end gap-2 mt-4 mb-1">
-                    <span className="text-4xl font-bold text-white">{plan.price}</span>
-                    {plan.original && (
-                      <span className="text-lg text-green-100/50 line-through mb-1.5">{plan.original}</span>
-                    )}
-                    <span className="text-xs text-green-100/70 mb-1.5">{plan.unit}</span>
-                  </div>
-
-                  <p className="text-xs text-green-100/80 leading-relaxed mb-6 mt-2">{plan.desc}</p>
-
-                  <ul className="space-y-2.5 mb-7">
-                    {plan.features.map((f, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-green-50">
-                        <Check className="w-4 h-4 text-[#F3C969] shrink-0 mt-0.5" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button
-                    onClick={() => handlePay(selectedPlan)}
-                    disabled={payingPlan !== null}
-                    className="w-full py-3.5 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all border-b-2 border-amber-600 disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {payingPlan === selectedPlan ? "Processing…" : plan.cta}
-                  </button>
-                </div>
-                );
-              })()}
-            </div>
-          </div>
-
-          <p className="text-center text-[11px] text-slate-500 mt-8 flex items-center justify-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
-            Secure payment via Razorpay — UPI, cards, net-banking &amp; wallets accepted.
-          </p>
         </div>
       </section>
 
