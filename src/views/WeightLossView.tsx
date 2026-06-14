@@ -679,22 +679,26 @@ export default function WeightLossView() {
       <section id="enroll" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAFBF7] border-y border-green-100">
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            {/* Left: heading + trust points */}
+            {/* Left: rich content so the sticky price box stays beside it while scrolling */}
             <div className="lg:pt-4">
               <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple Pricing</span>
               <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 mb-3 leading-tight">
                 Start your transformation today
               </h2>
-              <p className="text-sm text-slate-700 leading-relaxed mb-7">
+              <p className="text-sm text-slate-700 leading-relaxed mb-8">
                 Reserve your seat with a small registration, or enroll in the full 60-Day Program —
                 both backed by our results guarantee.
               </p>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-3.5 lg:grid-cols-1">
+
+              <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-4">What's included</h3>
+              <ul className="space-y-3.5 mb-9">
                 {[
-                  "Prakriti-personalized plan for your body type",
-                  "Guided by experienced practitioners",
-                  "Results guarantee — until you reach your goal",
-                  "100% natural — no crash diets or pills",
+                  "Prakriti-personalized natural diet plan for your body type",
+                  "Daily guided Yoga & Pranayama routines",
+                  "Mudra therapy & Murm Dab Chikitsa (acupressure) guidance",
+                  "1-on-1 practitioner support on WhatsApp",
+                  "Weekly progress tracking with plan adjustments",
+                  "Results guarantee — we continue free until you reach your goal",
                 ].map((f, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
                     <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
@@ -702,10 +706,32 @@ export default function WeightLossView() {
                   </li>
                 ))}
               </ul>
+
+              <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-4">Why members choose us</h3>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3.5 lg:grid-cols-1 mb-9">
+                {[
+                  "Prakriti-personalized plan for your body type",
+                  "Guided by experienced practitioners",
+                  "100% natural — no crash diets or pills",
+                  "1,200+ transformations over 7+ years",
+                ].map((f, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="bg-[#EFFFDF]/60 border border-green-100 rounded-2xl p-5">
+                <p className="text-sm text-slate-700 leading-relaxed italic">
+                  "If you don't notice a real transition in your first 14 days, the rest of your journey is on us — until you reach your goal."
+                </p>
+                <span className="block mt-2 text-xs font-bold text-[#2F5233]">— The Shivoham Shiv Promise</span>
+              </div>
             </div>
 
-            {/* Right: full pricing box — floats fixed on the right on desktop, in-flow on mobile */}
-            <div className="w-full max-w-md mx-auto lg:mx-0 lg:fixed lg:right-4 lg:top-1/2 lg:-translate-y-1/2 lg:z-40 lg:w-[340px] lg:max-w-none">
+            {/* Right: pricing box — sticks to the side while scrolling on desktop */}
+            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
               {(() => {
               const plan = PLAN_INFO[selectedPlan];
               return (
