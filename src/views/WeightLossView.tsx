@@ -1208,6 +1208,40 @@ export default function WeightLossView() {
         </div>
       </footer>
 
+      {/* Floating price card — fixed on the right side (desktop only) */}
+      {(() => {
+        const plan = PLAN_INFO[selectedPlan];
+        return (
+          <div className="hidden lg:flex fixed right-4 top-1/2 -translate-y-1/2 z-40 w-56 flex-col bg-[#0F3320] text-cream rounded-2xl shadow-2xl border border-green-800 p-5">
+            {plan.discount && (
+              <span className="self-start mb-2 bg-[#E8943A] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full">
+                {plan.discount}
+              </span>
+            )}
+            <span className="text-[9px] uppercase font-bold tracking-widest text-[#F3C969]">{plan.title}</span>
+            <div className="flex items-end gap-1.5 mt-1 mb-3">
+              <span className="text-3xl font-bold text-white">{plan.price}</span>
+              {plan.original && (
+                <span className="text-sm text-green-100/50 line-through mb-1">{plan.original}</span>
+              )}
+            </div>
+            <button
+              onClick={() => handlePay(selectedPlan)}
+              disabled={payingPlan !== null}
+              className="w-full py-3 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-[11px] uppercase tracking-wider rounded-xl shadow-md transition-all border-b-2 border-amber-600 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {payingPlan === selectedPlan ? "Processing…" : plan.cta}
+            </button>
+            <button
+              onClick={scrollToEnroll}
+              className="mt-2 text-[10px] text-green-100/70 hover:text-white underline underline-offset-2"
+            >
+              Change plan
+            </button>
+          </div>
+        );
+      })()}
+
     </div>
   );
 }
