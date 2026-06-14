@@ -900,19 +900,35 @@ export default function WeightLossView() {
       {/* 10c. PRICING / ENROLL SECTION */}
       <section id="enroll" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAFBF7] border-y border-green-100">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple Pricing</span>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 mb-3 leading-tight">
-              Start your transformation today
-            </h2>
-            <p className="text-sm text-slate-700 leading-relaxed">
-              Reserve your seat with a small registration, or enroll in the full 60-Day Program —
-              both backed by our results guarantee.
-            </p>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            {/* Left: heading + trust points */}
+            <div className="lg:pt-4">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple Pricing</span>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 mb-3 leading-tight">
+                Start your transformation today
+              </h2>
+              <p className="text-sm text-slate-700 leading-relaxed mb-7">
+                Reserve your seat with a small registration, or enroll in the full 60-Day Program —
+                both backed by our results guarantee.
+              </p>
+              <ul className="space-y-3.5">
+                {[
+                  "Prakriti-personalized plan for your body type",
+                  "Guided by experienced practitioners",
+                  "Results guarantee — until you reach your goal",
+                  "100% natural — no crash diets or pills",
+                ].map((f, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div className="max-w-md mx-auto">
-            {(() => {
+            {/* Right: pricing box — sticks to the side while scrolling on desktop */}
+            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+              {(() => {
               const plan = PLAN_INFO[selectedPlan];
               return (
                 <div className="relative bg-[#0F3320] text-cream rounded-3xl shadow-xl p-8 flex flex-col border border-green-800">
@@ -972,8 +988,9 @@ export default function WeightLossView() {
                     {payingPlan === selectedPlan ? "Processing…" : plan.cta}
                   </button>
                 </div>
-              );
-            })()}
+                );
+              })()}
+            </div>
           </div>
 
           <p className="text-center text-[11px] text-slate-500 mt-8 flex items-center justify-center gap-1.5">

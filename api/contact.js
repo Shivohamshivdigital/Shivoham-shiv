@@ -24,77 +24,83 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Name, email and WhatsApp are required." });
   }
 
+  // 1) Save the lead to our database FIRST (best-effort) so it always appears
+  //    in /admin — regardless of whether the Brevo email integration is set up.
+  const saved = await dbInsert("leads", {
+    name,
+    email,
+    whatsapp,
+    message: message || "",
+    source: source || "Website",
+  });
+
+  // 2) Notify the team by email via Brevo — entirely optional. If the key is
+  //    missing or the send fails, the lead is still captured above, so we never
+  //    block the visitor or lose the lead.
   const BREVO_API_KEY = process.env.BREVO_API_KEY;
-  if (!BREVO_API_KEY) {
-    console.error("BREVO_API_KEY is not set");
+  if (BREVO_API_KEY) {
+    const NOTIFY_TO = process.env.LEAD_NOTIFY_EMAIL || "shivohamshivdigital@gmail.com";
+    const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || "shivohamshivdigital@gmail.com";
+    const LIST_ID = process.env.BREVO_LIST_ID ? Number(process.env.BREVO_LIST_ID) : null;
+    const brevoHeaders = {
+      "api-key": BREVO_API_KEY,
+      "content-type": "application/json",
+      accept: "application/json",
+    };
+
+    // Add / update the lead as a Brevo contact (best-effort).
+    try {
+      await fetch("https://api.brevo.com/v3/contacts", {
+        method: "POST",
+        headers: brevoHeaders,
+        body: JSON.stringify({
+          email,
+          attributes: { FIRSTNAME: name, SMS: whatsapp, WHATSAPP: whatsapp },
+          updateEnabled: true,
+          ...(LIST_ID ? { listIds: [LIST_ID] } : {}),
+        }),
+      });
+    } catch (err) {
+      console.error("Brevo contact upsert failed:", err);
+    }
+
+    // Send the notification email to the team (best-effort).
+    try {
+      const htmlContent = `
+        <h2>New website lead${source ? ` — ${escapeHtml(source)}` : ""}</h2>
+        <table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px">
+          <tr><td><strong>Name</strong></td><td>${escapeHtml(name)}</td></tr>
+          <tr><td><strong>Email</strong></td><td>${escapeHtml(email)}</td></tr>
+          <tr><td><strong>WhatsApp</strong></td><td>${escapeHtml(whatsapp)}</td></tr>
+          <tr><td><strong>Message</strong></td><td>${escapeHtml(message || "—")}</td></tr>
+        </table>
+        <p style="color:#888;font-size:12px">Sent automatically from the Shivoham Shiv website.</p>
+      `;
+
+      const emailRes = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: brevoHeaders,
+        body: JSON.stringify({
+          sender: { name: "Shivoham Shiv Website", email: SENDER_EMAIL },
+          to: [{ email: NOTIFY_TO }],
+          replyTo: { email, name },
+          subject: `New Lead: ${name}`,
+          htmlContent,
+        }),
+      });
+
+      if (!emailRes.ok) {
+        console.error("Brevo email send failed:", emailRes.status, await emailRes.text());
+      }
+    } catch (err) {
+      console.error("Brevo email send error:", err);
+    }
+  }
+
+  // As long as the lead reached the database (or Brevo was attempted), succeed.
+  if (!saved && !BREVO_API_KEY) {
     return res.status(500).json({ error: "Lead service is not configured." });
   }
-
-  const NOTIFY_TO = process.env.LEAD_NOTIFY_EMAIL || "shivohamshivdigital@gmail.com";
-  const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || "shivohamshivdigital@gmail.com";
-  const LIST_ID = process.env.BREVO_LIST_ID ? Number(process.env.BREVO_LIST_ID) : null;
-
-  const brevoHeaders = {
-    "api-key": BREVO_API_KEY,
-    "content-type": "application/json",
-    accept: "application/json",
-  };
-
-  // 1) Add / update the lead as a Brevo contact (non-blocking — a failure here
-  //    should not stop the notification email from going out).
-  try {
-    await fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers: brevoHeaders,
-      body: JSON.stringify({
-        email,
-        attributes: { FIRSTNAME: name, SMS: whatsapp, WHATSAPP: whatsapp },
-        updateEnabled: true,
-        ...(LIST_ID ? { listIds: [LIST_ID] } : {}),
-      }),
-    });
-  } catch (err) {
-    console.error("Brevo contact upsert failed:", err);
-  }
-
-  // 1b) Save the lead to our database (best-effort) so it shows in /admin.
-  await dbInsert("leads", { name, email, whatsapp, message: message || "", source: source || "Website" });
-
-  // 2) Send the notification email to the Shivoham Shiv team.
-  try {
-    const htmlContent = `
-      <h2>New website lead${source ? ` — ${escapeHtml(source)}` : ""}</h2>
-      <table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px">
-        <tr><td><strong>Name</strong></td><td>${escapeHtml(name)}</td></tr>
-        <tr><td><strong>Email</strong></td><td>${escapeHtml(email)}</td></tr>
-        <tr><td><strong>WhatsApp</strong></td><td>${escapeHtml(whatsapp)}</td></tr>
-        <tr><td><strong>Message</strong></td><td>${escapeHtml(message || "—")}</td></tr>
-      </table>
-      <p style="color:#888;font-size:12px">Sent automatically from the Shivoham Shiv website.</p>
-    `;
-
-    const emailRes = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers: brevoHeaders,
-      body: JSON.stringify({
-        sender: { name: "Shivoham Shiv Website", email: SENDER_EMAIL },
-        to: [{ email: NOTIFY_TO }],
-        replyTo: { email, name },
-        subject: `New Lead: ${name}`,
-        htmlContent,
-      }),
-    });
-
-    if (!emailRes.ok) {
-      const detail = await emailRes.text();
-      console.error("Brevo email send failed:", emailRes.status, detail);
-      return res.status(502).json({ error: "Could not send notification." });
-    }
-  } catch (err) {
-    console.error("Brevo email send error:", err);
-    return res.status(502).json({ error: "Could not send notification." });
-  }
-
   return res.status(200).json({ success: true });
 }
 
