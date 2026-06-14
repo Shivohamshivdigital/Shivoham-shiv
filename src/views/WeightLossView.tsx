@@ -30,6 +30,45 @@ import SEO from "../components/SEO";
 import { bookConsultation } from "../services/consultationService";
 import { startPayment, PaymentPlan } from "../services/paymentService";
 
+// Pricing options shown in the single enroll box (selectable via the dropdown).
+const PLAN_INFO: Record<PaymentPlan, {
+  badge: string;
+  title: string;
+  price: string;
+  original: string | null;
+  discount: string | null;
+  unit: string;
+  desc: string;
+  features: string[];
+  cta: string;
+  dropdownLabel: string;
+}> = {
+  register: {
+    badge: "Reserve Your Seat",
+    title: "Registration",
+    price: "₹999",
+    original: null,
+    discount: null,
+    unit: "one-time",
+    desc: "Lock your spot in this week's batch and get your onboarding started within 24 hours.",
+    features: ["Seat reserved in current batch", "Onboarding call within 24 hrs", "Adjustable towards full program"],
+    cta: "Register for ₹999",
+    dropdownLabel: "Registration — ₹999 (start now)",
+  },
+  course: {
+    badge: "Full Transformation",
+    title: "60-Day Natural Program",
+    price: "₹7,999",
+    original: "₹11,999",
+    discount: "30% OFF",
+    unit: "full course",
+    desc: 'The complete personalized program — backed by our "results or it\'s on us" guarantee.',
+    features: ["Prakriti-personalized diet & plan", "Yoga, Pranayama, Mudra & Marma guidance", "Results guarantee — until you reach your goal"],
+    cta: "Enroll for ₹7,999",
+    dropdownLabel: "60-Day Program — ₹7,999 (30% OFF)",
+  },
+};
+
 export default function WeightLossView() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   
@@ -42,6 +81,7 @@ export default function WeightLossView() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [bannerText, setBannerText] = useState<string | null>(null);
   const [payingPlan, setPayingPlan] = useState<PaymentPlan | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<PaymentPlan>("register");
 
   const handlePay = async (plan: PaymentPlan) => {
     if (payingPlan) return;
@@ -871,65 +911,69 @@ export default function WeightLossView() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {/* Registration */}
-            <div className="bg-white border border-green-100 rounded-3xl shadow-sm p-8 flex flex-col">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">Reserve Your Seat</span>
-              <h3 className="font-heading font-bold text-xl text-[#2F5233] mt-2">Registration</h3>
-              <div className="flex items-end gap-1 mt-4 mb-1">
-                <span className="text-4xl font-bold text-green-900">₹999</span>
-                <span className="text-xs text-slate-500 mb-1.5">one-time</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Lock your spot in this week's batch and get your onboarding started within 24 hours.
-              </p>
-              <ul className="space-y-2.5 mb-7 mt-auto">
-                {["Seat reserved in current batch", "Onboarding call within 24 hrs", "Adjustable towards full program"].map((f, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-slate-700">
-                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => handlePay("register")}
-                disabled={payingPlan !== null}
-                className="w-full py-3.5 bg-white border-2 border-[#4A7C59] text-[#2F5233] hover:bg-[#E3F1E3] font-bold text-xs uppercase tracking-wider rounded-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {payingPlan === "register" ? "Processing…" : "Register for ₹999"}
-              </button>
-            </div>
+          <div className="max-w-md mx-auto">
+            {(() => {
+              const plan = PLAN_INFO[selectedPlan];
+              return (
+                <div className="relative bg-[#0F3320] text-cream rounded-3xl shadow-xl p-8 flex flex-col border border-green-800">
+                  {plan.discount && (
+                    <span className="absolute -top-3 right-6 bg-[#E8943A] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                      {plan.discount}
+                    </span>
+                  )}
 
-            {/* Full Program */}
-            <div className="relative bg-[#0F3320] text-cream rounded-3xl shadow-xl p-8 flex flex-col border border-green-800">
-              <span className="absolute -top-3 right-6 bg-[#E8943A] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
-                Best Value
-              </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969]">Full Transformation</span>
-              <h3 className="font-heading font-bold text-xl text-white mt-2">60-Day Natural Program</h3>
-              <div className="flex items-end gap-1 mt-4 mb-1">
-                <span className="text-4xl font-bold text-white">₹7,999</span>
-                <span className="text-xs text-green-100/70 mb-1.5">full course</span>
-              </div>
-              <p className="text-xs text-green-100/80 leading-relaxed mb-6">
-                The complete personalized program — backed by our "results or it's on us" guarantee.
-              </p>
-              <ul className="space-y-2.5 mb-7 mt-auto">
-                {["Prakriti-personalized diet & plan", "Yoga, Pranayama, Mudra & Marma guidance", "Results guarantee — until you reach your goal"].map((f, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-green-50">
-                    <Check className="w-4 h-4 text-[#F3C969] shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => handlePay("course")}
-                disabled={payingPlan !== null}
-                className="w-full py-3.5 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all border-b-2 border-amber-600 disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {payingPlan === "course" ? "Processing…" : "Enroll for ₹7,999"}
-              </button>
-            </div>
+                  {/* Plan selector dropdown */}
+                  <label htmlFor="plan-select" className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969] mb-2 block">
+                    Choose your plan
+                  </label>
+                  <div className="relative mb-7">
+                    <select
+                      id="plan-select"
+                      value={selectedPlan}
+                      onChange={(e) => setSelectedPlan(e.target.value as PaymentPlan)}
+                      className="w-full appearance-none bg-white/10 border border-green-700 text-white font-semibold text-sm rounded-xl py-3.5 pl-4 pr-11 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F3C969]"
+                    >
+                      {(Object.keys(PLAN_INFO) as PaymentPlan[]).map((key) => (
+                        <option key={key} value={key} className="text-slate-900">
+                          {PLAN_INFO[key].dropdownLabel}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-5 h-5 text-[#F3C969] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  </div>
+
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969]">{plan.badge}</span>
+                  <h3 className="font-heading font-bold text-xl text-white mt-2">{plan.title}</h3>
+
+                  <div className="flex items-end gap-2 mt-4 mb-1">
+                    <span className="text-4xl font-bold text-white">{plan.price}</span>
+                    {plan.original && (
+                      <span className="text-lg text-green-100/50 line-through mb-1.5">{plan.original}</span>
+                    )}
+                    <span className="text-xs text-green-100/70 mb-1.5">{plan.unit}</span>
+                  </div>
+
+                  <p className="text-xs text-green-100/80 leading-relaxed mb-6 mt-2">{plan.desc}</p>
+
+                  <ul className="space-y-2.5 mb-7">
+                    {plan.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-green-50">
+                        <Check className="w-4 h-4 text-[#F3C969] shrink-0 mt-0.5" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => handlePay(selectedPlan)}
+                    disabled={payingPlan !== null}
+                    className="w-full py-3.5 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all border-b-2 border-amber-600 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {payingPlan === selectedPlan ? "Processing…" : plan.cta}
+                  </button>
+                </div>
+              );
+            })()}
           </div>
 
           <p className="text-center text-[11px] text-slate-500 mt-8 flex items-center justify-center gap-1.5">
