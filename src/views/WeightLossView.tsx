@@ -378,7 +378,7 @@ export default function WeightLossView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden text-left lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:pb-0">
           {[
             {
               title: "Crash Diets",
@@ -397,7 +397,7 @@ export default function WeightLossView() {
               desc: "They completely ignore your unique dosha profile (Vata, Pitta, or Kapha) which regulates your natural structure."
             }
           ].map((card, idx) => (
-            <div key={idx} className="bg-white rounded-2xl p-6 border-b-4 border-[#E8943A] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between border border-green-100">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-white rounded-2xl p-6 border-b-4 border-[#E8943A] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between border border-green-100">
               <div className="space-y-3 prose">
                 <span className="text-2xl block text-amber-500 font-bold">0{idx + 1}</span>
                 <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug">{card.title}</h3>
@@ -533,7 +533,7 @@ export default function WeightLossView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:pb-0">
           {[
             {
               title: "Yoga",
@@ -566,7 +566,7 @@ export default function WeightLossView() {
               icon: "👥"
             }
           ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-3xl p-6 border border-[#E3F1E3] hover:shadow-xl hover:border-green-700 transition-all flex flex-col justify-between">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-white rounded-3xl p-6 border border-[#E3F1E3] hover:shadow-xl hover:border-green-700 transition-all flex flex-col justify-between">
               <div className="space-y-4">
                 <span className="text-4xl block">{item.icon}</span>
                 <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug">{item.title}</h3>
@@ -639,7 +639,7 @@ export default function WeightLossView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden text-left lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:pb-0">
           {[
             {
               week: "Week 1",
@@ -662,7 +662,7 @@ export default function WeightLossView() {
               desc: "Sustained lifestyle integration completes, establishing full biological equilibrium from the root up."
             }
           ].map((progress, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-2xl border border-green-150 relative hover:border-[#4A7C59] transition-all shadow-xs">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-white p-6 rounded-2xl border border-green-150 relative hover:border-[#4A7C59] transition-all shadow-xs">
               <span className="absolute top-4 right-4 text-xs font-bold text-[#E8943A] font-mono bg-amber-50 px-2 py-0.5 rounded-md">
                 {progress.week}
               </span>
