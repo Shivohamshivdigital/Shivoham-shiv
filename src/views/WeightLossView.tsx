@@ -704,8 +704,8 @@ export default function WeightLossView() {
               </ul>
             </div>
 
-            {/* Right: full pricing box — floats fixed on the right on desktop, in-flow on mobile */}
-            <div className="w-full max-w-md mx-auto lg:mx-0 lg:fixed lg:right-4 lg:top-1/2 lg:-translate-y-1/2 lg:z-40 lg:w-[340px] lg:max-w-none">
+            {/* Right: pricing box — sticks to the side while scrolling on desktop */}
+            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
               {(() => {
               const plan = PLAN_INFO[selectedPlan];
               return (
