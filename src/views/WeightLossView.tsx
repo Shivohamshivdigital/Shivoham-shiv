@@ -728,6 +728,25 @@ export default function WeightLossView() {
                 </p>
                 <span className="block mt-2 text-xs font-bold text-[#2F5233]">— The Shivoham Shiv Promise</span>
               </div>
+
+              <div className="mt-9">
+                <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-5">Your 60-day journey</h3>
+                <ol className="relative border-l-2 border-green-100 ml-1 space-y-6">
+                  {[
+                    { w: "Week 1", t: "Detox & onboarding", d: "Water bloat drains, routine begins, onboarding call within 24 hrs." },
+                    { w: "Week 2", t: "Cravings calm (~3 kg)", d: "Sugar dependencies fade, sleep deepens, and energy rises." },
+                    { w: "Week 4", t: "Metabolic reset (~5 kg)", d: "Stamina spikes, fat tissues dissolve, vitality returns." },
+                    { w: "Week 8", t: "Lasting balance (~8 kg)", d: "Full biological equilibrium — results that actually hold." },
+                  ].map((s, i) => (
+                    <li key={i} className="ml-5">
+                      <span className="absolute -left-[9px] w-4 h-4 rounded-full bg-[#4A7C59] border-2 border-[#FAFBF7]" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-[#E8943A]">{s.w}</span>
+                      <h4 className="font-heading font-bold text-sm text-[#2F5233] mt-0.5">{s.t}</h4>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-1">{s.d}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
 
             {/* Right: pricing box — sticks to the side while scrolling on desktop */}
