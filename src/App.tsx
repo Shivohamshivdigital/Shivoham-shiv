@@ -363,7 +363,7 @@ function AppContent() {
       {/* FLOATING WIDGETS */}
       {/* WhatsApp Chat Bubble bottom-LEFT */}
       <a
-        href="https://wa.me/919682051868"
+        href="https://wa.me/917317778215"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 bg-white border border-[#2F5D50]/25 hover:border-[#2F5D50]/50 shadow-xl rounded-full p-1.5 sm:p-2 flex items-center max-w-[280px] sm:max-w-xs transition-all duration-300 hover:-translate-y-1 group"
