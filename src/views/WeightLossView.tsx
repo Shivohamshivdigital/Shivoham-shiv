@@ -749,8 +749,8 @@ export default function WeightLossView() {
               </div>
             </div>
 
-            {/* Right: pricing box — sticks to the side while scrolling on desktop */}
-            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+            {/* Right: full pricing box — fixed/floating on the right across the whole page (desktop) */}
+            <div className="w-full max-w-md mx-auto lg:mx-0 lg:fixed lg:right-4 lg:top-1/2 lg:-translate-y-1/2 lg:z-40 lg:w-[330px] lg:max-w-none">
               {(() => {
               const plan = PLAN_INFO[selectedPlan];
               return (
