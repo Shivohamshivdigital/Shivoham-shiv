@@ -118,6 +118,8 @@ function fromFirestoreValue(val) {
 
 function fromFirestoreDoc(doc) {
   const out = {};
+  // The document id is the last path segment of doc.name.
+  if (doc.name) out.id = String(doc.name).split("/").pop();
   const fields = doc.fields || {};
   for (const [k, v] of Object.entries(fields)) out[k] = fromFirestoreValue(v);
   return out;
@@ -173,4 +175,33 @@ export async function dbSelect(collection) {
   // Newest first.
   rows.sort((a, b) => String(b.created_at || "").localeCompare(String(a.created_at || "")));
   return rows;
+}
+
+/** Overwrite a document by id with the given fields. Throws on failure. */
+export async function dbUpdate(collection, id, row) {
+  if (!isDbConfigured()) return false;
+  const token = await getAccessToken();
+  const resp = await fetch(`${FIRESTORE_BASE}/${collection}/${id}`, {
+    method: "PATCH",
+    headers: { Authorization: `Bearer ${token}`, "content-type": "application/json" },
+    body: JSON.stringify({ fields: toFirestoreFields(row) }),
+  });
+  if (!resp.ok) {
+    throw new Error(`Firestore update failed: ${resp.status} ${await resp.text()}`);
+  }
+  return true;
+}
+
+/** Delete a document by id. Throws on failure. */
+export async function dbDelete(collection, id) {
+  if (!isDbConfigured()) return false;
+  const token = await getAccessToken();
+  const resp = await fetch(`${FIRESTORE_BASE}/${collection}/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!resp.ok) {
+    throw new Error(`Firestore delete failed: ${resp.status} ${await resp.text()}`);
+  }
+  return true;
 }

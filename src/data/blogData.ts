@@ -590,3 +590,45 @@ export const blogPosts: BlogPost[] = [
     ]
   }
 ];
+
+// --- Dynamic posts (admin-created, stored in Firestore) ---------------------
+// Admins write the body as plain text: blank-line-separated blocks, lines
+// starting with "## " become headings, blocks of "- " lines become bullet
+// lists, everything else is a paragraph. This converts that to BlogSection[].
+export function contentToSections(content: string): BlogSection[] {
+  if (!content) return [];
+  const blocks = content.replace(/\r\n/g, "\n").split(/\n\s*\n/);
+  const sections: BlogSection[] = [];
+  for (const raw of blocks) {
+    const block = raw.trim();
+    if (!block) continue;
+    const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+    if (block.startsWith("## ")) {
+      sections.push({ type: "heading", text: block.replace(/^##\s+/, "") });
+    } else if (lines.length > 0 && lines.every((l) => l.startsWith("- "))) {
+      sections.push({ type: "bullet_list", bullets: lines.map((l) => l.replace(/^-\s+/, "")) });
+    } else {
+      sections.push({ type: "paragraph", text: lines.join(" ") });
+    }
+  }
+  return sections;
+}
+
+// Normalises a post coming from the API into the BlogPost shape the views use.
+export function normalizePost(p: any): BlogPost {
+  return {
+    slug: p.slug || "",
+    title: p.title || "",
+    excerpt: p.excerpt || "",
+    meta: p.meta || p.excerpt || "",
+    keyword: p.keyword || "",
+    date: p.date || "",
+    image: p.image || "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800",
+    sections: Array.isArray(p.sections) ? p.sections : contentToSections(p.content || ""),
+    author: p.author || "Shivoham Shiv",
+    ctaText: p.ctaText || "Book a Free Consultation",
+    ctaLink: p.ctaLink || "/weight-loss",
+    category: p.category || "Wellness",
+    relatedSlugs: Array.isArray(p.relatedSlugs) ? p.relatedSlugs : [],
+  };
+}

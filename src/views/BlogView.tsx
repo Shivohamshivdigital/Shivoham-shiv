@@ -1,14 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import { blogPosts } from "../data/blogData";
+import { blogPosts, normalizePost, BlogPost } from "../data/blogData";
 import { BookOpen, Calendar, User, ArrowRight } from "lucide-react";
 
 export default function BlogView() {
+  const [dynamicPosts, setDynamicPosts] = useState<BlogPost[]>([]);
+
   // Ensure we scroll to top on view mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
+
+  // Load admin-created posts from the API (falls back silently to static posts).
+  useEffect(() => {
+    fetch("/api/blog")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data?.posts)) setDynamicPosts(data.posts.map(normalizePost));
+      })
+      .catch(() => {});
+  }, []);
+
+  // Merge dynamic (newest, admin) + static, deduped by slug.
+  const seen = new Set<string>();
+  const allPosts: BlogPost[] = [...dynamicPosts, ...blogPosts].filter((p) => {
+    if (!p.slug || seen.has(p.slug)) return false;
+    seen.add(p.slug);
+    return true;
+  });
 
   return (
     <div className="bg-[#FAFBF7] min-h-screen font-sans selection:bg-green-100 pb-16">
@@ -57,7 +77,7 @@ export default function BlogView() {
 
         {/* 3. Responsive 3-Column Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-          {blogPosts.map((post) => {
+          {allPosts.map((post) => {
             return (
               <article
                 key={post.slug}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, LogOut, Users, CreditCard } from "lucide-react";
+import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink } from "lucide-react";
 
 interface Lead {
   id: string;
@@ -24,6 +24,24 @@ interface Payment {
   status?: string;
 }
 
+interface Post {
+  id?: string;
+  created_at?: string;
+  slug?: string;
+  title?: string;
+  excerpt?: string;
+  meta?: string;
+  keyword?: string;
+  category?: string;
+  author?: string;
+  image?: string;
+  content?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  date?: string;
+  published?: boolean;
+}
+
 const PW_KEY = "shivoham_admin_pw";
 
 function fmtDate(iso?: string) {
@@ -35,6 +53,21 @@ function fmtDate(iso?: string) {
   }
 }
 
+const emptyPost: Post = {
+  title: "",
+  slug: "",
+  category: "Wellness",
+  author: "Shivoham Shiv",
+  image: "",
+  excerpt: "",
+  meta: "",
+  keyword: "",
+  content: "",
+  ctaText: "Book a Free Consultation",
+  ctaLink: "/weight-loss",
+  published: true,
+};
+
 export default function AdminView() {
   const [password, setPassword] = useState("");
   const [authed, setAuthed] = useState(false);
@@ -42,35 +75,61 @@ export default function AdminView() {
   const [error, setError] = useState<string | null>(null);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
-  const [tab, setTab] = useState<"leads" | "payments">("leads");
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [tab, setTab] = useState<"leads" | "payments" | "blog">("leads");
 
-  const fetchData = useCallback(async (pw: string) => {
-    setLoading(true);
-    setError(null);
+  // Blog editor state
+  const [editing, setEditing] = useState<Post | null>(null);
+  const [savingPost, setSavingPost] = useState(false);
+  const [postMsg, setPostMsg] = useState<string | null>(null);
+
+  const pw = () => password || sessionStorage.getItem(PW_KEY) || "";
+
+  const fetchPosts = useCallback(async (p: string) => {
     try {
-      const res = await fetch("/api/admin/data", {
+      const res = await fetch("/api/admin/posts", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ password: pw }),
+        body: JSON.stringify({ password: p, action: "list" }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        if (res.status === 401) {
-          sessionStorage.removeItem(PW_KEY);
-          setAuthed(false);
-        }
-        throw new Error(data.error || "Could not load data.");
-      }
-      setLeads(Array.isArray(data.leads) ? data.leads : []);
-      setPayments(Array.isArray(data.payments) ? data.payments : []);
-      setAuthed(true);
-      sessionStorage.setItem(PW_KEY, pw);
-    } catch (err: any) {
-      setError(err.message || "Something went wrong.");
-    } finally {
-      setLoading(false);
+      if (res.ok && Array.isArray(data.posts)) setPosts(data.posts);
+    } catch {
+      /* best-effort */
     }
   }, []);
+
+  const fetchData = useCallback(
+    async (p: string) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch("/api/admin/data", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ password: p }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          if (res.status === 401) {
+            sessionStorage.removeItem(PW_KEY);
+            setAuthed(false);
+          }
+          throw new Error(data.error || "Could not load data.");
+        }
+        setLeads(Array.isArray(data.leads) ? data.leads : []);
+        setPayments(Array.isArray(data.payments) ? data.payments : []);
+        setAuthed(true);
+        sessionStorage.setItem(PW_KEY, p);
+        fetchPosts(p);
+      } catch (err: any) {
+        setError(err.message || "Something went wrong.");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [fetchPosts]
+  );
 
   // Auto-login if a password was saved this session.
   useEffect(() => {
@@ -92,7 +151,57 @@ export default function AdminView() {
     setPassword("");
     setLeads([]);
     setPayments([]);
+    setPosts([]);
+    setEditing(null);
   };
+
+  const savePost = async () => {
+    if (!editing) return;
+    if (!editing.title?.trim()) {
+      setPostMsg("Title is required.");
+      return;
+    }
+    setSavingPost(true);
+    setPostMsg(null);
+    try {
+      const res = await fetch("/api/admin/posts", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), action: "save", post: editing }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not save the post.");
+      setEditing(null);
+      await fetchPosts(pw());
+    } catch (err: any) {
+      setPostMsg(err.message || "Save failed.");
+    } finally {
+      setSavingPost(false);
+    }
+  };
+
+  const deletePost = async (id?: string) => {
+    if (!id) return;
+    if (!window.confirm("Delete this post permanently?")) return;
+    try {
+      const res = await fetch("/api/admin/posts", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), action: "delete", id }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not delete.");
+      await fetchPosts(pw());
+    } catch (err: any) {
+      alert(err.message || "Delete failed.");
+    }
+  };
+
+  const setField = (k: keyof Post, v: any) => setEditing((e) => (e ? { ...e, [k]: v } : e));
+
+  const inputCls =
+    "w-full px-3.5 py-2.5 rounded-xl border border-green-150 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500";
+  const labelCls = "block text-[11px] uppercase tracking-wider font-bold text-slate-500 mb-1.5";
 
   return (
     <div className="min-h-screen bg-[#FAFBF7] py-10 px-4 sm:px-6 lg:px-8 font-sans">
@@ -108,7 +217,7 @@ export default function AdminView() {
               <Lock className="w-5 h-5" />
             </div>
             <h1 className="font-heading font-bold text-xl text-green-900 mb-1">Admin Login</h1>
-            <p className="text-xs text-slate-500 mb-6">Enter the admin password to view leads &amp; payments.</p>
+            <p className="text-xs text-slate-500 mb-6">Enter the admin password to view leads, payments &amp; blog.</p>
             <form onSubmit={handleLogin} className="space-y-4">
               <input
                 type="password"
@@ -134,7 +243,7 @@ export default function AdminView() {
               <h1 className="font-heading font-bold text-2xl text-green-900">Dashboard</h1>
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => fetchData(password || sessionStorage.getItem(PW_KEY) || "")}
+                  onClick={() => fetchData(pw())}
                   disabled={loading}
                   className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-green-200 bg-white text-green-800 text-xs font-bold hover:bg-green-50 transition-colors disabled:opacity-60"
                 >
@@ -152,7 +261,7 @@ export default function AdminView() {
             {error && <p className="text-xs text-red-600 mb-4">{error}</p>}
 
             {/* Tabs */}
-            <div className="flex gap-2 mb-5">
+            <div className="flex gap-2 mb-5 flex-wrap">
               <button
                 onClick={() => setTab("leads")}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
@@ -169,10 +278,21 @@ export default function AdminView() {
               >
                 <CreditCard className="w-3.5 h-3.5" /> Payments ({payments.length})
               </button>
+              <button
+                onClick={() => {
+                  setTab("blog");
+                  setEditing(null);
+                }}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                  tab === "blog" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                }`}
+              >
+                <FileText className="w-3.5 h-3.5" /> Blog ({posts.length})
+              </button>
             </div>
 
-            <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
-              {tab === "leads" ? (
+            {tab === "leads" && (
+              <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-green-50 text-green-900 uppercase tracking-wider text-[10px]">
                     <tr>
@@ -186,20 +306,32 @@ export default function AdminView() {
                   </thead>
                   <tbody>
                     {leads.length === 0 ? (
-                      <tr><td colSpan={6} className="px-4 py-8 text-center text-slate-400">No leads yet.</td></tr>
-                    ) : leads.map((l) => (
-                      <tr key={l.id} className="border-t border-green-50 hover:bg-green-50/40">
-                        <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(l.created_at)}</td>
-                        <td className="px-4 py-3 font-semibold text-slate-800">{l.name || "—"}</td>
-                        <td className="px-4 py-3 text-slate-600">{l.email || "—"}</td>
-                        <td className="px-4 py-3 text-slate-600">{l.whatsapp || "—"}</td>
-                        <td className="px-4 py-3 text-slate-600">{l.source || "—"}</td>
-                        <td className="px-4 py-3 text-slate-600 max-w-xs truncate" title={l.message}>{l.message || "—"}</td>
+                      <tr>
+                        <td colSpan={6} className="px-4 py-8 text-center text-slate-400">
+                          No leads yet.
+                        </td>
                       </tr>
-                    ))}
+                    ) : (
+                      leads.map((l) => (
+                        <tr key={l.id} className="border-t border-green-50 hover:bg-green-50/40">
+                          <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(l.created_at)}</td>
+                          <td className="px-4 py-3 font-semibold text-slate-800">{l.name || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600">{l.email || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600">{l.whatsapp || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600">{l.source || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600 max-w-xs truncate" title={l.message}>
+                            {l.message || "—"}
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
-              ) : (
+              </div>
+            )}
+
+            {tab === "payments" && (
+              <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-green-50 text-green-900 uppercase tracking-wider text-[10px]">
                     <tr>
@@ -214,22 +346,222 @@ export default function AdminView() {
                   </thead>
                   <tbody>
                     {payments.length === 0 ? (
-                      <tr><td colSpan={7} className="px-4 py-8 text-center text-slate-400">No payments yet.</td></tr>
-                    ) : payments.map((p) => (
-                      <tr key={p.id} className="border-t border-green-50 hover:bg-green-50/40">
-                        <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(p.created_at)}</td>
-                        <td className="px-4 py-3 text-slate-700">{p.plan || "—"}</td>
-                        <td className="px-4 py-3 font-semibold text-green-800">{p.amount != null ? `₹${p.amount}` : "—"}</td>
-                        <td className="px-4 py-3 font-semibold text-slate-800">{p.name || "—"}</td>
-                        <td className="px-4 py-3 text-slate-600">{p.email || "—"}</td>
-                        <td className="px-4 py-3 text-slate-600">{p.contact || "—"}</td>
-                        <td className="px-4 py-3 text-slate-500 font-mono text-[10px]">{p.razorpay_payment_id || "—"}</td>
+                      <tr>
+                        <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
+                          No payments yet.
+                        </td>
                       </tr>
-                    ))}
+                    ) : (
+                      payments.map((p) => (
+                        <tr key={p.id} className="border-t border-green-50 hover:bg-green-50/40">
+                          <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(p.created_at)}</td>
+                          <td className="px-4 py-3 text-slate-700">{p.plan || "—"}</td>
+                          <td className="px-4 py-3 font-semibold text-green-800">{p.amount != null ? `₹${p.amount}` : "—"}</td>
+                          <td className="px-4 py-3 font-semibold text-slate-800">{p.name || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600">{p.email || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600">{p.contact || "—"}</td>
+                          <td className="px-4 py-3 text-slate-500 font-mono text-[10px]">{p.razorpay_payment_id || "—"}</td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
-              )}
-            </div>
+              </div>
+            )}
+
+            {tab === "blog" && !editing && (
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <p className="text-xs text-slate-500">Create and manage blog posts. Published posts appear on /blog.</p>
+                  <button
+                    onClick={() => {
+                      setPostMsg(null);
+                      setEditing({ ...emptyPost });
+                    }}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold transition-colors"
+                  >
+                    <Plus className="w-4 h-4" /> New Post
+                  </button>
+                </div>
+
+                <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-green-50 text-green-900 uppercase tracking-wider text-[10px]">
+                      <tr>
+                        <th className="px-4 py-3">Title</th>
+                        <th className="px-4 py-3">Category</th>
+                        <th className="px-4 py-3">Status</th>
+                        <th className="px-4 py-3">Date</th>
+                        <th className="px-4 py-3 text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {posts.length === 0 ? (
+                        <tr>
+                          <td colSpan={5} className="px-4 py-8 text-center text-slate-400">
+                            No posts yet. Click “New Post” to write one.
+                          </td>
+                        </tr>
+                      ) : (
+                        posts.map((p) => (
+                          <tr key={p.id} className="border-t border-green-50 hover:bg-green-50/40">
+                            <td className="px-4 py-3 font-semibold text-slate-800 max-w-xs truncate" title={p.title}>
+                              {p.title || "—"}
+                            </td>
+                            <td className="px-4 py-3 text-slate-600">{p.category || "—"}</td>
+                            <td className="px-4 py-3">
+                              <span
+                                className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                  p.published === false ? "bg-amber-100 text-amber-700" : "bg-green-100 text-green-700"
+                                }`}
+                              >
+                                {p.published === false ? "Draft" : "Published"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{p.date || fmtDate(p.created_at)}</td>
+                            <td className="px-4 py-3">
+                              <div className="flex items-center justify-end gap-2">
+                                {p.slug && p.published !== false && (
+                                  <a
+                                    href={`/blog/${p.slug}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="p-1.5 rounded-lg text-slate-500 hover:bg-green-50 hover:text-green-700"
+                                    title="View"
+                                  >
+                                    <ExternalLink className="w-3.5 h-3.5" />
+                                  </a>
+                                )}
+                                <button
+                                  onClick={() => {
+                                    setPostMsg(null);
+                                    setEditing(p);
+                                  }}
+                                  className="p-1.5 rounded-lg text-slate-500 hover:bg-green-50 hover:text-green-700"
+                                  title="Edit"
+                                >
+                                  <Pencil className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  onClick={() => deletePost(p.id)}
+                                  className="p-1.5 rounded-lg text-red-500 hover:bg-red-50"
+                                  title="Delete"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {tab === "blog" && editing && (
+              <div className="bg-white border border-green-100 rounded-2xl shadow-sm p-6 sm:p-8 max-w-3xl">
+                <h2 className="font-heading font-bold text-lg text-green-900 mb-5">
+                  {editing.id ? "Edit Post" : "New Post"}
+                </h2>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="sm:col-span-2">
+                    <label className={labelCls}>Title *</label>
+                    <input className={inputCls} value={editing.title || ""} onChange={(e) => setField("title", e.target.value)} placeholder="Post title" />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Slug (URL)</label>
+                    <input className={inputCls} value={editing.slug || ""} onChange={(e) => setField("slug", e.target.value)} placeholder="auto from title" />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Category</label>
+                    <input className={inputCls} value={editing.category || ""} onChange={(e) => setField("category", e.target.value)} />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Author</label>
+                    <input className={inputCls} value={editing.author || ""} onChange={(e) => setField("author", e.target.value)} />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Display date</label>
+                    <input className={inputCls} value={editing.date || ""} onChange={(e) => setField("date", e.target.value)} placeholder="e.g. June 15, 2026 (auto if blank)" />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className={labelCls}>Cover image URL</label>
+                    <input className={inputCls} value={editing.image || ""} onChange={(e) => setField("image", e.target.value)} placeholder="https://…" />
+                    {editing.image ? (
+                      <img src={editing.image} alt="cover preview" className="mt-2 h-28 w-full object-cover rounded-xl border border-green-100" />
+                    ) : null}
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className={labelCls}>Excerpt (short summary on the card)</label>
+                    <textarea className={inputCls} rows={2} value={editing.excerpt || ""} onChange={(e) => setField("excerpt", e.target.value)} />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className={labelCls}>Body content</label>
+                    <textarea
+                      className={`${inputCls} font-mono text-xs leading-relaxed`}
+                      rows={14}
+                      value={editing.content || ""}
+                      onChange={(e) => setField("content", e.target.value)}
+                      placeholder={"Write your article here.\n\nLeave a blank line between paragraphs.\n\n## This becomes a heading\n\n- This becomes\n- a bullet list\n\nLinks: [text](https://example.com)"}
+                    />
+                    <p className="text-[11px] text-slate-400 mt-1.5">
+                      Blank line = new paragraph · <code>## </code> = heading · lines starting with <code>- </code> = bullet list · <code>[text](url)</code> = link
+                    </p>
+                  </div>
+                  <div>
+                    <label className={labelCls}>SEO meta description</label>
+                    <input className={inputCls} value={editing.meta || ""} onChange={(e) => setField("meta", e.target.value)} placeholder="defaults to excerpt" />
+                  </div>
+                  <div>
+                    <label className={labelCls}>SEO focus keyword</label>
+                    <input className={inputCls} value={editing.keyword || ""} onChange={(e) => setField("keyword", e.target.value)} />
+                  </div>
+                  <div>
+                    <label className={labelCls}>CTA button text</label>
+                    <input className={inputCls} value={editing.ctaText || ""} onChange={(e) => setField("ctaText", e.target.value)} />
+                  </div>
+                  <div>
+                    <label className={labelCls}>CTA link</label>
+                    <input className={inputCls} value={editing.ctaLink || ""} onChange={(e) => setField("ctaLink", e.target.value)} />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={editing.published !== false}
+                        onChange={(e) => setField("published", e.target.checked)}
+                        className="w-4 h-4 accent-green-700"
+                      />
+                      Published (visible on the site)
+                    </label>
+                  </div>
+                </div>
+
+                {postMsg && <p className="text-xs text-red-600 mt-4">{postMsg}</p>}
+
+                <div className="flex items-center gap-3 mt-6">
+                  <button
+                    onClick={savePost}
+                    disabled={savingPost}
+                    className="px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                  >
+                    {savingPost ? "Saving…" : "Save Post"}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditing(null);
+                      setPostMsg(null);
+                    }}
+                    className="px-5 py-2.5 border border-green-200 bg-white text-slate-600 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-green-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
