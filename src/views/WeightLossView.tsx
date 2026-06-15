@@ -402,7 +402,7 @@ export default function WeightLossView() {
               desc: "They completely ignore your unique dosha profile (Vata, Pitta, or Kapha) which regulates your natural structure."
             }
           ].map((card, idx) => (
-            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-white rounded-2xl p-6 border-b-4 border-[#E8943A] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between border border-green-100">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FFFCF7] rounded-2xl p-6 border-b-4 border-[#E8943A] shadow-xs hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between border border-green-100">
               <div className="space-y-3 prose">
                 <span className="text-2xl block text-amber-500 font-bold">0{idx + 1}</span>
                 <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug">{card.title}</h3>
@@ -571,7 +571,7 @@ export default function WeightLossView() {
               icon: "👥"
             }
           ].map((item, idx) => (
-            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-white rounded-3xl p-6 border border-[#E3F1E3] hover:shadow-xl hover:border-green-700 transition-all flex flex-col justify-between">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FBFDF9] rounded-3xl p-6 border border-[#E3F1E3] hover:shadow-xl hover:shadow-green-900/10 hover:-translate-y-1 hover:border-green-600 transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
                 <span className="text-4xl block">{item.icon}</span>
                 <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug">{item.title}</h3>
@@ -583,8 +583,9 @@ export default function WeightLossView() {
       </section>
 
       {/* 6. HOLISTIC APPROACH SECTION */}
-      <section className="bg-green-950 text-cream py-20 px-4 sm:px-6 lg:px-8 border-y-4 border-[#E8943A]">
-        <div className="max-w-7xl mx-auto text-center space-y-4">
+      <section className="relative bg-gradient-to-br from-[#0c2a1a] via-green-950 to-[#102e1d] text-cream py-20 px-4 sm:px-6 lg:px-8 border-y-4 border-[#E8943A] overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute -top-20 right-0 w-96 h-96 rounded-full bg-[#E8943A]/10 blur-3xl" />
+        <div className="relative z-10 max-w-7xl mx-auto text-center space-y-4">
           <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Holistic Approach</span>
           <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white">
             One complete system — body, mind and diet, together
@@ -667,7 +668,7 @@ export default function WeightLossView() {
               desc: "Sustained lifestyle integration completes, establishing full biological equilibrium from the root up."
             }
           ].map((progress, idx) => (
-            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-white p-6 rounded-2xl border border-green-150 relative hover:border-[#4A7C59] transition-all shadow-xs">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FBFDF9] p-6 rounded-2xl border border-green-150 relative hover:border-[#4A7C59] hover:shadow-lg hover:shadow-green-900/10 hover:-translate-y-1 transition-all duration-300 shadow-xs">
               <span className="absolute top-4 right-4 text-xs font-bold text-[#E8943A] font-mono bg-amber-50 px-2 py-0.5 rounded-md">
                 {progress.week}
               </span>
@@ -1005,8 +1006,9 @@ export default function WeightLossView() {
       </section>
 
       {/* 10b. RESULTS GUARANTEE / OFFER BAND */}
-      <section id="guarantee" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0F3320] text-cream">
-        <div className="max-w-4xl mx-auto text-center">
+      <section id="guarantee" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#0F3320] via-[#0c2a1b] to-[#143f29] text-cream overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-10 w-[28rem] h-[28rem] rounded-full bg-[#F3C969]/10 blur-3xl" />
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1F4D45] rounded-full text-xs font-bold uppercase tracking-widest border border-green-800 text-[#F3C969]">
             <ShieldCheck className="w-4 h-4" />
             Our Results Guarantee
@@ -1051,7 +1053,7 @@ export default function WeightLossView() {
       </section>
 
       {/* 11. CTA BAND (Heal your body from within) */}
-      <section className="bg-[#EFFFDF]/70 py-16 px-4 sm:px-6 lg:px-8 border-y border-green-100">
+      <section className="bg-gradient-to-b from-[#EFFFDF]/80 to-[#FAFBF7] py-16 px-4 sm:px-6 lg:px-8 border-y border-green-100">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A] block">Free Space Evaluation</span>
           <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233] leading-tight">
