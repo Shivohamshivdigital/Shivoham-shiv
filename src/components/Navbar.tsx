@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, User, Flame } from "lucide-react";
+import { Menu, X, User, Flame, Sparkles, ArrowRight } from "lucide-react";
 import { getUserStats } from "../services/userService";
 import { UserStats } from "../types";
 
@@ -28,17 +28,29 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
       {/* Promotional announcement bar (live) */}
       <Link
         to="/weight-loss"
-        className="block bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-center text-[11px] sm:text-xs font-semibold tracking-wide px-3 py-2 transition-colors"
+        className="group relative block overflow-hidden bg-gradient-to-r from-[#d97f24] via-[#F0A64E] to-[#d97f24] text-white"
       >
-        <span className="inline-flex items-center justify-center gap-2 flex-wrap">
+        {/* moving shimmer */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/30 to-transparent"
+        />
+        <span className="relative flex items-center justify-center gap-2 sm:gap-2.5 px-4 py-2.5 text-center text-[11px] sm:text-xs font-semibold tracking-wide">
+          {/* live dot */}
           <span className="relative flex h-2.5 w-2.5 shrink-0" aria-hidden="true">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
           </span>
-          <span>
-            Signup today &amp; start your transformation in 24 hrs — get{" "}
-            <strong className="font-extrabold underline underline-offset-2">30% OFF</strong>
+          <Sparkles className="hidden sm:inline-block w-3.5 h-3.5 text-white/90 shrink-0" aria-hidden="true" />
+          <span className="flex items-center gap-x-1.5 gap-y-0.5 flex-wrap justify-center">
+            <span>
+              Signup today &amp; start your transformation in <strong className="font-extrabold">24 hrs</strong>
+            </span>
+            <span className="inline-flex items-center rounded-full bg-white text-[#C2410C] font-extrabold px-2 py-0.5 shadow-sm">
+              30% OFF
+            </span>
           </span>
+          <ArrowRight className="w-3.5 h-3.5 shrink-0 opacity-90 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
         </span>
       </Link>
 
