@@ -53,6 +53,18 @@ function AppContent() {
     }
   }, [bannerMessage]);
 
+  // Track SPA page views in Google Analytics (GA4) on route change
+  useEffect(() => {
+    const gtag = (window as any).gtag;
+    if (typeof gtag === "function") {
+      gtag("event", "page_view", {
+        page_path: location.pathname + location.search,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    }
+  }, [location.pathname, location.search]);
+
   const handleStatsUpdated = () => {
     setStatsUpdateTrigger((prev) => prev + 1);
   };
