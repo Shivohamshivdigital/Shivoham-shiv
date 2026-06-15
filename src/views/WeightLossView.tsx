@@ -755,8 +755,8 @@ export default function WeightLossView() {
               </div>
             </div>
 
-            {/* Right: pricing box — sits inside the layout and sticks while scrolling (desktop) */}
-            <div className="lg:sticky lg:top-24 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+            {/* Right: pricing box — sits inside the layout and sticks below the header while scrolling */}
+            <div className="lg:sticky lg:top-40 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
               {(() => {
               const plan = PLAN_INFO[selectedPlan];
               return (
