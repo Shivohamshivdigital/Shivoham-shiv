@@ -25,6 +25,23 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
 
   return (
     <header className="sticky top-0 z-50 bg-[#2F5D50] shadow-md transition-all duration-300">
+      {/* Promotional announcement bar (live) */}
+      <Link
+        to="/weight-loss"
+        className="block bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-center text-[11px] sm:text-xs font-semibold tracking-wide px-3 py-2 transition-colors"
+      >
+        <span className="inline-flex items-center justify-center gap-2 flex-wrap">
+          <span className="relative flex h-2.5 w-2.5 shrink-0" aria-hidden="true">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+          </span>
+          <span>
+            Signup today &amp; start your transformation in 24 hrs — get{" "}
+            <strong className="font-extrabold underline underline-offset-2">30% OFF</strong>
+          </span>
+        </span>
+      </Link>
+
       <nav aria-label="Main Navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 sm:h-24">
