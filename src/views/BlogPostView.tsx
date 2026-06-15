@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import SEO from "../components/SEO";
-import { blogPosts, BlogPost } from "../data/blogData";
+import { blogPosts, BlogPost, normalizePost } from "../data/blogData";
 import { Calendar, User, ArrowLeft, Send } from "lucide-react";
 
 // Robust inline markdown link parser that returns Styled Terracotta links
@@ -58,13 +58,51 @@ function renderContentText(text: string) {
 export default function BlogPostView() {
   const { slug } = useParams<{ slug: string }>();
 
-  // Find the current blog post
-  const post = blogPosts.find((p) => p.slug === slug);
+  // Static (bundled) posts render instantly; admin posts are fetched.
+  const staticPost = blogPosts.find((p) => p.slug === slug);
+  const [dynamicPost, setDynamicPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(!staticPost);
 
   // Ensure page scrolls to top instantly when slug changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [slug]);
+
+  // If it's not a bundled post, look it up via the blog API.
+  useEffect(() => {
+    if (staticPost) {
+      setLoading(false);
+      return;
+    }
+    let active = true;
+    setLoading(true);
+    fetch(`/api/blog?slug=${encodeURIComponent(slug || "")}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!active) return;
+        setDynamicPost(data?.post ? normalizePost(data.post) : null);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (!active) return;
+        setDynamicPost(null);
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [slug, staticPost]);
+
+  const post = staticPost || dynamicPost;
+
+  if (loading) {
+    return (
+      <div className="bg-[#FAFBF7] min-h-screen flex flex-col items-center justify-center p-8 text-center font-sans">
+        <div className="w-10 h-10 border-2 border-green-200 border-t-green-700 rounded-full animate-spin mb-4" />
+        <p className="text-slate-500 text-sm">Loading article…</p>
+      </div>
+    );
+  }
 
   if (!post) {
     return (
