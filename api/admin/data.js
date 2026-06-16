@@ -24,11 +24,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    const [leads, payments] = await Promise.all([
+    const [leads, payments, usersRaw] = await Promise.all([
       dbSelect("leads"),
       dbSelect("payments"),
+      dbSelect("users").catch(() => []),
     ]);
-    return res.status(200).json({ leads, payments });
+    // Never expose password hashes / OTPs to the admin UI.
+    const users = usersRaw.map(({ passwordHash, otp, otpExpiry, ...rest }) => rest);
+    return res.status(200).json({ leads, payments, users });
   } catch (err) {
     console.error("Admin data fetch error:", err);
     // Surface the underlying reason so setup issues (e.g. a malformed

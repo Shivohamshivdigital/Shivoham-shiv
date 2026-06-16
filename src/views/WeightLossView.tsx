@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import AuthModal from "../components/AuthModal";
 
 // Standard book function simulated or logged
 import { bookConsultation } from "../services/consultationService";
@@ -82,16 +83,22 @@ export default function WeightLossView() {
   const [bannerText, setBannerText] = useState<string | null>(null);
   const [payingPlan, setPayingPlan] = useState<PaymentPlan | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<PaymentPlan>("register");
+  const [authPlan, setAuthPlan] = useState<PaymentPlan | null>(null);
 
-  const handlePay = async (plan: PaymentPlan) => {
+  // Clicking a plan first opens the signup/login + OTP gate.
+  const handlePay = (plan: PaymentPlan) => {
     if (payingPlan) return;
+    setAuthPlan(plan);
+  };
+
+  // After the email is verified, start the Razorpay payment for that plan.
+  const handleAuthSuccess = async (authedEmail: string) => {
+    const plan = authPlan;
+    setAuthPlan(null);
+    if (!plan) return;
     setPayingPlan(plan);
     try {
-      await startPayment(plan, {
-        name: fullName || undefined,
-        email: email || undefined,
-        contact: contactNo || undefined,
-      });
+      await startPayment(plan, { email: authedEmail });
       setBannerText("Payment successful! 🎉 Our team will reach out on WhatsApp within 24 hours to begin your journey.");
     } catch (err: any) {
       if (err?.message && err.message !== "Payment cancelled.") {
@@ -201,6 +208,9 @@ export default function WeightLossView() {
           <button onClick={() => setBannerText(null)} className="text-green-200 hover:text-white shrink-0" aria-label="Close">✕</button>
         </div>
       )}
+
+      {/* Signup / login + OTP gate before payment */}
+      {authPlan && <AuthModal onClose={() => setAuthPlan(null)} onSuccess={handleAuthSuccess} />}
 
       <SEO
         title="Ayurvedic Natural Weight Loss | 60-Day Program — Shivoham Shiv"

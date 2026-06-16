@@ -4,6 +4,8 @@
 //   RAZORPAY_KEY_ID       Razorpay API Key Id (rzp_live_... or rzp_test_...)
 //   RAZORPAY_KEY_SECRET   Razorpay API Key Secret (server-side only)
 
+import { dbFindBy, dbUpdate } from "../_db.js";
+
 const PLANS = {
   register: { amount: 99900, label: "Weight Loss Program — Registration" }, // ₹999
   course: { amount: 799900, label: "60-Day Natural Weight Loss Program" }, // ₹7999
@@ -15,10 +17,30 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { plan } = req.body || {};
+  const { plan, email } = req.body || {};
   const selected = PLANS[plan];
   if (!selected) {
     return res.status(400).json({ error: "Invalid plan selected." });
+  }
+
+  // Best-effort: record that this user reached checkout (an "attempt"), so the
+  // admin can see unpaid attempts too.
+  if (email) {
+    try {
+      const normEmail = String(email).trim().toLowerCase();
+      const user = await dbFindBy("users", "email", normEmail);
+      if (user) {
+        const { id, ...rest } = user;
+        await dbUpdate("users", id, {
+          ...rest,
+          lastPlan: plan,
+          lastAttemptAt: new Date().toISOString(),
+          attempts: (Number(user.attempts) || 0) + 1,
+        });
+      }
+    } catch (err) {
+      console.error("Attempt tracking failed:", err);
+    }
   }
 
   const KEY_ID = process.env.RAZORPAY_KEY_ID;

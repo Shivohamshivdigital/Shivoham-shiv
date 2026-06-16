@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud } from "lucide-react";
+import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck } from "lucide-react";
 import { blogPosts, sectionsToContent } from "../data/blogData";
 
 interface Lead {
@@ -23,6 +23,19 @@ interface Payment {
   amount?: number;
   razorpay_payment_id?: string;
   status?: string;
+}
+
+interface AppUser {
+  id?: string;
+  email?: string;
+  verified?: boolean;
+  paid?: boolean;
+  paidPlan?: string;
+  lastPlan?: string;
+  attempts?: number;
+  created_at?: string;
+  paidAt?: string;
+  lastAttemptAt?: string;
 }
 
 interface Post {
@@ -77,7 +90,8 @@ export default function AdminView() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [tab, setTab] = useState<"leads" | "payments" | "blog">("leads");
+  const [users, setUsers] = useState<AppUser[]>([]);
+  const [tab, setTab] = useState<"leads" | "payments" | "users" | "blog">("leads");
 
   // Blog editor state
   const [editing, setEditing] = useState<Post | null>(null);
@@ -121,6 +135,7 @@ export default function AdminView() {
         }
         setLeads(Array.isArray(data.leads) ? data.leads : []);
         setPayments(Array.isArray(data.payments) ? data.payments : []);
+        setUsers(Array.isArray(data.users) ? data.users : []);
         setAuthed(true);
         sessionStorage.setItem(PW_KEY, p);
         fetchPosts(p);
@@ -154,6 +169,7 @@ export default function AdminView() {
     setLeads([]);
     setPayments([]);
     setPosts([]);
+    setUsers([]);
     setEditing(null);
   };
 
@@ -316,6 +332,14 @@ export default function AdminView() {
                 <CreditCard className="w-3.5 h-3.5" /> Payments ({payments.length})
               </button>
               <button
+                onClick={() => setTab("users")}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                  tab === "users" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                }`}
+              >
+                <UserCheck className="w-3.5 h-3.5" /> Users ({users.length})
+              </button>
+              <button
                 onClick={() => {
                   setTab("blog");
                   setEditing(null);
@@ -398,6 +422,53 @@ export default function AdminView() {
                           <td className="px-4 py-3 text-slate-600">{p.email || "—"}</td>
                           <td className="px-4 py-3 text-slate-600">{p.contact || "—"}</td>
                           <td className="px-4 py-3 text-slate-500 font-mono text-[10px]">{p.razorpay_payment_id || "—"}</td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {tab === "users" && (
+              <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-green-50 text-green-900 uppercase tracking-wider text-[10px]">
+                    <tr>
+                      <th className="px-4 py-3">Email</th>
+                      <th className="px-4 py-3">Email verified</th>
+                      <th className="px-4 py-3">Paid</th>
+                      <th className="px-4 py-3">Plan</th>
+                      <th className="px-4 py-3">Attempts</th>
+                      <th className="px-4 py-3">Signed up</th>
+                      <th className="px-4 py-3">Last attempt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.length === 0 ? (
+                      <tr>
+                        <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
+                          No signups yet.
+                        </td>
+                      </tr>
+                    ) : (
+                      users.map((u) => (
+                        <tr key={u.id || u.email} className="border-t border-green-50 hover:bg-green-50/40">
+                          <td className="px-4 py-3 font-semibold text-slate-800">{u.email || "—"}</td>
+                          <td className="px-4 py-3">
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${u.verified ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+                              {u.verified ? "Verified" : "Unverified"}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${u.paid ? "bg-green-100 text-green-700" : "bg-red-50 text-red-600"}`}>
+                              {u.paid ? "Paid" : "Unpaid"}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-slate-600">{u.paidPlan || u.lastPlan || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600">{u.attempts || 0}</td>
+                          <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(u.created_at)}</td>
+                          <td className="px-4 py-3 whitespace-nowrap text-slate-500">{u.lastAttemptAt ? fmtDate(u.lastAttemptAt) : "—"}</td>
                         </tr>
                       ))
                     )}
