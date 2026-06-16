@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink } from "lucide-react";
+import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud } from "lucide-react";
+import { blogPosts, sectionsToContent } from "../data/blogData";
 
 interface Lead {
   id: string;
@@ -82,6 +83,7 @@ export default function AdminView() {
   const [editing, setEditing] = useState<Post | null>(null);
   const [savingPost, setSavingPost] = useState(false);
   const [postMsg, setPostMsg] = useState<string | null>(null);
+  const [importing, setImporting] = useState(false);
 
   const pw = () => password || sessionStorage.getItem(PW_KEY) || "";
 
@@ -194,6 +196,41 @@ export default function AdminView() {
       await fetchPosts(pw());
     } catch (err: any) {
       alert(err.message || "Delete failed.");
+    }
+  };
+
+  const importDefaults = async () => {
+    if (!window.confirm("Import the built-in blog posts so you can edit them here? (existing ones are skipped)")) return;
+    setImporting(true);
+    try {
+      const payload = blogPosts.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt,
+        meta: p.meta,
+        keyword: p.keyword,
+        category: p.category,
+        author: p.author,
+        image: p.image,
+        content: sectionsToContent(p.sections),
+        ctaText: p.ctaText,
+        ctaLink: p.ctaLink,
+        date: p.date,
+        published: true,
+      }));
+      const res = await fetch("/api/admin/posts", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), action: "import", posts: payload }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Import failed.");
+      await fetchPosts(pw());
+      alert(`Imported ${data.imported ?? 0} post(s). You can now edit or delete them.`);
+    } catch (err: any) {
+      alert(err.message || "Import failed.");
+    } finally {
+      setImporting(false);
     }
   };
 
@@ -371,17 +408,27 @@ export default function AdminView() {
 
             {tab === "blog" && !editing && (
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center gap-3 flex-wrap">
                   <p className="text-xs text-slate-500">Create and manage blog posts. Published posts appear on /blog.</p>
-                  <button
-                    onClick={() => {
-                      setPostMsg(null);
-                      setEditing({ ...emptyPost });
-                    }}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold transition-colors"
-                  >
-                    <Plus className="w-4 h-4" /> New Post
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={importDefaults}
+                      disabled={importing}
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-green-200 bg-white text-green-800 text-xs font-bold hover:bg-green-50 transition-colors disabled:opacity-60"
+                      title="Bring the built-in blog posts into this panel so you can edit/delete them"
+                    >
+                      <DownloadCloud className={`w-4 h-4 ${importing ? "animate-pulse" : ""}`} /> {importing ? "Importing…" : "Import default posts"}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setPostMsg(null);
+                        setEditing({ ...emptyPost });
+                      }}
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold transition-colors"
+                    >
+                      <Plus className="w-4 h-4" /> New Post
+                    </button>
+                  </div>
                 </div>
 
                 <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">

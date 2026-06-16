@@ -632,3 +632,16 @@ export function normalizePost(p: any): BlogPost {
     relatedSlugs: Array.isArray(p.relatedSlugs) ? p.relatedSlugs : [],
   };
 }
+
+// Reverse of contentToSections: turns BlogSection[] back into the plain-text
+// body the admin editor uses (so bundled posts can be imported & edited).
+export function sectionsToContent(sections: BlogSection[]): string {
+  if (!sections) return "";
+  return sections
+    .map((s) => {
+      if (s.type === "heading") return `## ${s.text || ""}`;
+      if (s.type === "bullet_list") return (s.bullets || []).map((b) => `- ${b}`).join("\n");
+      return s.text || "";
+    })
+    .join("\n\n");
+}

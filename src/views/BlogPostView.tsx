@@ -68,14 +68,11 @@ export default function BlogPostView() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [slug]);
 
-  // If it's not a bundled post, look it up via the blog API.
+  // Always check the database so admin edits/deletes are reflected. A bundled
+  // post (if any) renders instantly while the DB version loads and overrides it.
   useEffect(() => {
-    if (staticPost) {
-      setLoading(false);
-      return;
-    }
     let active = true;
-    setLoading(true);
+    if (!staticPost) setLoading(true);
     fetch(`/api/blog?slug=${encodeURIComponent(slug || "")}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
@@ -93,7 +90,8 @@ export default function BlogPostView() {
     };
   }, [slug, staticPost]);
 
-  const post = staticPost || dynamicPost;
+  // Prefer the admin-managed (database) version; fall back to the bundled post.
+  const post = dynamicPost || staticPost;
 
   if (loading) {
     return (

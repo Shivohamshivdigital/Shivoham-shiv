@@ -78,6 +78,36 @@ export default async function handler(req, res) {
       return res.status(200).json({ success: true });
     }
 
+    if (action === "import") {
+      const incoming = Array.isArray(req.body.posts) ? req.body.posts : [];
+      const existing = await dbSelect("posts");
+      const existingSlugs = new Set(existing.map((p) => p.slug));
+      let imported = 0;
+      for (const p of incoming) {
+        if (!p || !p.title) continue;
+        const slug = (p.slug && slugify(p.slug)) || slugify(p.title);
+        if (!slug || existingSlugs.has(slug)) continue; // skip duplicates
+        await dbInsert("posts", {
+          slug,
+          title: p.title || "",
+          excerpt: p.excerpt || "",
+          meta: p.meta || p.excerpt || "",
+          keyword: p.keyword || "",
+          category: p.category || "Wellness",
+          author: p.author || "Shivoham Shiv",
+          image: p.image || "",
+          content: p.content || "",
+          ctaText: p.ctaText || "Book a Free Consultation",
+          ctaLink: p.ctaLink || "/weight-loss",
+          date: p.date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+          published: p.published !== false,
+        });
+        existingSlugs.add(slug);
+        imported++;
+      }
+      return res.status(200).json({ success: true, imported });
+    }
+
     return res.status(400).json({ error: "Unknown action." });
   } catch (err) {
     console.error("Admin posts error:", err);
