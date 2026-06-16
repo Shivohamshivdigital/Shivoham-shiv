@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { X, Mail, Lock, ShieldCheck, Loader2 } from "lucide-react";
+import { getAttribution } from "../utils/attribution";
 
 interface AuthModalProps {
   onClose: () => void;
@@ -34,7 +35,7 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
     setLoading(true);
     try {
       if (mode === "signup") {
-        await post("/api/auth/signup", { email, password });
+        await post("/api/auth/signup", { email, password, attribution: getAttribution() });
         setStep("otp");
         setInfo("We've emailed you a 6-digit code.");
       } else {

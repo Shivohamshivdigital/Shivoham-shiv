@@ -3,7 +3,17 @@ import { Helmet } from "react-helmet-async";
 import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck } from "lucide-react";
 import { blogPosts, sectionsToContent } from "../data/blogData";
 
-interface Lead {
+interface Attribution {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  gclid?: string;
+  fbclid?: string;
+  referrer?: string;
+}
+
+interface Lead extends Attribution {
   id: string;
   created_at: string;
   name?: string;
@@ -11,6 +21,23 @@ interface Lead {
   whatsapp?: string;
   message?: string;
   source?: string;
+}
+
+// Human-readable ad source for a lead/user (campaign / search term / platform).
+function adSource(r: Attribution): string {
+  if (r.utm_campaign || r.utm_source || r.utm_term) {
+    return [r.utm_source, r.utm_campaign, r.utm_term].filter(Boolean).join(" · ");
+  }
+  if (r.gclid) return "Google Ads";
+  if (r.fbclid) return "Meta Ads";
+  if (r.referrer) {
+    try {
+      return new URL(r.referrer).hostname.replace(/^www\./, "");
+    } catch {
+      return r.referrer;
+    }
+  }
+  return "Direct";
 }
 
 interface Payment {
@@ -25,7 +52,7 @@ interface Payment {
   status?: string;
 }
 
-interface AppUser {
+interface AppUser extends Attribution {
   id?: string;
   email?: string;
   verified?: boolean;
@@ -362,13 +389,14 @@ export default function AdminView() {
                       <th className="px-4 py-3">Email</th>
                       <th className="px-4 py-3">WhatsApp</th>
                       <th className="px-4 py-3">Source</th>
+                      <th className="px-4 py-3">Ad Source</th>
                       <th className="px-4 py-3">Message</th>
                     </tr>
                   </thead>
                   <tbody>
                     {leads.length === 0 ? (
                       <tr>
-                        <td colSpan={6} className="px-4 py-8 text-center text-slate-400">
+                        <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
                           No leads yet.
                         </td>
                       </tr>
@@ -380,6 +408,7 @@ export default function AdminView() {
                           <td className="px-4 py-3 text-slate-600">{l.email || "—"}</td>
                           <td className="px-4 py-3 text-slate-600">{l.whatsapp || "—"}</td>
                           <td className="px-4 py-3 text-slate-600">{l.source || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600 max-w-[12rem] truncate" title={adSource(l)}>{adSource(l)}</td>
                           <td className="px-4 py-3 text-slate-600 max-w-xs truncate" title={l.message}>
                             {l.message || "—"}
                           </td>
@@ -440,6 +469,7 @@ export default function AdminView() {
                       <th className="px-4 py-3">Paid</th>
                       <th className="px-4 py-3">Plan</th>
                       <th className="px-4 py-3">Attempts</th>
+                      <th className="px-4 py-3">Ad Source</th>
                       <th className="px-4 py-3">Signed up</th>
                       <th className="px-4 py-3">Last attempt</th>
                     </tr>
@@ -447,7 +477,7 @@ export default function AdminView() {
                   <tbody>
                     {users.length === 0 ? (
                       <tr>
-                        <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
+                        <td colSpan={8} className="px-4 py-8 text-center text-slate-400">
                           No signups yet.
                         </td>
                       </tr>
@@ -467,6 +497,7 @@ export default function AdminView() {
                           </td>
                           <td className="px-4 py-3 text-slate-600">{u.paidPlan || u.lastPlan || "—"}</td>
                           <td className="px-4 py-3 text-slate-600">{u.attempts || 0}</td>
+                          <td className="px-4 py-3 text-slate-600 max-w-[12rem] truncate" title={adSource(u)}>{adSource(u)}</td>
                           <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(u.created_at)}</td>
                           <td className="px-4 py-3 whitespace-nowrap text-slate-500">{u.lastAttemptAt ? fmtDate(u.lastAttemptAt) : "—"}</td>
                         </tr>

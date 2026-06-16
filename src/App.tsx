@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import { captureAttribution } from "./utils/attribution";
 import { Compass, Sparkles, X, Heart, HelpCircle, PhoneCall, CheckCircle, Bell, ArrowRight } from "lucide-react";
 import { bookConsultation } from "./services/consultationService";
 import Navbar from "./components/Navbar";
@@ -53,8 +54,10 @@ function AppContent() {
     }
   }, [bannerMessage]);
 
-  // Track SPA page views in Google Analytics (GA4) on route change
+  // Track SPA page views in Google Analytics (GA4) on route change, and capture
+  // ad attribution (UTMs / gclid / fbclid) from the URL.
   useEffect(() => {
+    captureAttribution();
     const gtag = (window as any).gtag;
     if (typeof gtag === "function") {
       gtag("event", "page_view", {

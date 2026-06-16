@@ -18,11 +18,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { name, email, whatsapp, message, source } = req.body || {};
+  const { name, email, whatsapp, message, source, attribution } = req.body || {};
 
   if (!name || !email || !whatsapp) {
     return res.status(400).json({ error: "Name, email and WhatsApp are required." });
   }
+
+  const attr = attribution && typeof attribution === "object" ? attribution : {};
 
   // 1) Save the lead to our database FIRST (best-effort) so it always appears
   //    in /admin — regardless of whether the Brevo email integration is set up.
@@ -32,6 +34,16 @@ export default async function handler(req, res) {
     whatsapp,
     message: message || "",
     source: source || "Website",
+    // Ad attribution — which ad / campaign / search term this lead came from.
+    utm_source: attr.utm_source || "",
+    utm_medium: attr.utm_medium || "",
+    utm_campaign: attr.utm_campaign || "",
+    utm_term: attr.utm_term || "",
+    utm_content: attr.utm_content || "",
+    gclid: attr.gclid || "",
+    fbclid: attr.fbclid || "",
+    referrer: attr.referrer || "",
+    landing_page: attr.landing_page || "",
   });
 
   // 2) Notify the team by email via Brevo — entirely optional. If the key is
