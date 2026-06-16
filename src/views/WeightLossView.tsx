@@ -52,7 +52,7 @@ const PLAN_INFO: Record<PaymentPlan, {
     unit: "one-time",
     desc: "Lock your spot in this week's batch and get your onboarding started within 24 hours.",
     features: ["Seat reserved in current batch", "Onboarding call within 24 hrs", "Adjustable towards full program"],
-    cta: "Register for ₹999",
+    cta: "Signup for ₹999",
     dropdownLabel: "Registration — ₹999 (start now)",
   },
   course: {
@@ -812,7 +812,7 @@ export default function WeightLossView() {
                   <button
                     onClick={() => handlePay(selectedPlan)}
                     disabled={payingPlan !== null}
-                    className="w-full py-3.5 bg-gradient-to-br from-[#F0A64E] to-[#E8943A] hover:from-[#F3B05E] hover:to-[#EFAF3C] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-amber-500/30 ring-1 ring-amber-300/40 transition-all hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {payingPlan === selectedPlan ? "Processing…" : plan.cta}
                   </button>
