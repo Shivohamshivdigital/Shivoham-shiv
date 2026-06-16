@@ -22,13 +22,10 @@ export default function BlogView() {
       .catch(() => {});
   }, []);
 
-  // Merge dynamic (newest, admin) + static, deduped by slug.
-  const seen = new Set<string>();
-  const allPosts: BlogPost[] = [...dynamicPosts, ...blogPosts].filter((p) => {
-    if (!p.slug || seen.has(p.slug)) return false;
-    seen.add(p.slug);
-    return true;
-  });
+  // Once posts exist in the database (admin-managed), show only those so that
+  // edits and deletes are reflected. Fall back to the bundled posts only while
+  // the database is still empty (e.g. before importing).
+  const allPosts: BlogPost[] = dynamicPosts.length > 0 ? dynamicPosts : blogPosts;
 
   return (
     <div className="bg-[#FAFBF7] min-h-screen font-sans selection:bg-green-100 pb-16">
