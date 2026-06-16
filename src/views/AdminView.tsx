@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck } from "lucide-react";
+import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck, Settings as SettingsIcon } from "lucide-react";
 import { blogPosts, sectionsToContent } from "../data/blogData";
 
 interface Attribution {
@@ -118,7 +118,12 @@ export default function AdminView() {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [users, setUsers] = useState<AppUser[]>([]);
-  const [tab, setTab] = useState<"leads" | "payments" | "users" | "blog">("leads");
+  const [tab, setTab] = useState<"leads" | "payments" | "users" | "blog" | "settings">("leads");
+
+  // Pricing settings
+  const [settings, setSettings] = useState({ registerAmount: 999, courseAmount: 7999, courseOriginal: 11999, discountLabel: "30% OFF" });
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [settingsMsg, setSettingsMsg] = useState<string | null>(null);
 
   // Blog editor state
   const [editing, setEditing] = useState<Post | null>(null);
@@ -277,6 +282,33 @@ export default function AdminView() {
     }
   };
 
+  // Load current pricing (public) so the Settings form is pre-filled.
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((d) => setSettings((s) => ({ ...s, ...d })))
+      .catch(() => {});
+  }, []);
+
+  const saveSettings = async () => {
+    setSavingSettings(true);
+    setSettingsMsg(null);
+    try {
+      const res = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), settings }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not save settings.");
+      setSettingsMsg("Saved! Prices on the site are updated.");
+    } catch (err: any) {
+      setSettingsMsg(err.message || "Save failed.");
+    } finally {
+      setSavingSettings(false);
+    }
+  };
+
   const setField = (k: keyof Post, v: any) => setEditing((e) => (e ? { ...e, [k]: v } : e));
 
   const inputCls =
@@ -376,6 +408,14 @@ export default function AdminView() {
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" /> Blog ({posts.length})
+              </button>
+              <button
+                onClick={() => setTab("settings")}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                  tab === "settings" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                }`}
+              >
+                <SettingsIcon className="w-3.5 h-3.5" /> Settings
               </button>
             </div>
 
@@ -709,6 +749,64 @@ export default function AdminView() {
                     Cancel
                   </button>
                 </div>
+              </div>
+            )}
+
+            {tab === "settings" && (
+              <div className="bg-white border border-green-100 rounded-2xl shadow-sm p-6 sm:p-8 max-w-xl">
+                <h2 className="font-heading font-bold text-lg text-green-900 mb-1">Pricing settings</h2>
+                <p className="text-xs text-slate-500 mb-5">
+                  These control the prices shown on the site <strong>and</strong> the amount charged by Razorpay.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelCls}>Registration amount (₹)</label>
+                    <input
+                      type="number"
+                      min={1}
+                      className={inputCls}
+                      value={settings.registerAmount}
+                      onChange={(e) => setSettings((s) => ({ ...s, registerAmount: Number(e.target.value) }))}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>60-Day Program amount (₹)</label>
+                    <input
+                      type="number"
+                      min={1}
+                      className={inputCls}
+                      value={settings.courseAmount}
+                      onChange={(e) => setSettings((s) => ({ ...s, courseAmount: Number(e.target.value) }))}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>60-Day strike-through / original (₹)</label>
+                    <input
+                      type="number"
+                      min={0}
+                      className={inputCls}
+                      value={settings.courseOriginal}
+                      onChange={(e) => setSettings((s) => ({ ...s, courseOriginal: Number(e.target.value) }))}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Discount label</label>
+                    <input
+                      className={inputCls}
+                      value={settings.discountLabel}
+                      onChange={(e) => setSettings((s) => ({ ...s, discountLabel: e.target.value }))}
+                      placeholder="e.g. 30% OFF"
+                    />
+                  </div>
+                </div>
+                {settingsMsg && <p className="text-xs mt-4 text-green-700">{settingsMsg}</p>}
+                <button
+                  onClick={saveSettings}
+                  disabled={savingSettings}
+                  className="mt-6 px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                >
+                  {savingSettings ? "Saving…" : "Save settings"}
+                </button>
               </div>
             )}
           </>

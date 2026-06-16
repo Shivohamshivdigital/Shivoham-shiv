@@ -4,12 +4,7 @@
 //   RAZORPAY_KEY_ID       Razorpay API Key Id (rzp_live_... or rzp_test_...)
 //   RAZORPAY_KEY_SECRET   Razorpay API Key Secret (server-side only)
 
-import { dbFindBy, dbUpdate } from "../_db.js";
-
-const PLANS = {
-  register: { amount: 99900, label: "Weight Loss Program — Registration" }, // ₹999
-  course: { amount: 799900, label: "60-Day Natural Weight Loss Program" }, // ₹7999
-};
+import { dbFindBy, dbUpdate, dbGetDoc } from "../_db.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -18,6 +13,25 @@ export default async function handler(req, res) {
   }
 
   const { plan, email } = req.body || {};
+
+  // Amounts come from the admin-editable pricing settings (rupees -> paise).
+  let settings = {};
+  try {
+    settings = (await dbGetDoc("settings", "pricing")) || {};
+  } catch {
+    settings = {};
+  }
+  const PLANS = {
+    register: {
+      amount: Math.round((Number(settings.registerAmount) || 999) * 100),
+      label: "Weight Loss Program — Registration",
+    },
+    course: {
+      amount: Math.round((Number(settings.courseAmount) || 7999) * 100),
+      label: "60-Day Natural Weight Loss Program",
+    },
+  };
+
   const selected = PLANS[plan];
   if (!selected) {
     return res.status(400).json({ error: "Invalid plan selected." });

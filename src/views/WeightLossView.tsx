@@ -31,8 +31,24 @@ import AuthModal from "../components/AuthModal";
 import { bookConsultation } from "../services/consultationService";
 import { startPayment, PaymentPlan } from "../services/paymentService";
 
-// Pricing options shown in the single enroll box (selectable via the dropdown).
-const PLAN_INFO: Record<PaymentPlan, {
+interface Pricing {
+  registerAmount: number;
+  courseAmount: number;
+  courseOriginal: number;
+  discountLabel: string;
+}
+
+const DEFAULT_PRICING: Pricing = {
+  registerAmount: 999,
+  courseAmount: 7999,
+  courseOriginal: 11999,
+  discountLabel: "30% OFF",
+};
+
+const inr = (n: number) => `₹${Number(n).toLocaleString("en-IN")}`;
+
+// Builds the enroll-box plan data from the (admin-editable) pricing settings.
+function buildPlanInfo(p: Pricing): Record<PaymentPlan, {
   badge: string;
   title: string;
   price: string;
@@ -43,32 +59,34 @@ const PLAN_INFO: Record<PaymentPlan, {
   features: string[];
   cta: string;
   dropdownLabel: string;
-}> = {
-  register: {
-    badge: "Reserve Your Seat",
-    title: "Registration",
-    price: "₹999",
-    original: null,
-    discount: null,
-    unit: "one-time",
-    desc: "Lock your spot in this week's batch and get your onboarding started within 24 hours.",
-    features: ["Seat reserved in current batch", "Onboarding call within 24 hrs", "Adjustable towards full program"],
-    cta: "Signup for ₹999",
-    dropdownLabel: "Registration — ₹999 (start now)",
-  },
-  course: {
-    badge: "Full Transformation",
-    title: "60-Day Natural Program",
-    price: "₹7,999",
-    original: "₹11,999",
-    discount: "30% OFF",
-    unit: "full course",
-    desc: 'The complete personalized program — backed by our "results or it\'s on us" guarantee.',
-    features: ["Prakriti-personalized diet & plan", "Yoga, Pranayama, Mudra & Marma guidance", "Results guarantee — until you reach your goal"],
-    cta: "Enroll for ₹7,999",
-    dropdownLabel: "60-Day Program — ₹7,999 (30% OFF)",
-  },
-};
+}> {
+  return {
+    register: {
+      badge: "Reserve Your Seat",
+      title: "Registration",
+      price: inr(p.registerAmount),
+      original: null,
+      discount: null,
+      unit: "one-time",
+      desc: "Lock your spot in this week's batch and get your onboarding started within 24 hours.",
+      features: ["Seat reserved in current batch", "Onboarding call within 24 hrs", "Adjustable towards full program"],
+      cta: `Signup for ${inr(p.registerAmount)}`,
+      dropdownLabel: `Registration — ${inr(p.registerAmount)} (start now)`,
+    },
+    course: {
+      badge: "Full Transformation",
+      title: "60-Day Natural Program",
+      price: inr(p.courseAmount),
+      original: p.courseOriginal ? inr(p.courseOriginal) : null,
+      discount: p.discountLabel || null,
+      unit: "full course",
+      desc: 'The complete personalized program — backed by our "results or it\'s on us" guarantee.',
+      features: ["Prakriti-personalized diet & plan", "Yoga, Pranayama, Mudra & Marma guidance", "Results guarantee — until you reach your goal"],
+      cta: `Enroll for ${inr(p.courseAmount)}`,
+      dropdownLabel: `60-Day Program — ${inr(p.courseAmount)}${p.discountLabel ? ` (${p.discountLabel})` : ""}`,
+    },
+  };
+}
 
 export default function WeightLossView() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
@@ -84,6 +102,16 @@ export default function WeightLossView() {
   const [payingPlan, setPayingPlan] = useState<PaymentPlan | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<PaymentPlan>("register");
   const [authPlan, setAuthPlan] = useState<PaymentPlan | null>(null);
+
+  // Live pricing from the admin Settings tab (falls back to defaults).
+  const [pricing, setPricing] = useState<Pricing>(DEFAULT_PRICING);
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((d) => setPricing((prev) => ({ ...prev, ...d })))
+      .catch(() => {});
+  }, []);
+  const PLAN_INFO = buildPlanInfo(pricing);
 
   // Clicking a plan first opens the signup/login + OTP gate.
   const handlePay = (plan: PaymentPlan) => {

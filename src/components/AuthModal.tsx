@@ -35,11 +35,11 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
     setLoading(true);
     try {
       if (mode === "signup") {
-        await post("/api/auth/signup", { email, password, attribution: getAttribution() });
+        await post("/api/auth", { action: "signup", email, password, attribution: getAttribution() });
         setStep("otp");
         setInfo("We've emailed you a 6-digit code.");
       } else {
-        const data = await post("/api/auth/login", { email, password });
+        const data = await post("/api/auth", { action: "login", email, password });
         if (data.needsVerification) {
           setStep("otp");
           setInfo("Please verify your email — we've sent you a code.");
@@ -59,7 +59,7 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
     setError(null);
     setLoading(true);
     try {
-      const data = await post("/api/auth/verify", { email, otp });
+      const data = await post("/api/auth", { action: "verify", email, otp });
       if (data.success) onSuccess(data.email || email.trim().toLowerCase());
     } catch (err: any) {
       setError(err.message);
@@ -73,7 +73,7 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
     setInfo(null);
     setLoading(true);
     try {
-      await post("/api/auth/resend", { email });
+      await post("/api/auth", { action: "resend", email });
       setInfo("A new code is on its way.");
     } catch (err: any) {
       setError(err.message);
