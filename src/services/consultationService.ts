@@ -1,4 +1,5 @@
 import { ConsultationBooking } from "../types";
+import { getAttribution } from "../utils/attribution";
 
 const BOOKINGS_KEY = "shivoham_consultations";
 
@@ -42,6 +43,7 @@ export async function bookConsultation(
         whatsapp,
         message,
         source: preferredTime ? `Booking (${preferredTime})` : "Website",
+        attribution: getAttribution(),
       }),
     })
       .then(async (res) => {
