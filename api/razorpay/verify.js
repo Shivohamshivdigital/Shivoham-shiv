@@ -10,7 +10,7 @@
 //   BREVO_SENDER_EMAIL    Verified Brevo sender (default below)
 
 import crypto from "crypto";
-import { dbInsert } from "../_db.js";
+import { dbInsert, dbFindBy, dbUpdate } from "../_db.js";
 
 const PLAN_LABEL = {
   register: "Registration (₹999)",
@@ -89,6 +89,25 @@ export default async function handler(req, res) {
     razorpay_order_id,
     status: "paid",
   });
+
+  // Mark the signed-up user as paid (best-effort).
+  if (payerEmail) {
+    try {
+      const normEmail = String(payerEmail).trim().toLowerCase();
+      const user = await dbFindBy("users", "email", normEmail);
+      if (user) {
+        const { id, ...rest } = user;
+        await dbUpdate("users", id, {
+          ...rest,
+          paid: true,
+          paidAt: new Date().toISOString(),
+          paidPlan: plan,
+        });
+      }
+    } catch (err) {
+      console.error("Marking user paid failed:", err);
+    }
+  }
 
   await notifyTeam({ plan, name, email: payerEmail, contact: payerContact, razorpay_payment_id, razorpay_order_id });
 

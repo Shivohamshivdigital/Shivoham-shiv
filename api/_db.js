@@ -205,3 +205,23 @@ export async function dbDelete(collection, id) {
   }
   return true;
 }
+
+/** Get a single document by id, or null if it doesn't exist. Throws on error. */
+export async function dbGetDoc(collection, id) {
+  if (!isDbConfigured()) return null;
+  const token = await getAccessToken();
+  const resp = await fetch(`${FIRESTORE_BASE}/${collection}/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (resp.status === 404) return null;
+  if (!resp.ok) {
+    throw new Error(`Firestore get failed: ${resp.status} ${await resp.text()}`);
+  }
+  return fromFirestoreDoc(await resp.json());
+}
+
+/** Find the first document where field === value, or null. */
+export async function dbFindBy(collection, field, value) {
+  const rows = await dbSelect(collection);
+  return rows.find((r) => r[field] === value) || null;
+}
