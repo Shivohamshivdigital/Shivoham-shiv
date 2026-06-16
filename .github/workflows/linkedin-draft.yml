@@ -1,0 +1,59 @@
+name: LinkedIn draft (daily)
+
+# Runs every day, writes a draft post, and opens a GitHub Issue you approve.
+# Also runnable on demand from the Actions tab ("Run workflow").
+on:
+  schedule:
+    - cron: "0 9 * * *" # 09:00 UTC daily — change as you like
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Ensure label exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh label create linkedin-draft --description "Pending LinkedIn draft" --color 0a66c2 --repo "$GITHUB_REPOSITORY" || true
+
+      - name: Skip if a draft is already awaiting approval
+        id: guard
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open=$(gh issue list --label linkedin-draft --state open --json number --jq 'length' --repo "$GITHUB_REPOSITORY")
+          echo "open=$open" >> "$GITHUB_OUTPUT"
+
+      - name: Generate draft
+        if: steps.guard.outputs.open == '0'
+        working-directory: linkedin-agent
+        env:
+          CI: "true"
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ secrets.ANTHROPIC_MODEL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
+          AGENT_BRAND_VOICE: ${{ secrets.AGENT_BRAND_VOICE }}
+          AGENT_FEEDS: ${{ secrets.AGENT_FEEDS }}
+        run: node generate.mjs
+
+      - name: Open approval issue
+        if: steps.guard.outputs.open == '0' && hashFiles('linkedin-agent/out/draft.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title=$(cat linkedin-agent/out/title.txt)
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "$title" \
+            --body-file linkedin-agent/out/draft.md \
+            --label linkedin-draft

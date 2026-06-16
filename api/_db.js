@@ -152,53 +152,6 @@ export async function dbInsert(collection, row) {
   }
 }
 
-/** Insert a document and RETURN its generated id (or null on failure). */
-export async function dbCreate(collection, row) {
-  if (!isDbConfigured()) return null;
-  try {
-    const token = await getAccessToken();
-    const payload = { ...row, created_at: new Date().toISOString() };
-    const resp = await fetch(`${FIRESTORE_BASE}/${collection}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ fields: toFirestoreFields(payload) }),
-    });
-    if (!resp.ok) {
-      console.error("Firestore create failed:", collection, resp.status, await resp.text());
-      return null;
-    }
-    const data = await resp.json();
-    return data.name ? String(data.name).split("/").pop() : null;
-  } catch (err) {
-    console.error("Firestore create error:", err);
-    return null;
-  }
-}
-
-/** Fetch a single document by id. Returns the doc (with `id`) or null. */
-export async function dbGet(collection, id) {
-  if (!isDbConfigured()) return null;
-  try {
-    const token = await getAccessToken();
-    const resp = await fetch(`${FIRESTORE_BASE}/${collection}/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (!resp.ok) {
-      if (resp.status !== 404) {
-        console.error("Firestore get failed:", collection, id, resp.status);
-      }
-      return null;
-    }
-    return fromFirestoreDoc(await resp.json());
-  } catch (err) {
-    console.error("Firestore get error:", err);
-    return null;
-  }
-}
-
 /** Select all documents in a collection (newest first). Throws on failure. */
 export async function dbSelect(collection) {
   if (!isDbConfigured()) return [];

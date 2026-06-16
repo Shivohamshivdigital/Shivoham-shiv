@@ -6,8 +6,5 @@
   "installCommand": "npm install",
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
-  ],
-  "crons": [
-    { "path": "/api/agent/run", "schedule": "0 9 * * *" }
   ]
 }
