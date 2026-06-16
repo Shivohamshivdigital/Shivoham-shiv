@@ -1,0 +1,66 @@
+name: LinkedIn publish (on approve)
+
+# When YOU comment "approve" (or yes/haan/y) on a linkedin-draft issue, this
+# publishes the post to LinkedIn. "reject"/"no" discards it.
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  publish:
+    # Only on draft issues, and only for comments by the issue's own author.
+    if: >
+      contains(github.event.issue.labels.*.name, 'linkedin-draft') &&
+      github.event.comment.user.login == github.event.issue.user.login
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Read the comment (approve / reject?)
+        id: decide
+        env:
+          BODY: ${{ github.event.comment.body }}
+        run: |
+          c=$(printf '%s' "$BODY" | tr '[:upper:]' '[:lower:]' | xargs)
+          if echo "$c" | grep -Eq '^(approve|yes|haan|ha|y)$'; then echo "action=approve" >> "$GITHUB_OUTPUT";
+          elif echo "$c" | grep -Eq '^(reject|no|naa|n)$'; then echo "action=reject" >> "$GITHUB_OUTPUT";
+          else echo "action=none" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Publish to LinkedIn
+        if: steps.decide.outputs.action == 'approve'
+        working-directory: linkedin-agent
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+        run: node publish.mjs
+
+      - name: Mark published & close
+        if: steps.decide.outputs.action == 'approve' && success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --repo "$GITHUB_REPOSITORY" --body "✅ Published to LinkedIn!"
+          gh issue close ${{ github.event.issue.number }} --repo "$GITHUB_REPOSITORY"
+
+      - name: Report publish failure
+        if: steps.decide.outputs.action == 'approve' && failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue comment ${{ github.event.issue.number }} --repo "$GITHUB_REPOSITORY" --body "⚠️ Publish failed. Check the Actions logs and your LinkedIn token."
+
+      - name: Reject & close
+        if: steps.decide.outputs.action == 'reject'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --repo "$GITHUB_REPOSITORY" --body "🗑️ Rejected — kuch post nahi hua."
+          gh issue close ${{ github.event.issue.number }} --repo "$GITHUB_REPOSITORY"

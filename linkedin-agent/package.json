@@ -1,0 +1,14 @@
+{
+  "name": "linkedin-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone agent: scrapes AI news, writes a <200-word LinkedIn post, you approve, it publishes.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "draft": "node generate.mjs",
+    "publish": "node publish.mjs"
+  }
+}
