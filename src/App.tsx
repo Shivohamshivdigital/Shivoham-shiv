@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { captureAttribution } from "./utils/attribution";
 import { Compass, Sparkles, X, Heart, HelpCircle, PhoneCall, CheckCircle, Bell, ArrowRight } from "lucide-react";
@@ -16,6 +16,7 @@ import WeightLossView from "./views/WeightLossView";
 import ContactView from "./views/ContactView";
 import BlogView from "./views/BlogView";
 import BlogPostView from "./views/BlogPostView";
+import ThankYouView from "./views/ThankYouView";
 import VedicQuiz from "./components/VedicQuiz";
 import MudraExplorer from "./components/MudraExplorer";
 import SEO from "./components/SEO";
@@ -54,10 +55,15 @@ function AppContent() {
     }
   }, [bannerMessage]);
 
-  // Track SPA page views in Google Analytics (GA4) on route change, and capture
-  // ad attribution (UTMs / gclid / fbclid) from the URL.
+  // Capture ad attribution + fire SPA page views to GA4 and the Meta Pixel.
+  const firstNav = useRef(true);
   useEffect(() => {
     captureAttribution();
+    // index.html already sends the initial PageView for both GA and the Pixel.
+    if (firstNav.current) {
+      firstNav.current = false;
+      return;
+    }
     const gtag = (window as any).gtag;
     if (typeof gtag === "function") {
       gtag("event", "page_view", {
@@ -65,6 +71,10 @@ function AppContent() {
         page_location: window.location.href,
         page_title: document.title,
       });
+    }
+    const fbq = (window as any).fbq;
+    if (typeof fbq === "function") {
+      fbq("track", "PageView");
     }
   }, [location.pathname, location.search]);
 
@@ -233,6 +243,7 @@ function AppContent() {
           <Route path="/about" element={<AboutView />} />
           
           <Route path="/weight-loss" element={<WeightLossView />} />
+          <Route path="/thank-you" element={<ThankYouView />} />
 
           <Route path="/contact" element={<ContactView onSetBanner={setBannerMessage} />} />
           

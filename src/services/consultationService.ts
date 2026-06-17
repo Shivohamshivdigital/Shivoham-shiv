@@ -50,6 +50,10 @@ export async function bookConsultation(
         if (!res.ok) {
           const detail = await res.text().catch(() => "");
           console.error("Lead delivery failed:", res.status, detail);
+        } else {
+          // Meta Pixel + GA: a lead was captured.
+          (window as any).fbq?.("track", "Lead");
+          (window as any).gtag?.("event", "generate_lead");
         }
         resolve(newBooking);
       })
