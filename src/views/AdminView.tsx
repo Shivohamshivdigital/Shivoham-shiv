@@ -247,6 +247,23 @@ export default function AdminView() {
     }
   };
 
+  const deleteRow = async (collection: string, id?: string) => {
+    if (!id) return;
+    if (!window.confirm("Delete this permanently?")) return;
+    try {
+      const res = await fetch("/api/admin/data", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), action: "delete", collection, id }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not delete.");
+      await fetchData(pw());
+    } catch (err: any) {
+      alert(err.message || "Delete failed.");
+    }
+  };
+
   const importDefaults = async () => {
     if (!window.confirm("Import the built-in blog posts so you can edit them here? (existing ones are skipped)")) return;
     setImporting(true);
@@ -512,12 +529,13 @@ export default function AdminView() {
                       <th className="px-4 py-3">Ad Source</th>
                       <th className="px-4 py-3">Signed up</th>
                       <th className="px-4 py-3">Last attempt</th>
+                      <th className="px-4 py-3 text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {users.length === 0 ? (
                       <tr>
-                        <td colSpan={8} className="px-4 py-8 text-center text-slate-400">
+                        <td colSpan={9} className="px-4 py-8 text-center text-slate-400">
                           No signups yet.
                         </td>
                       </tr>
@@ -540,6 +558,15 @@ export default function AdminView() {
                           <td className="px-4 py-3 text-slate-600 max-w-[12rem] truncate" title={adSource(u)}>{adSource(u)}</td>
                           <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(u.created_at)}</td>
                           <td className="px-4 py-3 whitespace-nowrap text-slate-500">{u.lastAttemptAt ? fmtDate(u.lastAttemptAt) : "—"}</td>
+                          <td className="px-4 py-3 text-right">
+                            <button
+                              onClick={() => deleteRow("users", u.id)}
+                              className="p-1.5 rounded-lg text-red-500 hover:bg-red-50"
+                              title="Delete user"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </td>
                         </tr>
                       ))
                     )}

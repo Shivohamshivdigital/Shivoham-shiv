@@ -5,7 +5,7 @@
 //   ADMIN_PASSWORD               the password for the /admin page
 //   FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY   (see api/_db.js)
 
-import { dbSelect } from "../_db.js";
+import { dbSelect, dbDelete } from "../_db.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -18,9 +18,24 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Admin panel is not configured yet." });
   }
 
-  const { password } = req.body || {};
+  const { password, action, collection, id } = req.body || {};
   if (!password || password !== ADMIN_PASSWORD) {
     return res.status(401).json({ error: "Incorrect password." });
+  }
+
+  // Delete a row (users / leads / payments).
+  if (action === "delete") {
+    const allowed = ["users", "leads", "payments"];
+    if (!allowed.includes(collection) || !id) {
+      return res.status(400).json({ error: "Invalid delete request." });
+    }
+    try {
+      await dbDelete(collection, id);
+      return res.status(200).json({ success: true });
+    } catch (err) {
+      console.error("Admin delete error:", err);
+      return res.status(500).json({ error: `Could not delete: ${String((err && err.message) || err)}` });
+    }
   }
 
   try {
