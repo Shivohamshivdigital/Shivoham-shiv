@@ -114,10 +114,21 @@ export default function WeightLossView() {
   }, []);
   const PLAN_INFO = buildPlanInfo(pricing);
 
-  // Clicking a plan first opens the signup/login + OTP gate.
+  // Clicking a plan opens the signup/checkout popup AND tags the URL with a
+  // ?step=checkout suffix (trackable as InitiateCheckout) — popup stays.
   const handlePay = (plan: PaymentPlan) => {
     if (payingPlan) return;
     setAuthPlan(plan);
+    const amount = plan === "register" ? pricing.registerAmount : pricing.courseAmount;
+    (window as any).fbq?.("track", "InitiateCheckout", { value: amount, currency: "INR", content_name: plan });
+    (window as any).gtag?.("event", "begin_checkout", { value: amount, currency: "INR" });
+    navigate(`/weight-loss?step=checkout&plan=${plan}`);
+  };
+
+  // Close the signup/checkout popup and clean the URL back.
+  const closeAuth = () => {
+    setAuthPlan(null);
+    navigate("/weight-loss");
   };
 
   // After the email is verified + phone collected, start the Razorpay payment.
@@ -127,8 +138,6 @@ export default function WeightLossView() {
     if (!plan) return;
     setPayingPlan(plan);
     const amount = plan === "register" ? pricing.registerAmount : pricing.courseAmount;
-    // Meta Pixel: checkout started.
-    (window as any).fbq?.("track", "InitiateCheckout", { value: amount, currency: "INR", content_name: plan });
     try {
       await startPayment(plan, { email: authedEmail, contact: phone });
       // Redirect to the thank-you page, which fires the Purchase conversion.
@@ -243,7 +252,7 @@ export default function WeightLossView() {
       )}
 
       {/* Signup / login + OTP gate before payment */}
-      {authPlan && <AuthModal onClose={() => setAuthPlan(null)} onSuccess={handleAuthSuccess} />}
+      {authPlan && <AuthModal onClose={closeAuth} onSuccess={handleAuthSuccess} />}
 
       <SEO
         title="Ayurvedic Natural Weight Loss | 60-Day Program — Shivoham Shiv"
