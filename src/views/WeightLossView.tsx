@@ -119,14 +119,14 @@ export default function WeightLossView() {
     setAuthPlan(plan);
   };
 
-  // After the email is verified, start the Razorpay payment for that plan.
-  const handleAuthSuccess = async (authedEmail: string) => {
+  // After the email is verified + phone collected, start the Razorpay payment.
+  const handleAuthSuccess = async (authedEmail: string, phone: string) => {
     const plan = authPlan;
     setAuthPlan(null);
     if (!plan) return;
     setPayingPlan(plan);
     try {
-      await startPayment(plan, { email: authedEmail });
+      await startPayment(plan, { email: authedEmail, contact: phone });
       setBannerText("Payment successful! 🎉 Our team will reach out on WhatsApp within 24 hours to begin your journey.");
     } catch (err: any) {
       if (err?.message && err.message !== "Payment cancelled.") {
