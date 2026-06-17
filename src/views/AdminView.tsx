@@ -517,7 +517,26 @@ export default function AdminView() {
             )}
 
             {tab === "users" && (
-              <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                  <div className="rounded-2xl border border-green-100 bg-white p-4">
+                    <div className="text-2xl font-bold text-green-900">{users.length}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-slate-500 font-bold">Total signups</div>
+                  </div>
+                  <div className="rounded-2xl border border-green-100 bg-white p-4">
+                    <div className="text-2xl font-bold text-green-700">{users.filter((u) => u.paid).length}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-slate-500 font-bold">Paid</div>
+                  </div>
+                  <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-4">
+                    <div className="text-2xl font-bold text-amber-700">{users.filter((u) => !u.paid && (Number(u.attempts) || 0) > 0).length}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-amber-700/80 font-bold">Tried but didn't pay</div>
+                  </div>
+                  <div className="rounded-2xl border border-green-100 bg-white p-4">
+                    <div className="text-2xl font-bold text-slate-700">{users.filter((u) => u.verified).length}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-slate-500 font-bold">Email verified</div>
+                  </div>
+                </div>
+                <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-green-50 text-green-900 uppercase tracking-wider text-[10px]">
                     <tr>
@@ -572,6 +591,7 @@ export default function AdminView() {
                     )}
                   </tbody>
                 </table>
+                </div>
               </div>
             )}
 
