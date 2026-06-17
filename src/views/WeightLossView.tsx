@@ -23,7 +23,7 @@ import {
   ShieldCheck,
   Clock3
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
 import AuthModal from "../components/AuthModal";
 
@@ -89,6 +89,7 @@ function buildPlanInfo(p: Pricing): Record<PaymentPlan, {
 }
 
 export default function WeightLossView() {
+  const navigate = useNavigate();
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   
   // Form elements State
@@ -125,9 +126,13 @@ export default function WeightLossView() {
     setAuthPlan(null);
     if (!plan) return;
     setPayingPlan(plan);
+    const amount = plan === "register" ? pricing.registerAmount : pricing.courseAmount;
+    // Meta Pixel: checkout started.
+    (window as any).fbq?.("track", "InitiateCheckout", { value: amount, currency: "INR", content_name: plan });
     try {
       await startPayment(plan, { email: authedEmail, contact: phone });
-      setBannerText("Payment successful! 🎉 Our team will reach out on WhatsApp within 24 hours to begin your journey.");
+      // Redirect to the thank-you page, which fires the Purchase conversion.
+      navigate(`/thank-you?plan=${plan}&amount=${amount}`);
     } catch (err: any) {
       if (err?.message && err.message !== "Payment cancelled.") {
         setBannerText(err.message);
