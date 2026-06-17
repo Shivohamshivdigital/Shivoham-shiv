@@ -5,6 +5,7 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "rewrites": [
+    { "source": "/blog/:slug", "destination": "/api/post?slug=:slug" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
