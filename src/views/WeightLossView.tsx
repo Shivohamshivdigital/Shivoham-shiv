@@ -114,14 +114,10 @@ export default function WeightLossView() {
   }, []);
   const PLAN_INFO = buildPlanInfo(pricing);
 
-  // Clicking a plan opens the signup/checkout popup AND tags the URL with a
-  // ?step=checkout suffix (trackable as InitiateCheckout) — popup stays.
+  // Clicking a plan opens the signup popup and tags the URL with ?step=checkout.
   const handlePay = (plan: PaymentPlan) => {
     if (payingPlan) return;
     setAuthPlan(plan);
-    const amount = plan === "register" ? pricing.registerAmount : pricing.courseAmount;
-    (window as any).fbq?.("track", "InitiateCheckout", { value: amount, currency: "INR", content_name: plan });
-    (window as any).gtag?.("event", "begin_checkout", { value: amount, currency: "INR" });
     navigate(`/weight-loss?step=checkout&plan=${plan}`);
   };
 
@@ -138,6 +134,9 @@ export default function WeightLossView() {
     if (!plan) return;
     setPayingPlan(plan);
     const amount = plan === "register" ? pricing.registerAmount : pricing.courseAmount;
+    // Meta Pixel: InitiateCheckout fires right as the Razorpay payment window opens.
+    (window as any).fbq?.("track", "InitiateCheckout", { value: amount, currency: "INR", content_name: plan });
+    (window as any).gtag?.("event", "begin_checkout", { value: amount, currency: "INR" });
     try {
       await startPayment(plan, { email: authedEmail, contact: phone });
       // Redirect to the thank-you page, which fires the Purchase conversion.
