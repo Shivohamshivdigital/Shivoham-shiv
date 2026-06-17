@@ -9,11 +9,17 @@
 //   FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY  (see api/_db.js)
 //
 // Examples:
-//   GET /api/admin/export?key=XXX                       -> { leads: [...], payments: [...] }
+//   GET /api/admin/export?key=XXX                       -> { leads, payments, users }
 //   GET /api/admin/export?type=leads&key=XXX            -> { leads: [...] }
+//   GET /api/admin/export?type=users&key=XXX            -> { users: [...] }  (signups: paid/unpaid, attempts, ad source, phone)
 //   GET /api/admin/export?type=payments&format=csv&key=XXX  -> CSV download
 
 import { dbSelect } from "../_db.js";
+
+// Fields we never expose externally.
+function safeUser({ passwordHash, otp, otpExpiry, ...rest }) {
+  return rest;
+}
 
 export default async function handler(req, res) {
   // Allow cross-origin GETs so the data can be pulled from anywhere (still
@@ -44,15 +50,16 @@ export default async function handler(req, res) {
     const result = {};
     if (type === "leads" || type === "all") result.leads = await dbSelect("leads");
     if (type === "payments" || type === "all") result.payments = await dbSelect("payments");
+    if (type === "users" || type === "all") {
+      result.users = (await dbSelect("users").catch(() => [])).map(safeUser);
+    }
 
     if (format === "csv") {
-      const rows = type === "payments" ? result.payments || [] : result.leads || [];
+      const rows = type === "payments" ? result.payments || [] : type === "users" ? result.users || [] : result.leads || [];
       const csv = toCsv(rows);
+      const name = type === "payments" ? "payments" : type === "users" ? "users" : "leads";
       res.setHeader("Content-Type", "text/csv; charset=utf-8");
-      res.setHeader(
-        "Content-Disposition",
-        `attachment; filename="${type === "payments" ? "payments" : "leads"}.csv"`
-      );
+      res.setHeader("Content-Disposition", `attachment; filename="${name}.csv"`);
       return res.status(200).send(csv);
     }
 
