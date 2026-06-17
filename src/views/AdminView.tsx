@@ -55,6 +55,8 @@ interface Payment {
 interface AppUser extends Attribution {
   id?: string;
   email?: string;
+  phone?: string;
+  contact?: string;
   verified?: boolean;
   paid?: boolean;
   paidPlan?: string;
@@ -541,6 +543,7 @@ export default function AdminView() {
                   <thead className="bg-green-50 text-green-900 uppercase tracking-wider text-[10px]">
                     <tr>
                       <th className="px-4 py-3">Email</th>
+                      <th className="px-4 py-3">Phone</th>
                       <th className="px-4 py-3">Email verified</th>
                       <th className="px-4 py-3">Paid</th>
                       <th className="px-4 py-3">Plan</th>
@@ -554,7 +557,7 @@ export default function AdminView() {
                   <tbody>
                     {users.length === 0 ? (
                       <tr>
-                        <td colSpan={9} className="px-4 py-8 text-center text-slate-400">
+                        <td colSpan={10} className="px-4 py-8 text-center text-slate-400">
                           No signups yet.
                         </td>
                       </tr>
@@ -562,6 +565,7 @@ export default function AdminView() {
                       users.map((u) => (
                         <tr key={u.id || u.email} className="border-t border-green-50 hover:bg-green-50/40">
                           <td className="px-4 py-3 font-semibold text-slate-800">{u.email || "—"}</td>
+                          <td className="px-4 py-3 text-slate-600">{u.phone || u.contact || "—"}</td>
                           <td className="px-4 py-3">
                             <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${u.verified ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
                               {u.verified ? "Verified" : "Unverified"}
