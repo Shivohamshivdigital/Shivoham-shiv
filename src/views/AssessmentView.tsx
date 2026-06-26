@@ -83,6 +83,13 @@ export default function AssessmentView() {
     }));
   }, [params]);
 
+  // When logged in, the email is fixed to the account (primary) email and
+  // can't be edited — the assessment is owned by this email.
+  const sessionEmail = getSession()?.email || "";
+  useEffect(() => {
+    if (sessionEmail) setForm((f) => ({ ...f, email: sessionEmail }));
+  }, [sessionEmail]);
+
   // If already logged in, prefill from the account and block re-submitting
   // when an assessment already exists (show their details instead).
   useEffect(() => {
@@ -432,7 +439,15 @@ export default function AssessmentView() {
               </div>
               <div>
                 <label className={label}>Email Address *</label>
-                <input type="email" className={input} value={form.email} onChange={(e) => set("email", e.target.value)} />
+                <input
+                  type="email"
+                  className={`${input} ${sessionEmail ? "bg-slate-50 text-slate-500 cursor-not-allowed" : ""}`}
+                  value={form.email}
+                  onChange={(e) => set("email", e.target.value)}
+                  readOnly={!!sessionEmail}
+                  title={sessionEmail ? "This is your account email and can't be changed." : undefined}
+                />
+                {sessionEmail && <p className="text-[10px] text-slate-400 mt-1">Your account email — can't be edited</p>}
               </div>
               <div className="sm:col-span-2">
                 <label className={label}>City & State *</label>
