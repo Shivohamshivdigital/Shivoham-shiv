@@ -10,7 +10,7 @@
 //   BREVO_SENDER_EMAIL   Verified Brevo sender address (default: info@shivohamshiv.com)
 //   BREVO_LIST_ID        Numeric Brevo contact list id to add leads to (optional)
 
-import { dbInsert } from "./_db.js";
+import { dbInsert, dbFindBy } from "./_db.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -135,6 +135,19 @@ async function handleAssessment(req, res) {
     return res.status(400).json({ error: "Name, email and mobile are required." });
   }
 
+  const emailNorm = email.toLowerCase();
+
+  // One assessment per email — if they've already submitted, don't save again.
+  // The frontend uses `already` to show the customer their existing details.
+  try {
+    const existing = await dbFindBy("assessments", "email", emailNorm);
+    if (existing) {
+      return res.status(200).json({ success: true, already: true });
+    }
+  } catch (err) {
+    console.error("Assessment dedup check failed:", err);
+  }
+
   const attr = b.attribution && typeof b.attribution === "object" ? b.attribution : {};
 
   const saved = await dbInsert("assessments", {
@@ -142,7 +155,7 @@ async function handleAssessment(req, res) {
     age: b.age || "",
     gender: b.gender || "",
     mobile,
-    email,
+    email: emailNorm,
     city_state: b.cityState || "",
     current_weight: b.currentWeight || "",
     height: b.height || "",

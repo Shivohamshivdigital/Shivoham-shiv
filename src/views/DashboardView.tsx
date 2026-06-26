@@ -31,6 +31,7 @@ function fmtDate(iso?: string) {
 export default function DashboardView({ onSetBanner }: DashboardViewProps) {
   const navigate = useNavigate();
   const [user, setUser] = useState<SessionUser | null>(null);
+  const [assessment, setAssessment] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,12 +41,13 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
       navigate("/login?redirect=/dashboard", { replace: true });
       return;
     }
-    fetchMe().then((u) => {
-      if (!u) {
+    fetchMe().then((d) => {
+      if (!d) {
         navigate("/login?redirect=/dashboard", { replace: true });
         return;
       }
-      setUser(u);
+      setUser(d.user);
+      setAssessment(d.assessment);
       setLoading(false);
     });
   }, [navigate]);
@@ -64,7 +66,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
     );
   }
 
-  const name = displayName(user.email);
+  const name = (assessment && assessment.full_name) || displayName(user.email);
   const phone = user.phone || user.contact || "";
   const plan = user.paidPlan || user.lastPlan || "";
   const planLabel = plan === "register" ? "Registration (₹999)" : plan === "course" ? "60-Day Program" : plan || "—";
@@ -152,15 +154,34 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
               <ClipboardList className="w-6 h-6" />
             </div>
             <h3 className="font-heading font-bold text-base text-green-900 mb-1">Health assessment</h3>
-            <p className="text-xs text-slate-500 leading-relaxed mb-4">
-              Fill your details so we can build your personalized Ayurvedic plan. Takes ~2 minutes.
-            </p>
-            <Link
-              to={`/assessment?${assessmentQ.toString()}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
-            >
-              Open assessment <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            {assessment ? (
+              <>
+                <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                  <span className="inline-flex items-center gap-1 text-green-700 font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Submitted
+                  </span>
+                  {assessment.created_at ? ` on ${fmtDate(assessment.created_at)}` : ""}. Your details are below.
+                </p>
+                <a
+                  href="#my-assessment"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+                >
+                  View my details <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </>
+            ) : (
+              <>
+                <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                  Fill your details so we can build your personalized Ayurvedic plan. Takes ~2 minutes.
+                </p>
+                <Link
+                  to={`/assessment?${assessmentQ.toString()}`}
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+                >
+                  Open assessment <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Support */}
@@ -182,6 +203,54 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
             </a>
           </div>
         </div>
+
+        {/* Submitted health assessment (read-only) */}
+        {assessment && (
+          <div id="my-assessment" className="bg-white border border-green-100 rounded-3xl shadow-sm p-6 sm:p-7 mb-6 scroll-mt-24">
+            <div className="flex items-center gap-2 mb-5">
+              <ClipboardList className="w-5 h-5 text-green-700" />
+              <h3 className="font-heading font-bold text-base text-green-900">Your health assessment</h3>
+            </div>
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+              {(
+                [
+                  ["Full name", assessment.full_name],
+                  ["Age", assessment.age],
+                  ["Gender", assessment.gender],
+                  ["Mobile", assessment.mobile],
+                  ["City & State", assessment.city_state],
+                  ["Current weight (kg)", assessment.current_weight],
+                  ["Height (cm)", assessment.height],
+                  ["Target weight (kg)", assessment.target_weight],
+                  ["Kg to lose", assessment.kg_to_lose],
+                  ["Conditions", [assessment.conditions, assessment.conditions_other].filter(Boolean).join(", ")],
+                  ["Medications", assessment.medications],
+                  ["Recent surgery", assessment.surgery],
+                  ["Pregnant/breastfeeding", assessment.pregnant],
+                  ["Why lose weight", assessment.why_lose_weight],
+                  ["Biggest challenge", assessment.biggest_challenge],
+                ] as [string, string | undefined][]
+              ).map(([k, v]) => (
+                <div
+                  key={k}
+                  className={
+                    k === "Why lose weight" || k === "Biggest challenge" || k === "Conditions" ? "sm:col-span-2" : ""
+                  }
+                >
+                  <dt className="text-[10px] uppercase tracking-wider font-bold text-slate-400">{k}</dt>
+                  <dd className="text-slate-700 mt-0.5 break-words">{v || "—"}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="text-[11px] text-slate-400 mt-5">
+              Need to change something?{" "}
+              <a href="https://wa.me/917317778215" target="_blank" rel="noreferrer" className="text-green-700 font-semibold hover:underline">
+                Message us on WhatsApp
+              </a>{" "}
+              and we'll update it.
+            </p>
+          </div>
+        )}
 
         {/* Account details */}
         <div className="bg-white border border-green-100 rounded-3xl shadow-sm p-6 sm:p-7">
