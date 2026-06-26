@@ -4,7 +4,7 @@ import { getAttribution } from "../utils/attribution";
 
 interface AuthModalProps {
   onClose: () => void;
-  onSuccess: (email: string, phone: string) => void;
+  onSuccess: (email: string, phone: string, token?: string) => void;
 }
 
 async function post(url: string, body: any) {
@@ -23,6 +23,7 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [phone, setPhone] = useState("");
+  const [token, setToken] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
@@ -48,7 +49,8 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
     setError(null);
     setLoading(true);
     try {
-      await post("/api/auth", { action: "verify", email, otp });
+      const data = await post("/api/auth", { action: "verify", email, otp });
+      setToken(data.token);
       setStep("phone");
       setInfo(null);
     } catch (err: any) {
@@ -64,7 +66,7 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
     setLoading(true);
     try {
       await post("/api/auth", { action: "phone", email, phone });
-      onSuccess(email.trim().toLowerCase(), phone.trim());
+      onSuccess(email.trim().toLowerCase(), phone.trim(), token);
     } catch (err: any) {
       setError(err.message);
     } finally {

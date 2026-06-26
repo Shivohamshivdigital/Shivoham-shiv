@@ -30,6 +30,7 @@ import AuthModal from "../components/AuthModal";
 // Standard book function simulated or logged
 import { bookConsultation } from "../services/consultationService";
 import { startPayment, PaymentPlan } from "../services/paymentService";
+import { setSession } from "../utils/session";
 
 interface Pricing {
   registerAmount: number;
@@ -128,9 +129,11 @@ export default function WeightLossView() {
   };
 
   // After the email is verified + phone collected, start the Razorpay payment.
-  const handleAuthSuccess = async (authedEmail: string, phone: string) => {
+  const handleAuthSuccess = async (authedEmail: string, phone: string, token?: string) => {
     const plan = authPlan;
     setAuthPlan(null);
+    // Log the customer in so they have a real account/session going forward.
+    if (token) setSession(token, authedEmail);
     if (!plan) return;
     setPayingPlan(plan);
     const amount = plan === "register" ? pricing.registerAmount : pricing.courseAmount;
@@ -140,7 +143,9 @@ export default function WeightLossView() {
     try {
       await startPayment(plan, { email: authedEmail, contact: phone });
       // Redirect to the thank-you page, which fires the Purchase conversion.
-      navigate(`/thank-you?plan=${plan}&amount=${amount}`);
+      // Carry email/phone so the required health assessment prefills.
+      const q = new URLSearchParams({ plan, amount: String(amount), email: authedEmail, phone });
+      navigate(`/thank-you?${q.toString()}`);
     } catch (err: any) {
       if (err?.message && err.message !== "Payment cancelled.") {
         setBannerText(err.message);
@@ -866,6 +871,13 @@ export default function WeightLossView() {
                     className="w-full py-3.5 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {payingPlan === selectedPlan ? "Processing…" : plan.cta}
+                  </button>
+
+                  <button
+                    onClick={() => navigate("/assessment")}
+                    className="w-full mt-3 text-[11px] font-semibold text-[#2F5233] underline underline-offset-2 hover:text-[#3E9B49] transition-colors"
+                  >
+                    Not ready to pay? Take the free health assessment →
                   </button>
                 </div>
                 );
