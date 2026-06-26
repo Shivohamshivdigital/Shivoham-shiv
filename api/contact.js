@@ -232,8 +232,10 @@ async function handleAssessment(req, res) {
     }
   }
 
-  if (!saved && !BREVO_API_KEY) {
-    return res.status(500).json({ error: "Assessment service is not configured." });
+  // The assessment MUST be saved — never show a false success (which would
+  // make the data silently disappear from the admin + customer dashboard).
+  if (!saved) {
+    return res.status(500).json({ error: "Could not save your assessment. Please try again in a moment." });
   }
   return res.status(200).json({ success: true });
 }
