@@ -167,11 +167,11 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
             ) : (
               <Link
                 to="/login"
-                className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all"
+                className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all whitespace-nowrap"
                 title="Log in"
               >
-                <LogIn className="w-3.5 h-3.5" />
-                <span>Login</span>
+                <LogIn className="w-3.5 h-3.5 shrink-0" />
+                <span>Start Your 60-Day Journey</span>
               </Link>
             )}
 
@@ -295,7 +295,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
                 >
-                  <LogIn className="w-4 h-4" /> Login
+                  <LogIn className="w-4 h-4" /> Start Your 60-Day Journey
                 </Link>
               )}
 
