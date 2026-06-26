@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck, Settings as SettingsIcon } from "lucide-react";
+import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck, Settings as SettingsIcon, ClipboardList, X } from "lucide-react";
 import { blogPosts, sectionsToContent } from "../data/blogData";
 
 interface Attribution {
@@ -67,6 +67,29 @@ interface AppUser extends Attribution {
   lastAttemptAt?: string;
 }
 
+interface Assessment extends Attribution {
+  id?: string;
+  created_at?: string;
+  full_name?: string;
+  age?: string;
+  gender?: string;
+  mobile?: string;
+  email?: string;
+  city_state?: string;
+  current_weight?: string;
+  height?: string;
+  target_weight?: string;
+  conditions?: string;
+  conditions_other?: string;
+  medications?: string;
+  surgery?: string;
+  pregnant?: string;
+  why_lose_weight?: string;
+  kg_to_lose?: string;
+  biggest_challenge?: string;
+  paid?: boolean;
+}
+
 interface Post {
   id?: string;
   created_at?: string;
@@ -120,7 +143,9 @@ export default function AdminView() {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [users, setUsers] = useState<AppUser[]>([]);
-  const [tab, setTab] = useState<"leads" | "payments" | "users" | "blog" | "settings">("leads");
+  const [assessments, setAssessments] = useState<Assessment[]>([]);
+  const [assessDetail, setAssessDetail] = useState<Assessment | null>(null);
+  const [tab, setTab] = useState<"leads" | "payments" | "users" | "assessments" | "blog" | "settings">("leads");
 
   // Pricing settings
   const [settings, setSettings] = useState({ registerAmount: 999, courseAmount: 7999, courseOriginal: 11999, discountLabel: "30% OFF" });
@@ -170,6 +195,7 @@ export default function AdminView() {
         setLeads(Array.isArray(data.leads) ? data.leads : []);
         setPayments(Array.isArray(data.payments) ? data.payments : []);
         setUsers(Array.isArray(data.users) ? data.users : []);
+        setAssessments(Array.isArray(data.assessments) ? data.assessments : []);
         setAuthed(true);
         sessionStorage.setItem(PW_KEY, p);
         fetchPosts(p);
@@ -204,6 +230,8 @@ export default function AdminView() {
     setPayments([]);
     setPosts([]);
     setUsers([]);
+    setAssessments([]);
+    setAssessDetail(null);
     setEditing(null);
   };
 
@@ -419,6 +447,17 @@ export default function AdminView() {
               </button>
               <button
                 onClick={() => {
+                  setTab("assessments");
+                  setAssessDetail(null);
+                }}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                  tab === "assessments" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                }`}
+              >
+                <ClipboardList className="w-3.5 h-3.5" /> Assessments ({assessments.length})
+              </button>
+              <button
+                onClick={() => {
                   setTab("blog");
                   setEditing(null);
                 }}
@@ -595,6 +634,84 @@ export default function AdminView() {
                     )}
                   </tbody>
                 </table>
+                </div>
+              </div>
+            )}
+
+            {tab === "assessments" && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div className="rounded-2xl border border-green-100 bg-white p-4">
+                    <div className="text-2xl font-bold text-green-900">{assessments.length}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-slate-500 font-bold">Total assessments</div>
+                  </div>
+                  <div className="rounded-2xl border border-green-100 bg-white p-4">
+                    <div className="text-2xl font-bold text-green-700">{assessments.filter((a) => a.paid).length}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-slate-500 font-bold">Paid customers</div>
+                  </div>
+                  <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-4">
+                    <div className="text-2xl font-bold text-amber-700">{assessments.filter((a) => !a.paid).length}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-amber-700/80 font-bold">Free (not yet paid)</div>
+                  </div>
+                </div>
+                <div className="bg-white border border-green-100 rounded-2xl shadow-sm overflow-x-auto">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-green-50 text-green-900 uppercase tracking-wider text-[10px]">
+                      <tr>
+                        <th className="px-4 py-3">Date</th>
+                        <th className="px-4 py-3">Name</th>
+                        <th className="px-4 py-3">Mobile</th>
+                        <th className="px-4 py-3">City</th>
+                        <th className="px-4 py-3">Cur. → Target</th>
+                        <th className="px-4 py-3">Paid</th>
+                        <th className="px-4 py-3">Ad Source</th>
+                        <th className="px-4 py-3 text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {assessments.length === 0 ? (
+                        <tr>
+                          <td colSpan={8} className="px-4 py-8 text-center text-slate-400">
+                            No assessments yet.
+                          </td>
+                        </tr>
+                      ) : (
+                        assessments.map((a) => (
+                          <tr key={a.id} className="border-t border-green-50 hover:bg-green-50/40">
+                            <td className="px-4 py-3 whitespace-nowrap text-slate-500">{fmtDate(a.created_at)}</td>
+                            <td className="px-4 py-3 font-semibold text-slate-800">{a.full_name || "—"}</td>
+                            <td className="px-4 py-3 text-slate-600">{a.mobile || "—"}</td>
+                            <td className="px-4 py-3 text-slate-600 max-w-[10rem] truncate" title={a.city_state}>{a.city_state || "—"}</td>
+                            <td className="px-4 py-3 text-slate-600 whitespace-nowrap">
+                              {a.current_weight || "?"} → {a.target_weight || "?"} kg
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${a.paid ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+                                {a.paid ? "Paid" : "Free"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-slate-600 max-w-[11rem] truncate" title={adSource(a)}>{adSource(a)}</td>
+                            <td className="px-4 py-3 text-right whitespace-nowrap">
+                              <button
+                                onClick={() => setAssessDetail(a)}
+                                className="p-1.5 rounded-lg text-slate-500 hover:bg-green-50 hover:text-green-700"
+                                title="View full details"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                onClick={() => deleteRow("assessments", a.id)}
+                                className="p-1.5 rounded-lg text-red-500 hover:bg-red-50"
+                                title="Delete"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
@@ -858,6 +975,57 @@ export default function AdminView() {
                 >
                   {savingSettings ? "Saving…" : "Save settings"}
                 </button>
+              </div>
+            )}
+
+            {assessDetail && (
+              <div
+                className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+                onClick={() => setAssessDetail(null)}
+              >
+                <div
+                  className="bg-white border border-green-100 rounded-3xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    onClick={() => setAssessDetail(null)}
+                    className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-neutral-100 text-gray-400"
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h2 className="font-heading font-bold text-xl text-green-900">{assessDetail.full_name || "—"}</h2>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${assessDetail.paid ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+                      {assessDetail.paid ? "Paid" : "Free"}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mb-5">{fmtDate(assessDetail.created_at)} · {adSource(assessDetail)}</p>
+                  <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-3 text-xs">
+                    {([
+                      ["Age", assessDetail.age],
+                      ["Gender", assessDetail.gender],
+                      ["Mobile", assessDetail.mobile],
+                      ["Email", assessDetail.email],
+                      ["City & State", assessDetail.city_state],
+                      ["Current weight (kg)", assessDetail.current_weight],
+                      ["Height (cm)", assessDetail.height],
+                      ["Target weight (kg)", assessDetail.target_weight],
+                      ["Kg to lose", assessDetail.kg_to_lose],
+                      ["Conditions", [assessDetail.conditions, assessDetail.conditions_other].filter(Boolean).join(", ")],
+                      ["Medications", assessDetail.medications],
+                      ["Recent surgery", assessDetail.surgery],
+                      ["Pregnant/breastfeeding", assessDetail.pregnant],
+                      ["Why lose weight", assessDetail.why_lose_weight],
+                      ["Biggest challenge", assessDetail.biggest_challenge],
+                    ] as [string, string | undefined][]).map(([k, v]) => (
+                      <div key={k} className={k === "Why lose weight" || k === "Biggest challenge" || k === "Conditions" ? "sm:col-span-2" : ""}>
+                        <dt className="text-[10px] uppercase tracking-wider font-bold text-slate-400">{k}</dt>
+                        <dd className="text-slate-700 mt-0.5 break-words">{v || "—"}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </div>
             )}
           </>

@@ -23,9 +23,9 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Incorrect password." });
   }
 
-  // Delete a row (users / leads / payments).
+  // Delete a row (users / leads / payments / assessments).
   if (action === "delete") {
-    const allowed = ["users", "leads", "payments"];
+    const allowed = ["users", "leads", "payments", "assessments"];
     if (!allowed.includes(collection) || !id) {
       return res.status(400).json({ error: "Invalid delete request." });
     }
@@ -39,14 +39,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const [leads, payments, usersRaw] = await Promise.all([
+    const [leads, payments, usersRaw, assessments] = await Promise.all([
       dbSelect("leads"),
       dbSelect("payments"),
       dbSelect("users").catch(() => []),
+      dbSelect("assessments").catch(() => []),
     ]);
     // Never expose password hashes / OTPs to the admin UI.
     const users = usersRaw.map(({ passwordHash, otp, otpExpiry, ...rest }) => rest);
-    return res.status(200).json({ leads, payments, users });
+    return res.status(200).json({ leads, payments, users, assessments });
   } catch (err) {
     console.error("Admin data fetch error:", err);
     // Surface the underlying reason so setup issues (e.g. a malformed

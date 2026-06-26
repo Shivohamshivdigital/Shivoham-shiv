@@ -17,6 +17,7 @@ import ContactView from "./views/ContactView";
 import BlogView from "./views/BlogView";
 import BlogPostView from "./views/BlogPostView";
 import ThankYouView from "./views/ThankYouView";
+import AssessmentView from "./views/AssessmentView";
 import VedicQuiz from "./components/VedicQuiz";
 import MudraExplorer from "./components/MudraExplorer";
 import SEO from "./components/SEO";
@@ -244,6 +245,7 @@ function AppContent() {
           
           <Route path="/weight-loss" element={<WeightLossView />} />
           <Route path="/thank-you" element={<ThankYouView />} />
+          <Route path="/assessment" element={<AssessmentView />} />
 
           <Route path="/contact" element={<ContactView onSetBanner={setBannerMessage} />} />
           

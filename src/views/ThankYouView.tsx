@@ -9,6 +9,11 @@ export default function ThankYouView() {
   const plan = params.get("plan") || "";
   const fired = useRef(false);
 
+  // Carry the customer's details into the required health assessment so it prefills.
+  const assessmentQ = new URLSearchParams({ paid: "1" });
+  if (params.get("email")) assessmentQ.set("email", params.get("email")!);
+  if (params.get("phone")) assessmentQ.set("phone", params.get("phone")!);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
     if (fired.current) return;
@@ -33,25 +38,42 @@ export default function ThankYouView() {
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <h1 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mb-2">Payment successful 🎉</h1>
-        <p className="text-sm text-slate-600 leading-relaxed mb-7">
+        <p className="text-sm text-slate-600 leading-relaxed mb-5">
           {amount ? `We've received your ₹${amount.toLocaleString("en-IN")} payment. ` : ""}
-          Our team will reach out on WhatsApp within 24 hours to begin your transformation.
+          One last step — fill your health assessment so we can build your personalized plan before
+          our team reaches out on WhatsApp.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a
-            href="https://wa.me/917317778215"
-            target="_blank"
-            rel="noreferrer"
-            className="px-6 py-3 bg-[#25D366] hover:bg-[#1da851] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all"
-          >
-            Message us on WhatsApp
-          </a>
+
+        <div className="bg-green-50 border border-green-200 rounded-2xl p-4 mb-6 text-left">
+          <p className="text-xs font-bold uppercase tracking-wider text-[#2F5233] mb-1">Required next step</p>
+          <p className="text-xs text-slate-600 leading-relaxed">
+            It takes about 2 minutes. Your personalized Ayurvedic plan depends on these answers.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3 justify-center">
           <Link
-            to="/"
-            className="px-6 py-3 border-2 border-green-200 text-green-800 hover:bg-green-50 font-bold text-xs uppercase tracking-wider rounded-xl transition-all"
+            to={`/assessment?${assessmentQ.toString()}`}
+            className="px-6 py-3.5 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg"
           >
-            Back to home
+            Fill your health assessment →
           </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="https://wa.me/917317778215"
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-3 bg-[#25D366] hover:bg-[#1da851] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all"
+            >
+              Message us on WhatsApp
+            </a>
+            <Link
+              to="/"
+              className="px-6 py-3 border-2 border-green-200 text-green-800 hover:bg-green-50 font-bold text-xs uppercase tracking-wider rounded-xl transition-all"
+            >
+              Back to home
+            </Link>
+          </div>
         </div>
       </div>
     </div>
