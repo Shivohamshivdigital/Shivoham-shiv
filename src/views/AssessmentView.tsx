@@ -83,13 +83,6 @@ export default function AssessmentView() {
     }));
   }, [params]);
 
-  // When logged in, the assessment is always tied to the account email so the
-  // "one per customer" rule + dashboard lookup are reliable.
-  const sessionEmail = getSession()?.email || "";
-  useEffect(() => {
-    if (sessionEmail) setForm((f) => ({ ...f, email: sessionEmail }));
-  }, [sessionEmail]);
-
   // If already logged in, prefill from the account and block re-submitting
   // when an assessment already exists (show their details instead).
   useEffect(() => {
@@ -173,6 +166,7 @@ export default function AssessmentView() {
           ...form,
           conditions: form.conditions.join(", "),
           paid,
+          token: getSession()?.token,
           attribution: getAttribution(),
         }),
       });
@@ -438,14 +432,7 @@ export default function AssessmentView() {
               </div>
               <div>
                 <label className={label}>Email Address *</label>
-                <input
-                  type="email"
-                  className={`${input} ${sessionEmail ? "bg-slate-50 text-slate-500 cursor-not-allowed" : ""}`}
-                  value={form.email}
-                  onChange={(e) => set("email", e.target.value)}
-                  readOnly={!!sessionEmail}
-                />
-                {sessionEmail && <p className="text-[10px] text-slate-400 mt-1">Linked to your account</p>}
+                <input type="email" className={input} value={form.email} onChange={(e) => set("email", e.target.value)} />
               </div>
               <div className="sm:col-span-2">
                 <label className={label}>City & State *</label>
