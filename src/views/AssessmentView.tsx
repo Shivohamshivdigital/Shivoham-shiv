@@ -162,7 +162,7 @@ export default function AssessmentView() {
 
   if (done) {
     return (
-      <div className="min-h-screen bg-[#FAFBF7] flex items-center justify-center px-4 py-20 font-sans">
+      <div className="min-h-screen bg-[#FAFBF7] flex items-start justify-center px-4 pt-12 sm:pt-16 pb-24 font-sans">
         <SEO title="Assessment submitted — Shivoham Shiv" description="Your health assessment has been received." />
         <div className="max-w-lg w-full bg-white border border-green-100 rounded-3xl shadow-sm p-8 sm:p-10 text-center">
           <div className="w-16 h-16 rounded-full bg-green-100 text-green-700 flex items-center justify-center mx-auto mb-5">
@@ -173,15 +173,15 @@ export default function AssessmentView() {
             Your health assessment is in. Our team will review it and reach out on WhatsApp within 24 hours with your
             personalized plan.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="https://wa.me/917317778215" target="_blank" rel="noreferrer" className="px-6 py-3 bg-[#25D366] hover:bg-[#1da851] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all">
-              Message us on WhatsApp
-            </a>
+          <div className="flex flex-col gap-3">
             {!paid && (
-              <Link to="/weight-loss" className="px-6 py-3 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all">
+              <Link to="/weight-loss" className="w-full px-6 py-3.5 bg-[#2F5D50] hover:bg-[#23483E] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all">
                 Enroll in the program
               </Link>
             )}
+            <a href="https://wa.me/917317778215" target="_blank" rel="noreferrer" className="w-full px-6 py-3.5 bg-[#25D366] hover:bg-[#1da851] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all">
+              Message us on WhatsApp
+            </a>
           </div>
         </div>
       </div>

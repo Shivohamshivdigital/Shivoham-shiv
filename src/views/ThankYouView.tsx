@@ -31,7 +31,7 @@ export default function ThankYouView() {
   }, [amount, plan]);
 
   return (
-    <div className="min-h-screen bg-[#FAFBF7] flex items-center justify-center px-4 py-20 font-sans">
+    <div className="min-h-screen bg-[#FAFBF7] flex items-start justify-center px-4 pt-12 sm:pt-16 pb-24 font-sans">
       <SEO title="Thank you — Shivoham Shiv" description="Your payment was successful." />
       <div className="max-w-lg w-full bg-white border border-green-100 rounded-3xl shadow-sm p-8 sm:p-10 text-center">
         <div className="w-16 h-16 rounded-full bg-green-100 text-green-700 flex items-center justify-center mx-auto mb-5">
