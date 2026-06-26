@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, User, Flame, Sparkles, ArrowRight } from "lucide-react";
-import { getUserStats } from "../services/userService";
-import { UserStats } from "../types";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight } from "lucide-react";
+import { getSession, clearSession, displayName, onAuthChange, Session } from "../utils/session";
 
 interface NavbarProps {
   onOpenConsultation: () => void;
@@ -11,12 +10,20 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [userStats, setUserStats] = useState<UserStats | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getUserStats().then(setUserStats);
+    setSession(getSession());
+    return onAuthChange(() => setSession(getSession()));
   }, [location.pathname, updateTrigger]);
+
+  const handleLogout = () => {
+    clearSession();
+    setIsOpen(false);
+    navigate("/", { replace: true });
+  };
 
   // Close drawer on page change
   useEffect(() => {
@@ -137,21 +144,36 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           {/* Right Action Widgets */}
           <div className="hidden lg:flex items-center space-x-4">
             
-            {/* Dashboard Badge representing active stats */}
-            <Link
-              to="/dashboard"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all"
-              title="Learner Space Dashboard"
-            >
-              <User className="w-3.5 h-3.5" />
-              <span>{userStats?.name || "Learner"}</span>
-              {userStats && userStats.dailyStreak > 0 && (
-                <div className="flex items-center space-x-0.5 bg-amber-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold">
-                  <Flame className="w-3.5 h-3.5 fill-current" />
-                  <span>{userStats.dailyStreak}d</span>
-                </div>
-              )}
-            </Link>
+            {/* Account / Login */}
+            {session ? (
+              <div className="flex items-center space-x-1.5">
+                <Link
+                  to="/dashboard"
+                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all"
+                  title="My Account"
+                >
+                  <User className="w-3.5 h-3.5" />
+                  <span>{displayName(session.email)}</span>
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="p-1.5 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white transition-all"
+                  title="Logout"
+                  aria-label="Logout"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all"
+                title="Log in"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Login</span>
+              </Link>
+            )}
 
             {/* Whatsapp pill button */}
             <a
@@ -184,13 +206,13 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
             </a>
 
             <Link
-              to="/dashboard"
+              to={session ? "/dashboard" : "/login"}
               className="p-1.5 sm:p-2 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 transition-colors"
-              aria-label="Dashboard"
+              aria-label={session ? "My Account" : "Log in"}
             >
-              <User className="w-4 h-4 sm:w-5 h-5" />
+              {session ? <User className="w-4 h-4 sm:w-5 h-5" /> : <LogIn className="w-4 h-4 sm:w-5 h-5" />}
             </Link>
-            
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-1.5 sm:p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg focus:outline-none transition-colors"
@@ -249,8 +271,34 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               BLOG
             </Link>
 
-            {/* Mobile WhatsApp CTA Button */}
-            <div className="pt-4 border-t border-white/15">
+            {/* Mobile account / login */}
+            <div className="pt-4 border-t border-white/15 space-y-3">
+              {session ? (
+                <>
+                  <Link
+                    to="/dashboard"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
+                  >
+                    <User className="w-4 h-4" /> My Account ({displayName(session.email)})
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-red-200 hover:bg-white/10"
+                  >
+                    <LogOut className="w-4 h-4" /> Logout
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
+                >
+                  <LogIn className="w-4 h-4" /> Login
+                </Link>
+              )}
+
               <a
                 href="https://wa.me/917317778215"
                 target="_blank"

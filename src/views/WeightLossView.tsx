@@ -30,6 +30,7 @@ import AuthModal from "../components/AuthModal";
 // Standard book function simulated or logged
 import { bookConsultation } from "../services/consultationService";
 import { startPayment, PaymentPlan } from "../services/paymentService";
+import { setSession } from "../utils/session";
 
 interface Pricing {
   registerAmount: number;
@@ -128,9 +129,11 @@ export default function WeightLossView() {
   };
 
   // After the email is verified + phone collected, start the Razorpay payment.
-  const handleAuthSuccess = async (authedEmail: string, phone: string) => {
+  const handleAuthSuccess = async (authedEmail: string, phone: string, token?: string) => {
     const plan = authPlan;
     setAuthPlan(null);
+    // Log the customer in so they have a real account/session going forward.
+    if (token) setSession(token, authedEmail);
     if (!plan) return;
     setPayingPlan(plan);
     const amount = plan === "register" ? pricing.registerAmount : pricing.courseAmount;

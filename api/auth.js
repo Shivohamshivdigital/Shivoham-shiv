@@ -5,7 +5,7 @@
 //   resend  { email }                -> email a fresh OTP
 
 import { dbInsert, dbUpdate, dbFindBy } from "./_db.js";
-import { genOtp, signToken, sendOtpEmail } from "./_auth.js";
+import { genOtp, signToken, verifyToken, sendOtpEmail } from "./_auth.js";
 
 const norm = (e) => String(e || "").trim().toLowerCase();
 const TEN_MIN = 10 * 60 * 1000;
@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     if (action === "request" || action === "resend") return await requestOtp(req, res);
     if (action === "verify") return await verify(req, res);
     if (action === "phone") return await savePhone(req, res);
+    if (action === "me") return await me(req, res);
     return res.status(400).json({ error: "Unknown action." });
   } catch (err) {
     console.error("Auth error:", err);
@@ -84,6 +85,19 @@ async function verify(req, res) {
   const { id, ...rest } = user;
   await dbUpdate("users", id, { ...rest, verified: true, otp: "", otpExpiry: 0 });
   return res.status(200).json({ success: true, token: signToken({ email: email2 }), email: email2 });
+}
+
+// Return the logged-in user for a saved session token (used by the dashboard
+// and navbar). Re-reads from the DB so paid status / plan is always current.
+async function me(req, res) {
+  const { token } = req.body || {};
+  const payload = token ? verifyToken(token) : null;
+  if (!payload || !payload.email) return res.status(401).json({ error: "Not logged in." });
+  const user = await dbFindBy("users", "email", norm(payload.email));
+  if (!user) return res.status(404).json({ error: "Account not found." });
+  // Never expose the OTP or any password hash.
+  const { otp, otpExpiry, passwordHash, ...safe } = user;
+  return res.status(200).json({ user: safe });
 }
 
 async function savePhone(req, res) {
