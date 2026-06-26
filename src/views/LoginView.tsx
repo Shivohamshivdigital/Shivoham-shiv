@@ -88,7 +88,7 @@ export default function LoginView() {
     "w-full py-3.5 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all disabled:opacity-60 flex items-center justify-center gap-2";
 
   return (
-    <div className="min-h-screen bg-[#FAFBF7] flex items-center justify-center px-4 py-20 font-sans">
+    <div className="min-h-screen bg-[#FAFBF7] flex items-start justify-center px-4 pt-12 sm:pt-16 pb-24 font-sans">
       <SEO title="Log in — Shivoham Shiv" description="Log in to your Shivoham Shiv account." />
       <div className="w-full max-w-md bg-white border border-green-100 rounded-3xl shadow-sm p-7 sm:p-9">
         <div className="w-12 h-12 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center mb-5">

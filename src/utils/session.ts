@@ -75,9 +75,14 @@ export function displayName(email?: string): string {
   return local.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-// Load the live user record for the saved session. Clears the session and
-// returns null if the token is missing / invalid / expired.
-export async function fetchMe(): Promise<SessionUser | null> {
+export interface MeResult {
+  user: SessionUser;
+  assessment: any | null;
+}
+
+// Load the live user record (+ their assessment) for the saved session.
+// Clears the session and returns null if the token is missing/invalid/expired.
+export async function fetchMe(): Promise<MeResult | null> {
   const s = getSession();
   if (!s) return null;
   try {
@@ -91,7 +96,8 @@ export async function fetchMe(): Promise<SessionUser | null> {
       return null;
     }
     const data = await res.json().catch(() => ({}));
-    return data.user || null;
+    if (!data.user) return null;
+    return { user: data.user, assessment: data.assessment || null };
   } catch {
     return null;
   }

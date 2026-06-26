@@ -97,7 +97,14 @@ async function me(req, res) {
   if (!user) return res.status(404).json({ error: "Account not found." });
   // Never expose the OTP or any password hash.
   const { otp, otpExpiry, passwordHash, ...safe } = user;
-  return res.status(200).json({ user: safe });
+  // Include their health assessment (if any) so the dashboard can show it.
+  let assessment = null;
+  try {
+    assessment = await dbFindBy("assessments", "email", norm(payload.email));
+  } catch (err) {
+    console.error("Assessment lookup failed:", err);
+  }
+  return res.status(200).json({ user: safe, assessment });
 }
 
 async function savePhone(req, res) {
