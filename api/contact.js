@@ -11,6 +11,7 @@
 //   BREVO_LIST_ID        Numeric Brevo contact list id to add leads to (optional)
 
 import { dbInsert, dbFindBy } from "./_db.js";
+import { verifyToken } from "./_auth.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -128,14 +129,19 @@ export default async function handler(req, res) {
 async function handleAssessment(req, res) {
   const b = req.body || {};
   const fullName = (b.fullName || "").trim();
-  const email = (b.email || "").trim();
+  const formEmail = (b.email || "").trim().toLowerCase(); // secondary / contact email
   const mobile = (b.mobile || "").trim();
 
-  if (!fullName || !email || !mobile) {
+  // The assessment is OWNED by the "primary" email: the logged-in account when
+  // a valid session token is sent, otherwise the email entered (which the free
+  // flow then verifies via OTP). The form email is kept only as a contact.
+  let emailNorm = formEmail;
+  const tokenEmail = b.token ? verifyToken(b.token)?.email : "";
+  if (tokenEmail) emailNorm = String(tokenEmail).trim().toLowerCase();
+
+  if (!fullName || !emailNorm || !mobile) {
     return res.status(400).json({ error: "Name, email and mobile are required." });
   }
-
-  const emailNorm = email.toLowerCase();
 
   // One assessment per email — if they've already submitted, don't save again.
   // The frontend uses `already` to show the customer their existing details.
@@ -156,6 +162,7 @@ async function handleAssessment(req, res) {
     gender: b.gender || "",
     mobile,
     email: emailNorm,
+    contact_email: formEmail,
     city_state: b.cityState || "",
     current_weight: b.currentWeight || "",
     height: b.height || "",
