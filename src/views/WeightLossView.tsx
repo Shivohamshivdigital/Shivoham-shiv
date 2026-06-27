@@ -966,6 +966,47 @@ export default function WeightLossView() {
         </div>
       </section>
 
+      {/* 8b. REAL TRANSFORMATIONS — before / after photos */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-12">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Real People · Real Results</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">Real Transformations</h2>
+          <p className="text-sm text-slate-705 leading-relaxed">
+            Actual before &amp; after results from our Ayurvedic natural weight-loss program — no pills, no crash diets.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            { src: "/transformations/transformation-1.jpg", caption: "Day 1 → Day 90" },
+            { src: "/transformations/transformation-2.jpg", caption: "62 kg → 48 kg" },
+            { src: "/transformations/transformation-3.jpg", caption: "Real client transformation" },
+          ].map((t, i) => (
+            <figure
+              key={i}
+              className="bg-[#F2F9F2] border border-[#E3F1E3] rounded-3xl overflow-hidden shadow-xs flex flex-col"
+            >
+              <div className="flex items-center justify-center bg-white">
+                <img
+                  src={t.src}
+                  alt={`Ayurvedic weight-loss transformation — ${t.caption}`}
+                  loading="lazy"
+                  className="w-full h-auto max-h-[460px] object-contain"
+                />
+              </div>
+              <figcaption className="px-5 py-4 flex items-center justify-between">
+                <span className="text-sm font-bold text-[#2F5233]">{t.caption}</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-[#E8943A]">Verified result</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <p className="text-center text-[11px] text-slate-400 mt-8">
+          Results vary from person to person based on consistency, body type and starting point.
+        </p>
+      </section>
+
       {/* 9. #is-it-for-you SECTION */}
       <section id="is-it-for-you" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-2 mb-16">
