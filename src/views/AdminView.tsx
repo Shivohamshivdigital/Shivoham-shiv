@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck, Settings as SettingsIcon, ClipboardList, X } from "lucide-react";
+import { Lock, RefreshCw, LogOut, Users, CreditCard, FileText, Plus, Pencil, Trash2, ExternalLink, DownloadCloud, UserCheck, Settings as SettingsIcon, ClipboardList, X, ImagePlus, ArrowUp, ArrowDown } from "lucide-react";
 import { blogPosts, sectionsToContent } from "../data/blogData";
 
 interface Attribution {
@@ -119,6 +119,45 @@ function fmtDate(iso?: string) {
   }
 }
 
+interface Transform {
+  src: string;
+  caption: string;
+}
+
+function move<T>(arr: T[], from: number, to: number): T[] {
+  const copy = [...arr];
+  const [item] = copy.splice(from, 1);
+  copy.splice(to, 0, item);
+  return copy;
+}
+
+// Read an image file, downscale it on a canvas and return a compressed JPEG
+// data URL — keeps the payload small enough to store in Firestore.
+async function fileToCompressedDataUrl(file: File, maxW = 720, quality = 0.62): Promise<string> {
+  const dataUrl: string = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+  const img: HTMLImageElement = await new Promise((resolve, reject) => {
+    const im = new Image();
+    im.onload = () => resolve(im);
+    im.onerror = reject;
+    im.src = dataUrl;
+  });
+  const scale = Math.min(1, maxW / (img.width || maxW));
+  const w = Math.round((img.width || maxW) * scale);
+  const h = Math.round((img.height || maxW) * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return dataUrl;
+  ctx.drawImage(img, 0, 0, w, h);
+  return canvas.toDataURL("image/jpeg", quality);
+}
+
 const emptyPost: Post = {
   title: "",
   slug: "",
@@ -145,7 +184,10 @@ export default function AdminView() {
   const [users, setUsers] = useState<AppUser[]>([]);
   const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [assessDetail, setAssessDetail] = useState<Assessment | null>(null);
-  const [tab, setTab] = useState<"leads" | "payments" | "users" | "assessments" | "blog" | "settings">("leads");
+  const [transforms, setTransforms] = useState<Transform[]>([]);
+  const [savingTransforms, setSavingTransforms] = useState(false);
+  const [transformMsg, setTransformMsg] = useState<string | null>(null);
+  const [tab, setTab] = useState<"leads" | "payments" | "users" | "assessments" | "transformations" | "blog" | "settings">("leads");
 
   // Pricing settings
   const [settings, setSettings] = useState({ registerAmount: 999, courseAmount: 7999, courseOriginal: 11999, discountLabel: "30% OFF" });
@@ -232,6 +274,7 @@ export default function AdminView() {
     setUsers([]);
     setAssessments([]);
     setAssessDetail(null);
+    setTransforms([]);
     setEditing(null);
   };
 
@@ -336,6 +379,53 @@ export default function AdminView() {
       .then((d) => setSettings((s) => ({ ...s, ...d })))
       .catch(() => {});
   }, []);
+
+  // Load the transformation images once logged in.
+  useEffect(() => {
+    if (!authed) return;
+    fetch("/api/settings?type=transformations")
+      .then((r) => r.json())
+      .then((d) => {
+        if (Array.isArray(d.items)) setTransforms(d.items);
+      })
+      .catch(() => {});
+  }, [authed]);
+
+  const onPickTransform = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+    setTransformMsg(null);
+    try {
+      const added: Transform[] = [];
+      for (const f of files) {
+        const src = await fileToCompressedDataUrl(f);
+        added.push({ src, caption: "" });
+      }
+      setTransforms((prev) => [...prev, ...added].slice(0, 8));
+    } catch {
+      setTransformMsg("Could not read that image. Please try another file.");
+    }
+    e.target.value = "";
+  };
+
+  const saveTransforms = async () => {
+    setSavingTransforms(true);
+    setTransformMsg(null);
+    try {
+      const res = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), transformations: transforms }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not save.");
+      setTransformMsg("Saved! Live on the Weight-Loss page.");
+    } catch (err: any) {
+      setTransformMsg(err.message || "Save failed.");
+    } finally {
+      setSavingTransforms(false);
+    }
+  };
 
   const saveSettings = async () => {
     setSavingSettings(true);
@@ -455,6 +545,14 @@ export default function AdminView() {
                 }`}
               >
                 <ClipboardList className="w-3.5 h-3.5" /> Assessments ({assessments.length})
+              </button>
+              <button
+                onClick={() => setTab("transformations")}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                  tab === "transformations" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                }`}
+              >
+                <ImagePlus className="w-3.5 h-3.5" /> Transformations ({transforms.length})
               </button>
               <button
                 onClick={() => {
@@ -713,6 +811,80 @@ export default function AdminView() {
                     </tbody>
                   </table>
                 </div>
+              </div>
+            )}
+
+            {tab === "transformations" && (
+              <div className="space-y-5">
+                <div className="flex justify-between items-center gap-3 flex-wrap">
+                  <p className="text-xs text-slate-500 max-w-md">
+                    Before/after photos shown on the Weight-Loss page. Images are auto-compressed. Add up to 8, drag order with the arrows, then <strong>Save &amp; publish</strong>.
+                  </p>
+                  <label className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold cursor-pointer transition-colors">
+                    <ImagePlus className="w-4 h-4" /> Add image(s)
+                    <input type="file" accept="image/*" multiple className="hidden" onChange={onPickTransform} />
+                  </label>
+                </div>
+
+                {transforms.length === 0 ? (
+                  <div className="bg-white border border-green-100 rounded-2xl p-10 text-center text-slate-400 text-sm">
+                    No transformation images yet. Click “Add image(s)” to upload before/after photos.
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {transforms.map((t, i) => (
+                      <div key={i} className="bg-white border border-green-100 rounded-2xl overflow-hidden shadow-xs">
+                        <img src={t.src} alt={`Transformation ${i + 1}`} className="w-full h-48 object-contain bg-[#F2F9F2]" />
+                        <div className="p-3 space-y-2">
+                          <input
+                            className={inputCls}
+                            value={t.caption}
+                            placeholder="Caption (e.g. 62 kg → 48 kg)"
+                            onChange={(e) =>
+                              setTransforms((prev) => prev.map((x, idx) => (idx === i ? { ...x, caption: e.target.value } : x)))
+                            }
+                          />
+                          <div className="flex items-center justify-between">
+                            <div className="flex gap-1">
+                              <button
+                                disabled={i === 0}
+                                onClick={() => setTransforms((prev) => move(prev, i, i - 1))}
+                                className="p-1.5 rounded-lg border border-green-150 text-slate-600 disabled:opacity-40 hover:bg-green-50"
+                                title="Move up"
+                              >
+                                <ArrowUp className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                disabled={i === transforms.length - 1}
+                                onClick={() => setTransforms((prev) => move(prev, i, i + 1))}
+                                className="p-1.5 rounded-lg border border-green-150 text-slate-600 disabled:opacity-40 hover:bg-green-50"
+                                title="Move down"
+                              >
+                                <ArrowDown className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                            <button
+                              onClick={() => setTransforms((prev) => prev.filter((_, idx) => idx !== i))}
+                              className="p-1.5 rounded-lg text-red-500 hover:bg-red-50"
+                              title="Remove"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {transformMsg && <p className="text-xs text-green-700">{transformMsg}</p>}
+                <button
+                  onClick={saveTransforms}
+                  disabled={savingTransforms}
+                  className="px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                >
+                  {savingTransforms ? "Saving…" : "Save & publish"}
+                </button>
               </div>
             )}
 

@@ -115,6 +115,21 @@ export default function WeightLossView() {
   }, []);
   const PLAN_INFO = buildPlanInfo(pricing);
 
+  // Before/after transformation photos — admin-managed, with file fallbacks.
+  const [transformations, setTransformations] = useState<{ src: string; caption: string }[]>([
+    { src: "/transformations/transformation-1.jpg", caption: "Day 1 → Day 90" },
+    { src: "/transformations/transformation-2.jpg", caption: "62 kg → 48 kg" },
+    { src: "/transformations/transformation-3.jpg", caption: "Real client transformation" },
+  ]);
+  useEffect(() => {
+    fetch("/api/settings?type=transformations")
+      .then((r) => r.json())
+      .then((d) => {
+        if (Array.isArray(d.items) && d.items.length) setTransformations(d.items);
+      })
+      .catch(() => {});
+  }, []);
+
   // Clicking a plan opens the signup popup and tags the URL with ?step=checkout.
   const handlePay = (plan: PaymentPlan) => {
     if (payingPlan) return;
@@ -977,11 +992,7 @@ export default function WeightLossView() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {[
-            { src: "/transformations/transformation-1.jpg", caption: "Day 1 → Day 90" },
-            { src: "/transformations/transformation-2.jpg", caption: "62 kg → 48 kg" },
-            { src: "/transformations/transformation-3.jpg", caption: "Real client transformation" },
-          ].map((t, i) => (
+          {transformations.map((t, i) => (
             <figure
               key={i}
               className="bg-[#F2F9F2] border border-[#E3F1E3] rounded-3xl overflow-hidden shadow-xs flex flex-col"
