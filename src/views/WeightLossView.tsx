@@ -130,6 +130,14 @@ export default function WeightLossView() {
       .catch(() => {});
   }, []);
 
+  // Auto-rotating slideshow for the "Dieting hard…" section image.
+  const [transformIdx, setTransformIdx] = useState(0);
+  useEffect(() => {
+    if (transformations.length <= 1) return;
+    const id = setInterval(() => setTransformIdx((i) => (i + 1) % transformations.length), 3500);
+    return () => clearInterval(id);
+  }, [transformations.length]);
+
   // Clicking a plan opens the signup popup and tags the URL with ?step=checkout.
   const handlePay = (plan: PaymentPlan) => {
     if (payingPlan) return;
@@ -399,16 +407,36 @@ export default function WeightLossView() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
-          {/* LEFT — image: rounded-2xl card with soft shadow, full height of the section */}
+          {/* LEFT — rotating before/after transformations (admin-managed) */}
           <div className="lg:col-span-5 flex">
-            <div className="w-full rounded-2xl shadow-md overflow-hidden relative border border-[#2F5D50]/5 flex">
-              <img
-                src="/images/transformation-reset.jpg"
-                alt="Before and after natural weight-loss transformation"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                className="w-full h-full object-cover min-h-[350px] lg:min-h-full"
-              />
+            <div className="w-full rounded-2xl shadow-md overflow-hidden relative border border-[#2F5D50]/5 flex bg-[#F2F9F2]">
+              {transformations.map((t, i) => (
+                <img
+                  key={i}
+                  src={t.src}
+                  alt={`Before and after natural weight-loss transformation${t.caption ? ` — ${t.caption}` : ""}`}
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = "/images/transformation-reset.jpg";
+                  }}
+                  className={`w-full h-full object-cover min-h-[350px] lg:min-h-full transition-opacity duration-700 ${
+                    i === transformIdx % transformations.length ? "opacity-100" : "opacity-0 absolute inset-0"
+                  }`}
+                />
+              ))}
+              {transformations.length > 1 && (
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  {transformations.map((_, i) => (
+                    <span
+                      key={i}
+                      className={`h-1.5 rounded-full transition-all ${
+                        i === transformIdx % transformations.length ? "w-5 bg-white" : "w-1.5 bg-white/50"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
