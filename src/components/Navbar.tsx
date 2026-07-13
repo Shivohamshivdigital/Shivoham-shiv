@@ -91,7 +91,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               ABOUT US
             </NavLink>
 
-            {/* MURM DAB CHIKITSA (single link) */}
+            {/* MARMA DAB CHIKITSA (single link) */}
             <NavLink
               to="/courses/acupressure-therapy"
               className={({ isActive }) =>
@@ -100,7 +100,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 }`
               }
             >
-              Murm Dab Chikitsa
+              Marma Dab Chikitsa
             </NavLink>
 
             {/* Ayurvedic / Natural Weight Loss */}
@@ -238,13 +238,13 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               ABOUT US
             </Link>
 
-            {/* Mobile MURM DAB CHIKITSA (single link) */}
+            {/* Mobile MARMA DAB CHIKITSA (single link) */}
             <Link
               to="/courses/acupressure-therapy"
               onClick={() => setIsOpen(false)}
               className="py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
             >
-              Murm Dab Chikitsa
+              Marma Dab Chikitsa
             </Link>
 
             <Link

@@ -27,7 +27,7 @@ export interface Course {
   id: string;
   title: string;
   tagline: string;
-  category: "Corporate & Adult Wellness" | "Kids EQ" | "Meditation" | "Mudra Therapy" | "Murm Dab Chikitsa";
+  category: "Corporate & Adult Wellness" | "Kids EQ" | "Meditation" | "Mudra Therapy" | "Marma Dab Chikitsa";
   description: string;
   rating: number;
   reviewsCount: number;
@@ -43,7 +43,7 @@ export interface Course {
   upcomingStartDate?: string;
   // Class schedule shown on course blocks, e.g. "3 Months · 3 days a week".
   schedule?: string;
-  // Optional alternate / regional name, e.g. "Murm Dab Chikitsa" for Acupressure.
+  // Optional alternate / regional name, e.g. "Marma Dab Chikitsa" for Acupressure.
   altName?: string;
 }
 
