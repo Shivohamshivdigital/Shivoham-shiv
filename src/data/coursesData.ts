@@ -103,9 +103,9 @@ export const mockCourses: Course[] = [
   },
   {
     id: "acupressure-therapy",
-    title: "Murm Dab Chikitsa: Heal Through Energy Points",
+    title: "Marma Dab Chikitsa: Heal Through Energy Points",
     tagline: "Release locked energy nodes (Marma points) across your meridian lines. Launches next month.",
-    category: "Murm Dab Chikitsa",
+    category: "Marma Dab Chikitsa",
     description: "An ancient holistic wellness system detailing key meridian sites of the nervous system. Learn how gentle stimulation of Marma points on the head, feet, hands, and shoulders directly benefits internal organ health, resolves persistent somatic blocks, and triggers immediate endorphin release.",
     rating: 4.8,
     reviewsCount: 88,

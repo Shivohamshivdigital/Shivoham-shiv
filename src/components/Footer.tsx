@@ -7,7 +7,7 @@ export default function Footer() {
   };
 
   const treatments = [
-    { name: "Murm Dab Chikitsa", path: "/courses/acupressure-therapy" },
+    { name: "Marma Dab Chikitsa", path: "/courses/acupressure-therapy" },
     { name: "Corporate & Adult Wellness", path: "/courses/corporate-wellness" },
     { name: "Mudra Therapy Course", path: "/courses/mudra-therapy" },
     { name: "Mindfulness & Focus Training for Kids", path: "/courses/mindfulness-kids" },

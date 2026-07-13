@@ -95,7 +95,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
     setSearchParams({});
   };
 
-  const categories = ["All", "Corporate & Adult Wellness", "Mudra Therapy", "Murm Dab Chikitsa", "Kids EQ"];
+  const categories = ["All", "Corporate & Adult Wellness", "Mudra Therapy", "Marma Dab Chikitsa", "Kids EQ"];
 
   // Dynamic SEO data depending on whether a course is selected
   let seoTitle = "Wellness & Healing Courses Online | Mudra Therapy, Acupressure & More";

@@ -655,7 +655,7 @@ export default function WeightLossView() {
               icon: "🖐️"
             },
             {
-              title: "Murm Dab Chikitsa",
+              title: "Marma Dab Chikitsa",
               desc: "Focused physiological surface point activation to stimulate natural spleen, liver, and digestive meridian channels.",
               icon: "✨"
             },
@@ -800,7 +800,7 @@ export default function WeightLossView() {
                 {[
                   "Prakriti-personalized natural diet plan for your body type",
                   "Daily guided Yoga & Pranayama routines",
-                  "Mudra therapy & Murm Dab Chikitsa (acupressure) guidance",
+                  "Mudra therapy & Marma Dab Chikitsa (acupressure) guidance",
                   "1-on-1 practitioner support on WhatsApp",
                   "Weekly progress tracking with plan adjustments",
                   "Results guarantee — we continue free until you reach your goal",
