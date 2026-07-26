@@ -44,6 +44,44 @@ mapper = GooglePeopleMapper()
 contacts = [mapper.map(person) for person in api_response["connections"]]
 ```
 
+## Signature phone extraction
+
+`signature.py` pulls phone numbers out of the **signature block** of a
+plain-text email — for logging contacts from a rep's own sent mail. It is **pure
+standard library** (no Pydantic needed), so it runs anywhere.
+
+```python
+from tools.crm import extract_signature_phones
+
+for match in extract_signature_phones(sent_email_body):
+    print(match.label, match.raw, match.digits, match.extension)
+    # e.g.  mobile  +91 98765 43210  +919876543210  None
+    #       work    (212) 555-1000   2125551000     44
+```
+
+How it works:
+
+- **Locates the signature** by, strongest signal first: an `--` delimiter line
+  (RFC 3676), a sign-off line ("Best regards", "Thanks", ...), or a strict
+  trailing-lines fallback that only fires on a real contact signal.
+- **Scopes extraction to that block** so body text (invoice ids, dates, "call
+  within 24 hours") does not produce phone-shaped false positives.
+- **Validates by digit count** (7–15, per E.164) and reads a preceding label
+  ("Mobile:", "T.", "Direct") to classify each number; extensions (`x227`,
+  `ext. 227`) are parsed out; duplicates are removed.
+- When **no signature is found it returns `[]`** — safer than guessing. Pass
+  `extract_signature_phones(text, fallback_to_body=True)` to scan the whole
+  message and accept the false-positive risk.
+
+Bridge the results into the unified schema (requires Pydantic):
+
+```python
+from tools.crm import extract_signature_phones, phone_matches_to_schema
+
+phones = phone_matches_to_schema(extract_signature_phones(sent_email_body))
+# -> list[PhoneNumber], ready to attach to an EnterpriseContact
+```
+
 ## Design
 
 - **Permissive in, strict out.** Upstream payloads are partial and occasionally
@@ -78,5 +116,10 @@ for raw in api_records:
 ## Tests
 
 ```bash
+# Mapper tests require Pydantic
 python -m pytest tools/crm/test_mappers.py -v
+
+# Signature tests are pure stdlib and run with or without pytest
+python -m pytest tools/crm/test_signature.py -v
+python tools/crm/test_signature.py            # built-in runner, no pytest needed
 ```
