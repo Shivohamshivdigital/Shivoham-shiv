@@ -13,6 +13,7 @@ import AdminView from "./views/AdminView";
 import DashboardView from "./views/DashboardView";
 import AboutView from "./views/AboutView";
 import WeightLossView from "./views/WeightLossView";
+import ChallengeView from "./views/ChallengeView";
 import ContactView from "./views/ContactView";
 import BlogView from "./views/BlogView";
 import BlogPostView from "./views/BlogPostView";
@@ -245,6 +246,8 @@ function AppContent() {
           <Route path="/about" element={<AboutView />} />
           
           <Route path="/weight-loss" element={<WeightLossView />} />
+          <Route path="/challenge" element={<ChallengeView />} />
+          <Route path="/14-day-challenge" element={<ChallengeView />} />
           <Route path="/thank-you" element={<ThankYouView />} />
           <Route path="/assessment" element={<AssessmentView />} />
           <Route path="/login" element={<LoginView />} />
