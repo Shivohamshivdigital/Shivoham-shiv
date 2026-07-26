@@ -124,6 +124,32 @@ interface Transform {
   caption: string;
 }
 
+// Build a CSV from an array of objects and trigger a client-side download.
+function downloadCsv(filename: string, rows: any[]) {
+  if (!rows || !rows.length) return;
+  const headers = Array.from(
+    rows.reduce((s: Set<string>, r) => {
+      Object.keys(r).forEach((k) => s.add(k));
+      return s;
+    }, new Set<string>())
+  );
+  const esc = (v: any) => {
+    if (v === null || v === undefined) return "";
+    const s = String(v);
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  const csv = [headers.join(","), ...rows.map((r) => headers.map((h) => esc(r[h])).join(","))].join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
 function move<T>(arr: T[], from: number, to: number): T[] {
   const copy = [...arr];
   const [item] = copy.splice(from, 1);
@@ -491,6 +517,20 @@ export default function AdminView() {
             <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
               <h1 className="font-heading font-bold text-2xl text-green-900">Dashboard</h1>
               <div className="flex items-center gap-2">
+                {["leads", "payments", "users", "assessments"].includes(tab) && (
+                  <button
+                    onClick={() =>
+                      downloadCsv(
+                        `${tab}.csv`,
+                        ({ leads, payments, users, assessments } as Record<string, any[]>)[tab] || []
+                      )
+                    }
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-green-200 bg-white text-green-800 text-xs font-bold hover:bg-green-50 transition-colors"
+                    title="Download this tab as a CSV (opens in Excel / Google Sheets)"
+                  >
+                    <DownloadCloud className="w-3.5 h-3.5" /> Export CSV
+                  </button>
+                )}
                 <button
                   onClick={() => fetchData(pw())}
                   disabled={loading}
