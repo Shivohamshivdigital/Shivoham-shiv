@@ -30,6 +30,10 @@ export default async function handler(req, res) {
       amount: Math.round((Number(settings.courseAmount) || 7999) * 100),
       label: "60-Day Natural Weight Loss Program",
     },
+    challenge: {
+      amount: Math.round((Number(settings.challengeAmount) || 1) * 100),
+      label: "14-Day Vedic Healing Challenge",
+    },
   };
 
   const selected = PLANS[plan];

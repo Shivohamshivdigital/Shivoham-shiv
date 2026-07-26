@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-export type PaymentPlan = "register" | "course";
+export type PaymentPlan = "register" | "course" | "challenge";
 
 export interface PaymentPrefill {
   name?: string;
