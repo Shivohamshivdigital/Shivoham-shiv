@@ -34,7 +34,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
     <header className="sticky top-0 z-50 bg-[#2F5D50] shadow-md transition-all duration-300">
       {/* Promotional announcement bar (live) */}
       <Link
-        to="/weight-loss"
+        to="/challenge"
         className="group relative block overflow-hidden bg-gradient-to-r from-[#d97f24] via-[#F0A64E] to-[#d97f24] text-white"
       >
         {/* moving shimmer */}
@@ -51,10 +51,10 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           <Sparkles className="hidden sm:inline-block w-3.5 h-3.5 text-white/90 shrink-0" aria-hidden="true" />
           <span className="flex items-center gap-x-1.5 gap-y-0.5 flex-wrap justify-center">
             <span>
-              Signup today &amp; start your transformation in <strong className="font-extrabold">24 hrs</strong>
+              New: <strong className="font-extrabold">14-Day Vedic Healing Challenge</strong> — heal stress, sleep &amp; digestion
             </span>
             <span className="inline-flex items-center rounded-full bg-white text-[#C2410C] font-extrabold px-2 py-0.5 shadow-sm">
-              30% OFF
+              Only ₹1
             </span>
           </span>
           <ArrowRight className="w-3.5 h-3.5 shrink-0 opacity-90 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
@@ -77,7 +77,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-7">
+          <div className="hidden lg:flex items-center space-x-5">
             
             {/* ABOUT US */}
             <NavLink
@@ -137,6 +137,14 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               }
             >
               BLOG
+            </NavLink>
+
+            {/* 14-DAY CHALLENGE — highlighted promo */}
+            <NavLink
+              to="/challenge"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-[#5a3a12] text-xs font-extrabold uppercase tracking-wider shadow-sm transition-colors whitespace-nowrap"
+            >
+              <Sparkles className="w-3.5 h-3.5" /> 14-Day Challenge · ₹1
             </NavLink>
 
           </div>
@@ -229,7 +237,16 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
       {isOpen && (
         <div className="lg:hidden absolute top-16 sm:top-20 left-0 w-full bg-[#2F5D50] border-t border-green-600/30 shadow-2xl py-6 px-5 z-50 animate-fadeIn">
           <div className="flex flex-col space-y-4 text-left">
-            
+
+            {/* 14-DAY CHALLENGE — highlighted promo */}
+            <Link
+              to="/challenge"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-extrabold uppercase tracking-wider bg-amber-400 text-[#5a3a12] hover:bg-amber-300"
+            >
+              <Sparkles className="w-4 h-4" /> 14-Day Challenge · ₹1
+            </Link>
+
             <Link
               to="/about"
               onClick={() => setIsOpen(false)}

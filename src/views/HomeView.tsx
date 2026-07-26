@@ -150,6 +150,36 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
         focusKeyword="vedic wellness courses online"
       />
 
+      {/* 0. ₹1 CHALLENGE PROMO BANNER */}
+      <section className="px-4 sm:px-6 lg:px-8 pt-6">
+        <Link
+          to="/challenge"
+          className="group block max-w-6xl mx-auto rounded-3xl overflow-hidden bg-gradient-to-r from-[#2F5D50] to-[#23483E] text-white shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-5 sm:px-8">
+            <div className="flex items-center gap-4 text-center sm:text-left">
+              <div className="hidden sm:flex w-12 h-12 rounded-2xl bg-amber-400 text-[#5a3a12] items-center justify-center shrink-0">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="inline-block text-[10px] font-extrabold uppercase tracking-widest text-amber-300 mb-1">
+                  New · Just ₹1
+                </span>
+                <h3 className="font-heading font-bold text-lg sm:text-2xl leading-tight">
+                  14-Day Vedic Healing Challenge
+                </h3>
+                <p className="text-xs sm:text-sm text-green-50/80 mt-0.5">
+                  Fix fatigue, stress, bloating &amp; poor sleep — 3 minutes a day. No pills.
+                </p>
+              </div>
+            </div>
+            <span className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-amber-400 group-hover:bg-amber-300 text-[#5a3a12] font-extrabold text-xs uppercase tracking-wider rounded-2xl transition-colors">
+              Join for ₹1 <ChevronRight className="w-4 h-4" />
+            </span>
+          </div>
+        </Link>
+      </section>
+
       {/* 1. HERO SECTION — TWO-PART SPLIT */}
       <section className="relative overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32 bg-gradient-to-b from-[#FFFDF9] via-[#FAF5EC] to-[#FAF5EC]">
         {/* Decorative elements */}
