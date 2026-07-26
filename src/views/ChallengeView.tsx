@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import {
   Sparkles,
@@ -136,11 +137,16 @@ export default function ChallengeView() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center"
+        >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <Sparkles className="w-3.5 h-3.5" /> 14-Day Vedic Healing Challenge
           </span>
-          <h1 className="font-heading font-bold text-3xl sm:text-5xl leading-tight mb-5">
+          <h1 className="font-heading font-bold text-3xl sm:text-5xl leading-tight mb-5 text-white">
             You aren't chronically tired.<br />
             <span className="text-amber-300">Your body's energy is short-circuiting.</span>
           </h1>
@@ -166,11 +172,17 @@ export default function ChallengeView() {
               <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No pills or equipment</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* AGITATION */}
-      <section className="py-16 px-4 sm:px-6 max-w-3xl mx-auto text-center">
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="py-16 px-4 sm:px-6 max-w-3xl mx-auto text-center"
+      >
         <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mb-4">
           Cutting meals, skipping sleep, still exhausted?
         </h2>
@@ -180,10 +192,16 @@ export default function ChallengeView() {
           crash routines keep failing. This challenge works on the <strong>real cause first</strong> — calming and
           re-aligning your body so it finally starts healing on its own.
         </p>
-      </section>
+      </motion.section>
 
       {/* PHASES */}
-      <section className="py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="py-12 px-4 sm:px-6 max-w-6xl mx-auto"
+      >
         <div className="text-center mb-10">
           <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Journey</span>
           <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">
@@ -202,10 +220,16 @@ export default function ChallengeView() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* DAY-BY-DAY */}
-      <section className="py-12 px-4 sm:px-6 max-w-4xl mx-auto">
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="py-12 px-4 sm:px-6 max-w-4xl mx-auto"
+      >
         <div className="text-center mb-8">
           <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">What you'll unlock</span>
           <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mt-1">Your 14-day roadmap</h2>
@@ -220,10 +244,16 @@ export default function ChallengeView() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* INCLUDED + PRICE */}
-      <section className="py-14 px-4 sm:px-6">
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="py-14 px-4 sm:px-6"
+      >
         <div className="max-w-3xl mx-auto bg-white border border-green-100 rounded-3xl shadow-md overflow-hidden">
           <div className="grid md:grid-cols-2">
             <div className="p-8">
@@ -252,7 +282,7 @@ export default function ChallengeView() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SOCIAL PROOF */}
       <section className="py-12 px-4 sm:px-6 max-w-5xl mx-auto">
@@ -298,9 +328,15 @@ export default function ChallengeView() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-16 px-4 sm:px-6">
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="py-16 px-4 sm:px-6"
+      >
         <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white rounded-3xl p-10 sm:p-14">
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl mb-4">
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl mb-4 text-white">
             Start healing today — for ₹1
           </h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
@@ -313,7 +349,7 @@ export default function ChallengeView() {
             Traditional Vedic wellness practices. Not a substitute for medical care.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       {authOpen && <AuthModal onClose={() => setAuthOpen(false)} onSuccess={handleAuthSuccess} />}
     </div>
