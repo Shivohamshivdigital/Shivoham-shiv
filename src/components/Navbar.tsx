@@ -51,7 +51,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           <Sparkles className="hidden sm:inline-block w-3.5 h-3.5 text-white/90 shrink-0" aria-hidden="true" />
           <span className="flex items-center gap-x-1.5 gap-y-0.5 flex-wrap justify-center">
             <span>
-              New: <strong className="font-extrabold">14-Day Vedic Healing Challenge</strong> — for better energy, sleep &amp; digestion
+              New: <strong className="font-extrabold">14-Day Vedic Detox &amp; Metabolism Challenge</strong> — beat bloating, support digestion &amp; feel lighter
             </span>
             <span className="inline-flex items-center rounded-full bg-white text-[#C2410C] font-extrabold px-2 py-0.5 shadow-sm">
               Only ₹1
