@@ -35,8 +35,8 @@ const PHASES = [
   {
     icon: Moon,
     tag: "Phase 3 · Days 11–14",
-    title: "Deep Healing & Focus",
-    desc: "End racing-mind insomnia, clear brain fog, and lock it all into one unstoppable 5-minute morning ritual you keep for life.",
+    title: "Better Sleep & Focus",
+    desc: "Wind down a busy mind before bed, ease into rest, sharpen daytime focus, and settle everything into one simple 5-minute daily routine.",
   },
 ];
 
@@ -59,33 +59,34 @@ const DAYS = [
 
 const INCLUDED = [
   "14 daily guided lessons (one every morning)",
-  "Real Mudra, Marma & Acupressure techniques — 3 minutes each",
-  "No pills, no equipment, no gym — just your own body",
-  "Your personal 5-minute morning ritual by Day 13",
+  "Traditional Mudra, Marma & acupressure techniques — about 3 minutes each",
+  "No pills, no equipment — just your hands and breath",
+  "A simple 5-minute daily routine to keep after the challenge",
   "Ayurvedic body-type (Dosha) self-assessment",
   "Guidance on WhatsApp from the Shivoham Shiv team",
+  "One-time ₹1 — no subscription, no auto-debit",
 ];
 
 const FAQS = [
   {
+    q: "Will I be charged again or auto-debited?",
+    a: "No. It's a single one-time ₹1 payment through Razorpay. There is no subscription, no auto-renewal and no UPI auto-mandate — we will never charge you automatically. Any deeper course later is completely optional and separately priced, only if you choose it.",
+  },
+  {
     q: "What exactly do I get for ₹1?",
-    a: "Full access to all 14 daily lessons of the Vedic Healing Challenge — real Mudra, Marma and acupressure techniques you can do in 3 minutes a day, plus WhatsApp guidance from our team.",
+    a: "Access to all 14 daily lessons of the challenge — traditional Mudra, Marma and acupressure techniques you can do in about 3 minutes a day, plus guidance on WhatsApp from our team.",
+  },
+  {
+    q: "Is this a weight-loss or medical treatment?",
+    a: "No. This is a general Ayurvedic wellness habit challenge focused on daily energy, stress, digestion and sleep. It is not a weight-loss program and not a substitute for medical care. Persistent fatigue, pain or any health condition should be evaluated by a doctor.",
+  },
+  {
+    q: "Is a 14-day result realistic?",
+    a: "We don't promise a cure or a transformation in 14 days. Real, lasting change takes consistent effort over months. What the 14 days give you is a simple daily habit and the techniques to keep building on — results vary from person to person.",
   },
   {
     q: "Do I need any experience or equipment?",
-    a: "None at all. Every technique uses only your hands and breath. If you can sit and breathe, you can do this — beginners are exactly who this is built for.",
-  },
-  {
-    q: "How much time does it take each day?",
-    a: "Under 5 minutes a day. The whole point is tiny, powerful shifts that fit into any schedule — no hour-long routines.",
-  },
-  {
-    q: "Is this a replacement for medical treatment?",
-    a: "No. These are traditional Vedic wellness practices to support your daily wellbeing. They complement — not replace — professional medical care. Please consult your doctor for any medical condition.",
-  },
-  {
-    q: "What happens after the 14 days?",
-    a: "You'll have a lifelong 5-minute ritual. If you want to go deeper, you can explore our full certified Mudra, Marma & Ayurvedic healing courses — completely optional.",
+    a: "None. Every technique uses only your hands and breath, and each lesson is beginner-friendly.",
   },
 ];
 
@@ -132,7 +133,7 @@ export default function ChallengeView() {
     <div className="bg-[#FAFBF7] font-sans">
       <SEO
         title="14-Day Vedic Healing Challenge — Just ₹1 | Shivoham Shiv"
-        description="Fix fatigue, stress, bloating & poor sleep in 14 days with ancient Mudra, Marma & acupressure techniques — 3 minutes a day. Join for ₹1. No pills, no hacks."
+        description="A guided 14-day Ayurvedic habit challenge to support your everyday energy, digestion & sleep — Mudra, Marma & breathing, about 3 minutes a day. One-time ₹1, no subscription. Not a medical treatment."
       />
 
       {/* HERO */}
@@ -147,13 +148,17 @@ export default function ChallengeView() {
             <Sparkles className="w-3.5 h-3.5" /> 14-Day Vedic Healing Challenge
           </span>
           <h1 className="font-heading font-bold text-3xl sm:text-5xl leading-tight mb-5 text-white">
-            You aren't chronically tired.<br />
-            <span className="text-amber-300">Your body's energy is short-circuiting.</span>
+            Feel calmer, clearer &amp; more energetic —<br />
+            <span className="text-amber-300">one simple habit a day</span>
           </h1>
-          <p className="text-sm sm:text-lg text-green-50/85 max-w-2xl mx-auto leading-relaxed mb-8">
-            Reset your stress, digestion and sleep in 14 days using ancient <strong>Mudra, Marma &amp;
-            acupressure</strong> techniques — just 3 minutes a day. No pills. No hacks. Only your body's own
-            healing circuits.
+          <p className="text-sm sm:text-lg text-green-50/85 max-w-2xl mx-auto leading-relaxed mb-6">
+            A guided 14-day introduction to traditional Ayurvedic <strong>Mudra, Marma &amp; breathing</strong>
+            practices — about 3 minutes a day to support your everyday energy, digestion and sleep. It's a gentle
+            daily habit, not a medical treatment or a quick fix.
+          </p>
+          <p className="text-[11px] sm:text-xs text-green-100/60 max-w-xl mx-auto leading-relaxed mb-8">
+            Persistent tiredness, pain or health concerns should be checked by a doctor — these practices support
+            daily wellbeing and do not diagnose, treat or cure any condition.
           </p>
 
           <div className="flex flex-col items-center gap-4">
@@ -167,7 +172,7 @@ export default function ChallengeView() {
             <CTA />
             {error && <p className="text-xs text-red-200 max-w-sm">{error}</p>}
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-green-100/70 mt-2">
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Secure ₹1 payment</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> One-time ₹1 · no auto-debit</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 3 min a day</span>
               <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No pills or equipment</span>
             </div>
@@ -184,13 +189,14 @@ export default function ChallengeView() {
         className="py-16 px-4 sm:px-6 max-w-3xl mx-auto text-center"
       >
         <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mb-4">
-          Cutting meals, skipping sleep, still exhausted?
+          Small daily habits, done consistently
         </h2>
         <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-          Here's the truth most quick-fixes won't tell you: it's not about willpower. When your body is stuck in
-          constant stress, your energy circuits stay jammed — no matter how hard you try. That's why pills and
-          crash routines keep failing. This challenge works on the <strong>real cause first</strong> — calming and
-          re-aligning your body so it finally starts healing on its own.
+          This isn't a cure or a shortcut. It's a simple guided routine: each day you learn one traditional
+          Ayurvedic technique — a mudra, a breath, or an acupressure point — that takes about 3 minutes. The idea
+          is to help you build a calming daily habit that supports your energy, digestion and sleep over time.
+          Results vary from person to person, and it works best alongside good sleep, balanced food, and any care
+          your doctor advises.
         </p>
       </motion.section>
 
@@ -273,7 +279,9 @@ export default function ChallengeView() {
                 <span className="text-green-200/60 line-through text-lg">₹499</span>
                 <span className="text-5xl font-extrabold">₹1</span>
               </div>
-              <p className="text-xs text-green-100/70 mb-6">One-time. No subscription. No auto-charge.</p>
+              <p className="text-xs text-green-100/70 mb-6">
+                One-time payment. No subscription, no auto-debit, no UPI mandate, no hidden charges — ever.
+              </p>
               <CTA className="w-full" />
               {error && <p className="text-xs text-red-200 mt-3">{error}</p>}
               <p className="text-[11px] text-green-100/60 mt-4 flex items-center justify-center gap-1.5">
@@ -337,11 +345,11 @@ export default function ChallengeView() {
       >
         <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white rounded-3xl p-10 sm:p-14">
           <h2 className="font-heading font-bold text-2xl sm:text-4xl mb-4 text-white">
-            Start healing today — for ₹1
+            Start your 14-day reset — for ₹1
           </h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
-            14 days from now you could be calmer, lighter and sleeping better — with a 5-minute ritual that costs
-            you nothing but a few mindful minutes each morning.
+            Build one calming Ayurvedic habit a day for two weeks — a gentle first step you can keep going at your
+            own pace. One-time ₹1, no subscription. Results vary, and it's not a medical treatment.
           </p>
           <CTA />
           {error && <p className="text-xs text-red-200 mt-3">{error}</p>}
