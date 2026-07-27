@@ -108,6 +108,12 @@ export default function ChallengeView() {
       .catch(() => {});
   }, []);
 
+  // The guide card always shows a correct default; the admin can override
+  // any field once its save actually persists.
+  const guideName = (founder?.name || "").trim() || "Pooja Chaturvedi";
+  const guideTitle = (founder?.title || "").trim() || "Founder · Shivoham Shiv";
+  const guideImg = (founder?.src || "").trim() || "/founder.jpg";
+
   const startJoin = () => {
     setError(null);
     setAuthOpen(true);
@@ -410,21 +416,19 @@ export default function ChallengeView() {
           <div className="md:col-span-2 bg-[#F2F9F2] flex flex-col items-center justify-center p-8 gap-3">
             <div className="relative w-40 h-40 rounded-full overflow-hidden bg-[#2F5D50] text-white flex items-center justify-center shadow-lg shrink-0">
               <span className="font-heading font-bold text-4xl">
-                {(founder?.name || "SS").trim().charAt(0).toUpperCase() || "SS"}
+                {guideName.trim().charAt(0).toUpperCase() || "S"}
               </span>
               <img
-                src={founder?.src || "/founder.jpg"}
-                alt={founder?.name || "Shivoham Shiv guide"}
+                src={guideImg}
+                alt={guideName}
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
-            {(founder?.name || founder?.title) && (
-              <div className="text-center">
-                {founder?.name && <p className="font-heading font-bold text-green-900 leading-tight">{founder.name}</p>}
-                {founder?.title && <p className="text-xs text-[#E8943A] font-semibold">{founder.title}</p>}
-              </div>
-            )}
+            <div className="text-center">
+              <p className="font-heading font-bold text-green-900 leading-tight">{guideName}</p>
+              <p className="text-xs text-[#E8943A] font-semibold">{guideTitle}</p>
+            </div>
           </div>
           <div className="md:col-span-3 p-8">
             <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Your guide</span>
@@ -434,7 +438,7 @@ export default function ChallengeView() {
               Marma and Ayurvedic practices — no pills, no shortcuts. This challenge is the gentle first step of that
               same path, simplified into 3 mindful minutes a day.
             </p>
-            <p className="text-sm font-bold text-[#2F5233]">— {founder?.name || "Team Shivoham Shiv"}</p>
+            <p className="text-sm font-bold text-[#2F5233]">— {guideName}</p>
           </div>
         </div>
       </section>
