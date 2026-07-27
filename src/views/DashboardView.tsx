@@ -4,11 +4,22 @@ import {
   CheckCircle2,
   CreditCard,
   ClipboardList,
-  MessageCircle,
   LogOut,
   Loader2,
   ArrowRight,
   ShieldCheck,
+  Menu,
+  Home,
+  Compass,
+  BookOpen,
+  User,
+  PersonStanding,
+  Wind,
+  Hand,
+  Fingerprint,
+  Brain,
+  GraduationCap,
+  ChevronRight,
 } from "lucide-react";
 import SEO from "../components/SEO";
 import { fetchMe, getSession, clearSession, displayName, SessionUser } from "../utils/session";
@@ -19,6 +30,8 @@ interface DashboardViewProps {
   updateTrigger?: number;
 }
 
+const WHATSAPP = "https://wa.me/917317778215";
+
 function fmtDate(iso?: string) {
   if (!iso) return "—";
   try {
@@ -26,6 +39,29 @@ function fmtDate(iso?: string) {
   } catch {
     return iso;
   }
+}
+
+// A small decorative lotus + seated figure, matching the app mockup.
+function Lotus({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
+      <g fill="#F6C64B">
+        {[-52, -26, 0, 26, 52].map((d) => (
+          <ellipse key={d} cx="60" cy="58" rx="9" ry="26" transform={`rotate(${d} 60 84)`} />
+        ))}
+      </g>
+      <g fill="#EBB93F">
+        <ellipse cx="60" cy="58" rx="8" ry="24" transform="rotate(-14 60 84)" />
+        <ellipse cx="60" cy="58" rx="8" ry="24" transform="rotate(14 60 84)" />
+      </g>
+      {/* seated meditation figure */}
+      <circle cx="60" cy="46" r="9" fill="#2F5D50" />
+      <path
+        d="M60 56 C 47 60, 40 74, 44 82 C 53 87, 67 87, 76 82 C 80 74, 73 60, 60 56 Z"
+        fill="#2F5D50"
+      />
+    </svg>
+  );
 }
 
 export default function DashboardView({ onSetBanner }: DashboardViewProps) {
@@ -36,7 +72,6 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    // Not logged in → send to login (and come back here afterwards).
     if (!getSession()) {
       navigate("/login?redirect=/dashboard", { replace: true });
       return;
@@ -67,6 +102,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
   }
 
   const name = (assessment && assessment.full_name) || displayName(user.email);
+  const firstName = String(name).trim().split(/\s+/)[0] || name;
   const phone = user.phone || user.contact || "";
   const plan = user.paidPlan || user.lastPlan || "";
   const planLabel = plan === "register" ? "Registration (₹999)" : plan === "course" ? "60-Day Program" : plan || "—";
@@ -74,144 +110,152 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
   if (user.email) assessmentQ.set("email", user.email);
   if (phone) assessmentQ.set("phone", phone);
 
+  // Feature tiles (mirror the mockup) — each links to a real page.
+  const tiles: { label: string; to: string; icon: any }[] = [
+    { label: "Yoga", to: "/courses", icon: PersonStanding },
+    { label: "Meditation", to: "/challenge", icon: Wind },
+    { label: "Mudra Therapy", to: "/courses/mudra-therapy", icon: Hand },
+    { label: "Marma Dab Chikitsa", to: "/courses/acupressure-therapy", icon: Fingerprint },
+    { label: "Mindfulness", to: "/courses/corp-wellness", icon: Brain },
+    { label: "Wellness Courses", to: "/courses", icon: GraduationCap },
+  ];
+
   return (
-    <div className="bg-[#FAFBF7] min-h-screen py-12 font-sans">
+    <div className="bg-[#FAFBF7] min-h-screen font-sans">
       <SEO
-        title="My Account — Shivoham Shiv"
-        description="Your Shivoham Shiv account: membership status, health assessment and support."
+        title="My Wellness Journey — Shivoham Shiv"
+        description="Your Shivoham Shiv wellness dashboard: daily practice, courses, assessment and account."
       />
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-green-700 text-cream flex items-center justify-center font-bold text-2xl shadow-md shrink-0">
-              {name.substring(0, 2).toUpperCase()}
-            </div>
-            <div>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-green-700">My Account</span>
-              <h1 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mt-0.5">Namaste, {name}!</h1>
-              <p className="text-xs text-slate-500 mt-1">
-                {user.email} · Member since {fmtDate(user.created_at)}
-              </p>
-            </div>
-          </div>
+
+      <div className="max-w-md mx-auto px-4 pt-6 pb-8">
+        {/* Top bar: menu · brand · logout */}
+        <div className="flex items-center justify-between mb-6">
+          <Link
+            to="/"
+            className="w-10 h-10 rounded-xl bg-white border border-green-100 flex items-center justify-center text-green-800 shadow-xs"
+            aria-label="Back to site"
+          >
+            <Menu className="w-5 h-5" />
+          </Link>
+          <span className="font-heading font-bold text-green-900">Shivoham Shiv</span>
           <button
             onClick={logout}
-            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-red-200 bg-white text-red-600 text-xs font-bold hover:bg-red-50 transition-colors self-start"
+            className="w-10 h-10 rounded-xl bg-white border border-green-100 flex items-center justify-center text-red-500 shadow-xs"
+            aria-label="Logout"
+            title="Logout"
           >
-            <LogOut className="w-3.5 h-3.5" /> Logout
+            <LogOut className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Membership status banner */}
-        <div
-          className={`rounded-3xl p-6 sm:p-7 mb-6 border ${
-            user.paid ? "bg-green-900 border-green-800 text-cream" : "bg-amber-50 border-amber-200 text-amber-900"
-          }`}
-        >
-          {user.paid ? (
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-amber-400 shrink-0">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <h2 className="font-heading font-bold text-lg">You're enrolled 🎉</h2>
-                <p className="text-xs text-green-100/80 mt-1 leading-relaxed">
-                  Plan: <strong>{planLabel}</strong>
-                  {user.paidAt ? ` · Activated ${fmtDate(user.paidAt)}` : ""}. Our team will guide your
-                  transformation on WhatsApp.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0">
-                  <CreditCard className="w-6 h-6" />
-                </div>
-                <div>
-                  <h2 className="font-heading font-bold text-lg">You're not enrolled yet</h2>
-                  <p className="text-xs text-amber-800/80 mt-1 leading-relaxed">
-                    Join the Ayurvedic 60-Day program to start your transformation.
-                  </p>
-                </div>
-              </div>
-              <Link
-                to="/weight-loss"
-                className="shrink-0 inline-flex items-center gap-1.5 px-5 py-3 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md hover:shadow-lg transition-all"
-              >
-                Enroll now <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          )}
+        {/* Greeting card */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-[#EEF7EE] border border-green-100 shadow-sm p-6 pr-28">
+          <span className="text-[11px] uppercase font-bold tracking-widest text-green-700">Your Wellness Journey</span>
+          <h1 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mt-1">Namaste, {firstName}</h1>
+          <p className="text-sm font-semibold text-[#E8943A] mt-1">Breathe. Heal. Glow.</p>
+          <Lotus className="w-28 h-28 absolute -right-1 top-1/2 -translate-y-1/2 opacity-95" />
         </div>
 
-        {/* Quick actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-          {/* Health assessment */}
-          <div className="bg-white border border-green-100 rounded-3xl shadow-sm p-6">
-            <div className="w-11 h-11 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center mb-4">
-              <ClipboardList className="w-6 h-6" />
-            </div>
-            <h3 className="font-heading font-bold text-base text-green-900 mb-1">Health assessment</h3>
-            {assessment ? (
-              <>
-                <p className="text-xs text-slate-500 leading-relaxed mb-4">
-                  <span className="inline-flex items-center gap-1 text-green-700 font-bold">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> Submitted
-                  </span>
-                  {assessment.created_at ? ` on ${fmtDate(assessment.created_at)}` : ""}. Your details are below.
-                </p>
-                <a
-                  href="#my-assessment"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
-                >
-                  View my details <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </>
-            ) : (
-              <>
-                <p className="text-xs text-slate-500 leading-relaxed mb-4">
-                  Fill your details so we can build your personalized Ayurvedic plan. Takes ~2 minutes.
-                </p>
-                <Link
-                  to={`/assessment?${assessmentQ.toString()}`}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
-                >
-                  Open assessment <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </>
-            )}
-          </div>
-
-          {/* Support */}
-          <div className="bg-white border border-green-100 rounded-3xl shadow-sm p-6">
-            <div className="w-11 h-11 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center mb-4">
-              <MessageCircle className="w-6 h-6" />
-            </div>
-            <h3 className="font-heading font-bold text-base text-green-900 mb-1">Talk to our team</h3>
-            <p className="text-xs text-slate-500 leading-relaxed mb-4">
-              Questions about your plan, diet or progress? Message us on WhatsApp — we usually reply within hours.
+        {/* Membership status (slim) */}
+        {user.paid ? (
+          <div className="mt-4 flex items-center gap-3 rounded-2xl bg-green-900 text-cream px-4 py-3">
+            <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0" />
+            <p className="text-xs leading-snug">
+              You're enrolled — <strong>{planLabel}</strong>. Our team guides you on WhatsApp.
             </p>
-            <a
-              href="https://wa.me/917317778215"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#25D366] hover:bg-[#1da851] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
-            >
-              Message on WhatsApp <ArrowRight className="w-3.5 h-3.5" />
-            </a>
           </div>
+        ) : (
+          <Link
+            to="/weight-loss"
+            className="mt-4 flex items-center justify-between gap-3 rounded-2xl bg-amber-50 border border-amber-200 px-4 py-3 hover:bg-amber-100 transition-colors"
+          >
+            <span className="flex items-center gap-3">
+              <CreditCard className="w-5 h-5 text-amber-600 shrink-0" />
+              <span className="text-xs text-amber-900 leading-snug">
+                You're not enrolled yet — <strong>join the 60-Day program</strong>.
+              </span>
+            </span>
+            <ArrowRight className="w-4 h-4 text-amber-600 shrink-0" />
+          </Link>
+        )}
+
+        {/* Feature tiles */}
+        <div className="grid grid-cols-3 gap-3 mt-5">
+          {tiles.map((t) => (
+            <Link
+              key={t.label}
+              to={t.to}
+              className="flex flex-col items-center justify-start gap-2 bg-white border border-green-100 rounded-2xl p-3 pt-4 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all text-center"
+            >
+              <span className="w-11 h-11 rounded-xl bg-[#EEF7EE] text-[#2F5D50] flex items-center justify-center">
+                <t.icon className="w-5 h-5" />
+              </span>
+              <span className="text-[11px] font-semibold text-[#3A4A40] leading-tight">{t.label}</span>
+            </Link>
+          ))}
+        </div>
+
+        {/* Daily Practice banner */}
+        <Link
+          to="/challenge"
+          className="mt-5 flex items-center gap-4 rounded-2xl bg-[#E8F0EA] border border-green-100 p-4 hover:bg-[#E2EDE4] transition-colors"
+        >
+          <span className="w-12 h-12 rounded-2xl bg-[#2F5D50] text-white flex items-center justify-center shrink-0">
+            <PersonStanding className="w-6 h-6" />
+          </span>
+          <span className="flex-1">
+            <b className="block font-heading font-bold text-green-900 text-sm">Daily Practice</b>
+            <span className="text-xs text-slate-500">For a balanced you</span>
+          </span>
+          <span className="flex items-center gap-1 text-[11px] font-bold text-[#2F5D50] whitespace-nowrap">
+            Start <ChevronRight className="w-4 h-4" />
+          </span>
+        </Link>
+
+        {/* Health assessment */}
+        <div className="mt-5 bg-white border border-green-100 rounded-2xl shadow-xs p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <ClipboardList className="w-5 h-5 text-green-700" />
+            <h3 className="font-heading font-bold text-sm text-green-900">Health assessment</h3>
+          </div>
+          {assessment ? (
+            <>
+              <p className="text-xs text-slate-500 leading-relaxed mb-3">
+                <span className="inline-flex items-center gap-1 text-green-700 font-bold">
+                  <CheckCircle2 className="w-3.5 h-3.5" /> Submitted
+                </span>
+                {assessment.created_at ? ` on ${fmtDate(assessment.created_at)}` : ""}. Your details are below.
+              </p>
+              <a
+                href="#my-assessment"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+              >
+                View my details <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </>
+          ) : (
+            <>
+              <p className="text-xs text-slate-500 leading-relaxed mb-3">
+                Fill your details so we can build your personalized Ayurvedic plan. Takes ~2 minutes.
+              </p>
+              <Link
+                to={`/assessment?${assessmentQ.toString()}`}
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+              >
+                Open assessment <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Submitted health assessment (read-only) */}
         {assessment && (
-          <div id="my-assessment" className="bg-white border border-green-100 rounded-3xl shadow-sm p-6 sm:p-7 mb-6 scroll-mt-24">
-            <div className="flex items-center gap-2 mb-5">
+          <div id="my-assessment" className="mt-5 bg-white border border-green-100 rounded-2xl shadow-xs p-5 scroll-mt-24">
+            <div className="flex items-center gap-2 mb-4">
               <ClipboardList className="w-5 h-5 text-green-700" />
-              <h3 className="font-heading font-bold text-base text-green-900">Your health assessment</h3>
+              <h3 className="font-heading font-bold text-sm text-green-900">Your health assessment</h3>
             </div>
-            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 text-sm">
               {(
                 [
                   ["Full name", assessment.full_name],
@@ -242,9 +286,9 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
                 </div>
               ))}
             </dl>
-            <p className="text-[11px] text-slate-400 mt-5">
+            <p className="text-[11px] text-slate-400 mt-4">
               Need to change something?{" "}
-              <a href="https://wa.me/917317778215" target="_blank" rel="noreferrer" className="text-green-700 font-semibold hover:underline">
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="text-green-700 font-semibold hover:underline">
                 Message us on WhatsApp
               </a>{" "}
               and we'll update it.
@@ -253,12 +297,12 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
         )}
 
         {/* Account details */}
-        <div className="bg-white border border-green-100 rounded-3xl shadow-sm p-6 sm:p-7">
-          <h3 className="font-heading font-bold text-base text-green-900 mb-5">Account details</h3>
-          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+        <div className="mt-5 bg-white border border-green-100 rounded-2xl shadow-xs p-5">
+          <h3 className="font-heading font-bold text-sm text-green-900 mb-4">Account details</h3>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 text-sm">
             <div>
               <dt className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Email</dt>
-              <dd className="text-slate-700 mt-0.5">{user.email || "—"}</dd>
+              <dd className="text-slate-700 mt-0.5 break-words">{user.email || "—"}</dd>
             </div>
             <div>
               <dt className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Phone / WhatsApp</dt>
@@ -280,8 +324,34 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
               <dt className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Membership</dt>
               <dd className="text-slate-700 mt-0.5">{user.paid ? planLabel : "Free account"}</dd>
             </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Member since</dt>
+              <dd className="text-slate-700 mt-0.5">{fmtDate(user.created_at)}</dd>
+            </div>
           </dl>
         </div>
+      </div>
+
+      {/* Bottom app nav */}
+      <div className="sticky bottom-0 z-30 pointer-events-none px-4 pb-3">
+        <nav className="pointer-events-auto max-w-md mx-auto bg-white/95 backdrop-blur border border-green-100 rounded-2xl shadow-lg flex items-center justify-around px-2 py-2">
+          <span className="flex flex-col items-center gap-0.5 px-3 py-1 text-[#E8943A]">
+            <Home className="w-5 h-5" />
+            <span className="text-[10px] font-bold">Home</span>
+          </span>
+          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-green-700 transition-colors">
+            <Compass className="w-5 h-5" />
+            <span className="text-[10px] font-semibold">Guidance</span>
+          </a>
+          <Link to="/courses" className="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-green-700 transition-colors">
+            <BookOpen className="w-5 h-5" />
+            <span className="text-[10px] font-semibold">Learn</span>
+          </Link>
+          <a href="#my-account" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 99999, behavior: "smooth" }); }} className="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-green-700 transition-colors">
+            <User className="w-5 h-5" />
+            <span className="text-[10px] font-semibold">Profile</span>
+          </a>
+        </nav>
       </div>
     </div>
   );
