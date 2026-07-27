@@ -213,7 +213,10 @@ export default function AdminView() {
   const [transforms, setTransforms] = useState<Transform[]>([]);
   const [savingTransforms, setSavingTransforms] = useState(false);
   const [transformMsg, setTransformMsg] = useState<string | null>(null);
-  const [tab, setTab] = useState<"leads" | "payments" | "users" | "assessments" | "transformations" | "blog" | "settings">("leads");
+  const [founder, setFounder] = useState<{ src: string; name: string; title: string }>({ src: "", name: "", title: "" });
+  const [savingFounder, setSavingFounder] = useState(false);
+  const [founderMsg, setFounderMsg] = useState<string | null>(null);
+  const [tab, setTab] = useState<"leads" | "payments" | "users" | "assessments" | "transformations" | "founder" | "blog" | "settings">("leads");
 
   // Pricing settings
   const [settings, setSettings] = useState({ registerAmount: 999, courseAmount: 7999, courseOriginal: 11999, discountLabel: "30% OFF" });
@@ -417,6 +420,48 @@ export default function AdminView() {
       .catch(() => {});
   }, [authed]);
 
+  useEffect(() => {
+    if (!authed) return;
+    fetch("/api/settings?type=founder")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.founder) setFounder({ src: d.founder.src || "", name: d.founder.name || "", title: d.founder.title || "" });
+      })
+      .catch(() => {});
+  }, [authed]);
+
+  const onPickFounder = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = (e.target.files || [])[0];
+    if (!f) return;
+    setFounderMsg(null);
+    try {
+      const src = await fileToCompressedDataUrl(f, 640, 0.7);
+      setFounder((prev) => ({ ...prev, src }));
+    } catch {
+      setFounderMsg("Could not read that image. Please try another file.");
+    }
+    e.target.value = "";
+  };
+
+  const saveFounder = async () => {
+    setSavingFounder(true);
+    setFounderMsg(null);
+    try {
+      const res = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), founder }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not save.");
+      setFounderMsg("Saved! Live on the Challenge page.");
+    } catch (err: any) {
+      setFounderMsg(err.message || "Save failed.");
+    } finally {
+      setSavingFounder(false);
+    }
+  };
+
   const onPickTransform = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
@@ -593,6 +638,14 @@ export default function AdminView() {
                 }`}
               >
                 <ImagePlus className="w-3.5 h-3.5" /> Transformations ({transforms.length})
+              </button>
+              <button
+                onClick={() => setTab("founder")}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+                  tab === "founder" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                }`}
+              >
+                <ImagePlus className="w-3.5 h-3.5" /> Founder
               </button>
               <button
                 onClick={() => {
@@ -924,6 +977,67 @@ export default function AdminView() {
                   className="px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
                 >
                   {savingTransforms ? "Saving…" : "Save & publish"}
+                </button>
+              </div>
+            )}
+
+            {tab === "founder" && (
+              <div className="space-y-5 max-w-lg">
+                <p className="text-xs text-slate-500">
+                  The founder / guide photo shown in the “Your Guide” section of the Challenge page. The image is
+                  auto-compressed. Upload a photo, set the name &amp; title, then <strong>Save &amp; publish</strong>.
+                </p>
+
+                <div className="bg-white border border-green-100 rounded-2xl p-5 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden bg-[#2F5D50] text-white flex items-center justify-center shrink-0 shadow">
+                      <span className="font-bold text-2xl">{(founder.name || "SS").trim().charAt(0).toUpperCase()}</span>
+                      {founder.src && (
+                        <img src={founder.src} alt="Founder preview" className="absolute inset-0 w-full h-full object-cover" />
+                      )}
+                    </div>
+                    <label className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold cursor-pointer transition-colors">
+                      <ImagePlus className="w-4 h-4" /> {founder.src ? "Change photo" : "Upload photo"}
+                      <input type="file" accept="image/*" className="hidden" onChange={onPickFounder} />
+                    </label>
+                    {founder.src && (
+                      <button
+                        onClick={() => setFounder((prev) => ({ ...prev, src: "" }))}
+                        className="p-1.5 rounded-lg text-red-500 hover:bg-red-50"
+                        title="Remove photo"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="block text-xs font-bold text-slate-600">Name</label>
+                    <input
+                      className={inputCls}
+                      value={founder.name}
+                      placeholder="e.g. Shivoham Shiv"
+                      onChange={(e) => setFounder((prev) => ({ ...prev, name: e.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-xs font-bold text-slate-600">Title / subtitle</label>
+                    <input
+                      className={inputCls}
+                      value={founder.title}
+                      placeholder="e.g. Founder & Vedic Wellness Guide"
+                      onChange={(e) => setFounder((prev) => ({ ...prev, title: e.target.value }))}
+                    />
+                  </div>
+                </div>
+
+                {founderMsg && <p className="text-xs text-green-700">{founderMsg}</p>}
+                <button
+                  onClick={saveFounder}
+                  disabled={savingFounder}
+                  className="px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                >
+                  {savingFounder ? "Saving…" : "Save & publish"}
                 </button>
               </div>
             )}
