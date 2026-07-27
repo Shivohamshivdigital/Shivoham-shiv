@@ -58,32 +58,32 @@ T +44 20 7946 0958
 
 def test_delimiter_block_excludes_body():
     block = find_signature_block(EMAIL_WITH_DELIMITER)
-    assert block is not None
+    assert block
     assert "Anand Kumar" in block
     assert "order 4455667788" not in block  # body stays out
 
 
 def test_signoff_block_starts_at_valediction():
     block = find_signature_block(EMAIL_WITH_SIGNOFF)
-    assert block is not None
+    assert block
     assert block.lower().startswith("best regards")
     assert "Meera Nair" in block
     assert "Great meeting you" not in block
 
 
-def test_no_signature_returns_none():
-    assert find_signature_block(EMAIL_NO_SIGNATURE) is None
+def test_no_signature_returns_empty():
+    assert find_signature_block(EMAIL_NO_SIGNATURE) == ""
 
 
 def test_fallback_tail_with_contact_signal():
     block = find_signature_block(EMAIL_MESSY_TAIL)
-    assert block is not None
+    assert block
     assert "John Doe" in block
 
 
 def test_empty_input():
-    assert find_signature_block("") is None
-    assert find_signature_block("   \n  \n") is None
+    assert find_signature_block("") == ""
+    assert find_signature_block("   \n  \n") == ""
 
 
 # --- Phone extraction ------------------------------------------------------
@@ -139,6 +139,21 @@ def test_dedupes_repeated_numbers():
 def test_rejects_too_short_and_too_long():
     assert extract_phone_numbers("id 12345") == []          # 5 digits
     assert extract_phone_numbers("ref 1234567890123456") == []  # 16 digits
+
+
+def test_rejects_dates_zips_and_short_ids():
+    # ZIP (5 digits) rejected by length; dates rejected by shape even though
+    # their digit count is phone-sized.
+    assert extract_phone_numbers("San Francisco, CA 94105") == []
+    assert extract_phone_numbers("Meeting on 2026-09-01, confirmed") == []
+    assert extract_phone_numbers("invoice dated 09/01/2026") == []
+
+
+def test_date_guard_keeps_real_dashed_phone():
+    # A genuine 3-3-4 dashed number must NOT be mistaken for a date.
+    matches = extract_phone_numbers("Direct: 415-555-0142")
+    assert len(matches) == 1
+    assert matches[0].digits == "4155550142"
 
 
 def test_international_formats():

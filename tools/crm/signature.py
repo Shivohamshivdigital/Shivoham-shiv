@@ -59,24 +59,25 @@ _SIGNOFF_RE = re.compile(
 _FALLBACK_TAIL_LINES = 8
 
 
-def find_signature_block(text: str) -> Optional[str]:
-    """Return the signature block at the end of ``text``, or ``None``.
+def find_signature_block(text: str) -> str:
+    """Return the signature block at the end of ``text``, or ``""`` if none.
 
     Detection strategy, strongest signal first:
 
     1. An explicit ``--`` delimiter line (RFC 3676) — everything after the last
        one is the signature.
-    2. A common sign-off line ("Best regards", "Thanks", ...) — the signature
-       runs from that line to the end.
-    3. Fallback: the last few non-empty lines, but only if they actually contain
-       a contact signal (a phone- or email-like token). Without such a signal we
-       return ``None`` rather than guess, so callers never mistake ordinary body
-       text for a signature.
+    2. A common sign-off line ("Best regards", "Thanks", "Sincerely", ...) — the
+       signature runs from that line to the end.
+    3. Strict trailing-lines fallback: the last few non-empty lines, but only if
+       they actually contain a contact signal (a phone- or email-like token).
+       Without such a signal we return ``""`` rather than guess, so callers never
+       mistake ordinary body text for a signature.
 
-    The returned string preserves the original line breaks of the block.
+    The returned string preserves the original line breaks of the block. An
+    empty string means "no signature found".
     """
     if not text or not text.strip():
-        return None
+        return ""
 
     lines = text.splitlines()
 
@@ -88,23 +89,22 @@ def find_signature_block(text: str) -> Optional[str]:
             delimiter_idx = i
     if delimiter_idx is not None:
         block = "\n".join(lines[delimiter_idx + 1 :]).strip("\n")
-        return block or None
+        return block
 
     # 2) Sign-off line — scan from the bottom so we anchor on the last one.
     for i in range(len(lines) - 1, -1, -1):
         if _SIGNOFF_RE.match(lines[i]):
-            block = "\n".join(lines[i:]).strip("\n")
-            return block or None
+            return "\n".join(lines[i:]).strip("\n")
 
     # 3) Fallback: trailing non-empty lines, only if they look like contact info.
     non_empty = [ln for ln in lines if ln.strip()]
     if not non_empty:
-        return None
+        return ""
     tail = non_empty[-_FALLBACK_TAIL_LINES:]
     tail_text = "\n".join(tail)
     if _STRONG_CONTACT_RE.search(tail_text):
         return tail_text
-    return None
+    return ""
 
 
 # A "does this look like a signature" probe for the fallback path. Deliberately
@@ -150,6 +150,17 @@ _EXTENSION_RE = re.compile(
 
 _MIN_DIGITS = 7   # shortest sensible local number
 _MAX_DIGITS = 15  # E.164 maximum
+
+# Date-shaped candidates whose digit count happens to fall in the phone range
+# (e.g. 2026-09-01 -> 8 digits). Rejected before validation. The groupings here
+# (4-1/2-1/2, or 1/2-1/2-2/4) do not collide with real phone formats such as
+# 415-555-0142 (3-3-4), so genuine numbers are unaffected.
+_DATE_LIKE_RE = re.compile(
+    r"^\s*(?:"
+    r"\d{4}[-/.]\d{1,2}[-/.]\d{1,2}"     # 2026-09-01, 2026/9/1
+    r"|\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4}"  # 01/09/2026, 9-1-26
+    r")\s*$"
+)
 
 
 def _classify_label(raw_label: Optional[str]) -> str:
@@ -207,6 +218,11 @@ def extract_phone_numbers(text: str) -> list[PhoneMatch]:
         start, end = m.span(1)
         core = candidate.strip()
 
+        # Reject date-shaped tokens (2026-09-01, 09/01/2026) up front: their
+        # digit count can look phone-sized but the grouping gives them away.
+        if _DATE_LIKE_RE.match(core):
+            continue
+
         # An extension follows the number ("... ext. 227", "...x227"); the phone
         # candidate stops before it, so look at the text immediately after.
         ext_match = _EXTENSION_RE.match(text[end : end + 20])
@@ -249,25 +265,23 @@ def extract_phone_numbers(text: str) -> list[PhoneMatch]:
     return results
 
 
-def extract_signature_phones(
-    text: str, *, fallback_to_body: bool = False
-) -> list[PhoneMatch]:
+def extract_signature_phones(body: str, fallback_to_body: bool = False) -> list[PhoneMatch]:
     """Locate the signature block, then extract phone numbers from it.
 
-    This is the function sales tooling should call: it scopes extraction to the
-    signature so body text (invoice ids, dates, "call within 24 hours") does not
-    leak phone-shaped false positives.
+    This is the main interface: it scopes extraction to the signature so body
+    text (invoice ids, dates, "call within 24 hours") does not leak phone-shaped
+    false positives.
 
     If no signature block is detected the default is to return ``[]`` — for
     logging a rep's own contacts, no number is safer than a wrong one. Pass
     ``fallback_to_body=True`` to best-effort scan the whole message instead, for
     unconventional layouts where you accept the false-positive risk.
     """
-    block = find_signature_block(text)
-    if block is not None:
+    block = find_signature_block(body)
+    if block:
         return extract_phone_numbers(block)
     if fallback_to_body:
-        return extract_phone_numbers(text)
+        return extract_phone_numbers(body)
     return []
 
 
