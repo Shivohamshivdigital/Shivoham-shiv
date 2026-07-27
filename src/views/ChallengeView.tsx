@@ -33,7 +33,7 @@ const PHASES = [
     icon: Flame,
     tag: "Phase 2 · Days 6–10",
     title: "Digestion & Detox",
-    desc: "Fire up sluggish digestion, beat bloating, and switch your metabolism back on — using simple finger alignments and your Ayurvedic body type.",
+    desc: "Ease sluggish digestion, beat bloating, and help wake up a slow metabolism — using simple finger alignments and your Ayurvedic body type.",
   },
   {
     icon: Moon,
@@ -50,8 +50,8 @@ const DAYS = [
   "Map your hand's acupressure points for instant tension relief",
   "Release neck & shoulder stiffness using simple Marma nodes",
   "The Ayurvedic 'fire-activating' gesture for heavy meals",
-  "Eliminate bloating with a morning finger alignment",
-  "Mudras that switch metabolism & fat-burning back on",
+  "Ease bloating with a morning finger alignment",
+  "Mudras & points that support a sluggish metabolism",
   "The 10-minute digital-detox routine before sleep",
   "Discover your body type (Dosha) — no lab tests",
   "The 'deep sleep' gesture for insomnia & racing thoughts",
@@ -80,12 +80,12 @@ const FAQS = [
     a: "Access to all 14 daily lessons of the challenge — traditional Mudra, Marma and acupressure techniques you can do in about 3 minutes a day, plus guidance on WhatsApp from our team.",
   },
   {
-    q: "Is this a weight-loss or medical treatment?",
-    a: "No. This is a general Ayurvedic wellness habit challenge focused on daily energy, stress, digestion and sleep. It is not a weight-loss program and not a substitute for medical care. Persistent fatigue, pain or any health condition should be evaluated by a doctor.",
+    q: "Will this help with weight and bloating?",
+    a: "It supports the natural foundations of healthy weight — better digestion, less bloating, a more active metabolism and daily movement habits. It is not a medicine or a crash diet, and it doesn't promise a specific number of kilos in 14 days. It works best alongside balanced food, good sleep and any care your doctor advises. Results vary from person to person.",
   },
   {
     q: "Is a 14-day result realistic?",
-    a: "We don't promise a cure or a transformation in 14 days. Real, lasting change takes consistent effort over months. What the 14 days give you is a simple daily habit and the techniques to keep building on — results vary from person to person.",
+    a: "We don't promise a cure or a body transformation in 14 days. Real, lasting change takes consistent effort over months. What the 14 days give you is a simple daily habit and the techniques to keep building on — results vary from person to person.",
   },
   {
     q: "Do I need any experience or equipment?",
@@ -149,8 +149,8 @@ export default function ChallengeView() {
   return (
     <div className="bg-[#FAFBF7] font-sans">
       <SEO
-        title="14-Day Vedic Healing Challenge — Just ₹1 | Shivoham Shiv"
-        description="A guided 14-day Ayurvedic habit challenge to support your everyday energy, digestion & sleep — Mudra, Marma & breathing, about 3 minutes a day. One-time ₹1, no subscription. Not a medical treatment."
+        title="14-Day Vedic Detox & Metabolism Challenge — Just ₹1 | Shivoham Shiv"
+        description="A guided 14-day Ayurvedic habit challenge to beat bloating, support digestion & a sluggish metabolism, and lift everyday energy — Mudra, Marma & breathing, about 3 minutes a day. One-time ₹1, no subscription. Not a medicine or a guaranteed weight-loss treatment."
       />
 
       {/* HERO */}
@@ -162,20 +162,22 @@ export default function ChallengeView() {
           className="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center"
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> 14-Day Vedic Healing Challenge
+            <Sparkles className="w-3.5 h-3.5" /> 14-Day Vedic Detox &amp; Metabolism Challenge
           </span>
           <h1 className="font-heading font-bold text-3xl sm:text-5xl leading-tight mb-5 text-white">
-            Feel calmer, clearer &amp; more energetic —<br />
-            <span className="text-amber-300">one simple habit a day</span>
+            Beat belly bloat &amp; wake up your metabolism —<br />
+            <span className="text-amber-300">one simple Vedic habit a day</span>
           </h1>
           <p className="text-sm sm:text-lg text-green-50/85 max-w-2xl mx-auto leading-relaxed mb-6">
             A guided 14-day introduction to traditional Ayurvedic <strong>Mudra, Marma &amp; breathing</strong>
-            practices — about 3 minutes a day to support your everyday energy, digestion and sleep. It's a gentle
-            daily habit, not a medical treatment or a quick fix.
+            practices — about 3 minutes a day to help ease bloating, support digestion and a sluggish metabolism,
+            and lift your everyday energy. A gentle habit that supports natural weight management — not a crash
+            diet, medicine or a quick fix.
           </p>
           <p className="text-[11px] sm:text-xs text-green-100/60 max-w-xl mx-auto leading-relaxed mb-8">
-            Persistent tiredness, pain or health concerns should be checked by a doctor — these practices support
-            daily wellbeing and do not diagnose, treat or cure any condition.
+            These practices support healthy daily habits and wellbeing — they don't diagnose, treat or cure any
+            condition and aren't a guaranteed weight-loss treatment. Results vary; persistent concerns should be
+            checked by a doctor.
           </p>
 
           <div className="flex flex-col items-center gap-4">
@@ -191,7 +193,7 @@ export default function ChallengeView() {
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-green-100/70 mt-2">
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> One-time ₹1 · no auto-debit</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 3 min a day</span>
-              <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No pills or equipment</span>
+              <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No crash diets or pills</span>
             </div>
           </div>
         </motion.div>
@@ -273,8 +275,8 @@ export default function ChallengeView() {
         <div className="space-y-3">
           {[
             "You often feel tired, stressed or low on energy.",
-            "You sit for long hours and carry tension in your neck & shoulders.",
-            "Your digestion feels heavy or irregular.",
+            "You feel bloated or heavy and want to feel lighter.",
+            "Your digestion feels sluggish or irregular.",
             "You struggle to switch off and sleep deeply.",
             "You'd rather build a natural daily habit than rely on pills.",
             "You can spare 3 minutes a day for two weeks.",
@@ -323,7 +325,7 @@ export default function ChallengeView() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
             { n: "01", t: "Instant-calm tools", d: "Simple mudras & breathing you can use the moment stress hits — no app, no equipment." },
-            { n: "02", t: "Lighter digestion", d: "Gentle finger alignments and points that ease bloating and heaviness after meals." },
+            { n: "02", t: "Beat bloat, feel lighter", d: "Gentle finger alignments and pressure points to ease bloating and heaviness after meals and help wake a sluggish metabolism — the natural first step toward managing weight, without aggressive dieting." },
             { n: "03", t: "Deeper sleep & focus", d: "A wind-down routine to quiet a busy mind, plus a gesture to sharpen daytime focus." },
             { n: "04", t: "Your 5-minute ritual", d: "By day 13 it all comes together into one simple daily habit you can keep for life." },
           ].map((f, i) => (
