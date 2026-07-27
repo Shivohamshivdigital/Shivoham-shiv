@@ -16,6 +16,7 @@ raw records ──► runPythonWorker ──► Python worker ──► normalis
 
 | File | Role |
 | --- | --- |
+| `contactBridge.ts` | Live webhook bridge: spawn `cli.py` → parse → forward, with native JS fallback. |
 | `run.ts` | Batch entrypoint: file/stdin → worker → upsert. `--dry-run` needs no DB. |
 | `pythonWorker.ts` | Structured IPC helper over `child_process.spawn` — the fault-isolation boundary. |
 | `ingest.ts` | Orchestration: worker → per-record upsert, with dead-lettering and bounded concurrency. |
@@ -88,6 +89,51 @@ The key trick: `RETURNING (xmax = 0) AS is_new_source` distinguishes an
 `ON CONFLICT` insert from an update, so the counter reflects distinct sources
 rather than raw submission volume. A denormalised jsonb-array variant is
 included at the bottom of the file. See `upsert.prisma.ts` for the Prisma form.
+
+## Live ingestion bridge (`contactBridge.ts`)
+
+For a contact-sync webhook (Google People / Microsoft Graph): the bridge spawns
+`python3 tools/crm/cli.py --provider <p>`, streams the raw payload into its
+stdin, parses the validated `EnterpriseContact` JSON from stdout, and forwards
+it to your sink (DB upsert / Brevo / Firebase).
+
+```ts
+import { createContactSyncHandler } from './contactBridge.ts';
+import { upsertEntity } from './ingest.ts';
+
+// Next.js route handler / Express route (persistent Node runtime)
+export const handler = createContactSyncHandler({
+  timeoutMs: 5000,
+  forward: (contact) => upsertEntity(db, {
+    entityHash: hashOf(contact),           // e.g. sha256 of primary email
+    sourceSystem: contact.source_system,
+    sourceId: contact.source_id,
+    payload: contact,
+    canonical: contact,
+  }),
+  // or forward: (contact) => postLeadToBrevo(contact),
+});
+```
+
+**Resilience (requirement: never drop a record).** `ingestContact` never throws.
+If Python fails for *any* reason — not installed, missing `pydantic`, non-zero
+exit, timeout, or the CLI's own `{"status":"error"}` — the failure is caught and
+logged, and the payload is mapped by a **pure-JS native mapper** instead. The
+response reports `via: "python" | "native"` so you can see which path ran.
+
+> **Runtime note.** This bridge spawns a child process, so it must run in a
+> **persistent Node runtime** (the ETL service, a worker, a self-hosted Next.js
+> server). **Vercel serverless functions (`api/*.js`) cannot spawn `python3`** —
+> there the bridge always takes the native-mapping fallback. That is a safe
+> degradation (no dropped records), but if you want the Python normalisation in
+> production, run the ingestion endpoint on a Node server, not a serverless
+> function.
+
+Run the smoke test (no dependencies; uses fixtures under `testdata/`):
+
+```bash
+node tools/etl/contactBridge.smoke.ts
+```
 
 ## Batch runner (`run.ts`)
 
