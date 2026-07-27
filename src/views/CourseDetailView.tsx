@@ -852,6 +852,14 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
                 Book a Session
               </button>
             </div>
+            <div className="pt-6">
+              <img
+                src="/marma-hero.jpg"
+                alt="Marma Dab Chikitsa transformation"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                className="mx-auto rounded-2xl shadow-2xl max-h-[440px] w-auto object-contain border border-green-800"
+              />
+            </div>
           </div>
           {/* Subtle background blurs */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-green-850/20 rounded-full blur-3xl pointer-events-none" />
@@ -1272,33 +1280,48 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { name: "Vinod Kumar", role: "Banker", cond: "L5–L6 disc discomfort", quote: "Long working hours had led to L5–L6 disc gapping, severe back discomfort and restricted movement. Through Marma Dab Chikitsa my blocked marma points were released — I regained posture, mobility and lasting comfort, without relying on pills." },
-              { name: "Neha Sharma", role: "Working Professional", cond: "Irregular menstrual cycle", quote: "Irregular periods had started affecting my balance and daily routine. The Marma Dab Chikitsa sessions worked on exactly the right vital points and helped me feel more regulated, calm and confident — managing my body naturally." },
-              { name: "Gitanjali", role: "Teacher", cond: "Hand tremors & stress", quote: "My hands had been shaking almost continuously for close to 48 hours, along with mental stress and fatigue. The precise pressure of Marma Dab Chikitsa calmed the tremors and left me feeling steady, stable and emotionally balanced. The sessions were structured, reassuring and easy to follow." },
-              { name: "Sunita Verma", role: "Homemaker", cond: "Pregnancy discomfort", quote: "During pregnancy my body often felt heavy and I was emotionally very sensitive. The gentle marma points helped me feel calmer, more balanced and connected with my body — simple, reassuring and a real comfort during that phase of life." },
-              { name: "Archana Gautam", role: "Teacher", cond: "Swelling & heaviness", quote: "For nearly 15 years I faced continuous swelling and physical heaviness that affected my daily routine. Marma Dab Chikitsa released the blocked points and I finally felt lighter, balanced and comfortable. I truly appreciated the natural, pill-free approach." },
-              { name: "Rajesh Sharma", role: "IT Professional", cond: "Neck & cervical strain", quote: "Long hours of desk work had caused persistent neck and cervical discomfort. Through Marma Dab Chikitsa the right marma points were worked on, and I experienced improved mobility, relaxation and better comfort through my whole workday — without depending on medication." },
-            ].map((t, i) => (
-              <div key={i} className="bg-white border border-green-100 rounded-2xl p-6 shadow-xs flex flex-col">
-                <span className="inline-block self-start px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md mb-3">
-                  {t.cond}
-                </span>
-                <div className="text-amber-400 text-sm mb-2" aria-hidden="true">★★★★★</div>
-                <p className="text-sm text-[#3A4A40]/85 italic leading-relaxed flex-1">"{t.quote}"</p>
-                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-3">
-                  <span className="w-9 h-9 rounded-full bg-[#2F5D50] text-white text-sm font-bold flex items-center justify-center shrink-0">
-                    {t.name.charAt(0)}
-                  </span>
-                  <div className="text-xs">
-                    <b className="text-[#2F5233] block">{t.name}</b>
-                    <span className="text-[#E8943A]">{t.role}</span>
-                  </div>
+          {(() => {
+            const T = [
+              { name: "Vinod Kumar", role: "Banker", cond: "L5–L6 disc discomfort", img: "/testimonials/vinod.jpg", quote: "Long working hours had led to L5–L6 disc gapping, severe back discomfort and restricted movement. Through Marma Dab Chikitsa my blocked marma points were released — I regained posture, mobility and lasting comfort, without relying on pills." },
+              { name: "Neha Sharma", role: "Working Professional", cond: "Irregular menstrual cycle", img: "", quote: "Irregular periods had started affecting my balance and daily routine. The Marma Dab Chikitsa sessions worked on exactly the right vital points and helped me feel more regulated, calm and confident — managing my body naturally." },
+              { name: "Gitanjali", role: "Teacher", cond: "Hand tremors & stress", img: "/testimonials/gitanjali.jpg", quote: "My hands had been shaking almost continuously for close to 48 hours, along with mental stress and fatigue. The precise pressure of Marma Dab Chikitsa calmed the tremors and left me feeling steady, stable and emotionally balanced. The sessions were structured, reassuring and easy to follow." },
+              { name: "Sunita Verma", role: "Homemaker", cond: "Pregnancy discomfort", img: "", quote: "During pregnancy my body often felt heavy and I was emotionally very sensitive. The gentle marma points helped me feel calmer, more balanced and connected with my body — simple, reassuring and a real comfort during that phase of life." },
+              { name: "Archana Gautam", role: "Teacher", cond: "Swelling & heaviness", img: "/testimonials/archana.jpg", quote: "For nearly 15 years I faced continuous swelling and physical heaviness that affected my daily routine. Marma Dab Chikitsa released the blocked points and I finally felt lighter, balanced and comfortable. I truly appreciated the natural, pill-free approach." },
+              { name: "Rajesh Sharma", role: "IT Professional", cond: "Neck & cervical strain", img: "", quote: "Long hours of desk work had caused persistent neck and cervical discomfort. Through Marma Dab Chikitsa the right marma points were worked on, and I experienced improved mobility, relaxation and better comfort through my whole workday — without depending on medication." },
+            ];
+            return (
+              <div className="overflow-hidden group [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+                <div className="animate-marquee-custom gap-6 py-2 group-hover:[animation-play-state:paused]">
+                  {[...T, ...T].map((t, i) => (
+                    <div key={i} className="w-[300px] sm:w-[360px] shrink-0 bg-white border border-green-100 rounded-2xl p-6 shadow-xs flex flex-col">
+                      <span className="inline-block self-start px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md mb-3">
+                        {t.cond}
+                      </span>
+                      <div className="text-amber-400 text-sm mb-2" aria-hidden="true">★★★★★</div>
+                      <p className="text-sm text-[#3A4A40]/85 italic leading-relaxed flex-1">"{t.quote}"</p>
+                      <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-3">
+                        <span className="relative w-10 h-10 rounded-full bg-[#2F5D50] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
+                          {t.name.charAt(0)}
+                          {t.img && (
+                            <img
+                              src={t.img}
+                              alt={t.name}
+                              onError={(e) => (e.currentTarget as HTMLImageElement).remove()}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                          )}
+                        </span>
+                        <div className="text-xs">
+                          <b className="text-[#2F5233] block">{t.name}</b>
+                          <span className="text-[#E8943A]">{t.role}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })()}
 
           <p className="text-center text-[11px] text-slate-400 mt-8 max-w-2xl mx-auto">
             Individual experiences shared by our clients — results vary from person to person. Marma Dab Chikitsa is a
