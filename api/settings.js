@@ -74,7 +74,17 @@ export default async function handler(req, res) {
       }
       try {
         await dbUpdate("settings", "founder", { data: json });
-        return res.status(200).json({ success: true, hasImage: !!clean.src });
+        // Read back so we report what ACTUALLY persisted (large fields can be
+        // rejected/dropped by Firestore's indexing) instead of a false success.
+        let storedImage = !!clean.src;
+        try {
+          const check = await dbGetDoc("settings", "founder");
+          const stored = check && check.data ? JSON.parse(check.data) : {};
+          storedImage = !!(stored.src && String(stored.src).startsWith("data:image"));
+        } catch {
+          /* best-effort verification */
+        }
+        return res.status(200).json({ success: true, hasImage: storedImage });
       } catch (err) {
         console.error("Founder save error:", err);
         return res.status(500).json({ error: `Could not save: ${String((err && err.message) || err)}` });
