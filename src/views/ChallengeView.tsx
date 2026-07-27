@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -99,6 +99,14 @@ export default function ChallengeView() {
   const [paying, setPaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
+  const [founder, setFounder] = useState<{ src: string; name: string; title: string } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/settings?type=founder")
+      .then((r) => r.json())
+      .then((d) => { if (d.founder) setFounder(d.founder); })
+      .catch(() => {});
+  }, []);
 
   const startJoin = () => {
     setError(null);
@@ -399,16 +407,24 @@ export default function ChallengeView() {
       {/* FOUNDER / YOUR GUIDE */}
       <section className="py-14 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto bg-white border border-green-100 rounded-3xl shadow-md overflow-hidden grid md:grid-cols-5">
-          <div className="md:col-span-2 bg-[#F2F9F2] flex items-center justify-center p-8">
+          <div className="md:col-span-2 bg-[#F2F9F2] flex flex-col items-center justify-center p-8 gap-3">
             <div className="relative w-40 h-40 rounded-full overflow-hidden bg-[#2F5D50] text-white flex items-center justify-center shadow-lg shrink-0">
-              <span className="font-heading font-bold text-4xl">SS</span>
+              <span className="font-heading font-bold text-4xl">
+                {(founder?.name || "SS").trim().charAt(0).toUpperCase() || "SS"}
+              </span>
               <img
-                src="/founder.jpg"
-                alt="Shivoham Shiv guide"
+                src={founder?.src || "/founder.jpg"}
+                alt={founder?.name || "Shivoham Shiv guide"}
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
+            {(founder?.name || founder?.title) && (
+              <div className="text-center">
+                {founder?.name && <p className="font-heading font-bold text-green-900 leading-tight">{founder.name}</p>}
+                {founder?.title && <p className="text-xs text-[#E8943A] font-semibold">{founder.title}</p>}
+              </div>
+            )}
           </div>
           <div className="md:col-span-3 p-8">
             <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Your guide</span>
@@ -418,7 +434,7 @@ export default function ChallengeView() {
               Marma and Ayurvedic practices — no pills, no shortcuts. This challenge is the gentle first step of that
               same path, simplified into 3 mindful minutes a day.
             </p>
-            <p className="text-sm font-bold text-[#2F5233]">— Team Shivoham Shiv</p>
+            <p className="text-sm font-bold text-[#2F5233]">— {founder?.name || "Team Shivoham Shiv"}</p>
           </div>
         </div>
       </section>

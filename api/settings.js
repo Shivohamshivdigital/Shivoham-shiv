@@ -31,6 +31,18 @@ export default async function handler(req, res) {
       }
     }
 
+    // Founder / guide photo + name + title (managed from the admin).
+    if (req.query.type === "founder") {
+      try {
+        const doc = await dbGetDoc("settings", "founder");
+        const founder = doc && doc.data ? JSON.parse(doc.data) : null;
+        res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=600");
+        return res.status(200).json({ founder: founder || null });
+      } catch {
+        return res.status(200).json({ founder: null });
+      }
+    }
+
     try {
       const s = await dbGetDoc("settings", "pricing");
       const { id, ...rest } = s || {};
@@ -41,9 +53,31 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { password, settings, transformations } = req.body || {};
+    const { password, settings, transformations, founder } = req.body || {};
     if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) {
       return res.status(401).json({ error: "Incorrect password." });
+    }
+
+    // Save founder / guide photo + name + title (admin upload).
+    if (founder && typeof founder === "object") {
+      const src = String(founder.src || "");
+      const clean = {
+        src: src.startsWith("data:image") || src.startsWith("http") ? src : "",
+        name: String(founder.name || "").slice(0, 60),
+        title: String(founder.title || "").slice(0, 100),
+      };
+      const json = JSON.stringify(clean);
+      // Firestore caps a document at ~1 MB — guard so we never fail the write.
+      if (json.length > 900000) {
+        return res.status(413).json({ error: "Image too large. Please use a smaller photo." });
+      }
+      try {
+        await dbUpdate("settings", "founder", { data: json });
+        return res.status(200).json({ success: true });
+      } catch (err) {
+        console.error("Founder save error:", err);
+        return res.status(500).json({ error: `Could not save: ${String((err && err.message) || err)}` });
+      }
     }
 
     // Save transformation before/after images (admin upload).
