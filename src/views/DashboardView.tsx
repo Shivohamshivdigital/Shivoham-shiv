@@ -127,9 +127,9 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
         description="Your Shivoham Shiv wellness dashboard: daily practice, courses, assessment and account."
       />
 
-      <div className="max-w-md mx-auto px-4 pt-6 pb-8">
-        {/* Top bar: menu · brand · logout */}
-        <div className="flex items-center justify-between mb-6">
+      <div className="max-w-md lg:max-w-4xl mx-auto px-4 lg:px-8 pt-6 pb-8">
+        {/* Top bar: menu · brand · logout (mobile only — desktop uses the site navbar) */}
+        <div className="flex items-center justify-between mb-6 lg:hidden">
           <Link
             to="/"
             className="w-10 h-10 rounded-xl bg-white border border-green-100 flex items-center justify-center text-green-800 shadow-xs"
@@ -149,11 +149,11 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
         </div>
 
         {/* Greeting card */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-[#EEF7EE] border border-green-100 shadow-sm p-6 pr-28">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-[#EEF7EE] border border-green-100 shadow-sm p-6 lg:p-9 pr-28 lg:pr-48">
           <span className="text-[11px] uppercase font-bold tracking-widest text-green-700">Your Wellness Journey</span>
-          <h1 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mt-1">Namaste, {firstName}</h1>
-          <p className="text-sm font-semibold text-[#E8943A] mt-1">Breathe. Heal. Glow.</p>
-          <Lotus className="w-28 h-28 absolute -right-1 top-1/2 -translate-y-1/2 opacity-95" />
+          <h1 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-green-900 mt-1">Namaste, {firstName}</h1>
+          <p className="text-sm lg:text-base font-semibold text-[#E8943A] mt-1">Breathe. Heal. Glow.</p>
+          <Lotus className="w-28 h-28 lg:w-44 lg:h-44 absolute -right-1 lg:right-4 top-1/2 -translate-y-1/2 opacity-95" />
         </div>
 
         {/* Membership status (slim) */}
@@ -180,25 +180,27 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
         )}
 
         {/* Feature tiles */}
-        <div className="grid grid-cols-3 gap-3 mt-5">
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4 mt-5">
           {tiles.map((t) => (
             <Link
               key={t.label}
               to={t.to}
-              className="flex flex-col items-center justify-start gap-2 bg-white border border-green-100 rounded-2xl p-3 pt-4 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all text-center"
+              className="flex flex-col items-center justify-start gap-2 lg:gap-3 bg-white border border-green-100 rounded-2xl p-3 pt-4 lg:py-6 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all text-center"
             >
-              <span className="w-11 h-11 rounded-xl bg-[#EEF7EE] text-[#2F5D50] flex items-center justify-center">
-                <t.icon className="w-5 h-5" />
+              <span className="w-11 h-11 lg:w-14 lg:h-14 rounded-xl bg-[#EEF7EE] text-[#2F5D50] flex items-center justify-center">
+                <t.icon className="w-5 h-5 lg:w-6 lg:h-6" />
               </span>
-              <span className="text-[11px] font-semibold text-[#3A4A40] leading-tight">{t.label}</span>
+              <span className="text-[11px] lg:text-xs font-semibold text-[#3A4A40] leading-tight">{t.label}</span>
             </Link>
           ))}
         </div>
 
+        {/* Daily Practice + Health assessment (side-by-side on desktop) */}
+        <div className="mt-5 grid gap-5 lg:grid-cols-2 lg:items-stretch">
         {/* Daily Practice banner */}
         <Link
           to="/challenge"
-          className="mt-5 flex items-center gap-4 rounded-2xl bg-[#E8F0EA] border border-green-100 p-4 hover:bg-[#E2EDE4] transition-colors"
+          className="flex items-center gap-4 rounded-2xl bg-[#E8F0EA] border border-green-100 p-4 lg:p-6 hover:bg-[#E2EDE4] transition-colors lg:h-full"
         >
           <span className="w-12 h-12 rounded-2xl bg-[#2F5D50] text-white flex items-center justify-center shrink-0">
             <PersonStanding className="w-6 h-6" />
@@ -213,7 +215,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
         </Link>
 
         {/* Health assessment */}
-        <div className="mt-5 bg-white border border-green-100 rounded-2xl shadow-xs p-5">
+        <div className="bg-white border border-green-100 rounded-2xl shadow-xs p-5 lg:h-full">
           <div className="flex items-center gap-2 mb-2">
             <ClipboardList className="w-5 h-5 text-green-700" />
             <h3 className="font-heading font-bold text-sm text-green-900">Health assessment</h3>
@@ -246,6 +248,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
               </Link>
             </>
           )}
+        </div>
         </div>
 
         {/* Submitted health assessment (read-only) */}
@@ -332,8 +335,8 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
         </div>
       </div>
 
-      {/* Bottom app nav */}
-      <div className="sticky bottom-0 z-30 pointer-events-none px-4 pb-3">
+      {/* Bottom app nav (mobile only — desktop uses the site navbar) */}
+      <div className="sticky bottom-0 z-30 pointer-events-none px-4 pb-3 lg:hidden">
         <nav className="pointer-events-auto max-w-md mx-auto bg-white/95 backdrop-blur border border-green-100 rounded-2xl shadow-lg flex items-center justify-around px-2 py-2">
           <span className="flex flex-col items-center gap-0.5 px-3 py-1 text-[#E8943A]">
             <Home className="w-5 h-5" />
