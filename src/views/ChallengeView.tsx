@@ -12,7 +12,6 @@ import {
   HandHeart,
   Loader2,
   ChevronDown,
-  Star,
   Gift,
   Award,
   Users,
@@ -392,28 +391,6 @@ export default function ChallengeView() {
         <p className="text-center text-sm text-slate-600 mt-6">
           Total value <b className="text-slate-400 line-through">₹997</b> — yours free with the ₹1 challenge.
         </p>
-      </section>
-
-      {/* SOCIAL PROOF */}
-      <section className="py-12 px-4 sm:px-6 max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { name: "Ritu S.", loc: "Jaipur", text: "By day 5 my shoulder tension was gone and I was sleeping deeper than I had in months." },
-            { name: "Anil K.", loc: "Delhi", text: "The morning breath replaced my 3 cups of coffee. No jitters, steady energy all day." },
-            { name: "Pooja M.", loc: "Jhansi", text: "Simple 3-minute gestures — but my bloating and afternoon slump genuinely faded." },
-          ].map((t) => (
-            <div key={t.name} className="bg-white border border-green-100 rounded-2xl p-6 shadow-xs">
-              <div className="flex gap-0.5 mb-3 text-amber-400">
-                {Array(5).fill(0).map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
-              </div>
-              <p className="text-sm text-slate-600 italic leading-relaxed mb-4">"{t.text}"</p>
-              <div className="text-xs font-bold text-[#2F5233] flex items-center justify-between">
-                <span>{t.name}</span>
-                <span className="text-[#E8943A] font-normal">{t.loc}</span>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* MARMA TESTIMONIALS CAROUSEL (auto-scrolling, with photos) */}
