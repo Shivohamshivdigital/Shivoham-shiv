@@ -1,21 +1,21 @@
-"""Unified enterprise contact schema.
+"""Unified enterprise contact schema (Pydantic v2).
 
-Every external contact source (Google People API, Microsoft Graph API, and any
-future provider) is normalised into the :class:`EnterpriseContact` model defined
-here. Downstream systems — our leads database, Brevo sync, analytics — only ever
-see this shape, never the raw provider payloads.
+The first module of the CRM integration utility. It owns strict data validation
+and normalisation, enforcing a **permissive-in, strict-out** contract: input may
+be messy and partial (mixed case, stray whitespace, duplicates, ambiguous
+primaries), but any model that validates is clean, de-duplicated, and safe to
+persist or forward.
 
-The models are intentionally permissive on input (contacts from the wild are
-messy and partial) but strict on output: an ``EnterpriseContact`` that validates
-is safe to persist and forward.
+Construct instances through the provider mappers rather than by hand — they own
+the source-specific translation into this shape.
 """
 
 from __future__ import annotations
 
 import re
-from datetime import date, datetime
-from enum import Enum
-from typing import Optional
+from datetime import datetime
+from enum import StrEnum
+from typing import List, Optional
 
 from pydantic import (
     BaseModel,
@@ -26,19 +26,11 @@ from pydantic import (
 )
 
 
-class SourceSystem(str, Enum):
-    """Provider a contact was ingested from."""
+class ContactLabel(StrEnum):
+    """Normalised label for a contact channel.
 
-    GOOGLE_PEOPLE = "google_people"
-    MICROSOFT_GRAPH = "microsoft_graph"
-    UNKNOWN = "unknown"
-
-
-class ContactLabel(str, Enum):
-    """Normalised label for emails, phones and addresses.
-
-    Providers use different vocabularies ("work" vs "business", "mobile" vs
-    "cell"); we collapse them onto this small, stable set.
+    Providers use divergent vocabularies ("business" vs "work", "cell" vs
+    "mobile"); mappers collapse them onto this small, stable set.
     """
 
     WORK = "work"
@@ -47,22 +39,26 @@ class ContactLabel(str, Enum):
     OTHER = "other"
 
 
-# Deliberately liberal: full RFC 5322 validation rejects addresses that real
-# CRMs happily store. We only guard against obviously broken values.
+# Deliberately liberal: full RFC 5322 validation rejects addresses real CRMs
+# happily store. We only guard against obviously broken values.
 _EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-_PHONE_ALLOWED = re.compile(r"^[+()\-.\s0-9]+$")
+_PHONE_ALLOWED_RE = re.compile(r"^[+()\-.\s0-9]+$")
 
+
+# --- Channel sub-models ----------------------------------------------------
 
 class EmailAddress(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    """A single email address with a normalised, lower-cased value."""
+
+    model_config = ConfigDict(str_strip_whitespace=True, validate_assignment=True)
 
     address: str
     label: ContactLabel = ContactLabel.OTHER
-    primary: bool = False
+    is_primary: bool = False
 
     @field_validator("address")
     @classmethod
-    def _normalise_email(cls, value: str) -> str:
+    def _normalise_address(cls, value: str) -> str:
         cleaned = value.strip().lower()
         if not _EMAIL_RE.match(cleaned):
             raise ValueError(f"not a valid email address: {value!r}")
@@ -70,27 +66,30 @@ class EmailAddress(BaseModel):
 
 
 class PhoneNumber(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    """A single phone number. Keeps caller formatting, validates characters."""
+
+    model_config = ConfigDict(str_strip_whitespace=True, validate_assignment=True)
 
     number: str
     label: ContactLabel = ContactLabel.OTHER
-    primary: bool = False
+    is_primary: bool = False
 
     @field_validator("number")
     @classmethod
-    def _normalise_phone(cls, value: str) -> str:
+    def _normalise_number(cls, value: str) -> str:
         cleaned = value.strip()
         if not cleaned:
-            raise ValueError("phone number is empty")
-        if not _PHONE_ALLOWED.match(cleaned):
+            raise ValueError("phone number must not be empty")
+        if not _PHONE_ALLOWED_RE.match(cleaned):
             raise ValueError(f"phone number has unexpected characters: {value!r}")
-        # Collapse runs of whitespace but keep the caller-supplied formatting
-        # otherwise (we do not assume a region here).
+        # Collapse internal whitespace runs; do not assume a region/format.
         return re.sub(r"\s+", " ", cleaned)
 
 
 class PostalAddress(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    """A physical address. At least one component must be present."""
+
+    model_config = ConfigDict(str_strip_whitespace=True)
 
     label: ContactLabel = ContactLabel.OTHER
     street: Optional[str] = None
@@ -99,6 +98,14 @@ class PostalAddress(BaseModel):
     postal_code: Optional[str] = None
     country: Optional[str] = None
     formatted: Optional[str] = None
+
+    @field_validator("*")
+    @classmethod
+    def _blank_to_none(cls, value):
+        # Permissive-in: treat empty strings as "absent".
+        if isinstance(value, str) and not value.strip():
+            return None
+        return value
 
     @model_validator(mode="after")
     def _require_some_content(self) -> "PostalAddress":
@@ -110,11 +117,20 @@ class PostalAddress(BaseModel):
 
 
 class Organization(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    """An employer / affiliation. At least one component must be present."""
+
+    model_config = ConfigDict(str_strip_whitespace=True)
 
     name: Optional[str] = None
     title: Optional[str] = None
     department: Optional[str] = None
+
+    @field_validator("*")
+    @classmethod
+    def _blank_to_none(cls, value):
+        if isinstance(value, str) and not value.strip():
+            return None
+        return value
 
     @model_validator(mode="after")
     def _require_some_content(self) -> "Organization":
@@ -123,81 +139,87 @@ class Organization(BaseModel):
         return self
 
 
-class EnterpriseContact(BaseModel):
-    """The single, canonical contact shape used across the CRM.
+# --- Invariant helpers -----------------------------------------------------
 
-    Construct instances through the mappers in :mod:`tools.crm.mappers` rather
-    than by hand — they own the provider-specific translation logic.
+def _dedupe_and_resolve_primary(items: list, key_attr: str) -> list:
+    """De-duplicate a channel list and guarantee exactly one primary.
+
+    - Duplicates (by the normalised ``key_attr``) are collapsed, first occurrence
+      wins; if any duplicate was flagged primary, that flag is preserved on the
+      survivor.
+    - If items exist but none is primary, the first is promoted.
+    - If several are primary, only the first stays primary.
+
+    The result: for any non-empty list, exactly one item has ``is_primary`` True,
+    so ``primary_email`` / ``primary_phone`` are always predictable.
     """
-
-    model_config = ConfigDict(extra="forbid", validate_assignment=True)
-
-    # Provenance -----------------------------------------------------------
-    source_system: SourceSystem
-    source_id: str = Field(..., description="Stable id of the record in the source system.")
-
-    # Identity -------------------------------------------------------------
-    display_name: str
-    given_name: Optional[str] = None
-    family_name: Optional[str] = None
-
-    # Contact channels -----------------------------------------------------
-    emails: list[EmailAddress] = Field(default_factory=list)
-    phones: list[PhoneNumber] = Field(default_factory=list)
-    addresses: list[PostalAddress] = Field(default_factory=list)
-
-    # Professional context -------------------------------------------------
-    organizations: list[Organization] = Field(default_factory=list)
-
-    # Extras ---------------------------------------------------------------
-    photo_url: Optional[str] = None
-    birthday: Optional[date] = None
-    notes: Optional[str] = None
-
-    # Bookkeeping ----------------------------------------------------------
-    source_updated_at: Optional[datetime] = None
-
-    @field_validator("display_name")
-    @classmethod
-    def _display_name_not_blank(cls, value: str) -> str:
-        cleaned = value.strip()
-        if not cleaned:
-            raise ValueError("display_name must not be blank")
-        return cleaned
-
-    @field_validator("emails", "phones")
-    @classmethod
-    def _dedupe_and_single_primary(cls, items: list) -> list:
-        """Drop exact duplicates and guarantee at most one primary channel.
-
-        If the source marked several entries primary (or none), we keep the
-        first primary — or promote the first entry — so downstream code can rely
-        on ``next(e for e in emails if e.primary)`` finding exactly one.
-        """
-        seen: set = set()
-        deduped = []
-        for item in items:
-            key = item.address if isinstance(item, EmailAddress) else item.number
-            if key in seen:
-                continue
-            seen.add(key)
-            deduped.append(item)
-
-        if deduped and not any(i.primary for i in deduped):
-            deduped[0].primary = True
+    survivors: dict = {}
+    order: list = []
+    for item in items:
+        key = getattr(item, key_attr)
+        if key in survivors:
+            if item.is_primary:
+                survivors[key].is_primary = True
         else:
-            primary_seen = False
-            for item in deduped:
-                if item.primary and not primary_seen:
-                    primary_seen = True
-                elif item.primary:
-                    item.primary = False
+            survivors[key] = item
+            order.append(key)
+
+    deduped = [survivors[key] for key in order]
+    if not deduped:
         return deduped
+
+    primary_seen = False
+    for item in deduped:
+        if item.is_primary and not primary_seen:
+            primary_seen = True
+        elif item.is_primary:
+            item.is_primary = False
+    if not primary_seen:
+        deduped[0].is_primary = True
+
+    return deduped
+
+
+# --- Main model ------------------------------------------------------------
+
+class EnterpriseContact(BaseModel):
+    """The single canonical contact shape used across the CRM."""
+
+    model_config = ConfigDict(str_strip_whitespace=True, validate_assignment=True)
+
+    # Metadata / provenance
+    source_system: str
+    source_id: str
+    source_updated_at: datetime
+
+    # Core identity
+    first_name: str
+    last_name: str
+
+    # Channels & context
+    emails: List[EmailAddress] = Field(default_factory=list)
+    phones: List[PhoneNumber] = Field(default_factory=list)
+    addresses: List[PostalAddress] = Field(default_factory=list)
+    organizations: List[Organization] = Field(default_factory=list)
+
+    @field_validator("emails")
+    @classmethod
+    def _resolve_emails(cls, items: List[EmailAddress]) -> List[EmailAddress]:
+        return _dedupe_and_resolve_primary(items, "address")
+
+    @field_validator("phones")
+    @classmethod
+    def _resolve_phones(cls, items: List[PhoneNumber]) -> List[PhoneNumber]:
+        return _dedupe_and_resolve_primary(items, "number")
+
+    @property
+    def full_name(self) -> str:
+        return " ".join(part for part in (self.first_name, self.last_name) if part).strip()
 
     @property
     def primary_email(self) -> Optional[str]:
-        return next((e.address for e in self.emails if e.primary), None)
+        return next((e.address for e in self.emails if e.is_primary), None)
 
     @property
     def primary_phone(self) -> Optional[str]:
-        return next((p.number for p in self.phones if p.primary), None)
+        return next((p.number for p in self.phones if p.is_primary), None)
