@@ -6,13 +6,19 @@ Requires Pydantic:  python -m pytest tools/crm/test_mappers.py
 from datetime import datetime, timezone
 
 import pytest
+from pydantic import ValidationError
 
 from tools.crm import (
     ContactLabel,
     ContactMappingError,
+    EmailAddress,
     EnterpriseContact,
+    Organization,
+    PhoneNumber,
+    PostalAddress,
     map_contact,
 )
+from tools.crm.mappers import BaseContactMapper
 
 # --- Sample payloads -------------------------------------------------------
 
@@ -166,3 +172,89 @@ def test_non_dict_record_raises():
 def test_output_json_serialisable():
     c = map_contact("google_people", GOOGLE_PERSON)
     assert "jane.doe@work.com" in c.model_dump_json()
+
+
+def test_graph_missing_id_raises():
+    with pytest.raises(ContactMappingError):
+        map_contact("microsoft_graph", {"givenName": "No", "surname": "Id"})
+
+
+# --- Validation-error -> ContactMappingError wrapper -----------------------
+
+class _BrokenMapper(BaseContactMapper):
+    """A mapper whose hooks emit values the schema rejects (first_name=None),
+    forcing a Pydantic ValidationError inside map()."""
+
+    source_system = "broken"
+
+    def _extract_source_id(self, raw):
+        return "broken-1"
+
+    def _extract_names(self, raw):
+        return (None, None)  # first_name is a required str -> ValidationError
+
+
+def test_validation_error_maps_to_contact_mapping_error():
+    with pytest.raises(ContactMappingError) as excinfo:
+        _BrokenMapper().map({})
+    # provenance is preserved, and the original ValidationError is chained.
+    assert excinfo.value.source_id == "broken-1"
+    assert isinstance(excinfo.value.__cause__, ValidationError)
+
+
+# --- Schema-level invariants (Pydantic) ------------------------------------
+
+def test_schema_contactlabel_is_strenum():
+    assert ContactLabel.MOBILE == "mobile"
+    assert {c.value for c in ContactLabel} == {"work", "home", "mobile", "other"}
+
+
+def test_schema_rejects_invalid_email():
+    with pytest.raises(ValidationError):
+        EmailAddress(address="not-an-email")
+
+
+def test_schema_email_normalised_lowercased():
+    e = EmailAddress(address="  Jane.Doe@Work.COM ")
+    assert e.address == "jane.doe@work.com"
+
+
+def test_schema_phone_rejects_letters():
+    with pytest.raises(ValidationError):
+        PhoneNumber(number="call-me-maybe")
+
+
+def test_schema_dedupes_and_resolves_single_primary():
+    c = EnterpriseContact(
+        source_system="test", source_id="1",
+        source_updated_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        first_name="A", last_name="B",
+        emails=[
+            EmailAddress(address="a@x.com"),
+            EmailAddress(address="a@x.com", is_primary=True),  # dup, primary
+            EmailAddress(address="b@x.com", is_primary=True),  # extra primary
+        ],
+    )
+    assert [e.address for e in c.emails] == ["a@x.com", "b@x.com"]
+    assert sum(e.is_primary for e in c.emails) == 1
+    assert c.primary_email == "a@x.com"   # survivor inherited the primary flag
+
+
+def test_schema_promotes_first_when_no_primary():
+    c = EnterpriseContact(
+        source_system="test", source_id="1",
+        source_updated_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        first_name="A", last_name="B",
+        phones=[PhoneNumber(number="+1 212 555 0000"), PhoneNumber(number="+1 212 555 1111")],
+    )
+    assert c.phones[0].is_primary is True
+    assert c.primary_phone == "+1 212 555 0000"
+
+
+def test_schema_postal_and_org_require_a_field():
+    with pytest.raises(ValidationError):
+        PostalAddress()          # all fields empty
+    with pytest.raises(ValidationError):
+        Organization()           # all fields empty
+    assert PostalAddress(city="London").city == "London"
+    assert Organization(name="Acme").name == "Acme"
