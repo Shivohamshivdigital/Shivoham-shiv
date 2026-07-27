@@ -1263,6 +1263,50 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           </div>
         </section>
 
+        {/* 8.5 CLIENT TESTIMONIALS */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-left">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Real People · Real Stories</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233] mt-1">
+              What our Marma Dab Chikitsa clients say
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: "Vinod Kumar", role: "Banker", cond: "L5–L6 disc discomfort", quote: "Long working hours had led to L5–L6 disc gapping, severe back discomfort and restricted movement. Through Marma Dab Chikitsa my blocked marma points were released — I regained posture, mobility and lasting comfort, without relying on pills." },
+              { name: "Neha Sharma", role: "Working Professional", cond: "Irregular menstrual cycle", quote: "Irregular periods had started affecting my balance and daily routine. The Marma Dab Chikitsa sessions worked on exactly the right vital points and helped me feel more regulated, calm and confident — managing my body naturally." },
+              { name: "Gitanjali", role: "Teacher", cond: "Hand tremors & stress", quote: "My hands had been shaking almost continuously for close to 48 hours, along with mental stress and fatigue. The precise pressure of Marma Dab Chikitsa calmed the tremors and left me feeling steady, stable and emotionally balanced. The sessions were structured, reassuring and easy to follow." },
+              { name: "Sunita Verma", role: "Homemaker", cond: "Pregnancy discomfort", quote: "During pregnancy my body often felt heavy and I was emotionally very sensitive. The gentle marma points helped me feel calmer, more balanced and connected with my body — simple, reassuring and a real comfort during that phase of life." },
+              { name: "Archana Gautam", role: "Teacher", cond: "Swelling & heaviness", quote: "For nearly 15 years I faced continuous swelling and physical heaviness that affected my daily routine. Marma Dab Chikitsa released the blocked points and I finally felt lighter, balanced and comfortable. I truly appreciated the natural, pill-free approach." },
+              { name: "Rajesh Sharma", role: "IT Professional", cond: "Neck & cervical strain", quote: "Long hours of desk work had caused persistent neck and cervical discomfort. Through Marma Dab Chikitsa the right marma points were worked on, and I experienced improved mobility, relaxation and better comfort through my whole workday — without depending on medication." },
+            ].map((t, i) => (
+              <div key={i} className="bg-white border border-green-100 rounded-2xl p-6 shadow-xs flex flex-col">
+                <span className="inline-block self-start px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md mb-3">
+                  {t.cond}
+                </span>
+                <div className="text-amber-400 text-sm mb-2" aria-hidden="true">★★★★★</div>
+                <p className="text-sm text-[#3A4A40]/85 italic leading-relaxed flex-1">"{t.quote}"</p>
+                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-3">
+                  <span className="w-9 h-9 rounded-full bg-[#2F5D50] text-white text-sm font-bold flex items-center justify-center shrink-0">
+                    {t.name.charAt(0)}
+                  </span>
+                  <div className="text-xs">
+                    <b className="text-[#2F5233] block">{t.name}</b>
+                    <span className="text-[#E8943A]">{t.role}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-[11px] text-slate-400 mt-8 max-w-2xl mx-auto">
+            Individual experiences shared by our clients — results vary from person to person. Marma Dab Chikitsa is a
+            traditional wellness practice that supports wellbeing and is not a substitute for medical diagnosis or
+            treatment. Please consult a doctor for any medical condition.
+          </p>
+        </section>
+
         {/* 9. CONTACT FORM + MAP (acupressure-contact-form) */}
         <section id="acupressure-contact-form" className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-green-100 text-left font-sans">
           <div className="max-w-7xl mx-auto">
