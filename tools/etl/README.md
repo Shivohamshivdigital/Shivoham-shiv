@@ -16,6 +16,7 @@ raw records ──► runPythonWorker ──► Python worker ──► normalis
 
 | File | Role |
 | --- | --- |
+| `run.ts` | Batch entrypoint: file/stdin → worker → upsert. `--dry-run` needs no DB. |
 | `pythonWorker.ts` | Structured IPC helper over `child_process.spawn` — the fault-isolation boundary. |
 | `ingest.ts` | Orchestration: worker → per-record upsert, with dead-lettering and bounded concurrency. |
 | `upsert.sql` | Idempotent PostgreSQL upsert: unique-hash key, linked source table, trust-score counter. |
@@ -87,6 +88,28 @@ The key trick: `RETURNING (xmax = 0) AS is_new_source` distinguishes an
 `ON CONFLICT` insert from an update, so the counter reflects distinct sources
 rather than raw submission volume. A denormalised jsonb-array variant is
 included at the bottom of the file. See `upsert.prisma.ts` for the Prisma form.
+
+## Batch runner (`run.ts`)
+
+The end-to-end entrypoint. Reads a JSON array or NDJSON file (or stdin), streams
+it through the worker, and upserts the results.
+
+```bash
+# Dry run — no database. Emulates upsert.sql in memory and prints resolved
+# entities with their trust scores. Fully runnable with no dependencies.
+node tools/etl/run.ts --transform signature \
+     --input tools/etl/examples/signature-input.ndjson --dry-run
+
+# Real load into Postgres (needs DATABASE_URL and `npm i pg`):
+DATABASE_URL=postgres://user:pass@host/db \
+  node tools/etl/run.ts --transform map_contact --source google_people \
+       --input contacts.json
+```
+
+Exit codes: `0` on success, `2` when a non-empty batch loaded nothing (so cron/CI
+flags a fully failed run). The dry-run above shows a contact arriving from two
+independent sources collapsing to one entity with `trust=2` — the whole chain,
+verified without a database.
 
 ## Running the smoke test
 
