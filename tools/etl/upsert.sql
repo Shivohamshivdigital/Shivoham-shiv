@@ -6,33 +6,9 @@
 -- the same source never inflates it. Normalised metadata is merged into the
 -- golden record; full per-source payloads are kept for provenance and un-merge.
 
--- ---------------------------------------------------------------------------
--- Schema
--- ---------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS entity (
-  entity_hash  text        PRIMARY KEY,          -- unique global key (e.g. sha256 of the identity)
-  canonical    jsonb       NOT NULL DEFAULT '{}',-- merged golden-record fields
-  trust_score  integer     NOT NULL DEFAULT 0,   -- # of independent sources corroborating
-  source_count integer     NOT NULL DEFAULT 0,   -- kept in step with trust_score
-  first_seen   timestamptz NOT NULL DEFAULT now(),
-  last_seen    timestamptz NOT NULL DEFAULT now()
-);
-
--- The linked metadata relation: one immutable row per (entity, source, record).
--- This is the normalised alternative to a jsonb array; see the array variant
--- at the bottom if you prefer denormalised storage.
-CREATE TABLE IF NOT EXISTS entity_source (
-  entity_hash   text        NOT NULL REFERENCES entity(entity_hash) ON DELETE CASCADE,
-  source_system text        NOT NULL,            -- which independent system asserted this
-  source_id     text        NOT NULL,            -- record id within that system
-  payload       jsonb       NOT NULL DEFAULT '{}',
-  first_seen    timestamptz NOT NULL DEFAULT now(),
-  last_seen     timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (entity_hash, source_system, source_id)   -- idempotency key
-);
-
-CREATE INDEX IF NOT EXISTS entity_source_by_entity ON entity_source (entity_hash);
+-- Schema (CREATE TABLE ...) lives in schema.sql so it can be applied with
+-- `psql -f schema.sql`. This file documents the parameterised write, which the
+-- app executes with bound params (see tools/etl/ingest.ts UPSERT_SQL).
 
 -- ---------------------------------------------------------------------------
 -- The upsert (single statement, atomic)
