@@ -8,7 +8,6 @@ import {
   Loader2,
   ArrowRight,
   ShieldCheck,
-  Menu,
   Home,
   Compass,
   BookOpen,
@@ -128,26 +127,6 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
       />
 
       <div className="max-w-md lg:max-w-4xl mx-auto px-4 lg:px-8 pt-6 pb-8">
-        {/* Top bar: menu · brand · logout (mobile only — desktop uses the site navbar) */}
-        <div className="flex items-center justify-between mb-6 lg:hidden">
-          <Link
-            to="/"
-            className="w-10 h-10 rounded-xl bg-white border border-green-100 flex items-center justify-center text-green-800 shadow-xs"
-            aria-label="Back to site"
-          >
-            <Menu className="w-5 h-5" />
-          </Link>
-          <span className="font-heading font-bold text-green-900">Shivoham Shiv</span>
-          <button
-            onClick={logout}
-            className="w-10 h-10 rounded-xl bg-white border border-green-100 flex items-center justify-center text-red-500 shadow-xs"
-            aria-label="Logout"
-            title="Logout"
-          >
-            <LogOut className="w-5 h-5" />
-          </button>
-        </div>
-
         {/* Greeting card */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-[#EEF7EE] border border-green-100 shadow-sm p-6 lg:p-9 pr-28 lg:pr-48">
           <span className="text-[11px] uppercase font-bold tracking-widest text-green-700">Your Wellness Journey</span>
@@ -332,6 +311,14 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
               <dd className="text-slate-700 mt-0.5">{fmtDate(user.created_at)}</dd>
             </div>
           </dl>
+          <div className="mt-5 pt-4 border-t border-green-100">
+            <button
+              onClick={logout}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-600 transition-colors"
+            >
+              <LogOut className="w-4 h-4" /> Log out
+            </button>
+          </div>
         </div>
       </div>
 
