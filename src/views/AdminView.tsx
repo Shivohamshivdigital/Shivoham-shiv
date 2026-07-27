@@ -422,7 +422,7 @@ export default function AdminView() {
 
   useEffect(() => {
     if (!authed) return;
-    fetch("/api/settings?type=founder")
+    fetch(`/api/settings?type=founder&t=${Date.now()}`, { cache: "no-store" })
       .then((r) => r.json())
       .then((d) => {
         if (d.founder) setFounder({ src: d.founder.src || "", name: d.founder.name || "", title: d.founder.title || "" });
@@ -436,9 +436,15 @@ export default function AdminView() {
     setFounderMsg(null);
     try {
       const src = await fileToCompressedDataUrl(f, 640, 0.7);
+      if (!src.startsWith("data:image") || src.length < 100) {
+        setFounderMsg("That image couldn't be processed (it may be a HEIC photo). Please upload a JPG or PNG.");
+        e.target.value = "";
+        return;
+      }
       setFounder((prev) => ({ ...prev, src }));
+      setFounderMsg("Photo ready — click “Save & publish” to make it live.");
     } catch {
-      setFounderMsg("Could not read that image. Please try another file.");
+      setFounderMsg("Could not read that image. Please try a JPG or PNG.");
     }
     e.target.value = "";
   };
@@ -454,7 +460,11 @@ export default function AdminView() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Could not save.");
-      setFounderMsg("Saved! Live on the Challenge page.");
+      if (founder.src && data.hasImage === false) {
+        setFounderMsg("Saved the name/title, but the photo didn't store. Please re-upload a JPG/PNG and save again.");
+      } else {
+        setFounderMsg("Saved! Live on the Challenge page — refresh it to see the photo.");
+      }
     } catch (err: any) {
       setFounderMsg(err.message || "Save failed.");
     } finally {

@@ -36,7 +36,8 @@ export default async function handler(req, res) {
       try {
         const doc = await dbGetDoc("settings", "founder");
         const founder = doc && doc.data ? JSON.parse(doc.data) : null;
-        res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=600");
+        // Admin-controlled content — keep it fresh so edits appear right away.
+        res.setHeader("Cache-Control", "no-store");
         return res.status(200).json({ founder: founder || null });
       } catch {
         return res.status(200).json({ founder: null });
@@ -73,7 +74,7 @@ export default async function handler(req, res) {
       }
       try {
         await dbUpdate("settings", "founder", { data: json });
-        return res.status(200).json({ success: true });
+        return res.status(200).json({ success: true, hasImage: !!clean.src });
       } catch (err) {
         console.error("Founder save error:", err);
         return res.status(500).json({ error: `Could not save: ${String((err && err.message) || err)}` });
