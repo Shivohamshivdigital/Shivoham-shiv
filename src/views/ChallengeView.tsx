@@ -15,6 +15,7 @@ import {
   Star,
 } from "lucide-react";
 import SEO from "../components/SEO";
+import MarmaTestimonials from "../components/MarmaTestimonials";
 import AuthModal from "../components/AuthModal";
 import { startPayment } from "../services/paymentService";
 import { setSession } from "../utils/session";
@@ -313,6 +314,9 @@ export default function ChallengeView() {
           ))}
         </div>
       </section>
+
+      {/* MARMA TESTIMONIALS CAROUSEL (auto-scrolling, with photos) */}
+      <MarmaTestimonials heading="What our Marma Dab Chikitsa clients say" />
 
       {/* FAQ */}
       <section className="py-12 px-4 sm:px-6 max-w-3xl mx-auto">
