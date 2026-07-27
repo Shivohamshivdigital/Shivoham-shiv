@@ -126,6 +126,28 @@ from tools.crm import extract_signature_phones, phone_matches_to_schema
 phones = phone_matches_to_schema(extract_signature_phones(body))   # list[PhoneNumber]
 ```
 
+## CLI gateway — `cli.py`
+
+A live bridge for a backend (e.g. TypeScript/Next.js) to pipe one raw payload
+through the mapper. Reads the payload on `stdin`, prints the validated
+`EnterpriseContact` as a single JSON line on `stdout` (exit 0), or a
+`{"status": "error", "message": "..."}` object (exit 1).
+
+```bash
+echo '<google person json>' | python -m tools.crm.cli --provider google_people
+echo '<graph contact json>' | python -m tools.crm.cli --provider graph --extract-signature
+```
+
+- `--provider` — `google_people`, `google`, `microsoft_graph`, `graph`, … (the
+  mapper validates it; an unknown provider yields the error object).
+- `--extract-signature` — before mapping, scan the payload for an email body
+  (keys `body`, `signature`, `email_body`, `text`, `message`), extract phone
+  numbers from its signature block, and inject them into the provider's native
+  phone field so they are normalised with the rest of the record.
+
+The mapper is imported lazily, so stdin parsing and signature extraction run
+without evaluating Pydantic until the mapping step.
+
 ## Tests
 
 ```bash
