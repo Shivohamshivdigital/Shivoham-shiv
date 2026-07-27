@@ -46,6 +46,9 @@ pip install -r tools/crm/requirements.txt        # pydantic>=2.0.0, pytest
 
 Requires Python 3.11+ (uses `StrEnum` and PEP 604 unions).
 
+For installing these in production alongside the Node build (servers, containers,
+or Vercel), see **[DEPLOYMENT.md](DEPLOYMENT.md)**.
+
 ## Mapping contacts — `map_contact`
 
 ```python
