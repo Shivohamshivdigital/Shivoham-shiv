@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { MARMA_TESTIMONIALS } from "../data/marmaTestimonials";
 import { 
   Sparkles, 
   CheckCircle2, 
@@ -1281,14 +1282,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           </div>
 
           {(() => {
-            const T = [
-              { name: "Vinod Kumar", role: "Banker", cond: "L5–L6 disc discomfort", img: "/testimonials/vinod.jpg", quote: "Long working hours had led to L5–L6 disc gapping, severe back discomfort and restricted movement. Through Marma Dab Chikitsa my blocked marma points were released — I regained posture, mobility and lasting comfort, without relying on pills." },
-              { name: "Neha Sharma", role: "Working Professional", cond: "Irregular menstrual cycle", img: "", quote: "Irregular periods had started affecting my balance and daily routine. The Marma Dab Chikitsa sessions worked on exactly the right vital points and helped me feel more regulated, calm and confident — managing my body naturally." },
-              { name: "Gitanjali", role: "Teacher", cond: "Hand tremors & stress", img: "/testimonials/gitanjali.jpg", quote: "My hands had been shaking almost continuously for close to 48 hours, along with mental stress and fatigue. The precise pressure of Marma Dab Chikitsa calmed the tremors and left me feeling steady, stable and emotionally balanced. The sessions were structured, reassuring and easy to follow." },
-              { name: "Sunita Verma", role: "Homemaker", cond: "Pregnancy discomfort", img: "", quote: "During pregnancy my body often felt heavy and I was emotionally very sensitive. The gentle marma points helped me feel calmer, more balanced and connected with my body — simple, reassuring and a real comfort during that phase of life." },
-              { name: "Archana Gautam", role: "Teacher", cond: "Swelling & heaviness", img: "/testimonials/archana.jpg", quote: "For nearly 15 years I faced continuous swelling and physical heaviness that affected my daily routine. Marma Dab Chikitsa released the blocked points and I finally felt lighter, balanced and comfortable. I truly appreciated the natural, pill-free approach." },
-              { name: "Rajesh Sharma", role: "IT Professional", cond: "Neck & cervical strain", img: "", quote: "Long hours of desk work had caused persistent neck and cervical discomfort. Through Marma Dab Chikitsa the right marma points were worked on, and I experienced improved mobility, relaxation and better comfort through my whole workday — without depending on medication." },
-            ];
+            const T = MARMA_TESTIMONIALS;
             return (
               <div className="overflow-hidden group [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
                 <div className="animate-marquee-custom gap-6 py-2 group-hover:[animation-play-state:paused]">
