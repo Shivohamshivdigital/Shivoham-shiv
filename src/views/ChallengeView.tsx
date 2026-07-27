@@ -102,7 +102,7 @@ export default function ChallengeView() {
   const [founder, setFounder] = useState<{ src: string; name: string; title: string } | null>(null);
 
   useEffect(() => {
-    fetch("/api/settings?type=founder")
+    fetch(`/api/settings?type=founder&t=${Date.now()}`, { cache: "no-store" })
       .then((r) => r.json())
       .then((d) => { if (d.founder) setFounder(d.founder); })
       .catch(() => {});
