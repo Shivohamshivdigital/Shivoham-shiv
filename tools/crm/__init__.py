@@ -1,25 +1,44 @@
-"""CRM contact-normalisation utility.
+"""CRM contact-normalisation utility — package entry point.
 
-Maps inconsistent contact records from external providers (Google People API,
-Microsoft Graph API) into one unified, Pydantic-validated
-:class:`EnterpriseContact` schema, and extracts contact details from the
-signature blocks of plain-text emails.
+Two import tiers:
 
-    from tools.crm import map_contact, extract_signature_phones
+* **Eager (pure standard library).** The signature helpers — most importantly
+  :func:`extract_signature_phones` — are imported directly at package load, so
+  they are available with zero lazy-loading overhead and can run in isolated
+  runtimes that have no third-party wheels.
+* **Lazy (Pydantic-backed).** :mod:`schema`, :mod:`mappers` and ``map_contact``
+  import ``pydantic``, which is unavailable in some environments. They are
+  deferred via :pep:`562` ``__getattr__`` so that merely importing this package
+  — or touching the signature helpers — never evaluates ``pydantic``.
 
-    contact = map_contact("google_people", raw_person)
-    phones = extract_signature_phones(sent_email_body)
-
-Imports are lazy (PEP 562): the signature helpers are pure standard library and
-stay importable even when Pydantic is not installed; the Pydantic-backed schema
-and mappers are only loaded when their names are first accessed.
+    from tools.crm import extract_signature_phones   # eager, no pydantic
+    from tools.crm import map_contact                # triggers pydantic on access
 """
 
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-# Map public name -> submodule it lives in. Resolved on first access.
+# --- Eager tier: pure standard library, safe to import unconditionally ------
+# signature.py has no module-level third-party imports (the only pydantic use is
+# inside phone_matches_to_schema, deferred to call time), so this stays clean.
+from .signature import (
+    PhoneMatch,
+    extract_phone_numbers,
+    extract_signature_phones,
+    find_signature_block,
+    phone_matches_to_schema,
+)
+
+_EAGER = [
+    "PhoneMatch",
+    "extract_phone_numbers",
+    "extract_signature_phones",
+    "find_signature_block",
+    "phone_matches_to_schema",
+]
+
+# --- Lazy tier: name -> submodule, resolved on first access -----------------
 _LAZY = {
     # schema
     "EnterpriseContact": "schema",
@@ -34,18 +53,13 @@ _LAZY = {
     "GooglePeopleMapper": "mappers",
     "MicrosoftGraphMapper": "mappers",
     "ContactMappingError": "mappers",
-    # signature (pure stdlib)
-    "find_signature_block": "signature",
-    "extract_phone_numbers": "signature",
-    "extract_signature_phones": "signature",
-    "phone_matches_to_schema": "signature",
-    "PhoneMatch": "signature",
 }
 
-__all__ = list(_LAZY)
+__all__ = _EAGER + list(_LAZY)
 
 
-def __getattr__(name: str):  # PEP 562 module-level lazy attribute access
+def __getattr__(name: str):
+    """PEP 562 hook: import a lazy submodule only when its name is accessed."""
     module_name = _LAZY.get(name)
     if module_name is None:
         raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
@@ -53,7 +67,7 @@ def __getattr__(name: str):  # PEP 562 module-level lazy attribute access
 
     module = importlib.import_module(f".{module_name}", __name__)
     value = getattr(module, name)
-    globals()[name] = value  # cache for next time
+    globals()[name] = value  # cache so __getattr__ is not called again for it
     return value
 
 
@@ -61,7 +75,7 @@ def __dir__():
     return sorted(__all__)
 
 
-if TYPE_CHECKING:  # help type checkers/IDEs without importing at runtime
+if TYPE_CHECKING:  # help type checkers / IDEs without importing at runtime
     from .mappers import (
         BaseContactMapper,
         ContactMappingError,
@@ -76,11 +90,4 @@ if TYPE_CHECKING:  # help type checkers/IDEs without importing at runtime
         Organization,
         PhoneNumber,
         PostalAddress,
-    )
-    from .signature import (
-        PhoneMatch,
-        extract_phone_numbers,
-        extract_signature_phones,
-        find_signature_block,
-        phone_matches_to_schema,
     )
