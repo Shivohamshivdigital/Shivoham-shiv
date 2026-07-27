@@ -28,7 +28,6 @@ _LAZY = {
     "PostalAddress": "schema",
     "Organization": "schema",
     "ContactLabel": "schema",
-    "SourceSystem": "schema",
     # mappers
     "map_contact": "mappers",
     "BaseContactMapper": "mappers",
@@ -77,7 +76,6 @@ if TYPE_CHECKING:  # help type checkers/IDEs without importing at runtime
         Organization,
         PhoneNumber,
         PostalAddress,
-        SourceSystem,
     )
     from .signature import (
         PhoneMatch,

@@ -1,26 +1,23 @@
 """Provider-specific mappers into the unified :class:`EnterpriseContact`.
 
 Each mapper takes one raw record from an upstream API and returns a validated
-``EnterpriseContact``. Mappers are deliberately defensive: upstream payloads are
-partial, occasionally malformed, and evolve over time, so a single bad field
-(e.g. a garbage email) is dropped rather than allowed to sink the whole record.
+``EnterpriseContact``. Mappers are deliberately defensive (permissive-in): an
+individual malformed value — a garbage email, an empty org — is logged and
+dropped rather than allowed to sink the whole record. The resulting contact is
+still strict-out: it either validates or the record is reported as unmappable.
 
 Usage
 -----
 >>> from tools.crm.mappers import map_contact
 >>> contact = map_contact("google_people", raw_google_person)
 >>> contact = map_contact("microsoft_graph", raw_graph_contact)
-
-Or use a concrete mapper directly::
-
->>> GooglePeopleMapper().map(raw_google_person)
 """
 
 from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from typing import Any, Optional
 
 from pydantic import ValidationError
@@ -32,76 +29,105 @@ from .schema import (
     Organization,
     PhoneNumber,
     PostalAddress,
-    SourceSystem,
 )
 
 logger = logging.getLogger("crm.mappers")
 
+# Canonical provider identifiers (used as EnterpriseContact.source_system).
+GOOGLE_PEOPLE = "google_people"
+MICROSOFT_GRAPH = "microsoft_graph"
+
 
 class ContactMappingError(ValueError):
-    """Raised when a record cannot be mapped into an EnterpriseContact.
+    """Raised when a record cannot be mapped at all (bad provider, no identity).
 
-    Carries the original ``source`` and, when available, the ``source_id`` so
-    ingestion pipelines can log and skip the offending record precisely.
+    Field-level problems never raise — they are logged and dropped. This is
+    reserved for record-level failures so a pipeline can log and skip precisely.
     """
 
-    def __init__(self, message: str, *, source: str, source_id: Optional[str] = None):
-        self.source = source
+    def __init__(self, message: str, *, provider: str, source_id: Optional[str] = None):
+        self.provider = provider
         self.source_id = source_id
         super().__init__(message)
 
 
-def _first_non_empty(*values: Optional[str]) -> Optional[str]:
+# --- shared helpers --------------------------------------------------------
+
+def _first_non_empty(*values: Any) -> Optional[str]:
     for value in values:
-        if value and str(value).strip():
+        if value is not None and str(value).strip():
             return str(value).strip()
     return None
 
 
-def _coerce_label(raw: Optional[str], mapping: dict[str, ContactLabel]) -> ContactLabel:
+def _coerce_label(raw: Any, mapping: dict[str, ContactLabel]) -> ContactLabel:
     if not raw:
         return ContactLabel.OTHER
     return mapping.get(str(raw).strip().lower(), ContactLabel.OTHER)
 
 
-class BaseContactMapper(ABC):
-    """Common scaffolding for provider mappers.
+def _parse_iso8601(value: Any) -> Optional[datetime]:
+    """Parse an ISO-8601 timestamp, tolerating a trailing ``Z``. UTC-aware."""
+    if not value or not isinstance(value, str):
+        return None
+    text = value.strip().replace("Z", "+00:00")
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        logger.warning("could not parse timestamp %r", value)
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
 
-    Subclasses implement the ``_extract_*`` hooks; the base class assembles the
-    pieces and performs the final validation, converting any Pydantic
-    ``ValidationError`` into a :class:`ContactMappingError` with provenance.
+
+def _split_display_name(display: Optional[str]) -> tuple[str, str]:
+    """Best-effort split of a single display string into (first, last)."""
+    if not display or not display.strip():
+        return "", ""
+    parts = display.strip().split()
+    if len(parts) == 1:
+        return parts[0], ""
+    return parts[0], " ".join(parts[1:])
+
+
+# --- base contract ---------------------------------------------------------
+
+class BaseContactMapper(ABC):
+    """Contract every provider mapper implements.
+
+    Subclasses must declare ``source_system`` and implement the two required
+    hooks; the optional ``_extract_*`` hooks default to empty/now so partial
+    payloads still map. The base ``map`` assembles and validates the contact,
+    converting any Pydantic ``ValidationError`` into a ``ContactMappingError``.
     """
 
-    source_system: SourceSystem
+    source_system: str
 
     def map(self, raw: dict[str, Any]) -> EnterpriseContact:
         if not isinstance(raw, dict):
             raise ContactMappingError(
                 f"expected a dict record, got {type(raw).__name__}",
-                source=self.source_system.value,
+                provider=self.source_system,
             )
-
         source_id = self._extract_source_id(raw)
+        first_name, last_name = self._extract_names(raw)
         try:
             return EnterpriseContact(
                 source_system=self.source_system,
                 source_id=source_id,
-                display_name=self._extract_display_name(raw),
-                given_name=self._extract_given_name(raw),
-                family_name=self._extract_family_name(raw),
+                source_updated_at=self._extract_updated_at(raw) or datetime.now(timezone.utc),
+                first_name=first_name,
+                last_name=last_name,
                 emails=self._extract_emails(raw),
                 phones=self._extract_phones(raw),
                 addresses=self._extract_addresses(raw),
                 organizations=self._extract_organizations(raw),
-                photo_url=self._extract_photo_url(raw),
-                birthday=self._extract_birthday(raw),
-                notes=self._extract_notes(raw),
-                source_updated_at=self._extract_updated_at(raw),
             )
         except ValidationError as exc:
             raise ContactMappingError(
                 f"could not build EnterpriseContact: {exc}",
-                source=self.source_system.value,
+                provider=self.source_system,
                 source_id=source_id,
             ) from exc
 
@@ -110,15 +136,9 @@ class BaseContactMapper(ABC):
     def _extract_source_id(self, raw: dict[str, Any]) -> str: ...
 
     @abstractmethod
-    def _extract_display_name(self, raw: dict[str, Any]) -> str: ...
+    def _extract_names(self, raw: dict[str, Any]) -> tuple[str, str]: ...
 
-    # -- optional hooks (sensible no-op defaults) --------------------------
-    def _extract_given_name(self, raw: dict[str, Any]) -> Optional[str]:
-        return None
-
-    def _extract_family_name(self, raw: dict[str, Any]) -> Optional[str]:
-        return None
-
+    # -- optional hooks ----------------------------------------------------
     def _extract_emails(self, raw: dict[str, Any]) -> list[EmailAddress]:
         return []
 
@@ -131,42 +151,30 @@ class BaseContactMapper(ABC):
     def _extract_organizations(self, raw: dict[str, Any]) -> list[Organization]:
         return []
 
-    def _extract_photo_url(self, raw: dict[str, Any]) -> Optional[str]:
-        return None
-
-    def _extract_birthday(self, raw: dict[str, Any]) -> Optional[date]:
-        return None
-
-    def _extract_notes(self, raw: dict[str, Any]) -> Optional[str]:
-        return None
-
     def _extract_updated_at(self, raw: dict[str, Any]) -> Optional[datetime]:
         return None
 
-    # -- shared helpers ----------------------------------------------------
-    def _build_email(self, address: Optional[str], label: ContactLabel, primary: bool) -> Optional[EmailAddress]:
-        """Build one EmailAddress, or ``None`` if the value is unusable.
-
-        Malformed emails are logged and dropped so a single bad row cannot fail
-        an otherwise valid contact.
-        """
+    # -- safe builders (drop invalid values, never raise) ------------------
+    def _build_email(self, address: Any, label: ContactLabel, is_primary: bool) -> Optional[EmailAddress]:
         if not address or not str(address).strip():
             return None
         try:
-            return EmailAddress(address=address, label=label, primary=primary)
+            return EmailAddress(address=str(address), label=label, is_primary=is_primary)
         except ValidationError:
-            logger.warning("[%s] dropping invalid email %r", self.source_system.value, address)
+            logger.warning("[%s] dropping invalid email %r", self.source_system, address)
             return None
 
-    def _build_phone(self, number: Optional[str], label: ContactLabel, primary: bool) -> Optional[PhoneNumber]:
+    def _build_phone(self, number: Any, label: ContactLabel, is_primary: bool) -> Optional[PhoneNumber]:
         if not number or not str(number).strip():
             return None
         try:
-            return PhoneNumber(number=number, label=label, primary=primary)
+            return PhoneNumber(number=str(number), label=label, is_primary=is_primary)
         except ValidationError:
-            logger.warning("[%s] dropping invalid phone %r", self.source_system.value, number)
+            logger.warning("[%s] dropping invalid phone %r", self.source_system, number)
             return None
 
+
+# --- Google People ---------------------------------------------------------
 
 class GooglePeopleMapper(BaseContactMapper):
     """Maps a Google People API ``person`` resource.
@@ -174,13 +182,17 @@ class GooglePeopleMapper(BaseContactMapper):
     Reference: https://developers.google.com/people/api/rest/v1/people#Person
     """
 
-    source_system = SourceSystem.GOOGLE_PEOPLE
+    source_system = GOOGLE_PEOPLE
 
     _LABELS = {
         "work": ContactLabel.WORK,
+        "business": ContactLabel.WORK,
+        "office": ContactLabel.WORK,
         "home": ContactLabel.HOME,
+        "personal": ContactLabel.HOME,
         "mobile": ContactLabel.MOBILE,
         "cell": ContactLabel.MOBILE,
+        "other": ContactLabel.OTHER,
     }
 
     @staticmethod
@@ -189,7 +201,6 @@ class GooglePeopleMapper(BaseContactMapper):
 
     @staticmethod
     def _primary_of(entries: list[dict[str, Any]]) -> dict[str, Any]:
-        """Return the primary entry, else the first, else ``{}``."""
         for entry in entries:
             if entry.get("metadata", {}).get("primary"):
                 return entry
@@ -199,33 +210,18 @@ class GooglePeopleMapper(BaseContactMapper):
         source_id = _first_non_empty(raw.get("resourceName"))
         if not source_id:
             raise ContactMappingError(
-                "google person is missing 'resourceName'",
-                source=self.source_system.value,
+                "google person is missing 'resourceName'", provider=self.source_system
             )
         return source_id
 
-    def _extract_display_name(self, raw: dict[str, Any]) -> str:
+    def _extract_names(self, raw: dict[str, Any]) -> tuple[str, str]:
         name = self._primary_of(raw.get("names", []))
-        display = _first_non_empty(
-            name.get("displayName"),
-            " ".join(filter(None, [name.get("givenName"), name.get("familyName")])) or None,
-            # Fall back to the primary email's local part so we never violate the
-            # non-blank display_name invariant for a contact that has an email.
-            (self._primary_of(raw.get("emailAddresses", [])).get("value") or "").split("@")[0] or None,
-        )
-        if not display:
-            raise ContactMappingError(
-                "google person has no name or email to derive a display name",
-                source=self.source_system.value,
-                source_id=raw.get("resourceName"),
-            )
-        return display
-
-    def _extract_given_name(self, raw: dict[str, Any]) -> Optional[str]:
-        return _first_non_empty(self._primary_of(raw.get("names", [])).get("givenName"))
-
-    def _extract_family_name(self, raw: dict[str, Any]) -> Optional[str]:
-        return _first_non_empty(self._primary_of(raw.get("names", [])).get("familyName"))
+        first = _first_non_empty(name.get("givenName"))
+        last = _first_non_empty(name.get("familyName"))
+        if first or last:
+            return first or "", last or ""
+        # Fall back to splitting displayName.
+        return _split_display_name(_first_non_empty(name.get("displayName")))
 
     def _extract_emails(self, raw: dict[str, Any]) -> list[EmailAddress]:
         out = []
@@ -267,7 +263,7 @@ class GooglePeopleMapper(BaseContactMapper):
                     )
                 )
             except ValidationError:
-                logger.warning("[%s] dropping empty address", self.source_system.value)
+                logger.warning("[%s] dropping empty address", self.source_system)
         return out
 
     def _extract_organizations(self, raw: dict[str, Any]) -> list[Organization]:
@@ -282,37 +278,18 @@ class GooglePeopleMapper(BaseContactMapper):
                     )
                 )
             except ValidationError:
-                logger.warning("[%s] dropping empty organization", self.source_system.value)
+                logger.warning("[%s] dropping empty organization", self.source_system)
         return out
-
-    def _extract_photo_url(self, raw: dict[str, Any]) -> Optional[str]:
-        photos = raw.get("photos", [])
-        primary = self._primary_of(photos)
-        return _first_non_empty(primary.get("url"))
-
-    def _extract_birthday(self, raw: dict[str, Any]) -> Optional[date]:
-        for entry in raw.get("birthdays", []):
-            d = entry.get("date") or {}
-            year, month, day = d.get("year"), d.get("month"), d.get("day")
-            if year and month and day:
-                try:
-                    return date(int(year), int(month), int(day))
-                except ValueError:
-                    continue
-        return None
-
-    def _extract_notes(self, raw: dict[str, Any]) -> Optional[str]:
-        biographies = raw.get("biographies", [])
-        primary = self._primary_of(biographies)
-        return _first_non_empty(primary.get("value"))
 
     def _extract_updated_at(self, raw: dict[str, Any]) -> Optional[datetime]:
         for source in raw.get("metadata", {}).get("sources", []):
-            update_time = source.get("updateTime")
-            if update_time:
-                return _parse_iso8601(update_time)
+            parsed = _parse_iso8601(source.get("updateTime"))
+            if parsed:
+                return parsed
         return None
 
+
+# --- Microsoft Graph --------------------------------------------------------
 
 class MicrosoftGraphMapper(BaseContactMapper):
     """Maps a Microsoft Graph ``contact`` resource.
@@ -320,65 +297,43 @@ class MicrosoftGraphMapper(BaseContactMapper):
     Reference: https://learn.microsoft.com/en-us/graph/api/resources/contact
     """
 
-    source_system = SourceSystem.MICROSOFT_GRAPH
+    source_system = MICROSOFT_GRAPH
 
     def _extract_source_id(self, raw: dict[str, Any]) -> str:
         source_id = _first_non_empty(raw.get("id"))
         if not source_id:
             raise ContactMappingError(
-                "graph contact is missing 'id'",
-                source=self.source_system.value,
+                "graph contact is missing 'id'", provider=self.source_system
             )
         return source_id
 
-    def _extract_display_name(self, raw: dict[str, Any]) -> str:
-        first_email = (raw.get("emailAddresses") or [{}])[0].get("address", "")
-        display = _first_non_empty(
-            raw.get("displayName"),
-            " ".join(filter(None, [raw.get("givenName"), raw.get("surname")])) or None,
-            (first_email.split("@")[0] if first_email else None),
-        )
-        if not display:
-            raise ContactMappingError(
-                "graph contact has no name or email to derive a display name",
-                source=self.source_system.value,
-                source_id=raw.get("id"),
-            )
-        return display
-
-    def _extract_given_name(self, raw: dict[str, Any]) -> Optional[str]:
-        return _first_non_empty(raw.get("givenName"))
-
-    def _extract_family_name(self, raw: dict[str, Any]) -> Optional[str]:
-        # Graph uses "surname" for the family name.
-        return _first_non_empty(raw.get("surname"))
+    def _extract_names(self, raw: dict[str, Any]) -> tuple[str, str]:
+        first = _first_non_empty(raw.get("givenName"))
+        last = _first_non_empty(raw.get("surname"))  # Graph: surname -> last_name
+        if first or last:
+            return first or "", last or ""
+        return _split_display_name(_first_non_empty(raw.get("displayName")))
 
     def _extract_emails(self, raw: dict[str, Any]) -> list[EmailAddress]:
         out = []
         # Graph does not label emails; the first is treated as primary.
         for index, entry in enumerate(raw.get("emailAddresses", [])):
-            email = self._build_email(
-                entry.get("address"),
-                ContactLabel.OTHER,
-                primary=(index == 0),
-            )
+            email = self._build_email(entry.get("address"), ContactLabel.OTHER, is_primary=(index == 0))
             if email:
                 out.append(email)
         return out
 
     def _extract_phones(self, raw: dict[str, Any]) -> list[PhoneNumber]:
-        out = []
-        # mobilePhone is a scalar; business/home phones are lists. We surface the
+        # mobilePhone is a scalar; business/home phones are arrays. Surface the
         # mobile first so it becomes the primary channel.
-        candidates: list[tuple[Optional[str], ContactLabel]] = [
-            (raw.get("mobilePhone"), ContactLabel.MOBILE),
-        ]
+        candidates: list[tuple[Any, ContactLabel]] = [(raw.get("mobilePhone"), ContactLabel.MOBILE)]
         candidates += [(n, ContactLabel.WORK) for n in raw.get("businessPhones", []) or []]
         candidates += [(n, ContactLabel.HOME) for n in raw.get("homePhones", []) or []]
 
+        out = []
         first = True
         for number, label in candidates:
-            phone = self._build_phone(number, label, primary=first)
+            phone = self._build_phone(number, label, is_primary=first)
             if phone:
                 out.append(phone)
                 first = False
@@ -386,12 +341,11 @@ class MicrosoftGraphMapper(BaseContactMapper):
 
     def _extract_addresses(self, raw: dict[str, Any]) -> list[PostalAddress]:
         out = []
-        graph_addresses = [
+        for key, label in (
             ("businessAddress", ContactLabel.WORK),
             ("homeAddress", ContactLabel.HOME),
             ("otherAddress", ContactLabel.OTHER),
-        ]
-        for key, label in graph_addresses:
+        ):
             entry = raw.get(key)
             if not isinstance(entry, dict):
                 continue
@@ -407,8 +361,7 @@ class MicrosoftGraphMapper(BaseContactMapper):
                     )
                 )
             except ValidationError:
-                # Graph often returns an all-empty address object; skip it.
-                continue
+                continue  # Graph often returns an all-empty address object.
         return out
 
     def _extract_organizations(self, raw: dict[str, Any]) -> list[Organization]:
@@ -423,57 +376,43 @@ class MicrosoftGraphMapper(BaseContactMapper):
         except ValidationError:
             return []
 
-    def _extract_notes(self, raw: dict[str, Any]) -> Optional[str]:
-        return _first_non_empty(raw.get("personalNotes"))
-
-    def _extract_birthday(self, raw: dict[str, Any]) -> Optional[date]:
-        parsed = _parse_iso8601(raw.get("birthday"))
-        return parsed.date() if parsed else None
-
     def _extract_updated_at(self, raw: dict[str, Any]) -> Optional[datetime]:
         return _parse_iso8601(raw.get("lastModifiedDateTime"))
 
 
-def _parse_iso8601(value: Optional[str]) -> Optional[datetime]:
-    """Parse an ISO-8601 timestamp, tolerating a trailing ``Z``.
+# --- Dispatcher ------------------------------------------------------------
 
-    Returns a timezone-aware ``datetime`` (assuming UTC when no offset is
-    present), or ``None`` if the value is missing or unparseable.
-    """
-    if not value or not isinstance(value, str):
-        return None
-    text = value.strip().replace("Z", "+00:00")
-    try:
-        parsed = datetime.fromisoformat(text)
-    except ValueError:
-        logger.warning("could not parse timestamp %r", value)
-        return None
-    if parsed.tzinfo is None:
-        parsed = parsed.replace(tzinfo=timezone.utc)
-    return parsed
-
-
-# Registry for the convenience dispatcher below. Keyed by both the enum value
-# and the enum member so callers can pass either.
 _MAPPERS: dict[str, BaseContactMapper] = {
-    SourceSystem.GOOGLE_PEOPLE.value: GooglePeopleMapper(),
-    SourceSystem.MICROSOFT_GRAPH.value: MicrosoftGraphMapper(),
+    GOOGLE_PEOPLE: GooglePeopleMapper(),
+    MICROSOFT_GRAPH: MicrosoftGraphMapper(),
+}
+
+# Friendly aliases accepted by the dispatcher.
+_ALIASES = {
+    "google": GOOGLE_PEOPLE,
+    "google_people_api": GOOGLE_PEOPLE,
+    "people": GOOGLE_PEOPLE,
+    "microsoft": MICROSOFT_GRAPH,
+    "msgraph": MICROSOFT_GRAPH,
+    "graph": MICROSOFT_GRAPH,
+    "outlook": MICROSOFT_GRAPH,
 }
 
 
-def map_contact(source: "str | SourceSystem", raw: dict[str, Any]) -> EnterpriseContact:
-    """Map ``raw`` from ``source`` into an :class:`EnterpriseContact`.
+def map_contact(provider_name: str, raw_data: dict) -> EnterpriseContact:
+    """Map ``raw_data`` from ``provider_name`` into an ``EnterpriseContact``.
 
-    ``source`` accepts either a :class:`SourceSystem` member or its string value
-    (e.g. ``"google_people"``). Raises :class:`ContactMappingError` for an
-    unknown source or an unmappable record.
+    Selects the mapper by provider name (canonical id or a known alias). Invalid
+    individual fields are logged and dropped by the mappers; only a bad provider
+    or a record with no resolvable identity raises ``ContactMappingError``.
     """
-    key = source.value if isinstance(source, SourceSystem) else str(source).strip().lower()
+    key = str(provider_name).strip().lower()
+    key = _ALIASES.get(key, key)
     mapper = _MAPPERS.get(key)
     if mapper is None:
         raise ContactMappingError(
-            f"no mapper registered for source {source!r}; "
-            f"known sources: {sorted(_MAPPERS)}",
-            source=str(source),
+            f"no mapper registered for provider {provider_name!r}; "
+            f"known: {sorted(_MAPPERS)}",
+            provider=str(provider_name),
         )
-    return mapper.map(raw)
+    return mapper.map(raw_data)

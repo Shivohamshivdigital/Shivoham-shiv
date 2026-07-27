@@ -85,7 +85,7 @@ function makeRouter(
   if (args.transform === 'map_contact') {
     // EnterpriseContact dump carries its own identity.
     return (data: any) => {
-      const email = data.emails?.find((e: any) => e.primary)?.address;
+      const email = data.emails?.find((e: any) => e.is_primary)?.address;
       const key = email ?? `${data.source_system}:${data.source_id}`;
       return {
         entityHash: sha256(key.toLowerCase()),

@@ -295,7 +295,7 @@ def phone_matches_to_schema(matches: list[PhoneMatch]) -> list:
             PhoneNumber(
                 number=number,
                 label=label_map.get(match.label, ContactLabel.OTHER),
-                primary=(index == 0),
+                is_primary=(index == 0),
             )
         )
     return out
