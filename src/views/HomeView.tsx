@@ -169,7 +169,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                   14-Day Vedic Healing Challenge
                 </h3>
                 <p className="text-xs sm:text-sm text-green-50/80 mt-0.5">
-                  Fix fatigue, stress, bloating &amp; poor sleep — 3 minutes a day. No pills.
+                  Support your energy, digestion &amp; sleep with 3-minute daily Ayurvedic habits.
                 </p>
               </div>
             </div>
