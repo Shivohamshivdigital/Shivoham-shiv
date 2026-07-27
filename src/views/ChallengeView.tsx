@@ -13,6 +13,9 @@ import {
   Loader2,
   ChevronDown,
   Star,
+  Gift,
+  Award,
+  Users,
 } from "lucide-react";
 import SEO from "../components/SEO";
 import MarmaTestimonials from "../components/MarmaTestimonials";
@@ -201,6 +204,23 @@ export default function ChallengeView() {
         </p>
       </motion.section>
 
+      {/* TRUST BADGES */}
+      <section className="py-6 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            { icon: Award, label: "7+ years of practice" },
+            { icon: Users, label: "1,200+ people guided" },
+            { icon: HandHeart, label: "No pills or equipment" },
+            { icon: ShieldCheck, label: "One-time ₹1 · no auto-debit" },
+          ].map((b, i) => (
+            <div key={i} className="flex flex-col items-center text-center gap-2 bg-white border border-green-100 rounded-2xl p-4 shadow-xs">
+              <b.icon className="w-6 h-6 text-green-700" />
+              <span className="text-[11px] sm:text-xs font-semibold text-[#3A4A40] leading-snug">{b.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* PHASES */}
       <motion.section
         initial={{ opacity: 0, y: 24 }}
@@ -229,6 +249,34 @@ export default function ChallengeView() {
         </div>
       </motion.section>
 
+      {/* QUALIFICATION CHECKLIST */}
+      <section className="py-14 px-4 sm:px-6 max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Is this for you?</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mt-1">
+            Check the boxes where your answer is YES
+          </h2>
+        </div>
+        <div className="space-y-3">
+          {[
+            "You often feel tired, stressed or low on energy.",
+            "You sit for long hours and carry tension in your neck & shoulders.",
+            "Your digestion feels heavy or irregular.",
+            "You struggle to switch off and sleep deeply.",
+            "You'd rather build a natural daily habit than rely on pills.",
+            "You can spare 3 minutes a day for two weeks.",
+          ].map((c, i) => (
+            <div key={i} className="flex items-start gap-3 bg-white border border-green-100 rounded-2xl px-4 py-3">
+              <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+              <span className="text-sm text-[#3A4A40]">{c}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-sm text-slate-600 mt-6">
+          Checked 3 or more? <b className="text-[#2F5233]">This challenge is built for you.</b>
+        </p>
+      </section>
+
       {/* DAY-BY-DAY */}
       <motion.section
         initial={{ opacity: 0, y: 24 }}
@@ -252,6 +300,30 @@ export default function ChallengeView() {
           ))}
         </div>
       </motion.section>
+
+      {/* WHAT YOU'LL DISCOVER (numbered) */}
+      <section className="py-14 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-center mb-10">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Inside the 14 days</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">What you'll discover</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            { n: "01", t: "Instant-calm tools", d: "Simple mudras & breathing you can use the moment stress hits — no app, no equipment." },
+            { n: "02", t: "Lighter digestion", d: "Gentle finger alignments and points that ease bloating and heaviness after meals." },
+            { n: "03", t: "Deeper sleep & focus", d: "A wind-down routine to quiet a busy mind, plus a gesture to sharpen daytime focus." },
+            { n: "04", t: "Your 5-minute ritual", d: "By day 13 it all comes together into one simple daily habit you can keep for life." },
+          ].map((f, i) => (
+            <div key={i} className="flex gap-4 bg-white border border-green-100 rounded-3xl p-6 shadow-xs">
+              <span className="font-heading font-bold text-3xl text-[#E8943A] shrink-0 leading-none">{f.n}</span>
+              <div>
+                <h3 className="font-heading font-bold text-lg text-green-900 mb-1">{f.t}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{f.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* INCLUDED + PRICE */}
       <motion.section
@@ -293,6 +365,35 @@ export default function ChallengeView() {
         </div>
       </motion.section>
 
+      {/* FREE BONUSES */}
+      <section className="py-14 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-center mb-10">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Included free</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">Free bonuses with your ₹1</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {[
+            { title: "Dosha self-assessment", was: "₹299", d: "Find your Ayurvedic body type and what suits it — no lab tests needed." },
+            { title: "WhatsApp guidance", was: "₹499", d: "Daily nudges and answers from the Shivoham Shiv team through the challenge." },
+            { title: "5-minute ritual card", was: "₹199", d: "A simple morning routine to keep long after the 14 days are over." },
+          ].map((b, i) => (
+            <div key={i} className="bg-white border border-green-100 rounded-3xl p-6 shadow-xs text-center">
+              <div className="w-11 h-11 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center mx-auto mb-3">
+                <Gift className="w-6 h-6" />
+              </div>
+              <span className="inline-block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1">Bonus {i + 1}</span>
+              <h3 className="font-heading font-bold text-base text-green-900 mb-1">{b.title}</h3>
+              <p className="text-xs text-slate-500 leading-relaxed mb-3">{b.d}</p>
+              <span className="text-xs text-slate-400 line-through mr-1.5">{b.was}</span>
+              <span className="text-xs font-extrabold text-green-700">FREE</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-sm text-slate-600 mt-6">
+          Total value <b className="text-slate-400 line-through">₹997</b> — yours free with the ₹1 challenge.
+        </p>
+      </section>
+
       {/* SOCIAL PROOF */}
       <section className="py-12 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -317,6 +418,33 @@ export default function ChallengeView() {
 
       {/* MARMA TESTIMONIALS CAROUSEL (auto-scrolling, with photos) */}
       <MarmaTestimonials heading="What our Marma Dab Chikitsa clients say" />
+
+      {/* FOUNDER / YOUR GUIDE */}
+      <section className="py-14 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto bg-white border border-green-100 rounded-3xl shadow-md overflow-hidden grid md:grid-cols-5">
+          <div className="md:col-span-2 bg-[#F2F9F2] flex items-center justify-center p-8">
+            <div className="relative w-40 h-40 rounded-full overflow-hidden bg-[#2F5D50] text-white flex items-center justify-center shadow-lg shrink-0">
+              <span className="font-heading font-bold text-4xl">SS</span>
+              <img
+                src="/founder.jpg"
+                alt="Shivoham Shiv guide"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="md:col-span-3 p-8">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Your guide</span>
+            <h2 className="font-heading font-bold text-2xl text-green-900 mt-1 mb-3">Rooted in authentic Vedic practice</h2>
+            <p className="text-sm text-slate-600 leading-relaxed mb-3">
+              At Shivoham Shiv we've spent 7+ years guiding 1,200+ people back to balance using traditional Mudra,
+              Marma and Ayurvedic practices — no pills, no shortcuts. This challenge is the gentle first step of that
+              same path, simplified into 3 mindful minutes a day.
+            </p>
+            <p className="text-sm font-bold text-[#2F5233]">— Team Shivoham Shiv</p>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section className="py-12 px-4 sm:px-6 max-w-3xl mx-auto">
