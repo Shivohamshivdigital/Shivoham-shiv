@@ -47,6 +47,16 @@ export async function startPayment(plan: PaymentPlan, prefill: PaymentPrefill = 
   }
   const { orderId, amount, currency, keyId, label } = await orderRes.json();
 
+  // Fire the "payment started" conversion event (all plans) for ad tracking.
+  const fbq = (window as any).fbq;
+  if (typeof fbq === "function") {
+    fbq("track", "InitiateCheckout", {
+      value: (Number(amount) || 0) / 100,
+      currency: currency || "INR",
+      content_name: plan,
+    });
+  }
+
   // 2) Open the Razorpay checkout and verify on success.
   return new Promise((resolve, reject) => {
     const rzp = new window.Razorpay({

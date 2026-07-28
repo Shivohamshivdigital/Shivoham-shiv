@@ -124,12 +124,16 @@ export default function ChallengeView() {
     setAuthOpen(false);
     setPaying(true);
     setError(null);
+    // Give the payment step its own trackable URL (for Meta / GA goals).
+    const backTo = window.location.pathname;
+    navigate(`${backTo}?step=payment`, { replace: true });
     try {
       await startPayment("challenge", { email, contact: phone });
       const q = new URLSearchParams({ plan: "challenge", amount: "1", email, phone });
       navigate(`/thank-you?${q.toString()}`);
     } catch (err: any) {
       setError(err.message || "Payment could not complete. Please try again.");
+      navigate(backTo, { replace: true });
     } finally {
       setPaying(false);
     }
