@@ -165,11 +165,11 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                 <span className="inline-block text-[10px] font-extrabold uppercase tracking-widest text-amber-300 mb-1">
                   New · Just ₹1
                 </span>
-                <h3 className="font-heading font-bold text-lg sm:text-2xl leading-tight">
-                  14-Day Vedic Healing Challenge
+                <h3 className="font-heading font-bold text-lg sm:text-2xl leading-tight text-white">
+                  14-Day Vedic Detox &amp; Metabolism Challenge
                 </h3>
                 <p className="text-xs sm:text-sm text-green-50/80 mt-0.5">
-                  Support your energy, digestion &amp; sleep with 3-minute daily Ayurvedic habits.
+                  Beat bloating, support digestion &amp; feel lighter with 3-minute daily Ayurvedic habits.
                 </p>
               </div>
             </div>
