@@ -296,6 +296,80 @@ export default function AboutView() {
         </div>
       </section>
 
+      {/* 6b. Founder's Credentials & Certifications */}
+      <section className="bg-[#F2F9F2] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E3F1E3]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto space-y-2 mb-12">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Trained &amp; Certified</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">Founder's Credentials</h2>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Our founder, <strong>Pooja Chaturvedi</strong>, has formal training across Yoga, Ayurveda and
+              traditional energy therapies — so every practice we share is rooted in real, certified study.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Award className="w-6 h-6 text-[#4A7C59]" />,
+                title: "Yoga Alliance USA — RYS 200",
+                body: "200-Hour Yoga Teacher Training (Yoga Teachers Training Programme)",
+                org: "Arogya Yogshala, New Delhi",
+                year: "2025 · Yoga Alliance Reg. ID 277005",
+              },
+              {
+                icon: <GraduationCap className="w-6 h-6 text-[#4A7C59]" />,
+                title: "Master Diploma in Acupressure",
+                body: "Master Diploma in Acupressure Therapy (M.D. Acu.)",
+                org: "Vishvas Alternative Treatment & Training Centre",
+                year: "2018",
+              },
+              {
+                icon: <Sparkles className="w-6 h-6 text-[#4A7C59]" />,
+                title: "Diploma in Panchakarma Therapy",
+                body: "Diploma in Panchakarma Therapy (D.Phk.)",
+                org: "Vishvas Alternative Treatment & Training Centre",
+                year: "2018",
+              },
+              {
+                icon: <GraduationCap className="w-6 h-6 text-[#4A7C59]" />,
+                title: "Diploma in Electro-Acupuncture",
+                body: "Diploma in Electro-Acupuncture Therapy — TCM (D.Ac.)",
+                org: "Vishvas Alternative Treatment & Training Centre",
+                year: "2018",
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-[#4A7C59]" />,
+                title: "Reiki — 2nd Degree Healer",
+                body: "2nd Degree in Reiki Therapy (Reiki Healer)",
+                org: "Vishvas Alternative Treatment & Training Centre",
+                year: "2018",
+              },
+            ].map((c, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#4A7C59] transition-all flex flex-col"
+              >
+                <div className="w-12 h-12 bg-[#E3F1E3] rounded-xl flex items-center justify-center mb-4">
+                  {c.icon}
+                </div>
+                <h3 className="font-heading font-bold text-base text-[#2F5233] leading-snug mb-1">{c.title}</h3>
+                <p className="text-xs text-slate-700 leading-relaxed flex-1">{c.body}</p>
+                <div className="mt-4 pt-3 border-t border-green-100">
+                  <p className="text-xs font-semibold text-[#2F5233]">{c.org}</p>
+                  <p className="text-[11px] text-slate-500 mt-0.5">{c.year}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-[11px] text-slate-400 mt-8 max-w-2xl mx-auto">
+            Vishvas Alternative Treatment &amp; Training Centre is registered with the Govt. of Rajasthan
+            (Reg. No. 40/2002-2003). Certificates available on request.
+          </p>
+        </div>
+      </section>
+
       {/* 7. Our Commitment to You (soft-green band, image left) */}
       <section className="bg-[#E3F1E3]/60 py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E3F1E3]">
         <div className="max-w-6xl mx-auto bg-white rounded-[32px] border border-green-100 overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-12">
