@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -100,20 +100,11 @@ export default function ChallengeView() {
   const [paying, setPaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
-  const [founder, setFounder] = useState<{ src: string; name: string; title: string } | null>(null);
 
-  useEffect(() => {
-    fetch(`/api/settings?type=founder&t=${Date.now()}`, { cache: "no-store" })
-      .then((r) => r.json())
-      .then((d) => { if (d.founder) setFounder(d.founder); })
-      .catch(() => {});
-  }, []);
-
-  // The guide card always shows a correct default; the admin can override
-  // any field once its save actually persists.
-  const guideName = (founder?.name || "").trim() || "Pooja Chaturvedi";
-  const guideTitle = (founder?.title || "").trim() || "Founder · Shivoham Shiv";
-  const guideImg = (founder?.src || "").trim() || "/founder.jpg";
+  // Single, fixed guide photo — no async swap on load.
+  const guideName = "Pooja Chaturvedi";
+  const guideTitle = "Founder · Shivoham Shiv";
+  const guideImg = "/founder.jpg";
 
   const startJoin = () => {
     setError(null);
