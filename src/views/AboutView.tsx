@@ -363,6 +363,26 @@ export default function AboutView() {
             ))}
           </div>
 
+          <div className="mt-12 max-w-2xl mx-auto">
+            <p className="text-center text-xs uppercase font-bold tracking-widest text-[#E8943A] mb-4">Verified Certificate</p>
+            <a
+              href="/certs/yoga-alliance-rys200.jpg"
+              target="_blank"
+              rel="noreferrer"
+              className="block bg-white border border-green-100 rounded-2xl p-3 shadow-sm hover:shadow-md transition-all"
+            >
+              <img
+                src="/certs/yoga-alliance-rys200.jpg"
+                alt="Yoga Alliance USA RYS-200 Yoga Teacher Training certificate — Pooja Chaturvedi"
+                loading="lazy"
+                className="w-full rounded-xl"
+              />
+            </a>
+            <p className="text-center text-[11px] text-slate-400 mt-2">
+              Yoga Alliance USA — RYS 200 · tap to view full size
+            </p>
+          </div>
+
           <p className="text-center text-[11px] text-slate-400 mt-8 max-w-2xl mx-auto">
             Vishvas Alternative Treatment &amp; Training Centre is registered with the Govt. of Rajasthan
             (Reg. No. 40/2002-2003). Certificates available on request.

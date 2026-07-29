@@ -444,6 +444,10 @@ export default function ChallengeView() {
               Marma and Ayurvedic practices — no pills, no shortcuts. This challenge is the gentle first step of that
               same path, simplified into 3 mindful minutes a day.
             </p>
+            <p className="text-[11px] text-slate-500 mb-3">
+              <span className="font-semibold text-[#2F5233]">Certified:</span> Yoga Alliance USA (RYS-200) · Acupressure
+              · Panchakarma · Electro-Acupuncture · Reiki
+            </p>
             <p className="text-sm font-bold text-[#2F5233]">— {guideName}</p>
           </div>
         </div>
