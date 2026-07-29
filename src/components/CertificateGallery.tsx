@@ -48,7 +48,9 @@ export default function CertificateGallery({
                   src={c.src}
                   alt={`${c.title} — ${c.org}, ${c.year}`}
                   loading="lazy"
-                  className="w-full h-40 object-cover object-top group-hover:scale-105 transition-transform"
+                  decoding="async"
+                  onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
+                  className="w-full h-40 object-cover object-top opacity-0 transition-all duration-500 group-hover:scale-105"
                 />
               </div>
               <p className="text-xs font-semibold text-[#2F5233] leading-snug mt-2 line-clamp-2">{c.title}</p>
