@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import SEO from "../components/SEO";
 import MarmaTestimonials from "../components/MarmaTestimonials";
+import CertificateGallery from "../components/CertificateGallery";
 import AuthModal from "../components/AuthModal";
 import { startPayment } from "../services/paymentService";
 import { setSession } from "../utils/session";
@@ -451,6 +452,11 @@ export default function ChallengeView() {
             <p className="text-sm font-bold text-[#2F5233]">— {guideName}</p>
           </div>
         </div>
+      </section>
+
+      {/* CERTIFICATES */}
+      <section className="py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+        <CertificateGallery heading="Certified & trained" />
       </section>
 
       {/* FAQ */}
