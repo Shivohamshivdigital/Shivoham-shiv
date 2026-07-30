@@ -62,6 +62,13 @@ const CLIENT_PROGRAMS = [
   "Stress, sleep & posture programs",
 ];
 
+const VIDEOS = [
+  "/partner-videos/partner-1.mp4",
+  "/partner-videos/partner-2.mp4",
+  "/partner-videos/partner-3.mp4",
+  "/partner-videos/partner-4.mp4",
+];
+
 const FAQS = [
   { q: "Who can become a partner?", a: "Clinics, studios, doctors and practitioners, affiliates and influencers, corporate wellness teams, distributors, and individual referrers with a relevant network. If you believe in authentic, drug-free wellness, we'd love to talk." },
   { q: "Is there a fee to join?", a: "No sign-up fee to apply. Once we connect, we'll agree on simple terms that work for both of us based on how you'd like to partner (referrals, offering programs, or distribution)." },
@@ -272,6 +279,27 @@ export default function PartnerView() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* VIDEOS */}
+      <section className="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Watch</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">See Shivoham Shiv in action</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {VIDEOS.map((v, i) => (
+            <div key={i} className="rounded-2xl overflow-hidden bg-black border border-green-100 shadow-xs">
+              <video
+                src={v}
+                controls
+                preload="none"
+                playsInline
+                className="w-full aspect-video bg-black"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
