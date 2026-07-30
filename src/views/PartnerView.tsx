@@ -251,7 +251,7 @@ export default function PartnerView() {
                 key={i}
                 className="shrink-0 w-[300px] sm:w-[420px] rounded-2xl overflow-hidden bg-black border border-green-100 shadow-xs"
               >
-                <video src={v} controls preload="metadata" playsInline className="w-full aspect-video bg-black" />
+                <video src={`${v}#t=0.1`} controls preload="metadata" playsInline className="w-full aspect-video bg-black" />
               </div>
             ))}
           </div>
