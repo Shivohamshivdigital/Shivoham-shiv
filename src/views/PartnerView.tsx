@@ -31,6 +31,15 @@ const PARTNER_TYPES = [
   "Other",
 ];
 
+const VIDEOS = [
+  "/partner-videos/partner-1.mp4",
+  "/partner-videos/partner-2.mp4",
+  "/partner-videos/partner-3.mp4",
+  "/partner-videos/partner-4.mp4",
+  "/partner-videos/partner-5.mp4",
+  "/partner-videos/partner-6.mp4",
+];
+
 const WHO = [
   { icon: Stethoscope, title: "Clinics & practitioners", desc: "Doctors, physios, Ayurveda & wellness clinics who want to add authentic Vedic therapies for their patients." },
   { icon: Dumbbell, title: "Yoga & fitness studios", desc: "Studios and trainers looking to offer Mudra, Marma & Ayurvedic programs alongside their classes." },
@@ -48,7 +57,7 @@ const BENEFITS = [
 ];
 
 const STEPS = [
-  { n: "01", title: "Apply", desc: "Fill the short form below with a little about you and how you'd like to partner." },
+  { n: "01", title: "Apply", desc: "Fill the short form with a little about you and how you'd like to partner." },
   { n: "02", title: "We connect", desc: "Our team reaches out on WhatsApp/email, understands your goals, and shares terms that work for both sides." },
   { n: "03", title: "Onboard & grow", desc: "You get training, materials and support — then start referring or offering programs to your clients." },
 ];
@@ -60,13 +69,6 @@ const CLIENT_PROGRAMS = [
   "Panchakarma & detox guidance",
   "14-Day Vedic habit challenge",
   "Stress, sleep & posture programs",
-];
-
-const VIDEOS = [
-  "/partner-videos/partner-1.mp4",
-  "/partner-videos/partner-2.mp4",
-  "/partner-videos/partner-3.mp4",
-  "/partner-videos/partner-4.mp4",
 ];
 
 const FAQS = [
@@ -115,7 +117,6 @@ export default function PartnerView() {
       (window as any).fbq?.("track", "Lead", { content_name: "partner" });
       (window as any).gtag?.("event", "generate_lead", { event_label: "partner" });
       setDone(true);
-      document.getElementById("partner-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (err: any) {
       setError(err.message || "Something went wrong. Please try again.");
     } finally {
@@ -135,6 +136,118 @@ export default function PartnerView() {
     >
       <Handshake className="w-4 h-4" /> Become a partner
     </button>
+  );
+
+  // The enquiry form card — rendered both near the top and at the bottom.
+  const formCard = () => (
+    <div className="max-w-2xl mx-auto bg-white border border-green-100 rounded-3xl shadow-md p-6 sm:p-9">
+      {done ? (
+        <div className="text-center py-8">
+          <div className="w-16 h-16 rounded-full bg-green-100 text-green-700 flex items-center justify-center mx-auto mb-5">
+            <CheckCircle2 className="w-8 h-8" />
+          </div>
+          <h2 className="font-heading font-bold text-2xl text-green-900 mb-2">Thank you! 🙏</h2>
+          <p className="text-sm text-slate-600 leading-relaxed max-w-md mx-auto">
+            We've received your partnership enquiry. Our team will reach out to you on WhatsApp / email soon to take
+            it forward.
+          </p>
+        </div>
+      ) : (
+        <>
+          <div className="text-center max-w-md mx-auto mb-6">
+            <span className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#E8943A]">
+              <Sparkles className="w-3.5 h-3.5" /> Let's talk
+            </span>
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mt-1">Become a partner</h2>
+            <p className="text-xs text-slate-500 mt-1">Fill this in — we usually reply within a day.</p>
+          </div>
+
+          <form onSubmit={onSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1.5">Your name *</label>
+                <input className={inputCls} value={form.name} onChange={set("name")} placeholder="Full name" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1.5">Organization / business</label>
+                <input className={inputCls} value={form.organization} onChange={set("organization")} placeholder="Clinic / studio / brand" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1.5">Email *</label>
+                <input className={inputCls} type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1.5">WhatsApp / phone *</label>
+                <input className={inputCls} value={form.whatsapp} onChange={set("whatsapp")} placeholder="+91 …" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1.5">Partnership type</label>
+                <select className={inputCls} value={form.partnerType} onChange={set("partnerType")}>
+                  <option value="">Select…</option>
+                  {PARTNER_TYPES.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-600 mb-1.5">City</label>
+                <input className={inputCls} value={form.city} onChange={set("city")} placeholder="City" />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 mb-1.5">Website / social (optional)</label>
+              <input className={inputCls} value={form.website} onChange={set("website")} placeholder="https://…" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 mb-1.5">How would you like to partner?</label>
+              <textarea
+                className={`${inputCls} min-h-[110px] resize-y`}
+                value={form.message}
+                onChange={set("message")}
+                placeholder="Tell us a little about you and what you have in mind…"
+              />
+            </div>
+
+            {error && <p className="text-sm text-red-600">{error}</p>}
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all disabled:opacity-70"
+            >
+              {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Handshake className="w-4 h-4" />}
+              {submitting ? "Sending…" : "Send partnership enquiry"}
+            </button>
+            <p className="text-[11px] text-slate-400 text-center">
+              Your details go straight to the Shivoham Shiv team. We never spam.
+            </p>
+          </form>
+        </>
+      )}
+    </div>
+  );
+
+  // Horizontal, left–right scrolling video row.
+  const videoRow = () => (
+    <section className="py-14 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Watch</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">See Shivoham Shiv in action</h2>
+        </div>
+        <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 [scrollbar-width:thin]">
+          {VIDEOS.map((v, i) => (
+            <div
+              key={i}
+              className="snap-center shrink-0 w-[85%] sm:w-[440px] rounded-2xl overflow-hidden bg-black border border-green-100 shadow-xs"
+            >
+              <video src={v} controls preload="none" playsInline className="w-full aspect-video bg-black" />
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-[11px] text-slate-400 mt-2">Swipe / scroll left–right to see more →</p>
+      </div>
+    </section>
   );
 
   return (
@@ -176,8 +289,14 @@ export default function PartnerView() {
         </motion.div>
       </section>
 
+      {/* VIDEOS (top, horizontal scroll) */}
+      {videoRow()}
+
+      {/* FORM (top) */}
+      <section id="partner-form" className="pb-4 px-4 sm:px-6 scroll-mt-24">{formCard()}</section>
+
       {/* TRUST BADGES */}
-      <section className="py-8 px-4 sm:px-6 max-w-5xl mx-auto -mt-8">
+      <section className="py-10 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
             { icon: Award, label: "7+ years of practice" },
@@ -199,7 +318,7 @@ export default function PartnerView() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="py-16 px-4 sm:px-6 max-w-6xl mx-auto"
+        className="py-12 px-4 sm:px-6 max-w-6xl mx-auto"
       >
         <div className="text-center max-w-2xl mx-auto mb-10">
           <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Who it's for</span>
@@ -282,27 +401,6 @@ export default function PartnerView() {
         </div>
       </section>
 
-      {/* VIDEOS */}
-      <section className="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Watch</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">See Shivoham Shiv in action</h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {VIDEOS.map((v, i) => (
-            <div key={i} className="rounded-2xl overflow-hidden bg-black border border-green-100 shadow-xs">
-              <video
-                src={v}
-                controls
-                preload="none"
-                playsInline
-                className="w-full aspect-video bg-black"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="py-16 px-4 sm:px-6 max-w-3xl mx-auto">
         <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] text-center mb-8">Common questions</h2>
@@ -322,94 +420,8 @@ export default function PartnerView() {
         </div>
       </section>
 
-      {/* FORM */}
-      <section id="partner-form" className="pb-20 px-4 sm:px-6 scroll-mt-24">
-        <div className="max-w-2xl mx-auto bg-white border border-green-100 rounded-3xl shadow-md p-6 sm:p-9">
-          {done ? (
-            <div className="text-center py-8">
-              <div className="w-16 h-16 rounded-full bg-green-100 text-green-700 flex items-center justify-center mx-auto mb-5">
-                <CheckCircle2 className="w-8 h-8" />
-              </div>
-              <h2 className="font-heading font-bold text-2xl text-green-900 mb-2">Thank you! 🙏</h2>
-              <p className="text-sm text-slate-600 leading-relaxed max-w-md mx-auto">
-                We've received your partnership enquiry. Our team will reach out to you on WhatsApp / email soon to
-                take it forward.
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="text-center max-w-md mx-auto mb-6">
-                <span className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#E8943A]">
-                  <Sparkles className="w-3.5 h-3.5" /> Let's talk
-                </span>
-                <h2 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mt-1">Become a partner</h2>
-                <p className="text-xs text-slate-500 mt-1">Fill this in — we usually reply within a day.</p>
-              </div>
-
-              <form onSubmit={onSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1.5">Your name *</label>
-                    <input className={inputCls} value={form.name} onChange={set("name")} placeholder="Full name" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1.5">Organization / business</label>
-                    <input className={inputCls} value={form.organization} onChange={set("organization")} placeholder="Clinic / studio / brand" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1.5">Email *</label>
-                    <input className={inputCls} type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1.5">WhatsApp / phone *</label>
-                    <input className={inputCls} value={form.whatsapp} onChange={set("whatsapp")} placeholder="+91 …" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1.5">Partnership type</label>
-                    <select className={inputCls} value={form.partnerType} onChange={set("partnerType")}>
-                      <option value="">Select…</option>
-                      {PARTNER_TYPES.map((t) => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1.5">City</label>
-                    <input className={inputCls} value={form.city} onChange={set("city")} placeholder="City" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1.5">Website / social (optional)</label>
-                  <input className={inputCls} value={form.website} onChange={set("website")} placeholder="https://…" />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1.5">How would you like to partner?</label>
-                  <textarea
-                    className={`${inputCls} min-h-[110px] resize-y`}
-                    value={form.message}
-                    onChange={set("message")}
-                    placeholder="Tell us a little about you and what you have in mind…"
-                  />
-                </div>
-
-                {error && <p className="text-sm text-red-600">{error}</p>}
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all disabled:opacity-70"
-                >
-                  {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Handshake className="w-4 h-4" />}
-                  {submitting ? "Sending…" : "Send partnership enquiry"}
-                </button>
-                <p className="text-[11px] text-slate-400 text-center">
-                  Your details go straight to the Shivoham Shiv team. We never spam.
-                </p>
-              </form>
-            </>
-          )}
-        </div>
-      </section>
+      {/* FORM (bottom) */}
+      <section id="partner-form-bottom" className="pb-20 px-4 sm:px-6 scroll-mt-24">{formCard()}</section>
     </div>
   );
 }
