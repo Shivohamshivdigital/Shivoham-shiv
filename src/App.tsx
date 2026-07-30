@@ -59,6 +59,13 @@ function AppContent() {
     }
   }, [bannerMessage]);
 
+  // On every route change, scroll back to the top (SPA navigations otherwise
+  // keep the previous scroll position — e.g. clicking a footer link would land
+  // you at the bottom of the new page).
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   // Capture ad attribution + fire SPA page views to GA4 and the Meta Pixel.
   const firstNav = useRef(true);
   useEffect(() => {
