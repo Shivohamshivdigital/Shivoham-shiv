@@ -67,10 +67,4 @@ export const CERTIFICATES: Certificate[] = [
     org: "International Sujok Association",
     year: "2019",
   },
-  {
-    src: "/certs/holistic-healing-workshop.jpg",
-    title: "International Holistic Healing Workshop",
-    org: "New Delhi",
-    year: "2018",
-  },
 ];
