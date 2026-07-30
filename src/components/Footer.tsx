@@ -56,6 +56,9 @@ export default function Footer() {
                 <Link to="/contact" className="text-emerald-50 hover:text-amber-200 transition-colors">Contact Us</Link>
               </li>
               <li>
+                <Link to="/partner" className="text-emerald-50 hover:text-amber-200 transition-colors">Partner With Us</Link>
+              </li>
+              <li>
                 <a href="#privacy" className="text-emerald-50 hover:text-amber-200 transition-colors">Privacy & Policy</a>
               </li>
               <li>

@@ -26,6 +26,11 @@ export default async function handler(req, res) {
     return handleAssessment(req, res);
   }
 
+  // "Partner With Us" submissions — saved as a lead tagged "Partner With Us".
+  if (req.body && req.body.type === "partner") {
+    return handlePartner(req, res);
+  }
+
   const { name, email, whatsapp, message, source, attribution } = req.body || {};
 
   if (!name || !email || !whatsapp) {
@@ -243,6 +248,105 @@ async function handleAssessment(req, res) {
   // make the data silently disappear from the admin + customer dashboard).
   if (!saved) {
     return res.status(500).json({ error: "Could not save your assessment. Please try again in a moment." });
+  }
+  return res.status(200).json({ success: true });
+}
+
+// Save a "Partner With Us" submission as a lead (source = "Partner With Us")
+// and notify the team by email. Kept in this endpoint to stay under Vercel's
+// Hobby-plan function limit.
+async function handlePartner(req, res) {
+  const b = req.body || {};
+  const name = (b.name || "").trim();
+  const email = (b.email || "").trim();
+  const whatsapp = (b.whatsapp || "").trim();
+  const organization = (b.organization || "").trim();
+  const partnerType = (b.partnerType || "").trim();
+  const city = (b.city || "").trim();
+  const website = (b.website || "").trim();
+  const note = (b.message || "").trim();
+
+  if (!name || !email || !whatsapp) {
+    return res.status(400).json({ error: "Name, email and WhatsApp are required." });
+  }
+
+  const attr = b.attribution && typeof b.attribution === "object" ? b.attribution : {};
+
+  const summary = [
+    organization && `Organization: ${organization}`,
+    partnerType && `Partnership type: ${partnerType}`,
+    city && `City: ${city}`,
+    website && `Website: ${website}`,
+    note && `Message: ${note}`,
+  ]
+    .filter(Boolean)
+    .join(" | ");
+
+  const saved = await dbInsert("leads", {
+    name,
+    email,
+    whatsapp,
+    message: summary || note || "",
+    source: "Partner With Us",
+    organization,
+    partner_type: partnerType,
+    city,
+    website,
+    utm_source: attr.utm_source || "",
+    utm_medium: attr.utm_medium || "",
+    utm_campaign: attr.utm_campaign || "",
+    utm_term: attr.utm_term || "",
+    utm_content: attr.utm_content || "",
+    gclid: attr.gclid || "",
+    fbclid: attr.fbclid || "",
+    referrer: attr.referrer || "",
+    landing_page: attr.landing_page || "",
+  });
+
+  const BREVO_API_KEY = process.env.BREVO_API_KEY;
+  if (BREVO_API_KEY) {
+    const NOTIFY_TO = process.env.LEAD_NOTIFY_EMAIL || "shivohamshivdigital@gmail.com";
+    const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || "shivohamshivdigital@gmail.com";
+    try {
+      const rows = [
+        ["Name", name],
+        ["Organization", organization],
+        ["Partnership type", partnerType],
+        ["Email", email],
+        ["WhatsApp", whatsapp],
+        ["City", city],
+        ["Website", website],
+        ["Message", note],
+      ];
+      const htmlContent =
+        `<h2>New “Partner With Us” enquiry — ${escapeHtml(name)}</h2>` +
+        `<table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px">` +
+        rows
+          .map(([k, v]) => `<tr><td><strong>${escapeHtml(k)}</strong></td><td>${escapeHtml(v || "—")}</td></tr>`)
+          .join("") +
+        `</table>` +
+        `<p style="color:#888;font-size:12px">Sent automatically from the Shivoham Shiv website.</p>`;
+      const emailRes = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: { "api-key": BREVO_API_KEY, "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({
+          sender: { name: "Shivoham Shiv Website", email: SENDER_EMAIL },
+          to: [{ email: NOTIFY_TO }],
+          replyTo: { email, name },
+          subject: `New Partner Enquiry: ${name}${organization ? ` (${organization})` : ""}`,
+          htmlContent,
+        }),
+      });
+      if (!emailRes.ok) {
+        console.error("Brevo partner email failed:", emailRes.status, await emailRes.text());
+      }
+    } catch (err) {
+      console.error("Brevo partner email error:", err);
+    }
+  }
+
+  if (!saved && !BREVO_API_KEY) {
+    return res.status(500).json({ error: "Partner service is not configured." });
   }
   return res.status(200).json({ success: true });
 }
