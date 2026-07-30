@@ -31,9 +31,8 @@ const PARTNER_TYPES = [
   "Other",
 ];
 
+// Only H.264 clips — partner-1/2 were HEVC (H.265) which browsers can't play.
 const VIDEOS = [
-  "/partner-videos/partner-1.mp4",
-  "/partner-videos/partner-2.mp4",
   "/partner-videos/partner-3.mp4",
   "/partner-videos/partner-4.mp4",
   "/partner-videos/partner-5.mp4",
@@ -227,25 +226,37 @@ export default function PartnerView() {
     </div>
   );
 
-  // Horizontal, left–right scrolling video row.
+  // Auto-scrolling (left → right) video carousel. Pauses on hover so a clip
+  // can be played. Self-contained marquee keyframes.
   const videoRow = () => (
     <section className="py-14 px-4 sm:px-6">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes pv-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+          .pv-track { display: flex; width: max-content; animation: pv-marquee 40s linear infinite; }
+          .pv-wrap:hover .pv-track { animation-play-state: paused; }
+        `,
+        }}
+      />
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Watch</span>
           <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">See Shivoham Shiv in action</h2>
         </div>
-        <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 [scrollbar-width:thin]">
-          {VIDEOS.map((v, i) => (
-            <div
-              key={i}
-              className="snap-center shrink-0 w-[85%] sm:w-[440px] rounded-2xl overflow-hidden bg-black border border-green-100 shadow-xs"
-            >
-              <video src={v} controls preload="none" playsInline className="w-full aspect-video bg-black" />
-            </div>
-          ))}
+        <div className="pv-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+          <div className="pv-track gap-5">
+            {[...VIDEOS, ...VIDEOS].map((v, i) => (
+              <div
+                key={i}
+                className="shrink-0 w-[300px] sm:w-[420px] rounded-2xl overflow-hidden bg-black border border-green-100 shadow-xs"
+              >
+                <video src={v} controls preload="metadata" playsInline className="w-full aspect-video bg-black" />
+              </div>
+            ))}
+          </div>
         </div>
-        <p className="text-center text-[11px] text-slate-400 mt-2">Swipe / scroll left–right to see more →</p>
+        <p className="text-center text-[11px] text-slate-400 mt-3">Hover to pause · click a video to play</p>
       </div>
     </section>
   );
