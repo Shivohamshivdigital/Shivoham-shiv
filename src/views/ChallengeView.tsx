@@ -191,24 +191,24 @@ export default function ChallengeView() {
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 3 min a day</span>
               <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No crash diets or pills</span>
             </div>
-
-            {/* Real people practising */}
-            <div className="mt-8 w-full">
-              <div className="flex gap-2.5 sm:gap-3 overflow-x-auto sm:overflow-visible sm:justify-center pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {["/challenge/hero-1.webp", "/challenge/hero-2.webp", "/challenge/hero-3.webp", "/challenge/hero-4.webp", "/challenge/hero-5.webp"].map((src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt={`Real people practising with Shivoham Shiv ${i + 1}`}
-                    loading="lazy"
-                    className="shrink-0 w-24 sm:w-[18%] aspect-[9/16] object-cover rounded-2xl ring-1 ring-white/25 shadow-lg"
-                  />
-                ))}
-              </div>
-              <p className="text-[11px] text-green-100/60 mt-3">Real people, real daily practice.</p>
-            </div>
           </div>
         </motion.div>
+
+        {/* Real people practising — wider than the hero text on desktop */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 -mt-2 sm:-mt-6">
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto sm:overflow-visible sm:justify-center pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {["/challenge/hero-1.webp", "/challenge/hero-2.webp", "/challenge/hero-3.webp", "/challenge/hero-4.webp", "/challenge/hero-5.webp"].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`Real people practising with Shivoham Shiv ${i + 1}`}
+                loading="lazy"
+                className="shrink-0 w-32 sm:w-[19%] aspect-[9/16] object-cover rounded-2xl ring-1 ring-white/25 shadow-lg"
+              />
+            ))}
+          </div>
+          <p className="text-center text-[11px] text-green-100/60 mt-3">Real people, real daily practice.</p>
+        </div>
       </section>
 
       {/* AGITATION */}
