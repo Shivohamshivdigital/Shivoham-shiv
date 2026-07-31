@@ -194,16 +194,16 @@ export default function ChallengeView() {
           </div>
         </motion.div>
 
-        {/* Real people practising — wider than the hero text on desktop */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 -mt-2 sm:-mt-6">
-          <div className="flex gap-3 sm:gap-4 overflow-x-auto sm:overflow-visible sm:justify-center pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {/* Real people practising — full width on desktop */}
+        <div className="w-full px-3 sm:px-4 pb-16 sm:pb-20 -mt-2 sm:-mt-6">
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto sm:overflow-visible pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {["/challenge/hero-1.webp", "/challenge/hero-2.webp", "/challenge/hero-3.webp", "/challenge/hero-4.webp", "/challenge/hero-5.webp"].map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt={`Real people practising with Shivoham Shiv ${i + 1}`}
                 loading="lazy"
-                className="shrink-0 w-32 sm:w-[19%] aspect-[9/16] object-cover rounded-2xl ring-1 ring-white/25 shadow-lg"
+                className="shrink-0 sm:shrink w-32 sm:w-auto sm:flex-1 aspect-[9/16] object-cover rounded-2xl ring-1 ring-white/25 shadow-lg"
               />
             ))}
           </div>
