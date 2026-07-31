@@ -16,6 +16,7 @@ import WeightLossView from "./views/WeightLossView";
 import ChallengeView from "./views/ChallengeView";
 import ContactView from "./views/ContactView";
 import PartnerView from "./views/PartnerView";
+import CertificationView from "./views/CertificationView";
 import BlogView from "./views/BlogView";
 import BlogPostView from "./views/BlogPostView";
 import ThankYouView from "./views/ThankYouView";
@@ -262,6 +263,8 @@ function AppContent() {
 
           <Route path="/contact" element={<ContactView onSetBanner={setBannerMessage} />} />
           <Route path="/partner" element={<PartnerView />} />
+          <Route path="/certification" element={<CertificationView />} />
+          <Route path="/marma-certification" element={<CertificationView />} />
           
           <Route path="/blog" element={<BlogView />} />
           <Route path="/blog/:slug" element={<BlogPostView />} />
