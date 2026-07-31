@@ -203,7 +203,7 @@ export default function ChallengeView() {
                 src={src}
                 alt={`Real people practising with Shivoham Shiv ${i + 1}`}
                 loading="lazy"
-                className="shrink-0 sm:shrink w-32 sm:w-auto sm:flex-1 aspect-[9/16] object-cover rounded-2xl ring-1 ring-white/25 shadow-lg"
+                className="shrink-0 sm:shrink w-32 sm:w-auto sm:flex-1 h-48 sm:h-64 lg:h-72 object-cover object-center rounded-2xl ring-1 ring-white/25 shadow-lg"
               />
             ))}
           </div>
