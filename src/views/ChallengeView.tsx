@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -101,6 +101,24 @@ export default function ChallengeView() {
   const [error, setError] = useState<string | null>(null);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
 
+  // Show a sticky mobile CTA, but hide it whenever a real "Join" button is
+  // already on screen (so it isn't shown where the button already exists).
+  const [ctaOnScreen, setCtaOnScreen] = useState(true);
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll(".challenge-cta"));
+    if (!els.length) return;
+    const visible = new Set<Element>();
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)));
+        setCtaOnScreen(visible.size > 0);
+      },
+      { threshold: 0 }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   // Single, fixed guide photo — no async swap on load.
   const guideName = "Pooja Chaturvedi";
   const guideTitle = "Founder · Shivoham Shiv";
@@ -135,7 +153,7 @@ export default function ChallengeView() {
     <button
       onClick={startJoin}
       disabled={paying}
-      className={`inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 ${className}`}
+      className={`challenge-cta inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 ${className}`}
     >
       {paying ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
       {paying ? "Opening payment…" : "Join the challenge — ₹1"}
@@ -508,6 +526,22 @@ export default function ChallengeView() {
           </p>
         </div>
       </motion.section>
+
+      {/* Sticky mobile CTA — hidden whenever a real Join button is on screen */}
+      <div
+        className={`md:hidden fixed inset-x-0 bottom-0 z-40 px-3 pb-3 pt-6 bg-gradient-to-t from-[#23483E] via-[#23483E]/95 to-transparent transition-all duration-300 ${
+          ctaOnScreen ? "translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        }`}
+      >
+        <button
+          onClick={startJoin}
+          disabled={paying}
+          className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl disabled:opacity-70"
+        >
+          {paying ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+          {paying ? "Opening payment…" : "Join the challenge — ₹1"}
+        </button>
+      </div>
 
       {authOpen && <AuthModal onClose={() => setAuthOpen(false)} onSuccess={handleAuthSuccess} />}
     </div>
