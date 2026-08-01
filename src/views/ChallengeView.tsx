@@ -164,11 +164,9 @@ export default function ChallengeView() {
             Beat belly bloat &amp; wake up your metabolism —<br />
             <span className="text-amber-300">one simple Vedic habit a day</span>
           </h1>
-          <p className="text-sm sm:text-base text-green-50/85 max-w-3xl mx-auto leading-relaxed mb-6">
-            A guided 14-day introduction to traditional Ayurvedic <strong>Mudra, Marma &amp; breathing</strong>
-            practices — about 30 minutes a day to help ease bloating, support digestion and a sluggish metabolism,
-            and lift your everyday energy. A gentle habit that supports natural weight management — not a crash
-            diet, medicine or a quick fix.
+          <p className="text-sm text-green-50/85 max-w-xl mx-auto leading-relaxed mb-6">
+            A 14-day Ayurvedic habit — <strong>Mudra, Marma &amp; breathing</strong>, about 30 minutes a day — to
+            ease bloating, support digestion and lift your energy. Not a crash diet, medicine or a quick fix.
           </p>
           <p className="text-[11px] sm:text-xs text-green-100/60 max-w-2xl mx-auto leading-relaxed mb-8">
             These practices support healthy daily habits and wellbeing — they don't diagnose, treat or cure any
