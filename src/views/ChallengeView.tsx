@@ -160,11 +160,11 @@ export default function ChallengeView() {
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <Sparkles className="w-3.5 h-3.5" /> 14-Day Vedic Detox &amp; Metabolism Challenge
           </span>
-          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-white xl:whitespace-nowrap">
+          <h1 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight mb-5 text-white xl:whitespace-nowrap">
             Beat belly bloat &amp; wake up your metabolism —<br />
             <span className="text-amber-300">one simple Vedic habit a day</span>
           </h1>
-          <p className="text-sm sm:text-lg text-green-50/85 max-w-3xl mx-auto leading-relaxed mb-6">
+          <p className="text-sm sm:text-base text-green-50/85 max-w-3xl mx-auto leading-relaxed mb-6">
             A guided 14-day introduction to traditional Ayurvedic <strong>Mudra, Marma &amp; breathing</strong>
             practices — about 30 minutes a day to help ease bloating, support digestion and a sluggish metabolism,
             and lift your everyday energy. A gentle habit that supports natural weight management — not a crash
