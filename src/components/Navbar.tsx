@@ -35,7 +35,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
       {/* Promotional announcement bar (live) */}
       <Link
         to="/challenge"
-        className="group relative block overflow-hidden bg-gradient-to-r from-[#d97f24] via-[#F0A64E] to-[#d97f24] text-white"
+        className="group relative block overflow-hidden bg-gradient-to-r from-[#6E1B12] via-[#8A2A1C] to-[#6E1B12] text-white"
       >
         {/* moving shimmer */}
         <span
@@ -53,7 +53,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
             <span>
               New: <strong className="font-extrabold">14-Day Vedic Detox &amp; Metabolism Challenge</strong> — beat bloating, support digestion &amp; feel lighter
             </span>
-            <span className="inline-flex items-center rounded-full bg-white text-[#C2410C] font-extrabold px-2 py-0.5 shadow-sm">
+            <span className="inline-flex items-center rounded-full bg-white text-[#6E1B12] font-extrabold px-2 py-0.5 shadow-sm">
               Only ₹1
             </span>
           </span>
