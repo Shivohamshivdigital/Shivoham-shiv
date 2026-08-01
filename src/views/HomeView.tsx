@@ -169,7 +169,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                   14-Day Vedic Detox &amp; Metabolism Challenge
                 </h3>
                 <p className="text-xs sm:text-sm text-green-50/80 mt-0.5">
-                  Beat bloating, support digestion &amp; feel lighter with 3-minute daily Ayurvedic habits.
+                  Beat bloating, support digestion &amp; feel lighter with 30-minute daily Ayurvedic habits.
                 </p>
               </div>
             </div>
