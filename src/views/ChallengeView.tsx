@@ -78,7 +78,7 @@ const FAQS = [
   },
   {
     q: "What exactly do I get for ₹1?",
-    a: "Access to all 14 daily lessons of the challenge — traditional Mudra, Marma and acupressure techniques you can do in about 3 minutes a day, plus guidance on WhatsApp from our team.",
+    a: "Access to all 14 daily lessons of the challenge — traditional Mudra, Marma and acupressure techniques you can do in about 30 minutes a day, plus guidance on WhatsApp from our team.",
   },
   {
     q: "Will this help with weight and bloating?",
@@ -146,7 +146,7 @@ export default function ChallengeView() {
     <div className="bg-[#FAFBF7] font-sans">
       <SEO
         title="14-Day Vedic Detox & Metabolism Challenge — Just ₹1 | Shivoham Shiv"
-        description="A guided 14-day Ayurvedic habit challenge to beat bloating, support digestion & a sluggish metabolism, and lift everyday energy — Mudra, Marma & breathing, about 3 minutes a day. One-time ₹1, no subscription. Not a medicine or a guaranteed weight-loss treatment."
+        description="A guided 14-day Ayurvedic habit challenge to beat bloating, support digestion & a sluggish metabolism, and lift everyday energy — Mudra, Marma & breathing, about 30 minutes a day. One-time ₹1, no subscription. Not a medicine or a guaranteed weight-loss treatment."
       />
 
       {/* HERO */}
@@ -166,7 +166,7 @@ export default function ChallengeView() {
           </h1>
           <p className="text-sm sm:text-lg text-green-50/85 max-w-3xl mx-auto leading-relaxed mb-6">
             A guided 14-day introduction to traditional Ayurvedic <strong>Mudra, Marma &amp; breathing</strong>
-            practices — about 3 minutes a day to help ease bloating, support digestion and a sluggish metabolism,
+            practices — about 30 minutes a day to help ease bloating, support digestion and a sluggish metabolism,
             and lift your everyday energy. A gentle habit that supports natural weight management — not a crash
             diet, medicine or a quick fix.
           </p>
@@ -188,7 +188,7 @@ export default function ChallengeView() {
             {error && <p className="text-xs text-red-200 max-w-sm">{error}</p>}
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-green-100/70 mt-2">
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> One-time ₹1 · no auto-debit</span>
-              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 3 min a day</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 30 min a day</span>
               <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No crash diets or pills</span>
             </div>
           </div>
@@ -223,8 +223,8 @@ export default function ChallengeView() {
           Small daily habits, done consistently
         </h2>
         <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-          This isn't a cure or a shortcut. It's a simple guided routine: each day you learn one traditional
-          Ayurvedic technique — a mudra, a breath, or an acupressure point — that takes about 3 minutes. The idea
+          This isn't a cure or a shortcut. It's a simple guided routine: each day you learn a few traditional
+          Ayurvedic techniques — mudras, breaths and acupressure points — for about 30 minutes. The idea
           is to help you build a calming daily habit that supports your energy, digestion and sleep over time.
           Results vary from person to person, and it works best alongside good sleep, balanced food, and any care
           your doctor advises.
@@ -291,7 +291,7 @@ export default function ChallengeView() {
             "Your digestion feels sluggish or irregular.",
             "You struggle to switch off and sleep deeply.",
             "You'd rather build a natural daily habit than rely on pills.",
-            "You can spare 3 minutes a day for two weeks.",
+            "You can spare 30 minutes a day for two weeks.",
           ].map((c, i) => (
             <div key={i} className="flex items-start gap-3 bg-white border border-green-100 rounded-2xl px-4 py-3">
               <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
@@ -450,7 +450,7 @@ export default function ChallengeView() {
             <p className="text-sm text-slate-600 leading-relaxed mb-3">
               At Shivoham Shiv we've spent 7+ years guiding 1,200+ people back to balance using traditional Mudra,
               Marma and Ayurvedic practices — no pills, no shortcuts. This challenge is the gentle first step of that
-              same path, simplified into 3 mindful minutes a day.
+              same path, simplified into 30 mindful minutes a day.
             </p>
             <p className="text-[11px] text-slate-500 mb-3">
               <span className="font-semibold text-[#2F5233]">Certified:</span> Yoga Alliance USA (RYS-200) · Acupressure
