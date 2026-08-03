@@ -33,6 +33,16 @@ export default function ThankYouView() {
     }
   }, [amount, plan]);
 
+  // ₹1 challenge buyers: auto-redirect to the WhatsApp group. The short delay
+  // lets the Purchase pixel/GA events fire before we leave the page.
+  useEffect(() => {
+    if (!isChallenge) return;
+    const t = setTimeout(() => {
+      window.location.href = WHATSAPP_GROUP;
+    }, 1200);
+    return () => clearTimeout(t);
+  }, [isChallenge]);
+
   return (
     <div className="min-h-screen bg-[#FAFBF7] flex items-start justify-center px-4 pt-12 sm:pt-16 pb-24 font-sans">
       <SEO title="Thank you — Shivoham Shiv" description="Your payment was successful." />
@@ -50,19 +60,14 @@ export default function ThankYouView() {
 
         {isChallenge && (
           <div className="bg-[#E7F8EC] border border-[#25D366]/30 rounded-2xl p-5 mb-6">
-            <p className="text-sm font-bold text-[#128C4B] mb-1">Join the challenge WhatsApp group</p>
-            <p className="text-xs text-slate-600 leading-relaxed mb-4">
-              This is where you'll get your daily 14-day lessons, reminders and support from our team. Tap below to
-              join now.
+            <p className="text-sm font-bold text-[#128C4B] mb-1">Taking you to the WhatsApp group…</p>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              You'll get your daily 14-day lessons and support there. If it doesn't open automatically,{" "}
+              <a href={WHATSAPP_GROUP} target="_blank" rel="noreferrer" className="text-[#128C4B] font-bold underline">
+                tap here to join
+              </a>
+              .
             </p>
-            <a
-              href={WHATSAPP_GROUP}
-              target="_blank"
-              rel="noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] hover:bg-[#1da851] text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all shadow-md"
-            >
-              Join the WhatsApp Group →
-            </a>
           </div>
         )}
 
