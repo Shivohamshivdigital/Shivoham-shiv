@@ -12,7 +12,7 @@
 //   ADMIN_API_KEY
 //   FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY (see api/_db.js)
 
-import { dbSelect, dbGetDoc } from "./_db.js";
+import { dbSelect } from "./_db.js";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -24,21 +24,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // Valid keys: the env var (optional) OR the key set in the admin Settings.
-  let storedKey = "";
-  try {
-    const doc = await dbGetDoc("settings", "integrations");
-    storedKey = (doc && doc.leadsApiKey) || "";
-  } catch {
-    /* best-effort */
-  }
-  const validKeys = [process.env.ADMIN_API_KEY || "", storedKey].filter(Boolean);
-  if (!validKeys.length) {
-    return res.status(500).json({ error: "No Leads API key set. Add one in the admin Settings." });
+  const API_KEY = process.env.ADMIN_API_KEY;
+  if (!API_KEY) {
+    return res.status(500).json({ error: "API is not configured. Set ADMIN_API_KEY in Vercel." });
   }
 
   const provided = req.headers["x-api-key"] || req.query.key || "";
-  if (!validKeys.includes(provided)) {
+  if (provided !== API_KEY) {
     return res.status(401).json({ error: "Invalid or missing API key." });
   }
 

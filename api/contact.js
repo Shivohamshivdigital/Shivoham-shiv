@@ -10,7 +10,7 @@
 //   BREVO_SENDER_EMAIL   Verified Brevo sender address (default: info@shivohamshiv.com)
 //   BREVO_LIST_ID        Numeric Brevo contact list id to add leads to (optional)
 
-import { dbInsert, dbFindBy, dbGetDoc } from "./_db.js";
+import { dbInsert, dbFindBy } from "./_db.js";
 import { verifyToken } from "./_auth.js";
 
 export default async function handler(req, res) {
@@ -361,19 +361,9 @@ async function handlePartner(req, res) {
 // The endpoint/key live server-side only. Override with the CRM_INTAKE_URL
 // env var in Vercel (recommended) so the key isn't hard-coded in the repo.
 async function forwardToCrm({ name, phone, email, product, message, attr }) {
-  // Priority: env var → admin Settings (Firestore) → built-in default.
-  let url = process.env.CRM_INTAKE_URL || "";
-  if (!url) {
-    try {
-      const doc = await dbGetDoc("settings", "integrations");
-      url = (doc && doc.crmIntakeUrl) || "";
-    } catch {
-      /* best-effort */
-    }
-  }
-  if (!url) {
-    url = "https://crm.shivohamshivdigital.com/yt-data/leads/intake?clientId=client-msmx6hw&key=av123";
-  }
+  const url =
+    process.env.CRM_INTAKE_URL ||
+    "https://crm.shivohamshivdigital.com/yt-data/leads/intake?clientId=client-msmx6hw&key=av123";
   const a = attr && typeof attr === "object" ? attr : {};
   try {
     const resp = await fetch(url, {
