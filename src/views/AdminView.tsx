@@ -223,6 +223,11 @@ export default function AdminView() {
   const [savingSettings, setSavingSettings] = useState(false);
   const [settingsMsg, setSettingsMsg] = useState<string | null>(null);
 
+  // CRM / Leads-API integration settings
+  const [integrations, setIntegrations] = useState({ leadsApiKey: "", crmIntakeUrl: "" });
+  const [savingIntegrations, setSavingIntegrations] = useState(false);
+  const [integrationsMsg, setIntegrationsMsg] = useState<string | null>(null);
+
   // Blog editor state
   const [editing, setEditing] = useState<Post | null>(null);
   const [savingPost, setSavingPost] = useState(false);
@@ -267,6 +272,12 @@ export default function AdminView() {
         setPayments(Array.isArray(data.payments) ? data.payments : []);
         setUsers(Array.isArray(data.users) ? data.users : []);
         setAssessments(Array.isArray(data.assessments) ? data.assessments : []);
+        if (data.integrations && typeof data.integrations === "object") {
+          setIntegrations({
+            leadsApiKey: data.integrations.leadsApiKey || "",
+            crmIntakeUrl: data.integrations.crmIntakeUrl || "",
+          });
+        }
         setAuthed(true);
         sessionStorage.setItem(PW_KEY, p);
         fetchPosts(p);
@@ -524,6 +535,25 @@ export default function AdminView() {
       setSettingsMsg(err.message || "Save failed.");
     } finally {
       setSavingSettings(false);
+    }
+  };
+
+  const saveIntegrations = async () => {
+    setSavingIntegrations(true);
+    setIntegrationsMsg(null);
+    try {
+      const res = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: pw(), integrations }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not save.");
+      setIntegrationsMsg("Saved! Use this same key in your CRM's Leads API Key field.");
+    } catch (err: any) {
+      setIntegrationsMsg(err.message || "Save failed.");
+    } finally {
+      setSavingIntegrations(false);
     }
   };
 
@@ -1257,7 +1287,8 @@ export default function AdminView() {
             )}
 
             {tab === "settings" && (
-              <div className="bg-white border border-green-100 rounded-2xl shadow-sm p-6 sm:p-8 max-w-xl">
+              <div className="space-y-6 max-w-xl">
+              <div className="bg-white border border-green-100 rounded-2xl shadow-sm p-6 sm:p-8">
                 <h2 className="font-heading font-bold text-lg text-green-900 mb-1">Pricing settings</h2>
                 <p className="text-xs text-slate-500 mb-5">
                   These control the prices shown on the site <strong>and</strong> the amount charged by Razorpay.
@@ -1311,6 +1342,59 @@ export default function AdminView() {
                 >
                   {savingSettings ? "Saving…" : "Save settings"}
                 </button>
+              </div>
+
+              {/* CRM / Leads API */}
+              <div className="bg-white border border-green-100 rounded-2xl shadow-sm p-6 sm:p-8">
+                <h2 className="font-heading font-bold text-lg text-green-900 mb-1">CRM / Leads API</h2>
+                <p className="text-xs text-slate-500 mb-5">
+                  Connect your CRM without touching Vercel. Set a secret key here, then paste the <strong>same key</strong>{" "}
+                  into your CRM's “Leads API Key” field.
+                </p>
+                <div className="space-y-4">
+                  <div>
+                    <label className={labelCls}>Leads API key (secret)</label>
+                    <input
+                      className={inputCls}
+                      value={integrations.leadsApiKey}
+                      onChange={(e) => setIntegrations((s) => ({ ...s, leadsApiKey: e.target.value }))}
+                      placeholder="e.g. a long random word"
+                    />
+                    <p className="text-[11px] text-slate-400 mt-1.5">
+                      Your CRM uses this to pull all leads/enquiries. Use a long, hard-to-guess value.
+                    </p>
+                  </div>
+                  <div>
+                    <label className={labelCls}>CRM intake URL (optional)</label>
+                    <input
+                      className={inputCls}
+                      value={integrations.crmIntakeUrl}
+                      onChange={(e) => setIntegrations((s) => ({ ...s, crmIntakeUrl: e.target.value }))}
+                      placeholder="https://crm.example.com/…/intake?clientId=…&key=…"
+                    />
+                    <p className="text-[11px] text-slate-400 mt-1.5">
+                      Where new leads are pushed in real time. Leave blank to keep the current default.
+                    </p>
+                  </div>
+                  <div className="bg-green-50 border border-green-100 rounded-xl p-3">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#2F5233] mb-1">Paste this in your CRM</p>
+                    <p className="text-xs text-slate-600 break-all">
+                      <strong>Leads API URL:</strong> {typeof window !== "undefined" ? window.location.origin : ""}/api/leads
+                    </p>
+                    <p className="text-xs text-slate-600 break-all">
+                      <strong>Leads API Key:</strong> {integrations.leadsApiKey || "— set one above —"}
+                    </p>
+                  </div>
+                </div>
+                {integrationsMsg && <p className="text-xs mt-4 text-green-700">{integrationsMsg}</p>}
+                <button
+                  onClick={saveIntegrations}
+                  disabled={savingIntegrations}
+                  className="mt-6 px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                >
+                  {savingIntegrations ? "Saving…" : "Save CRM settings"}
+                </button>
+              </div>
               </div>
             )}
 
