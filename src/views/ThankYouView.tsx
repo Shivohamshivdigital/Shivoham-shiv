@@ -3,10 +3,13 @@ import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import SEO from "../components/SEO";
 
+const WHATSAPP_GROUP = "https://chat.whatsapp.com/BZc9ZogCHOxEU20leS6qPH?s=cl&p=i&ilr=4";
+
 export default function ThankYouView() {
   const [params] = useSearchParams();
   const amount = Number(params.get("amount") || 0);
   const plan = params.get("plan") || "";
+  const isChallenge = plan === "challenge";
   const fired = useRef(false);
 
   // Carry the customer's details into the required health assessment so it prefills.
@@ -40,14 +43,35 @@ export default function ThankYouView() {
         <h1 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mb-2">Payment successful 🎉</h1>
         <p className="text-sm text-slate-600 leading-relaxed mb-5">
           {amount ? `We've received your ₹${amount.toLocaleString("en-IN")} payment. ` : ""}
-          One last step — fill your health assessment so we can build your personalized plan before
-          our team reaches out on WhatsApp.
+          {isChallenge
+            ? "Your first step — join the challenge WhatsApp group below to get your daily lessons and guidance."
+            : "One last step — fill your health assessment so we can build your personalized plan before our team reaches out on WhatsApp."}
         </p>
 
+        {isChallenge && (
+          <div className="bg-[#E7F8EC] border border-[#25D366]/30 rounded-2xl p-5 mb-6">
+            <p className="text-sm font-bold text-[#128C4B] mb-1">Join the challenge WhatsApp group</p>
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+              This is where you'll get your daily 14-day lessons, reminders and support from our team. Tap below to
+              join now.
+            </p>
+            <a
+              href={WHATSAPP_GROUP}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] hover:bg-[#1da851] text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all shadow-md"
+            >
+              Join the WhatsApp Group →
+            </a>
+          </div>
+        )}
+
         <div className="bg-green-50 border border-green-200 rounded-2xl p-4 mb-6 text-left">
-          <p className="text-xs font-bold uppercase tracking-wider text-[#2F5233] mb-1">Required next step</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-[#2F5233] mb-1">
+            {isChallenge ? "Also do this" : "Required next step"}
+          </p>
           <p className="text-xs text-slate-600 leading-relaxed">
-            It takes about 2 minutes. Your personalized Ayurvedic plan depends on these answers.
+            Fill your health assessment (about 2 minutes) — your personalized Ayurvedic plan depends on these answers.
           </p>
         </div>
 
