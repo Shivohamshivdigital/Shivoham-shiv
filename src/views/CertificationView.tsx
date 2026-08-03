@@ -59,12 +59,24 @@ export default function CertificationView() {
       return;
     }
     setSubmitting(true);
+    const details = [
+      form.date && `Preferred date: ${form.date}`,
+      form.slot && `Slot: ${form.slot}`,
+      "45-min FREE 1:1 Strategy Call · Marma Dab Chikitsa certification",
+    ].filter(Boolean).join(" | ");
+    // Forward the lead to the CRM (best-effort; key stays server-side).
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        phone: form.whatsapp,
+        email: form.email,
+        product: "Strategy Call — Marma Certification",
+        message: details,
+      }),
+    }).catch(() => {});
     try {
-      const details = [
-        form.date && `Preferred date: ${form.date}`,
-        form.slot && `Slot: ${form.slot}`,
-        "45-min FREE 1:1 Strategy Call · Marma Dab Chikitsa certification",
-      ].filter(Boolean).join(" | ");
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "content-type": "application/json" },
