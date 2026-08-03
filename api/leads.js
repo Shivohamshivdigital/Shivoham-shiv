@@ -24,13 +24,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const API_KEY = process.env.ADMIN_API_KEY;
-  if (!API_KEY) {
-    return res.status(500).json({ error: "API is not configured. Set ADMIN_API_KEY in Vercel." });
-  }
+  // Valid keys: the Vercel env var (if set) OR the built-in key below, so the
+  // CRM's "Leads API key" just needs to match one of these — no Vercel needed.
+  const validKeys = [process.env.ADMIN_API_KEY, "av123"].filter(Boolean);
 
   const provided = req.headers["x-api-key"] || req.query.key || "";
-  if (provided !== API_KEY) {
+  if (!validKeys.includes(provided)) {
     return res.status(401).json({ error: "Invalid or missing API key." });
   }
 
