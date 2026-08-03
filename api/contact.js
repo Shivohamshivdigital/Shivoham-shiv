@@ -10,7 +10,7 @@
 //   BREVO_SENDER_EMAIL   Verified Brevo sender address (default: info@shivohamshiv.com)
 //   BREVO_LIST_ID        Numeric Brevo contact list id to add leads to (optional)
 
-import { dbInsert, dbFindBy, dbGetDoc } from "./_db.js";
+import { dbInsert, dbFindBy } from "./_db.js";
 import { verifyToken } from "./_auth.js";
 
 export default async function handler(req, res) {
@@ -58,9 +58,6 @@ export default async function handler(req, res) {
     referrer: attr.referrer || "",
     landing_page: attr.landing_page || "",
   });
-
-  // 1b) Forward to the external CRM (best-effort; never blocks the lead).
-  await forwardToCrm({ name, phone: whatsapp, email, product: source || "Website", message: message || "", attr });
 
   // 2) Notify the team by email via Brevo — entirely optional. If the key is
   //    missing or the send fails, the lead is still captured above, so we never
@@ -306,9 +303,6 @@ async function handlePartner(req, res) {
     landing_page: attr.landing_page || "",
   });
 
-  // Forward to the external CRM (best-effort).
-  await forwardToCrm({ name, phone: whatsapp, email, product: "Partner With Us", message: summary || note || "", attr });
-
   const BREVO_API_KEY = process.env.BREVO_API_KEY;
   if (BREVO_API_KEY) {
     const NOTIFY_TO = process.env.LEAD_NOTIFY_EMAIL || "shivohamshivdigital@gmail.com";
@@ -355,51 +349,6 @@ async function handlePartner(req, res) {
     return res.status(500).json({ error: "Partner service is not configured." });
   }
   return res.status(200).json({ success: true });
-}
-
-// Forward a lead to the external Shivoham Shiv CRM intake endpoint.
-// The endpoint/key live server-side only. Override with the CRM_INTAKE_URL
-// env var in Vercel (recommended) so the key isn't hard-coded in the repo.
-async function forwardToCrm({ name, phone, email, product, message, attr }) {
-  // Priority: env var → admin Settings (Firestore) → built-in default.
-  let url = process.env.CRM_INTAKE_URL || "";
-  if (!url) {
-    try {
-      const doc = await dbGetDoc("settings", "integrations");
-      url = (doc && doc.crmIntakeUrl) || "";
-    } catch {
-      /* best-effort */
-    }
-  }
-  if (!url) {
-    url = "https://crm.shivohamshivdigital.com/yt-data/leads/intake?clientId=client-msmx6hw&key=av123";
-  }
-  const a = attr && typeof attr === "object" ? attr : {};
-  try {
-    const resp = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name || "",
-        phone: phone || "",
-        email: email || "",
-        product: product || "",
-        message: message || "",
-        source: product || "",
-        utm_source: a.utm_source || "",
-        utm_medium: a.utm_medium || "",
-        utm_campaign: a.utm_campaign || "",
-        gclid: a.gclid || "",
-        fbclid: a.fbclid || "",
-        landing_page: a.landing_page || "",
-      }),
-    });
-    if (!resp.ok) {
-      console.error("CRM intake non-OK:", resp.status, await resp.text().catch(() => ""));
-    }
-  } catch (err) {
-    console.error("CRM forward failed:", String((err && err.message) || err));
-  }
 }
 
 function escapeHtml(str) {

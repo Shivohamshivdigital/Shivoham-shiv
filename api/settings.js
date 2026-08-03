@@ -54,24 +54,9 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { password, settings, transformations, founder, integrations } = req.body || {};
+    const { password, settings, transformations, founder } = req.body || {};
     if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) {
       return res.status(401).json({ error: "Incorrect password." });
-    }
-
-    // Save CRM / Leads-API integration settings (admin only).
-    if (integrations && typeof integrations === "object") {
-      const clean = {
-        leadsApiKey: String(integrations.leadsApiKey || "").trim().slice(0, 200),
-        crmIntakeUrl: String(integrations.crmIntakeUrl || "").trim().slice(0, 500),
-      };
-      try {
-        await dbUpdate("settings", "integrations", clean);
-        return res.status(200).json({ success: true });
-      } catch (err) {
-        console.error("Integrations save error:", err);
-        return res.status(500).json({ error: `Could not save: ${String((err && err.message) || err)}` });
-      }
     }
 
     // Save founder / guide photo + name + title (admin upload).
