@@ -105,6 +105,18 @@ export default function PartnerView() {
       return;
     }
     setSubmitting(true);
+    // Forward the lead to the CRM (best-effort; key stays server-side).
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        phone: form.whatsapp,
+        email: form.email,
+        product: form.partnerType || "Partner With Us",
+        message: [form.organization, form.city, form.website, form.message].filter(Boolean).join(" · "),
+      }),
+    }).catch(() => {});
     try {
       const res = await fetch("/api/contact", {
         method: "POST",

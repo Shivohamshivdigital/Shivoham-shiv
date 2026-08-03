@@ -32,6 +32,19 @@ export async function bookConsultation(
       console.warn("localStorage quota exceeded or blocked; saving in memory.", e);
     }
 
+    // Also forward the lead to the CRM (best-effort; key stays server-side).
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: fullName,
+        phone: whatsapp,
+        email,
+        product: preferredTime ? `Booking (${preferredTime})` : "Website",
+        message: message || "",
+      }),
+    }).catch(() => {});
+
     // Send the lead to Brevo via our serverless function so the team is
     // notified by email and the contact is saved in Brevo.
     fetch("/api/contact", {
