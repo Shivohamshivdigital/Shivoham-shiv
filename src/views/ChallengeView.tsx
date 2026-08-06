@@ -63,9 +63,9 @@ const DAYS = [
 
 const INCLUDED = [
   "14 daily guided lessons (one every morning)",
+  "A repeatable daily ritual you keep for life — for ongoing weight maintenance, not a one-time fix",
   "Traditional Mudra, Marma & acupressure techniques — about 3 minutes each",
-  "No pills, no equipment — just your hands and breath",
-  "A simple 5-minute daily routine to keep after the challenge",
+  "No pills, no equipment, no crash diets — just your hands and breath",
   "Ayurvedic body-type (Dosha) self-assessment",
   "Guidance on WhatsApp from the Shivoham Shiv team",
   "One-time ₹1 — no subscription, no auto-debit",
@@ -163,8 +163,8 @@ export default function ChallengeView() {
   return (
     <div className="bg-[#FAFBF7] font-sans">
       <SEO
-        title="14-Day Vedic Detox & Metabolism Challenge — Just ₹1 | Shivoham Shiv"
-        description="A guided 14-day Ayurvedic habit challenge to beat bloating, support digestion & a sluggish metabolism, and lift everyday energy — Mudra, Marma & breathing, about 30 minutes a day. One-time ₹1, no subscription. Not a medicine or a guaranteed weight-loss treatment."
+        title="14-Day Natural Weight-Loss Ritual Challenge — Just ₹1 | Shivoham Shiv"
+        description="A guided 14-day Ayurvedic ritual that supports natural weight loss — improving digestion, metabolism & daily movement with Mudra, Marma & breathing, about 30 minutes a day. A repeatable habit you keep for life. One-time ₹1, no subscription. Not a medicine or a guaranteed weight-loss treatment."
       />
 
       {/* HERO */}
@@ -176,15 +176,16 @@ export default function ChallengeView() {
           className="max-w-[1400px] mx-auto px-4 lg:px-6 py-16 sm:py-24 text-center"
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> 14-Day Vedic Detox &amp; Metabolism Challenge
+            <Sparkles className="w-3.5 h-3.5" /> 14-Day Natural Weight-Loss Ritual
           </span>
           <h1 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight mb-5 text-white xl:whitespace-nowrap">
-            Beat belly bloat &amp; wake up your metabolism —<br />
-            <span className="text-amber-300">one simple Vedic habit a day</span>
+            Lose weight the natural way —<br />
+            <span className="text-amber-300">and keep it off with one simple daily ritual</span>
           </h1>
           <p className="text-sm text-green-50/85 max-w-xl mx-auto leading-relaxed mb-6">
-            A 14-day Ayurvedic habit — <strong>Mudra, Marma &amp; breathing</strong>, about 30 minutes a day — to
-            ease bloating, support digestion and lift your energy. Not a crash diet, medicine or a quick fix.
+            A 14-day Ayurvedic ritual — <strong>Mudra, Marma &amp; breathing</strong>, about 30 minutes a day — that
+            supports natural weight loss by improving digestion, metabolism and daily movement. A repeatable habit
+            you keep for life — not a crash diet, medicine or a quick fix.
           </p>
           <p className="text-[11px] sm:text-xs text-green-100/60 max-w-2xl mx-auto leading-relaxed mb-8">
             These practices support healthy daily habits and wellbeing — they don't diagnose, treat or cure any
@@ -302,11 +303,11 @@ export default function ChallengeView() {
         </div>
         <div className="space-y-3">
           {[
-            "You often feel tired, stressed or low on energy.",
-            "You feel bloated or heavy and want to feel lighter.",
+            "You've lost weight before but struggled to keep it off.",
+            "You feel you have no time for the gym or long workouts.",
+            "You want to lose weight without crash diets or pills.",
+            "You feel bloated, heavy or low on energy.",
             "Your digestion feels sluggish or irregular.",
-            "You struggle to switch off and sleep deeply.",
-            "You'd rather build a natural daily habit than rely on pills.",
             "You can spare 30 minutes a day for two weeks.",
           ].map((c, i) => (
             <div key={i} className="flex items-start gap-3 bg-white border border-green-100 rounded-2xl px-4 py-3">
