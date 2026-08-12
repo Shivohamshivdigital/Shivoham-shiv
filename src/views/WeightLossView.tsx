@@ -975,15 +975,16 @@ export default function WeightLossView() {
                     ))}
                   </ul>
 
-                  {/* High-ticket: the only prominent action is to book a call. */}
+                  {/* Primary action: sign up and pay online via Razorpay. */}
                   <button
-                    onClick={() => navigate("/contact")}
-                    className="w-full py-4 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5"
+                    onClick={() => handlePay(selectedPlan)}
+                    disabled={payingPlan !== null}
+                    className="w-full py-4 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
                   >
-                    Book your FREE 15-min metabolic audit call →
+                    {payingPlan === selectedPlan ? "Processing…" : "Sign up →"}
                   </button>
                   <p className="text-center text-[11px] text-green-100/70 mt-2">
-                    A certified counselor reviews your body type, health conditions &amp; goals — no pressure.
+                    Secure checkout via Razorpay — UPI, cards, net-banking &amp; wallets.
                   </p>
 
                   {/* Bold results guarantee right at the decision point */}
@@ -995,7 +996,7 @@ export default function WeightLossView() {
                     </p>
                   </div>
 
-                  {/* Low-emphasis alternatives — direct pay is a small link, not a button */}
+                  {/* Low-emphasis alternatives */}
                   <div className="mt-4 flex flex-col items-center gap-2 text-center">
                     <button
                       onClick={() => navigate("/challenge")}
@@ -1004,11 +1005,10 @@ export default function WeightLossView() {
                       New here? Try our 14-day challenge for just ₹1 first →
                     </button>
                     <button
-                      onClick={() => handlePay(selectedPlan)}
-                      disabled={payingPlan !== null}
-                      className="text-[11px] font-medium text-green-100/60 underline underline-offset-2 hover:text-white transition-colors disabled:opacity-60"
+                      onClick={() => navigate("/contact")}
+                      className="text-[11px] font-medium text-green-100/60 underline underline-offset-2 hover:text-white transition-colors"
                     >
-                      {payingPlan === selectedPlan ? "Processing…" : "Prefer to pay online? Sign up →"}
+                      Prefer a free 15-min call first? Book it →
                     </button>
                   </div>
                 </div>
