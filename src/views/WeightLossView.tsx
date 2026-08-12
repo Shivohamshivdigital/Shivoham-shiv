@@ -908,36 +908,42 @@ export default function WeightLossView() {
                     ))}
                   </ul>
 
-                  {/* Primary CTA for a high-ticket price: book a call. */}
+                  {/* High-ticket: the only prominent action is to book a call. */}
                   <button
                     onClick={() => navigate("/contact")}
-                    className="w-full py-3.5 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5"
+                    className="w-full py-4 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5"
                   >
-                    Book your FREE 15-min consultation →
+                    Book your FREE 15-min metabolic audit call →
                   </button>
-
-                  {/* Direct-purchase kept as a lower-emphasis option. */}
-                  <button
-                    onClick={() => handlePay(selectedPlan)}
-                    disabled={payingPlan !== null}
-                    className="w-full mt-3 py-3 border border-green-600/50 text-white font-semibold text-xs uppercase tracking-wider rounded-xl hover:bg-white/5 transition-colors disabled:opacity-60"
-                  >
-                    {payingPlan === selectedPlan ? "Processing…" : `Or ${plan.cta.toLowerCase()} now`}
-                  </button>
-
-                  {/* Trust / safety line */}
-                  <p className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] text-green-100/70">
-                    <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3 text-[#F3C969]" /> Results guarantee</span>
-                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-[#F3C969]" /> No pills or crash diets</span>
-                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-[#F3C969]" /> Secure ₹ payment</span>
+                  <p className="text-center text-[11px] text-green-100/70 mt-2">
+                    A certified counselor reviews your body type, health conditions &amp; goals — no pressure.
                   </p>
 
-                  <button
-                    onClick={() => navigate("/challenge")}
-                    className="w-full mt-3 text-[11px] font-semibold text-[#F3C969] underline underline-offset-2 hover:text-white transition-colors"
-                  >
-                    New here? Try our 14-day challenge for just ₹1 first →
-                  </button>
+                  {/* Bold results guarantee right at the decision point */}
+                  <div className="mt-4 rounded-xl bg-[#F3C969]/10 border border-[#F3C969]/40 px-4 py-3 flex items-start gap-2.5">
+                    <ShieldCheck className="w-5 h-5 text-[#F3C969] shrink-0 mt-0.5" />
+                    <p className="text-[11px] text-green-50/90 leading-relaxed">
+                      <strong className="text-white">Results guarantee</strong> — we keep guiding you <strong className="text-white">free</strong> until you
+                      reach your goal. No pills, no crash diets, no risk.
+                    </p>
+                  </div>
+
+                  {/* Low-emphasis alternatives — direct pay is a small link, not a button */}
+                  <div className="mt-4 flex flex-col items-center gap-2 text-center">
+                    <button
+                      onClick={() => navigate("/challenge")}
+                      className="text-[11px] font-semibold text-[#F3C969] underline underline-offset-2 hover:text-white transition-colors"
+                    >
+                      New here? Try our 14-day challenge for just ₹1 first →
+                    </button>
+                    <button
+                      onClick={() => handlePay(selectedPlan)}
+                      disabled={payingPlan !== null}
+                      className="text-[11px] font-medium text-green-100/60 underline underline-offset-2 hover:text-white transition-colors disabled:opacity-60"
+                    >
+                      {payingPlan === selectedPlan ? "Processing…" : "Prefer to pay online? Enroll now →"}
+                    </button>
+                  </div>
                 </div>
                 );
               })()}
