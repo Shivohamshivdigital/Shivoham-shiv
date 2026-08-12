@@ -77,6 +77,27 @@ function buildPlanInfo(p: Pricing): Record<PaymentPlan, {
   };
 }
 
+const WL_TESTIMONIALS = [
+  {
+    loss: "8 kg in 60 days",
+    client: "Ritu S.",
+    loc: "Jaipur",
+    text: "I tried calorie counting workouts for years and only got fatigued. Changing my breathing and food to match Pitta digestion completely melted my bloating within several weeks!",
+  },
+  {
+    loss: "Lost 9 kg",
+    client: "Anil K.",
+    loc: "Delhi",
+    text: "The combination of Surya Mudra with yogic posture flow was magical. I never felt starved, yet my stress cravings vanished before the end of class modules.",
+  },
+  {
+    loss: "7 kg, and it stayed",
+    client: "Pooja M.",
+    loc: "Jhansi",
+    text: "My thyroid counts had slowed down, but Ayurvedic healing reset my inner systems naturally. This isn't just weight-loss — it gave me a complete spiritual recharge.",
+  },
+];
+
 export default function WeightLossView() {
   const navigate = useNavigate();
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
@@ -1033,42 +1054,38 @@ export default function WeightLossView() {
             </div>
           </div>
 
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            {[
-              {
-                loss: "8 kg in 60 days",
-                client: "Ritu S.",
-                loc: "Jaipur",
-                text: "I tried calorie counting workouts for years and only got fatigued. Changing my breathing and food to match Pitta digestion completely melted my bloating within several weeks!"
-              },
-              {
-                loss: "Lost 9 kg",
-                client: "Anil K.",
-                loc: "Delhi",
-                text: "The combination of Surya Mudra with yogic posture flow was magical. I never felt starved, yet my stress cravings vanished before the end of class modules."
-              },
-              {
-                loss: "7 kg, and it stayed",
-                client: "Pooja M.",
-                loc: "Jhansi",
-                text: "My thyroid counts had slowed down, but Ayurvedic healing reset my inner systems naturally. This isn't just weight-loss — it gave me a complete spiritual recharge."
-              }
-            ].map((testim, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-green-150/60 shadow-xs flex flex-col justify-between">
-                <div className="space-y-4">
-                  <span className="inline-block px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md">
-                    {testim.loss}
-                  </span>
-                  <p className="text-xs text-[#3A4A40]/80 italic mt-2 leading-relaxed">
-                    "{testim.text}"
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#2F5233]">
-                  <span>{testim.client}</span>
-                  <span className="text-[#E8943A] font-normal text-[10px]">{testim.loc}</span>
-                </div>
+          <div className="lg:col-span-8">
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes wl-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+                .wl-track { display: flex; width: max-content; animation: wl-marquee 34s linear infinite; }
+                .wl-wrap:hover .wl-track { animation-play-state: paused; }
+              `,
+              }}
+            />
+            <div className="wl-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+              <div className="wl-track gap-6">
+                {[...WL_TESTIMONIALS, ...WL_TESTIMONIALS].map((testim, idx) => (
+                  <div
+                    key={idx}
+                    className="w-[270px] sm:w-[300px] shrink-0 bg-white p-6 rounded-2xl border border-green-150/60 shadow-xs flex flex-col justify-between text-left"
+                  >
+                    <div className="space-y-4">
+                      <span className="inline-block px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md">
+                        {testim.loss}
+                      </span>
+                      <p className="text-xs text-[#3A4A40]/80 italic mt-2 leading-relaxed">"{testim.text}"</p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#2F5233]">
+                      <span>{testim.client}</span>
+                      <span className="text-[#E8943A] font-normal text-[10px]">{testim.loc}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <p className="text-center text-[11px] text-slate-400 mt-3">Hover to pause · individual results vary.</p>
           </div>
 
         </div>
