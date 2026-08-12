@@ -805,6 +805,17 @@ export default function WeightLossView() {
             </div>
           ))}
         </div>
+
+        {/* Named expert + verifiable credentials (transparency) */}
+        <div className="mt-8 max-w-3xl mx-auto bg-[#F2F9F2] border border-green-100 rounded-2xl px-5 py-4 text-center">
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Your plan is designed under <strong className="text-[#2F5233]">Pooja Chaturvedi</strong> — Founder,
+            Shivoham Shiv · Yoga Alliance USA (RYS-200), certified in Acupressure, Panchakarma &amp; Reiki.{" "}
+            <Link to="/about" className="text-green-700 font-semibold underline underline-offset-2 hover:text-green-900">
+              View her verified certificates →
+            </Link>
+          </p>
+        </div>
       </section>
 
       {/* 10c. PRICING / ENROLL SECTION */}
