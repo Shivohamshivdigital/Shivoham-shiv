@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight } from "lucide-react";
+import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight, Activity } from "lucide-react";
 import { getSession, clearSession, displayName, onAuthChange, Session } from "../utils/session";
 
 interface NavbarProps {
@@ -113,6 +113,18 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               }
             >
               Ayurvedic / Natural Weight Loss
+            </NavLink>
+
+            {/* BMI CALCULATOR */}
+            <NavLink
+              to="/bmi-calculator"
+              className={({ isActive }) =>
+                `flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
+                  isActive ? "text-amber-200" : "text-white hover:text-amber-100"
+                }`
+              }
+            >
+              <Activity className="w-3 h-3" /> BMI Calculator
             </NavLink>
 
             {/* CONTACT US */}
@@ -270,6 +282,14 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               className={`py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10`}
             >
               Ayurvedic / Natural Weight Loss
+            </Link>
+
+            <Link
+              to="/bmi-calculator"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
+            >
+              <Activity className="w-4 h-4" /> BMI Calculator
             </Link>
 
             <Link
