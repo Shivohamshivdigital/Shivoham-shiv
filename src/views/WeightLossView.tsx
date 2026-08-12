@@ -62,18 +62,6 @@ function buildPlanInfo(p: Pricing): Record<PaymentPlan, {
   dropdownLabel: string;
 }> {
   return {
-    register: {
-      badge: "Reserve Your Seat",
-      title: "Registration",
-      price: inr(p.registerAmount),
-      original: null,
-      discount: null,
-      unit: "one-time",
-      desc: "Lock your spot in this week's batch and get your onboarding started within 24 hours.",
-      features: ["Seat reserved in current batch", "Onboarding call within 24 hrs", "Adjustable towards full program"],
-      cta: `Signup for ${inr(p.registerAmount)}`,
-      dropdownLabel: `Registration — ${inr(p.registerAmount)} (start now)`,
-    },
     course: {
       badge: "Full Transformation",
       title: "60-Day Natural Program",
@@ -102,7 +90,7 @@ export default function WeightLossView() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [bannerText, setBannerText] = useState<string | null>(null);
   const [payingPlan, setPayingPlan] = useState<PaymentPlan | null>(null);
-  const [selectedPlan, setSelectedPlan] = useState<PaymentPlan>("register");
+  const [selectedPlan, setSelectedPlan] = useState<PaymentPlan>("course");
   const [authPlan, setAuthPlan] = useState<PaymentPlan | null>(null);
 
   // Live pricing from the admin Settings tab (falls back to defaults).
@@ -791,8 +779,7 @@ export default function WeightLossView() {
                 Start your transformation today
               </h2>
               <p className="text-sm text-slate-700 leading-relaxed mb-8">
-                Reserve your seat with a small registration, or enroll in the full 60-Day Program —
-                both backed by our results guarantee.
+                Enroll in the full 60-Day Natural Program — backed by our results guarantee.
               </p>
 
               <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-4">What's included</h3>
@@ -866,25 +853,29 @@ export default function WeightLossView() {
                     </span>
                   )}
 
-                  {/* Plan selector dropdown */}
-                  <label htmlFor="plan-select" className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969] mb-2 block">
-                    Choose your plan
-                  </label>
-                  <div className="relative mb-7">
-                    <select
-                      id="plan-select"
-                      value={selectedPlan}
-                      onChange={(e) => setSelectedPlan(e.target.value as PaymentPlan)}
-                      className="w-full appearance-none bg-white/10 border border-green-700 text-white font-semibold text-sm rounded-xl py-3.5 pl-4 pr-11 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F3C969]"
-                    >
-                      {(Object.keys(PLAN_INFO) as PaymentPlan[]).map((key) => (
-                        <option key={key} value={key} className="text-slate-900">
-                          {PLAN_INFO[key].dropdownLabel}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="w-5 h-5 text-[#F3C969] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  </div>
+                  {/* Plan selector dropdown — only shown when there's more than one plan */}
+                  {(Object.keys(PLAN_INFO) as PaymentPlan[]).length > 1 && (
+                    <>
+                      <label htmlFor="plan-select" className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969] mb-2 block">
+                        Choose your plan
+                      </label>
+                      <div className="relative mb-7">
+                        <select
+                          id="plan-select"
+                          value={selectedPlan}
+                          onChange={(e) => setSelectedPlan(e.target.value as PaymentPlan)}
+                          className="w-full appearance-none bg-white/10 border border-green-700 text-white font-semibold text-sm rounded-xl py-3.5 pl-4 pr-11 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F3C969]"
+                        >
+                          {(Object.keys(PLAN_INFO) as PaymentPlan[]).map((key) => (
+                            <option key={key} value={key} className="text-slate-900">
+                              {PLAN_INFO[key].dropdownLabel}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="w-5 h-5 text-[#F3C969] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
+                    </>
+                  )}
 
                   <span className="text-[10px] uppercase font-bold tracking-widest text-[#F3C969]">{plan.badge}</span>
                   <h3 className="font-heading font-bold text-xl text-white mt-2">{plan.title}</h3>
