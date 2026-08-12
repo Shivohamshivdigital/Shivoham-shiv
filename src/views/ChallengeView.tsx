@@ -77,6 +77,10 @@ const FAQS = [
     a: "No. It's a single one-time ₹1 payment through Razorpay. There is no subscription, no auto-renewal and no UPI auto-mandate — we will never charge you automatically. Any deeper course later is completely optional and separately priced, only if you choose it.",
   },
   {
+    q: "Is there a money-back guarantee?",
+    a: "Yes — it's 100% risk-free. If the challenge isn't for you, just message us on WhatsApp and we'll refund your ₹1, no questions asked.",
+  },
+  {
     q: "What exactly do I get for ₹1?",
     a: "Access to all 14 daily lessons of the challenge — traditional Mudra, Marma and acupressure techniques you can do in about 20 minutes a day, plus guidance on WhatsApp from our team.",
   },
@@ -207,6 +211,7 @@ export default function ChallengeView() {
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> One-time ₹1 · no auto-debit</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 20 min a day</span>
               <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No crash diets or pills</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> 100% money-back guarantee</span>
             </div>
           </div>
         </motion.div>
