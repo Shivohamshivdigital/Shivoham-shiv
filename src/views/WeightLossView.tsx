@@ -105,9 +105,8 @@ export default function WeightLossView() {
 
   // Before/after transformation photos — admin-managed, with file fallbacks.
   const [transformations, setTransformations] = useState<{ src: string; caption: string }[]>([
-    { src: "/transformations/transformation-1.jpg", caption: "Day 1 → Day 90" },
-    { src: "/transformations/transformation-2.jpg", caption: "62 kg → 48 kg" },
-    { src: "/transformations/transformation-3.jpg", caption: "Real client transformation" },
+    { src: "/transformations/transformation-1.webp", caption: "Day 1 → Day 90" },
+    { src: "/transformations/transformation-2.webp", caption: "Real client transformation" },
   ]);
   useEffect(() => {
     fetch("/api/settings?type=transformations")
