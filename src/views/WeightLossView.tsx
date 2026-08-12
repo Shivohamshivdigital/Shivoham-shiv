@@ -251,6 +251,14 @@ export default function WeightLossView() {
     {
       q: "What happens in the free consultation?",
       a: "You will spend 15 minutes with a certified Ayurvedic counselor who will detail your key Prakriti symptoms, diagnose active digestive blocks (Mandagni), and explain your custom step-by-step path to cellular recovery. No pressure, just complete clarity."
+    },
+    {
+      q: "What if I have a medical condition?",
+      a: "Please tell us on the consultation — if you have thyroid, diabetes, PCOS, BP, are pregnant/breastfeeding, or on regular medication, our counselor reviews it first and adapts the plan safely. This program supports your wellbeing alongside your doctor's care; it doesn't replace medical treatment, and we'll be honest if it isn't right for you."
+    },
+    {
+      q: "Is there a guarantee if it doesn't work?",
+      a: "Yes — with the full 60-Day Program we continue guiding you free until you reach your goal, as long as you follow the plan. On the consultation we'll set realistic expectations for your body type before you commit, so there are no surprises."
     }
   ];
 
@@ -906,11 +914,26 @@ export default function WeightLossView() {
                     {payingPlan === selectedPlan ? "Processing…" : plan.cta}
                   </button>
 
+                  {/* Low-friction alternative for a high-ticket price */}
+                  <button
+                    onClick={() => navigate("/contact")}
+                    className="w-full mt-3 py-3 border border-green-600/50 text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-white/5 transition-colors"
+                  >
+                    Prefer to talk first? Book a FREE consultation call
+                  </button>
+
+                  {/* Trust / safety line */}
+                  <p className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] text-green-100/70">
+                    <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3 text-[#F3C969]" /> Results guarantee</span>
+                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-[#F3C969]" /> No pills or crash diets</span>
+                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-[#F3C969]" /> Secure ₹ payment</span>
+                  </p>
+
                   <button
                     onClick={() => navigate("/assessment")}
-                    className="w-full mt-3 text-[11px] font-semibold text-[#2F5233] underline underline-offset-2 hover:text-[#3E9B49] transition-colors"
+                    className="w-full mt-3 text-[11px] font-semibold text-green-100/70 underline underline-offset-2 hover:text-white transition-colors"
                   >
-                    Not ready to pay? Take the free health assessment →
+                    Not ready yet? Take the free health assessment →
                   </button>
                 </div>
                 );
