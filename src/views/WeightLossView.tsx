@@ -82,18 +82,21 @@ const WL_TESTIMONIALS = [
     loss: "8 kg in 60 days",
     client: "Ritu S.",
     loc: "Jaipur",
+    img: "",
     text: "I tried calorie counting workouts for years and only got fatigued. Changing my breathing and food to match Pitta digestion completely melted my bloating within several weeks!",
   },
   {
     loss: "Lost 9 kg",
     client: "Anil K.",
     loc: "Delhi",
+    img: "",
     text: "The combination of Surya Mudra with yogic posture flow was magical. I never felt starved, yet my stress cravings vanished before the end of class modules.",
   },
   {
     loss: "7 kg, and it stayed",
     client: "Pooja M.",
     loc: "Jhansi",
+    img: "",
     text: "My thyroid counts had slowed down, but Ayurvedic healing reset my inner systems naturally. This isn't just weight-loss — it gave me a complete spiritual recharge.",
   },
 ];
@@ -1077,9 +1080,22 @@ export default function WeightLossView() {
                       </span>
                       <p className="text-xs text-[#3A4A40]/80 italic mt-2 leading-relaxed">"{testim.text}"</p>
                     </div>
-                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#2F5233]">
-                      <span>{testim.client}</span>
-                      <span className="text-[#E8943A] font-normal text-[10px]">{testim.loc}</span>
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-3">
+                      <span className="relative w-10 h-10 rounded-full bg-[#2F5D50] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
+                        {testim.client.charAt(0)}
+                        {testim.img && (
+                          <img
+                            src={testim.img}
+                            alt={testim.client}
+                            onError={(e) => (e.currentTarget as HTMLImageElement).remove()}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        )}
+                      </span>
+                      <div className="text-xs leading-tight">
+                        <b className="text-[#2F5233] block">{testim.client}</b>
+                        <span className="text-[#E8943A] font-normal text-[10px]">{testim.loc}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
