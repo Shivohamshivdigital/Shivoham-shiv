@@ -1008,7 +1008,7 @@ export default function WeightLossView() {
                       disabled={payingPlan !== null}
                       className="text-[11px] font-medium text-green-100/60 underline underline-offset-2 hover:text-white transition-colors disabled:opacity-60"
                     >
-                      {payingPlan === selectedPlan ? "Processing…" : "Prefer to pay online? Enroll now →"}
+                      {payingPlan === selectedPlan ? "Processing…" : "Prefer to pay online? Sign up →"}
                     </button>
                   </div>
                 </div>
