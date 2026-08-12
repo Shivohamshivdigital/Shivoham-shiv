@@ -21,6 +21,7 @@ import BlogView from "./views/BlogView";
 import BlogPostView from "./views/BlogPostView";
 import ThankYouView from "./views/ThankYouView";
 import AssessmentView from "./views/AssessmentView";
+import BmiCalculatorView from "./views/BmiCalculatorView";
 import LoginView from "./views/LoginView";
 import VedicQuiz from "./components/VedicQuiz";
 import MudraExplorer from "./components/MudraExplorer";
@@ -259,6 +260,7 @@ function AppContent() {
           <Route path="/14-day-challenge" element={<ChallengeView />} />
           <Route path="/thank-you" element={<ThankYouView />} />
           <Route path="/assessment" element={<AssessmentView />} />
+          <Route path="/bmi-calculator" element={<BmiCalculatorView />} />
           <Route path="/login" element={<LoginView />} />
 
           <Route path="/contact" element={<ContactView onSetBanner={setBannerMessage} />} />
