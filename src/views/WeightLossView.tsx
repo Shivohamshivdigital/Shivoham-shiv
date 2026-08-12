@@ -775,6 +775,38 @@ export default function WeightLossView() {
         </div>
       </section>
 
+      {/* 10b. THE HUMAN TEAM — real people, not an app */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Not an app — real people</span>
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 leading-tight">
+            The human team in your corner
+          </h2>
+          <p className="text-sm text-slate-600 leading-relaxed mt-3">
+            This isn't a self-serve tracker or a chatbot. Real certified practitioners guide you 1-on-1 through your
+            whole journey — that's what makes the difference.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            { icon: Phone, title: "Personal onboarding call", desc: "A 1-on-1 call with a certified Ayurvedic counselor to map your body type, health conditions & goals before you start." },
+            { icon: MessageSquare, title: "1-on-1 WhatsApp support", desc: "Direct access to your practitioner, 6 days a week — meal swaps, doubts and daily accountability, not an automated reply." },
+            { icon: Calendar, title: "Weekly progress reviews", desc: "A real practitioner reviews your progress every week and adjusts your plan as your body responds." },
+            { icon: Heart, title: "Guidance for your health conditions", desc: "Thyroid, PCOS, BP, diabetes & any medications are reviewed and factored into your plan from day one." },
+          ].map((m) => (
+            <div key={m.title} className="flex gap-4 bg-white border border-green-100 rounded-3xl p-6 shadow-xs">
+              <div className="w-12 h-12 rounded-2xl bg-[#E3F1E3] text-green-700 flex items-center justify-center shrink-0">
+                <m.icon className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-base text-green-900 mb-1">{m.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{m.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* 10c. PRICING / ENROLL SECTION */}
       <section id="enroll" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAFBF7] border-y border-green-100">
         <div className="max-w-5xl mx-auto">
