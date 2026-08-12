@@ -792,16 +792,18 @@ export default function WeightLossView() {
               <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-4">What's included</h3>
               <ul className="space-y-3.5 mb-9">
                 {[
-                  "Prakriti-personalized natural diet plan for your body type",
-                  "Daily guided Yoga & Pranayama routines",
-                  "Mudra therapy & Marma Dab Chikitsa (acupressure) guidance",
-                  "1-on-1 practitioner support on WhatsApp",
-                  "Weekly progress tracking with plan adjustments",
-                  "Results guarantee — we continue free until you reach your goal",
-                ].map((f, i) => (
+                  ["Personal onboarding call", "with a certified Ayurvedic counselor to map your body type (Prakriti) & goals"],
+                  ["Prakriti-personalized diet plan", "real home foods for your constitution — no shakes, no starving"],
+                  ["Daily guided Yoga & Pranayama", "short structured routines you can do at home"],
+                  ["Mudra & Marma Dab Chikitsa", "acupressure/energy-point guidance to calm cortisol & aid digestion"],
+                  ["1-on-1 practitioner support on WhatsApp", "ask questions and stay accountable, 6 days a week"],
+                  ["Weekly progress reviews", "your plan is adjusted as your body responds"],
+                  ["Adjusted for your health conditions", "thyroid, PCOS, BP, diabetes & medications reviewed first"],
+                  ["Results guarantee", "we continue guiding you free until you reach your goal"],
+                ].map(([title, sub], i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
-                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                    <span>{f}</span>
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-1" />
+                    <span><strong className="text-[#2F5233]">{title}</strong> — {sub}</span>
                   </li>
                 ))}
               </ul>
@@ -906,20 +908,21 @@ export default function WeightLossView() {
                     ))}
                   </ul>
 
+                  {/* Primary CTA for a high-ticket price: book a call. */}
+                  <button
+                    onClick={() => navigate("/contact")}
+                    className="w-full py-3.5 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5"
+                  >
+                    Book your FREE 15-min consultation →
+                  </button>
+
+                  {/* Direct-purchase kept as a lower-emphasis option. */}
                   <button
                     onClick={() => handlePay(selectedPlan)}
                     disabled={payingPlan !== null}
-                    className="w-full py-3.5 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] hover:from-[#6BC971] hover:to-[#46AA52] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-green-900/40 ring-1 ring-green-300/40 transition-all hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full mt-3 py-3 border border-green-600/50 text-white font-semibold text-xs uppercase tracking-wider rounded-xl hover:bg-white/5 transition-colors disabled:opacity-60"
                   >
-                    {payingPlan === selectedPlan ? "Processing…" : plan.cta}
-                  </button>
-
-                  {/* Low-friction alternative for a high-ticket price */}
-                  <button
-                    onClick={() => navigate("/contact")}
-                    className="w-full mt-3 py-3 border border-green-600/50 text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-white/5 transition-colors"
-                  >
-                    Prefer to talk first? Book a FREE consultation call
+                    {payingPlan === selectedPlan ? "Processing…" : `Or ${plan.cta.toLowerCase()} now`}
                   </button>
 
                   {/* Trust / safety line */}
@@ -930,10 +933,10 @@ export default function WeightLossView() {
                   </p>
 
                   <button
-                    onClick={() => navigate("/assessment")}
-                    className="w-full mt-3 text-[11px] font-semibold text-green-100/70 underline underline-offset-2 hover:text-white transition-colors"
+                    onClick={() => navigate("/challenge")}
+                    className="w-full mt-3 text-[11px] font-semibold text-[#F3C969] underline underline-offset-2 hover:text-white transition-colors"
                   >
-                    Not ready yet? Take the free health assessment →
+                    New here? Try our 14-day challenge for just ₹1 first →
                   </button>
                 </div>
                 );
