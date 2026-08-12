@@ -77,7 +77,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 pl-3">
             
             {/* ABOUT US */}
             <NavLink
@@ -112,7 +112,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 }`
               }
             >
-              Ayurvedic / Natural Weight Loss
+              Weight Loss
             </NavLink>
 
             {/* BMI CALCULATOR */}
@@ -162,7 +162,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           </div>
 
           {/* Right Action Widgets */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-2.5 xl:space-x-4 pl-2">
             
             {/* Account / Login */}
             {session ? (
