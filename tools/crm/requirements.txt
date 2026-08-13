@@ -1,0 +1,8 @@
+# External dependencies for the CRM integration utility.
+#
+# Only the Pydantic-backed schema/mappers and the pytest harness need these.
+# The signature module (tools/crm/signature.py) is pure standard library and
+# requires nothing here.
+
+pydantic>=2.0.0
+pytest
