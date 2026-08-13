@@ -12,6 +12,7 @@
 
 import { dbInsert, dbFindBy } from "./_db.js";
 import { verifyToken } from "./_auth.js";
+import { normalizeContact, flattenForStore } from "./_normalizeContact.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -29,6 +30,12 @@ export default async function handler(req, res) {
   // "Partner With Us" submissions — saved as a lead tagged "Partner With Us".
   if (req.body && req.body.type === "partner") {
     return handlePartner(req, res);
+  }
+
+  // Contact-sync from Google People / Microsoft Graph. Routed through this
+  // handler (not a new function) to stay under the Vercel Hobby function limit.
+  if (req.body && req.body.type === "contact_sync") {
+    return handleContactSync(req, res);
   }
 
   const { name, email, whatsapp, message, source, attribution } = req.body || {};
@@ -349,6 +356,76 @@ async function handlePartner(req, res) {
     return res.status(500).json({ error: "Partner service is not configured." });
   }
   return res.status(200).json({ success: true });
+}
+
+// Normalise an external contact (Google People / Microsoft Graph) and store it.
+//
+// Body: { type: "contact_sync", provider: "google_people"|"graph"|...,
+//         payload: <raw provider contact> }
+// Auth: when ADMIN_API_KEY is set, require it via `x-api-key` (this is an
+//       internal sync endpoint, not a public form).
+//
+// The normaliser prefers the Python /api/normalize function (full Pydantic
+// validation) and falls back to a native-JS mapper, so a record is never lost.
+async function handleContactSync(req, res) {
+  const API_KEY = process.env.ADMIN_API_KEY;
+  if (API_KEY) {
+    const provided = req.headers["x-api-key"] || req.query.key || "";
+    if (provided !== API_KEY) {
+      return res.status(401).json({ error: "Invalid or missing API key." });
+    }
+  }
+
+  const provider = String(req.body?.provider || req.query.provider || "").trim();
+  const payload = req.body?.payload ?? req.body ?? {};
+  if (!provider) {
+    return res.status(400).json({ error: "provider is required." });
+  }
+  if (!payload || typeof payload !== "object") {
+    return res.status(400).json({ error: "payload must be an object." });
+  }
+
+  const { contact, via } = await normalizeContact(provider, payload);
+
+  // 1) Persist to Firestore (best-effort), flattened to scalar fields.
+  const saved = await dbInsert("contacts", flattenForStore(contact, via));
+
+  // 2) Upsert into Brevo (best-effort) — only if we have an email.
+  const email = contact.emails.find((e) => e.is_primary)?.address || contact.emails[0]?.address;
+  const BREVO_API_KEY = process.env.BREVO_API_KEY;
+  if (BREVO_API_KEY && email) {
+    const phone = contact.phones.find((p) => p.is_primary)?.number || contact.phones[0]?.number;
+    const LIST_ID = process.env.BREVO_LIST_ID ? Number(process.env.BREVO_LIST_ID) : null;
+    try {
+      await fetch("https://api.brevo.com/v3/contacts", {
+        method: "POST",
+        headers: { "api-key": BREVO_API_KEY, "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({
+          email,
+          attributes: {
+            FIRSTNAME: contact.first_name,
+            LASTNAME: contact.last_name,
+            ...(phone ? { SMS: phone, WHATSAPP: phone } : {}),
+            SOURCE_SYSTEM: contact.source_system,
+            SOURCE_ID: contact.source_id,
+          },
+          updateEnabled: true,
+          ...(LIST_ID ? { listIds: [LIST_ID] } : {}),
+        }),
+      });
+    } catch (err) {
+      console.error("Brevo contact upsert failed:", err);
+    }
+  }
+
+  return res.status(200).json({
+    success: true,
+    via, // "python" | "native"
+    saved: Boolean(saved),
+    source_system: contact.source_system,
+    source_id: contact.source_id,
+    primary_email: email || null,
+  });
 }
 
 function escapeHtml(str) {

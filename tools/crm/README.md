@@ -161,3 +161,15 @@ python -m pytest tools/crm/test_mappers.py -v
 python -m pytest tools/crm/test_signature.py -v
 python tools/crm/test_signature.py            # built-in runner, no pytest needed
 ```
+
+**Running both suites with only the standard library** (no pytest, and — if
+Pydantic is unavailable — a built-in shim so the mapper suite still executes):
+
+```bash
+PYTHONPATH=. python tools/crm/run_tests.py
+```
+
+It uses `unittest`. When the real Pydantic is installed it validates for real;
+otherwise it installs `_pydantic_shim` and prints a clear notice that the
+mapper/schema suite ran against a shim (logic verified, not a substitute for a
+real-Pydantic run).
