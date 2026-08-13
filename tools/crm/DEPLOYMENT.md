@@ -83,12 +83,23 @@ Pick one of these instead:
   `contactBridge.ts` already maps Google/Graph payloads in pure JS. Set
   `SKIP_PYTHON_SETUP=1` in the Vercel project env to skip the pointless install.
 
-- **B. Run the Python normaliser as a real Vercel Python Function.** Vercel has a
-  first-class Python runtime: add an `api/normalize.py` handler and a sibling
-  `requirements.txt` (listing `pydantic`) — Vercel installs it into the Python
-  function's own runtime. Then have the Node side call it over **HTTP** (`fetch`)
-  instead of `child_process.spawn`. This keeps the Python mapper in production
-  without mixing runtimes in one function.
+- **B. Run the Python normaliser as a real Vercel Python Function.** *(implemented)*
+  `api/normalize.py` is a Vercel Python function; `api/requirements.txt` lists
+  `pydantic`, and `vercel.json` includes `tools/crm/**` so the mapper package is
+  importable. Vercel installs the deps into the Python function's own runtime.
+  The Node side calls it over **HTTP** instead of spawning:
+
+  ```ts
+  await ingestContact(provider, payload, {
+    normalizeUrl: 'https://<your-site>/api/normalize',   // uses runHttpBridge
+    forward: createBrevoSink(),                          // tools/etl/sinks/brevoSink.ts
+  });
+  ```
+
+  Request: `POST /api/normalize?provider=google_people[&extract_signature=1]`
+  with the raw payload as the body; response is the `EnterpriseContact` JSON (or
+  `{"status":"error"}`). If the HTTP call fails, `ingestContact` still falls back
+  to the native-JS mapper, so nothing is dropped.
 
 - **C. Move the ingestion endpoint off serverless** onto a persistent Node host
   (section 1), where the spawn bridge works as-is.

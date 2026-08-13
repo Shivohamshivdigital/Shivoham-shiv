@@ -155,6 +155,66 @@ export function runCliBridge(
   });
 }
 
+// ---- HTTP transport (call the Vercel Python function over fetch) ----------
+
+export interface HttpBridgeOptions {
+  /** URL of the deployed Python normaliser, e.g. https://site/api/normalize */
+  url: string;
+  extractSignature?: boolean;
+  timeoutMs?: number; // default 5000
+  headers?: Record<string, string>;
+}
+
+/**
+ * Same contract as {@link runCliBridge}, but calls the Python normaliser over
+ * HTTP — for serverless targets that can't spawn python3. Never throws.
+ */
+export async function runHttpBridge(
+  provider: string,
+  rawPayload: unknown,
+  options: HttpBridgeOptions,
+): Promise<BridgeResult> {
+  const timeoutMs = options.timeoutMs ?? 5000;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  if (typeof (timer as any).unref === 'function') (timer as any).unref();
+
+  const qs = new URLSearchParams({ provider });
+  if (options.extractSignature) qs.set('extract_signature', '1');
+  const url = `${options.url}?${qs.toString()}`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', ...(options.headers ?? {}) },
+      body: typeof rawPayload === 'string' ? rawPayload : JSON.stringify(rawPayload),
+      signal: controller.signal,
+    });
+    const text = await res.text();
+    let parsed: any;
+    try {
+      parsed = text ? JSON.parse(text) : null;
+    } catch {
+      return { ok: false, kind: 'protocol', message: `non-JSON response: ${text.slice(0, 160)}`, stderr: [] };
+    }
+    if (!res.ok || (parsed && parsed.status === 'error')) {
+      const message = (parsed && parsed.message) || `HTTP ${res.status}`;
+      return { ok: false, kind: 'cli-error', message: String(message), stderr: [] };
+    }
+    return { ok: true, contact: parsed as NormalizedContact, stderr: [] };
+  } catch (err) {
+    const aborted = (err as any)?.name === 'AbortError';
+    return {
+      ok: false,
+      kind: aborted ? 'timeout' : 'spawn',
+      message: aborted ? `request exceeded ${timeoutMs}ms` : `fetch failed: ${String(err)}`,
+      stderr: [],
+    };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 // ---- Native JS fallback mapper (never throws) -----------------------------
 
 const _GRAPH_ALIASES = new Set(['microsoft', 'microsoft_graph', 'graph', 'msgraph', 'outlook']);
@@ -266,6 +326,11 @@ function normLabel(raw: unknown): string {
 export interface IngestDeps extends BridgeOptions {
   /** Where the sanitised contact goes: DB upsert, Brevo sync, Firebase, etc. */
   forward: (contact: NormalizedContact) => Promise<void> | void;
+  /**
+   * If set, call the Python normaliser over HTTP (the Vercel function) instead
+   * of spawning the CLI. Use this on serverless targets that can't spawn python3.
+   */
+  normalizeUrl?: string;
 }
 
 export interface IngestOutcome {
@@ -288,7 +353,13 @@ export async function ingestContact(
   let contact: NormalizedContact;
   let via: 'python' | 'native';
 
-  const result = await runCliBridge(provider, rawPayload, deps);
+  const result = deps.normalizeUrl
+    ? await runHttpBridge(provider, rawPayload, {
+        url: deps.normalizeUrl,
+        extractSignature: deps.extractSignature,
+        timeoutMs: deps.timeoutMs,
+      })
+    : await runCliBridge(provider, rawPayload, deps);
   if (result.ok) {
     contact = result.contact;
     via = 'python';

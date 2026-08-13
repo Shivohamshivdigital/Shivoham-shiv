@@ -1,0 +1,5 @@
+# Python dependencies for the Vercel Python Serverless Function api/normalize.py.
+# Vercel's @vercel/python runtime installs these into the function's own runtime
+# (this is the working way to run the Pydantic mapper on Vercel — see
+# tools/crm/DEPLOYMENT.md, option B).
+pydantic>=2.0.0
