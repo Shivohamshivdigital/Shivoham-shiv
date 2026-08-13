@@ -118,7 +118,7 @@ export default function BmiCalculatorView() {
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-amber-200">
             <Activity className="w-3.5 h-3.5" /> Free Health Tool
           </span>
-          <h1 className="mt-5 font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight">
+          <h1 className="mt-5 font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white">
             BMI Calculator
           </h1>
           <p className="mt-4 text-sm sm:text-base text-green-50/85 leading-relaxed max-w-xl mx-auto">
