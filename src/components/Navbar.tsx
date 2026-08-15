@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight, Activity } from "lucide-react";
+import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight, Activity, ChevronDown } from "lucide-react";
 import { getSession, clearSession, displayName, onAuthChange, Session } from "../utils/session";
+
+// All treatments shown in the "Treatments" nav dropdown (slugs match the public course routes).
+const TREATMENTS: { label: string; to: string }[] = [
+  { label: "Marma Dab Chikitsa", to: "/courses/acupressure-therapy" },
+  { label: "Mudra Therapy", to: "/courses/mudra-therapy" },
+  { label: "Corporate & Adult Wellness", to: "/courses/corporate-wellness" },
+  { label: "Kids EQ Training", to: "/courses/mindfulness-kids" },
+];
 
 interface NavbarProps {
   onOpenConsultation: () => void;
@@ -10,6 +18,7 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [treatmentsOpen, setTreatmentsOpen] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -91,17 +100,45 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               ABOUT US
             </NavLink>
 
-            {/* MARMA DAB CHIKITSA (single link) */}
-            <NavLink
-              to="/courses/acupressure-therapy"
-              className={({ isActive }) =>
-                `text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
-                  isActive ? "text-amber-200" : "text-white hover:text-amber-100"
-                }`
-              }
-            >
-              Marma Dab Chikitsa
-            </NavLink>
+            {/* TREATMENTS (dropdown) */}
+            <div className="relative group">
+              <NavLink
+                to="/treatments"
+                className={({ isActive }) =>
+                  `flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
+                    isActive ? "text-amber-200" : "text-white hover:text-amber-100"
+                  }`
+                }
+              >
+                Treatments
+                <ChevronDown className="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" />
+              </NavLink>
+              {/* Dropdown panel — pt-2 bridges the gap so hover survives */}
+              <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-3 z-50">
+                <div className="w-64 rounded-2xl bg-white shadow-xl border border-green-100 p-2">
+                  <NavLink
+                    to="/treatments"
+                    className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#2F5D50] hover:bg-green-50 transition-colors"
+                  >
+                    All Treatments
+                  </NavLink>
+                  <div className="my-1 border-t border-green-50" />
+                  {TREATMENTS.map((t) => (
+                    <NavLink
+                      key={t.to}
+                      to={t.to}
+                      className={({ isActive }) =>
+                        `block px-3 py-2 rounded-xl text-[13px] font-semibold transition-colors ${
+                          isActive ? "bg-green-50 text-[#2F5D50]" : "text-slate-700 hover:bg-green-50 hover:text-[#2F5D50]"
+                        }`
+                      }
+                    >
+                      {t.label}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             {/* Ayurvedic / Natural Weight Loss */}
             <NavLink
@@ -267,14 +304,38 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               ABOUT US
             </Link>
 
-            {/* Mobile MARMA DAB CHIKITSA (single link) */}
-            <Link
-              to="/courses/acupressure-therapy"
-              onClick={() => setIsOpen(false)}
-              className="py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
-            >
-              Marma Dab Chikitsa
-            </Link>
+            {/* Mobile TREATMENTS (expandable submenu) */}
+            <div>
+              <button
+                onClick={() => setTreatmentsOpen((v) => !v)}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
+                aria-expanded={treatmentsOpen}
+              >
+                Treatments
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${treatmentsOpen ? "rotate-180" : ""}`} />
+              </button>
+              {treatmentsOpen && (
+                <div className="mt-1 ml-3 pl-3 border-l border-white/15 flex flex-col">
+                  <Link
+                    to="/treatments"
+                    onClick={() => setIsOpen(false)}
+                    className="py-2 px-3 rounded-xl text-[13px] font-bold text-amber-100 hover:bg-white/10"
+                  >
+                    All Treatments
+                  </Link>
+                  {TREATMENTS.map((t) => (
+                    <Link
+                      key={t.to}
+                      to={t.to}
+                      onClick={() => setIsOpen(false)}
+                      className="py-2 px-3 rounded-xl text-[13px] font-semibold text-white/90 hover:bg-white/10"
+                    >
+                      {t.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <Link
               to="/weight-loss"
