@@ -4,9 +4,6 @@
   "buildCommand": "vite build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "functions": {
-    "api/normalize.py": { "includeFiles": "tools/crm/**" }
-  },
   "rewrites": [
     { "source": "/blog/:slug", "destination": "/api/post?slug=:slug" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
