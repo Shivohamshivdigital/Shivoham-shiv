@@ -10,7 +10,6 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "setup:python": "node scripts/setup-python.mjs",
-    "postinstall": "node scripts/setup-python.mjs",
     "verify:bridge": "bash scripts/verify-pipeline.sh"
   },
   "dependencies": {
