@@ -361,6 +361,22 @@ export default function WeightLossView() {
             </div>
           </div>
         </div>
+
+        {/* Real people practising — full-width strip (same as the challenge page) */}
+        <div className="w-full px-3 sm:px-4 pb-16 sm:pb-20 -mt-2 sm:-mt-6">
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto sm:overflow-visible pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {["/challenge/hero-1.webp", "/challenge/hero-2.webp", "/challenge/hero-3.webp", "/challenge/hero-4.webp", "/challenge/hero-5.webp"].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`Real people practising with Shivoham Shiv ${i + 1}`}
+                loading="lazy"
+                className="shrink-0 sm:shrink w-32 sm:w-auto sm:flex-1 h-48 sm:h-64 lg:h-72 object-cover object-center rounded-2xl ring-1 ring-white/25 shadow-lg"
+              />
+            ))}
+          </div>
+          <p className="text-center text-[11px] text-green-100/60 mt-3">Real people, real daily practice.</p>
+        </div>
       </section>
 
       {/* Hero Stats Strip */}
