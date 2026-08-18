@@ -63,7 +63,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               New: <strong className="font-extrabold">14-Day Vedic Detox &amp; Metabolism Challenge</strong> — beat bloating, support digestion &amp; feel lighter
             </span>
             <span className="inline-flex items-center rounded-full bg-white text-[#6E1B12] font-extrabold px-2 py-0.5 shadow-sm">
-              Only ₹1
+              Only ₹999
             </span>
           </span>
           <ArrowRight className="w-3.5 h-3.5 shrink-0 opacity-90 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
@@ -193,7 +193,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               to="/challenge"
               className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-[#5a3a12] text-[11px] font-extrabold uppercase tracking-wide shadow-sm transition-colors whitespace-nowrap"
             >
-              <Sparkles className="w-3 h-3" /> 14-Day · ₹1
+              <Sparkles className="w-3 h-3" /> 14-Day · ₹999
             </NavLink>
 
           </div>
@@ -293,7 +293,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-extrabold uppercase tracking-wider bg-amber-400 text-[#5a3a12] hover:bg-amber-300"
             >
-              <Sparkles className="w-4 h-4" /> 14-Day Challenge · ₹1
+              <Sparkles className="w-4 h-4" /> 14-Day Challenge · ₹999
             </Link>
 
             <Link

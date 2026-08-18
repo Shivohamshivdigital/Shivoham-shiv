@@ -150,7 +150,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
         focusKeyword="vedic wellness courses online"
       />
 
-      {/* 0. ₹1 CHALLENGE PROMO BANNER */}
+      {/* 0. CHALLENGE PROMO BANNER */}
       <section className="px-4 sm:px-6 lg:px-8 pt-6">
         <Link
           to="/challenge"
@@ -163,7 +163,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               </div>
               <div>
                 <span className="inline-block text-[10px] font-extrabold uppercase tracking-widest text-amber-300 mb-1">
-                  New · Just ₹1
+                  New · ₹999
                 </span>
                 <h3 className="font-heading font-bold text-lg sm:text-2xl leading-tight text-white">
                   14-Day Vedic Detox &amp; Metabolism Challenge
@@ -174,7 +174,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               </div>
             </div>
             <span className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-amber-400 group-hover:bg-amber-300 text-[#5a3a12] font-extrabold text-xs uppercase tracking-wider rounded-2xl transition-colors">
-              Join for ₹1 <ChevronRight className="w-4 h-4" />
+              Join for ₹999 <ChevronRight className="w-4 h-4" />
             </span>
           </div>
         </Link>
