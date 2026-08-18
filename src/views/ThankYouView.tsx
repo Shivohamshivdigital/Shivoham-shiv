@@ -33,7 +33,7 @@ export default function ThankYouView() {
     }
   }, [amount, plan]);
 
-  // ₹1 challenge buyers: auto-redirect to the WhatsApp group. The short delay
+  // Challenge buyers: auto-redirect to the WhatsApp group. The short delay
   // lets the Purchase pixel/GA events fire before we leave the page.
   useEffect(() => {
     if (!isChallenge) return;

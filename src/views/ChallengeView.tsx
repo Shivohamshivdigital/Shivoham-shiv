@@ -68,20 +68,16 @@ const INCLUDED = [
   "No pills, no equipment, no crash diets — just your hands and breath",
   "Ayurvedic body-type (Dosha) self-assessment",
   "Guidance on WhatsApp from the Shivoham Shiv team",
-  "One-time ₹1 — no subscription, no auto-debit",
+  "One-time ₹999 — no subscription, no auto-debit",
 ];
 
 const FAQS = [
   {
     q: "Will I be charged again or auto-debited?",
-    a: "No. It's a single one-time ₹1 payment through Razorpay. There is no subscription, no auto-renewal and no UPI auto-mandate — we will never charge you automatically. Any deeper course later is completely optional and separately priced, only if you choose it.",
+    a: "No. It's a single one-time ₹999 payment through Razorpay. There is no subscription, no auto-renewal and no UPI auto-mandate — we will never charge you automatically. Any deeper course later is completely optional and separately priced, only if you choose it.",
   },
   {
-    q: "Is there a money-back guarantee?",
-    a: "Yes — it's 100% risk-free. If the challenge isn't for you, just message us on WhatsApp and we'll refund your ₹1, no questions asked.",
-  },
-  {
-    q: "What exactly do I get for ₹1?",
+    q: "What exactly do I get for ₹999?",
     a: "Access to all 14 daily lessons of the challenge — traditional Mudra, Marma and acupressure techniques you can do in about 20 minutes a day, plus guidance on WhatsApp from our team.",
   },
   {
@@ -143,7 +139,7 @@ export default function ChallengeView() {
     navigate(`${backTo}?step=payment`, { replace: true });
     try {
       await startPayment("challenge", { email, contact: phone });
-      const q = new URLSearchParams({ plan: "challenge", amount: "1", email, phone });
+      const q = new URLSearchParams({ plan: "challenge", amount: "999", email, phone });
       navigate(`/thank-you?${q.toString()}`);
     } catch (err: any) {
       setError(err.message || "Payment could not complete. Please try again.");
@@ -160,15 +156,15 @@ export default function ChallengeView() {
       className={`challenge-cta inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 ${className}`}
     >
       {paying ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-      {paying ? "Opening payment…" : "Join the challenge — ₹1"}
+      {paying ? "Opening payment…" : "Join the challenge — ₹999"}
     </button>
   );
 
   return (
     <div className="bg-[#FAFBF7] font-sans">
       <SEO
-        title="14-Day Natural Weight-Loss Ritual Challenge — Just ₹1 | Shivoham Shiv"
-        description="A guided 14-day Ayurvedic ritual that supports natural weight loss — improving digestion, metabolism & daily movement with Mudra, Marma & breathing, about 20 minutes a day. A repeatable habit you keep for life. One-time ₹1, no subscription. Not a medicine or a guaranteed weight-loss treatment."
+        title="14-Day Natural Weight-Loss Ritual Challenge — ₹999 | Shivoham Shiv"
+        description="A guided 14-day Ayurvedic ritual that supports natural weight loss — improving digestion, metabolism & daily movement with Mudra, Marma & breathing, about 20 minutes a day. A repeatable habit you keep for life. One-time ₹999, no subscription. Not a medicine or a guaranteed weight-loss treatment."
       />
 
       {/* HERO */}
@@ -199,19 +195,17 @@ export default function ChallengeView() {
 
           <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-3">
-              <span className="text-green-200/60 line-through text-lg">₹499</span>
-              <span className="text-4xl sm:text-5xl font-extrabold text-white">₹1</span>
+              <span className="text-4xl sm:text-5xl font-extrabold text-white">₹999</span>
               <span className="text-xs bg-amber-400 text-[#5a3a12] font-extrabold px-2.5 py-1 rounded-full">
-                Today only
+                One-time
               </span>
             </div>
             <CTA />
             {error && <p className="text-xs text-red-200 max-w-sm">{error}</p>}
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-green-100/70 mt-2">
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> One-time ₹1 · no auto-debit</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> One-time ₹999 · no auto-debit</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 20 min a day</span>
               <span className="flex items-center gap-1.5"><HandHeart className="w-3.5 h-3.5" /> No crash diets or pills</span>
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> 100% money-back guarantee</span>
             </div>
           </div>
         </motion.div>
@@ -260,7 +254,7 @@ export default function ChallengeView() {
             { icon: Award, label: "7+ years of practice" },
             { icon: Users, label: "1,200+ people guided" },
             { icon: HandHeart, label: "No pills or equipment" },
-            { icon: ShieldCheck, label: "One-time ₹1 · no auto-debit" },
+            { icon: ShieldCheck, label: "One-time ₹999 · no auto-debit" },
           ].map((b, i) => (
             <div key={i} className="flex flex-col items-center text-center gap-2 bg-white border border-green-100 rounded-2xl p-4 shadow-xs">
               <b.icon className="w-6 h-6 text-green-700" />
@@ -398,8 +392,7 @@ export default function ChallengeView() {
             <div className="bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white p-8 flex flex-col justify-center text-center">
               <p className="text-xs uppercase tracking-widest text-green-100/70 mb-1">Your price today</p>
               <div className="flex items-center justify-center gap-3 mb-1">
-                <span className="text-green-200/60 line-through text-lg">₹499</span>
-                <span className="text-5xl font-extrabold">₹1</span>
+                <span className="text-5xl font-extrabold">₹999</span>
               </div>
               <p className="text-xs text-green-100/70 mb-6">
                 One-time payment. No subscription, no auto-debit, no UPI mandate, no hidden charges — ever.
@@ -418,7 +411,7 @@ export default function ChallengeView() {
       <section className="py-14 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Included free</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">Free bonuses with your ₹1</h2>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">Free bonuses with your ₹999</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
@@ -439,7 +432,7 @@ export default function ChallengeView() {
           ))}
         </div>
         <p className="text-center text-sm text-slate-600 mt-6">
-          Total value <b className="text-slate-400 line-through">₹997</b> — yours free with the ₹1 challenge.
+          Total value <b className="text-slate-400 line-through">₹997</b> — yours free with the ₹999 challenge.
         </p>
       </section>
 
@@ -519,11 +512,11 @@ export default function ChallengeView() {
       >
         <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white rounded-3xl p-10 sm:p-14">
           <h2 className="font-heading font-bold text-2xl sm:text-4xl mb-4 text-white">
-            Start your 14-day reset — for ₹1
+            Start your 14-day reset — for ₹999
           </h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
             Build one calming Ayurvedic habit a day for two weeks — a gentle first step you can keep going at your
-            own pace. One-time ₹1, no subscription. Results vary, and it's not a medical treatment.
+            own pace. One-time ₹999, no subscription. Results vary, and it's not a medical treatment.
           </p>
           <CTA />
           {error && <p className="text-xs text-red-200 mt-3">{error}</p>}
@@ -545,7 +538,7 @@ export default function ChallengeView() {
           className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl disabled:opacity-70"
         >
           {paying ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-          {paying ? "Opening payment…" : "Join the challenge — ₹1"}
+          {paying ? "Opening payment…" : "Join the challenge — ₹999"}
         </button>
       </div>
 

@@ -58,7 +58,7 @@ const FAQS = [
   },
   {
     q: "My BMI is high — what should I do?",
-    a: "Don't panic over one number. A natural, sustainable routine of the right diet, movement and daily habits works better than crash dieting. Our team can build a personalized Ayurvedic plan around your body type — start with the ₹1 14-day challenge or book a free call.",
+    a: "Don't panic over one number. A natural, sustainable routine of the right diet, movement and daily habits works better than crash dieting. Our team can build a personalized Ayurvedic plan around your body type — start with the 14-day challenge or book a free call.",
   },
 ];
 
@@ -323,7 +323,7 @@ export default function BmiCalculatorView() {
                         to="/challenge"
                         className="flex-1 inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-gradient-to-br from-[#5DBB63] to-[#3E9B49] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md hover:shadow-lg transition"
                       >
-                        Try the ₹1 14-day challenge <ArrowRight className="w-3.5 h-3.5" />
+                        Try the 14-day challenge <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                       <Link
                         to="/weight-loss"

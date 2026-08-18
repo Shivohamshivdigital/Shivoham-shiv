@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       label: "60-Day Natural Weight Loss Program",
     },
     challenge: {
-      amount: Math.round((Number(settings.challengeAmount) || 1) * 100),
+      amount: Math.round((Number(settings.challengeAmount) || 999) * 100),
       label: "14-Day Vedic Healing Challenge",
     },
   };

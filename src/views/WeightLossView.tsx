@@ -1002,7 +1002,7 @@ export default function WeightLossView() {
                       onClick={() => navigate("/challenge")}
                       className="text-[11px] font-semibold text-[#F3C969] underline underline-offset-2 hover:text-white transition-colors"
                     >
-                      New here? Try our 14-day challenge for just ₹1 first →
+                      New here? Try our 14-day challenge for ₹999 first →
                     </button>
                     <button
                       onClick={() => navigate("/contact")}
