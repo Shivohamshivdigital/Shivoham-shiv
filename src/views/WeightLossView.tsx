@@ -313,39 +313,34 @@ export default function WeightLossView() {
         ]}
       />
       
-      {/* 2. HERO SECTION */}
-      <section className="relative py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* premium decorative glow */}
-        <div aria-hidden="true" className="pointer-events-none absolute -top-24 -right-10 w-96 h-96 rounded-full bg-gradient-to-br from-[#E8943A]/25 to-transparent blur-3xl" />
-        <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 -left-24 w-[30rem] h-[30rem] rounded-full bg-gradient-to-tr from-[#4A7C59]/15 to-transparent blur-3xl" />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          
-          {/* Left Text */}
-          <div className="lg:col-span-7 text-left space-y-6 relative z-10">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#E3F1E3] rounded-full text-[#2F5233] text-xs font-bold uppercase tracking-widest border border-green-200">
-              <Sparkles className="w-3.5 h-3.5 text-[#E8943A] fill-[#E8943A]" />
-              100% NATURAL · AYURVEDIC ROOT
-            </span>
-            
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-[#2F5233] leading-tight tracking-tight">
-              Why does the weight keep coming back?
-            </h1>
-            
-            <p className="text-lg sm:text-xl font-semibold text-[#E8943A] italic">
-              And the 60-day natural system that finally stops it.
-            </p>
-            
-            <p className="text-sm sm:text-base leading-relaxed text-[#3A4A40]/90 max-w-xl">
-              Chemical pills, crash diets, and extreme starvation break the body down — they don't rebuild it. 
-              The 60-Day Natural Program resets metabolism from within via deep Yoga, proper Pranayama, specific 
-              Mudra Therapy, Acupressure channels, and a Prakriti-personalized natural diet.
-            </p>
+      {/* 2. HERO SECTION — challenge-style dark green, centered */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white">
+        <div className="max-w-[1400px] mx-auto px-4 lg:px-6 py-16 sm:py-24 text-center">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
+            <Sparkles className="w-3.5 h-3.5" /> 100% Natural · Ayurvedic Root
+          </span>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-white">
+            Why does the weight keep coming back?<br />
+            <span className="text-amber-300">The 60-day natural system that finally stops it.</span>
+          </h1>
+
+          <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto leading-relaxed mb-6">
+            Chemical pills, crash diets and starvation break the body down — they don't rebuild it. The 60-Day
+            Natural Program resets metabolism from within with Yoga, Pranayama, Mudra therapy, Acupressure and a
+            Prakriti-personalized natural diet.
+          </p>
+
+          <p className="text-[11px] sm:text-xs text-green-100/60 max-w-2xl mx-auto leading-relaxed mb-8">
+            These are traditional Ayurvedic wellness practices that support healthy daily habits — they don't
+            diagnose, treat or cure any condition, and results vary from person to person.
+          </p>
+
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-3">
               <button
                 onClick={scrollToEnroll}
-                className="px-8 py-4 bg-gradient-to-br from-[#F0A64E] to-[#E8943A] hover:from-[#F3B05E] hover:to-[#EFAF3C] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 ring-1 ring-amber-300/50 transform hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
               >
                 <Clock3 className="w-4 h-4" />
                 Get Started in 24 Hrs
@@ -353,54 +348,18 @@ export default function WeightLossView() {
               <a
                 href="#the-program"
                 onClick={(e) => handleScrollToSegment(e, "the-program")}
-                className="px-8 py-4 border-2 border-[#4A7C59]/40 text-[#2F5233] hover:border-[#4A7C59] hover:bg-[#E3F1E3]/60 rounded-2xl font-bold text-sm uppercase tracking-wider text-center transition-all bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-md"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/25 text-white hover:bg-white/10 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all"
               >
                 See how it works
               </a>
             </div>
 
-            {/* Verification Chips */}
-            <div className="flex flex-wrap gap-2.5 pt-4 text-xs font-bold text-green-900 tracking-wide">
-              {["100% Natural", "0 Supplements Required", "Personalized Prakriti Diet"].map((chip, idx) => (
-                <span key={idx} className="flex items-center gap-1 bg-[#E3F1E3] px-3.5 py-1.5 rounded-full border border-green-200/50">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                  {chip}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-green-100/70 mt-2">
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> 100% Natural</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> 0 Supplements required</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Personalized Prakriti diet</span>
             </div>
           </div>
-
-          {/* Right Visual Image */}
-          <div className="lg:col-span-5 relative">
-            <div aria-hidden="true" className="pointer-events-none absolute -inset-4 bg-gradient-to-tr from-[#E8943A]/20 via-transparent to-[#4A7C59]/20 rounded-[48px] blur-2xl" />
-            <div className="w-full aspect-square bg-[#FAFBF7] rounded-[40px] shadow-2xl overflow-hidden relative border-8 border-white ring-1 ring-green-900/5">
-              <img
-                src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=1200"
-                alt="Representative yoga and pranayama posture showing Ayurvedic Natural Transformation for cellular weight loss"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-green-900/10" />
-
-              {/* Dynamic Overlay Badges */}
-              <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-xs py-2 px-3.5 rounded-xl shadow-md border border-green-105 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
-                <span className="text-[10px] font-bold uppercase text-[#2F5233]">7+ Years Experience</span>
-              </div>
-
-              <div className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-xs py-2.5 px-4 rounded-xl shadow-lg border border-[#E3F1E3] flex items-center gap-1.5 text-slate-900">
-                <span className="text-amber-500 font-bold text-sm">★ 4.8</span>
-                <span className="text-[10px] text-gray-500 font-medium">Ayurvedic Score</span>
-              </div>
-            </div>
-
-            {/* Rotating Star or Promo Badge */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-[#F0A64E] to-[#d97f24] rounded-full flex items-center justify-center text-white font-bold text-center leading-tight shadow-xl shadow-amber-500/40 -rotate-12 select-none ring-2 ring-amber-200/60">
-              Metabolic<br/>Reset!
-            </div>
-          </div>
-
         </div>
       </section>
 
