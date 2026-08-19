@@ -104,7 +104,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
   const firstName = String(name).trim().split(/\s+/)[0] || name;
   const phone = user.phone || user.contact || "";
   const plan = user.paidPlan || user.lastPlan || "";
-  const planLabel = plan === "register" ? "Registration (₹999)" : plan === "course" ? "60-Day Program" : plan || "—";
+  const planLabel = plan === "register" ? "Registration (₹999)" : plan === "course" ? "40-Day Program" : plan || "—";
   const assessmentQ = new URLSearchParams({ paid: user.paid ? "1" : "0" });
   if (user.email) assessmentQ.set("email", user.email);
   if (phone) assessmentQ.set("phone", phone);
@@ -151,7 +151,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
             <span className="flex items-center gap-3">
               <CreditCard className="w-5 h-5 text-amber-600 shrink-0" />
               <span className="text-xs text-amber-900 leading-snug">
-                You're not enrolled yet — <strong>join the 60-Day program</strong>.
+                You're not enrolled yet — <strong>join the 40-Day program</strong>.
               </span>
             </span>
             <ArrowRight className="w-4 h-4 text-amber-600 shrink-0" />

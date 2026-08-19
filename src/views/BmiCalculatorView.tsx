@@ -329,7 +329,7 @@ export default function BmiCalculatorView() {
                         to="/weight-loss"
                         className="flex-1 inline-flex items-center justify-center px-5 py-3 border-2 border-green-200 text-green-800 hover:bg-green-50 font-bold text-xs uppercase tracking-wider rounded-xl transition"
                       >
-                        See the 60-day program
+                        See the 40-day program
                       </Link>
                     </div>
                   </div>
