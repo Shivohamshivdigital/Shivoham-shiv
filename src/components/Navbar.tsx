@@ -228,7 +228,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 title="Log in"
               >
                 <LogIn className="w-3.5 h-3.5 shrink-0" />
-                <span>Start Your 40–60 Day Journey</span>
+                <span>Start Your 60-Day Journey</span>
               </Link>
             )}
 
@@ -393,7 +393,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
                 >
-                  <LogIn className="w-4 h-4" /> Start Your 40–60 Day Journey
+                  <LogIn className="w-4 h-4" /> Start Your 60-Day Journey
                 </Link>
               )}
 

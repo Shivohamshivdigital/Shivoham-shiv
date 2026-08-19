@@ -14,7 +14,7 @@ import { dbInsert, dbFindBy, dbUpdate } from "../_db.js";
 
 const PLAN_LABEL = {
   register: "Registration (₹999)",
-  course: "40–60 Day Program (₹7999)",
+  course: "60-Day Program (₹7999)",
   challenge: "14-Day Vedic Healing Challenge (₹1)",
 };
 
