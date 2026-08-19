@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     },
     course: {
       amount: Math.round((Number(settings.courseAmount) || 7999) * 100),
-      label: "40-Day Natural Weight Loss Program",
+      label: "40–60 Day Natural Weight Loss Program",
     },
     challenge: {
       amount: Math.round((Number(settings.challengeAmount) || 999) * 100),

@@ -23,8 +23,8 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "cortisol-belly-why-stomach-wont-shrink",
-    title: "Cortisol Belly: Why Your Stomach Won't Shrink No Matter How Little You Eat (And the 40-Day Fix)",
-    meta: "Stubborn lower-belly fat that won't budge despite dieting? It may be cortisol, not calories. The stress–belly-fat link and a natural 40-day approach.",
+    title: "Cortisol Belly: Why Your Stomach Won't Shrink No Matter How Little You Eat (And the 40–60 Day Fix)",
+    meta: "Stubborn lower-belly fat that won't budge despite dieting? It may be cortisol, not calories. The stress–belly-fat link and a natural 40–60 day approach.",
     keyword: "cortisol belly fat",
     excerpt: "You've cut the rice. You've skipped dinner. You walk every morning. And still — that lower belly sits there like it pays rent. Learn the stress–belly-fat link.",
     date: "May 28, 2026",
@@ -69,11 +69,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "heading",
-        text: "The 40-Day Restorative Fix"
+        text: "The 40–60 Day Restorative Fix"
       },
       {
         type: "paragraph",
-        text: "A sustainable natural reset does not happen overnight. In addition to our targeted wellness programs, practicing [guided meditation for better sleep](/blog/guided-meditation-for-better-sleep) can significantly calm nightly adrenaline, supporting healthy, natural weight balance. Here are the core pillars of the 40-day fix:"
+        text: "A sustainable natural reset does not happen overnight. In addition to our targeted wellness programs, practicing [guided meditation for better sleep](/blog/guided-meditation-for-better-sleep) can significantly calm nightly adrenaline, supporting healthy, natural weight balance. Here are the core pillars of the 40–60 day fix:"
       },
       {
         type: "bullet_list",

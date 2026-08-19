@@ -64,7 +64,7 @@ function buildPlanInfo(p: Pricing): Record<PaymentPlan, {
   return {
     course: {
       badge: "Full Transformation",
-      title: "40-Day Natural Program",
+      title: "40–60 Day Natural Program",
       price: inr(p.courseAmount),
       original: p.courseOriginal ? inr(p.courseOriginal) : null,
       discount: p.discountLabel || null,
@@ -72,14 +72,14 @@ function buildPlanInfo(p: Pricing): Record<PaymentPlan, {
       desc: 'The complete personalized program — backed by our "results or it\'s on us" guarantee.',
       features: ["Prakriti-personalized diet & plan", "Yoga, Pranayama, Mudra & Marma guidance", "Results guarantee — until you reach your goal"],
       cta: `Enroll for ${inr(p.courseAmount)}`,
-      dropdownLabel: `40-Day Program — ${inr(p.courseAmount)}${p.discountLabel ? ` (${p.discountLabel})` : ""}`,
+      dropdownLabel: `40–60 Day Program — ${inr(p.courseAmount)}${p.discountLabel ? ` (${p.discountLabel})` : ""}`,
     },
   };
 }
 
 const WL_TESTIMONIALS = [
   {
-    loss: "8 kg in 40 days",
+    loss: "8 kg in 40–60 days",
     client: "Ritu S.",
     loc: "Jaipur",
     img: "",
@@ -129,7 +129,7 @@ export default function WeightLossView() {
 
   // Before/after transformation photos — admin-managed, with file fallbacks.
   const [transformations, setTransformations] = useState<{ src: string; caption: string }[]>([
-    { src: "/transformations/transformation-1.webp", caption: "Day 1 → Day 40" },
+    { src: "/transformations/transformation-1.webp", caption: "Real client · 40–60 days" },
     { src: "/transformations/transformation-2.webp", caption: "Real client transformation" },
   ]);
   useEffect(() => {
@@ -237,7 +237,7 @@ export default function WeightLossView() {
         fullName || "Weight Loss Aspirant",
         email,
         contactNo,
-        `[NATURAL WEIGHT LOSS INQUIRY] ${message || "I want to join the 40-day natural metabolic reset program."}`
+        `[NATURAL WEIGHT LOSS INQUIRY] ${message || "I want to join the 40–60 day natural metabolic reset program."}`
       );
       
       setIsSubmitting(false);
@@ -246,7 +246,7 @@ export default function WeightLossView() {
       
       // Open WhatsApp chat directly in a new window or trigger simulated action
       const encodedMsg = encodeURIComponent(
-        `Pranama, Shivoham Shiv! I have registered for the 40-Day Natural Weight Loss Consultation. Please review my profile (Contact: ${contactNo}).`
+        `Pranama, Shivoham Shiv! I have registered for the 40–60 Day Natural Weight Loss Consultation. Please review my profile (Contact: ${contactNo}).`
       );
       setTimeout(() => {
         window.open(`https://wa.me/917317778215?text=${encodedMsg}`, "_blank");
@@ -270,7 +270,7 @@ export default function WeightLossView() {
     },
     {
       q: "Will the weight come back?",
-      a: "Traditional crash diets fail because they trigger extreme survival-starvation responses in cellular tissues. Our 40-day program resets your core thyroid and cortisol metabolic clock from within. Once completed, the weight stays off sustainably because your biological craving patterns are neutralized."
+      a: "Traditional crash diets fail because they trigger extreme survival-starvation responses in cellular tissues. Our 40–60 day program resets your core thyroid and cortisol metabolic clock from within. Once completed, the weight stays off sustainably because your biological craving patterns are neutralized."
     },
     {
       q: "What happens in the free consultation?",
@@ -282,7 +282,7 @@ export default function WeightLossView() {
     },
     {
       q: "Is there a guarantee if it doesn't work?",
-      a: "Yes — with the full 40-Day Program we continue guiding you free until you reach your goal, as long as you follow the plan. On the consultation we'll set realistic expectations for your body type before you commit, so there are no surprises."
+      a: "Yes — with the full 40–60 Day Program we continue guiding you free until you reach your goal, as long as you follow the plan. On the consultation we'll set realistic expectations for your body type before you commit, so there are no surprises."
     }
   ];
 
@@ -301,8 +301,8 @@ export default function WeightLossView() {
       {authPlan && <AuthModal onClose={closeAuth} onSuccess={handleAuthSuccess} />}
 
       <SEO
-        title="Ayurvedic Natural Weight Loss | 40-Day Program — Shivoham Shiv"
-        description="Lose weight naturally with Shivoham Shiv's 40-day Ayurvedic program — yoga, pranayama, mudra therapy and a prakriti diet. No pills, no crash diets."
+        title="Ayurvedic Natural Weight Loss | 40–60 Day Program — Shivoham Shiv"
+        description="Lose weight naturally with Shivoham Shiv's 40–60 day Ayurvedic program — yoga, pranayama, mudra therapy and a prakriti diet. No pills, no crash diets."
         focusKeyword="ayurvedic natural weight loss"
         isFAQPage={true}
         faqs={faqs}
@@ -322,11 +322,11 @@ export default function WeightLossView() {
 
           <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-white">
             Why does the weight keep coming back?<br />
-            <span className="text-amber-300">The 40-day natural system that finally stops it.</span>
+            <span className="text-amber-300">The 40–60 day natural system that finally stops it.</span>
           </h1>
 
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto leading-relaxed mb-6">
-            Chemical pills, crash diets and starvation break the body down — they don't rebuild it. The 40-Day
+            Chemical pills, crash diets and starvation break the body down — they don't rebuild it. The 40–60 Day
             Natural Program resets metabolism from within with Yoga, Pranayama, Mudra therapy, Acupressure and a
             Prakriti-personalized natural diet.
           </p>
@@ -384,7 +384,7 @@ export default function WeightLossView() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-[#E8943A]/10 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
           {[
-            { value: "6–9kg", label: "avg loss / 40 days" },
+            { value: "6–9kg", label: "avg loss / 40–60 days" },
             { value: "1,200+", label: "Transformations Guided" },
             { value: "7+ Years", label: "Clinical Experience" },
             { value: "0", label: "Supplements Required" }
@@ -445,7 +445,7 @@ export default function WeightLossView() {
               the scale won't budge and that stubborn belly stays. Here's the truth most diets won't tell you: 
               it's not about how little you eat. When your body is under constant stress, high cortisol keeps 
               it locked in "fat-storage" mode — no matter how strict you are. That's exactly why dieting alone 
-              keeps failing. Our 40-Day Natural Program works on the real cause first: calming your body so it 
+              keeps failing. Our 40–60 Day Natural Program works on the real cause first: calming your body so it 
               finally lets the weight go — naturally and sustainably.
             </p>
 
@@ -546,7 +546,7 @@ export default function WeightLossView() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A] block">Averages Database</span>
-                  <h4 className="font-heading font-semibold text-base text-[#2F5233]">Average Weight Change (40 Days)</h4>
+                  <h4 className="font-heading font-semibold text-base text-[#2F5233]">Average Weight Change (40–60 Days)</h4>
                 </div>
                 <div className="flex items-center gap-1 bg-[#F2F9F2] px-2 py-1 rounded-lg text-[10px] font-bold text-[#4A7C59]">
                   <TrendingDown className="w-3 h-3" />
@@ -604,9 +604,9 @@ export default function WeightLossView() {
                 {/* X-Axis labels */}
                 <div className="flex justify-between text-[9px] font-mono font-bold text-[#2F5233] mt-2 select-none border-t border-green-100/60 pt-2 relative z-10">
                   <span>Day 0 (Start)</span>
-                  <span>Day 14</span>
-                  <span>Day 28</span>
-                  <span>Day 40 (Goal)</span>
+                  <span>Day 20</span>
+                  <span>Day 40</span>
+                  <span>Day 40–60 (Goal)</span>
                 </div>
               </div>
 
@@ -622,7 +622,7 @@ export default function WeightLossView() {
       {/* 5. #the-program SECTION */}
       <section id="the-program" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The 40-Day Natural Program</span>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The 40–60 Day Natural Program</span>
           <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
             Five ancient practices. One structured system.
           </h2>
@@ -734,7 +734,7 @@ export default function WeightLossView() {
             How the weight comes off — week by week
           </h2>
           <p className="text-sm leading-relaxed text-[#3A4A40]/80">
-            A clear timeline of biological adjustments. True metabolic resets cannot happen overnight, but they are fully visible within 40 days.
+            A clear timeline of biological adjustments. True metabolic resets cannot happen overnight, but they are fully visible within 40–60 days.
           </p>
         </div>
 
@@ -756,7 +756,7 @@ export default function WeightLossView() {
               desc: "Deep fatty tissues dissolve, functional stamina spikes upwards, and localized cellular vitality returns."
             },
             {
-              week: "Week 6",
+              week: "Week 6–8",
               title: "Lasting Balance (-8 kg)",
               desc: "Sustained lifestyle integration completes, establishing full biological equilibrium from the root up."
             }
@@ -828,7 +828,7 @@ export default function WeightLossView() {
                 Start your transformation today
               </h2>
               <p className="text-sm text-slate-700 leading-relaxed mb-8">
-                Enroll in the full 40-Day Natural Program — backed by our results guarantee.
+                Enroll in the full 40–60 Day Natural Program — backed by our results guarantee.
               </p>
 
               <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-4">What's included</h3>
@@ -873,13 +873,13 @@ export default function WeightLossView() {
               </div>
 
               <div className="mt-9">
-                <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-5">Your 40-day journey</h3>
+                <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-5">Your 40–60 day journey</h3>
                 <ol className="relative border-l-2 border-green-100 ml-1 space-y-6">
                   {[
                     { w: "Week 1", t: "Detox & onboarding", d: "Water bloat drains, routine begins, onboarding call within 24 hrs." },
                     { w: "Week 2", t: "Cravings calm (~3 kg)", d: "Sugar dependencies fade, sleep deepens, and energy rises." },
                     { w: "Week 4", t: "Metabolic reset (~5 kg)", d: "Stamina spikes, fat tissues dissolve, vitality returns." },
-                    { w: "Week 6", t: "Lasting balance (~8 kg)", d: "Full biological equilibrium — results that actually hold." },
+                    { w: "Week 6–8", t: "Lasting balance (~8 kg)", d: "Full biological equilibrium — results that actually hold." },
                   ].map((s, i) => (
                     <li key={i} className="ml-5">
                       <span className="absolute -left-[9px] w-4 h-4 rounded-full bg-[#4A7C59] border-2 border-[#FAFBF7]" />
@@ -1006,7 +1006,7 @@ export default function WeightLossView() {
           <div className="lg:col-span-4 text-left space-y-6">
             <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Real Numbers · Real Clients</span>
             <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
-              Clients who had tried for 10 years — saw results in 40 days
+              Clients who had tried for 10 years — saw results in 40–60 days
             </h2>
             <p className="text-sm text-[#3A4A40]/85 leading-relaxed">
               Vedic therapy focuses on permanent results. By addressing psychological stressors and elemental physical blocks, our graduates hold onto their wellness profiles sustainably.
@@ -1154,7 +1154,7 @@ export default function WeightLossView() {
               </li>
               <li className="flex items-start gap-2 text-slate-755 leading-relaxed">
                 <Check className="w-4 h-4 text-green-700 shrink-0 mt-0.5" />
-                <span>You are fully willing to commit steady effort to daily practice and custom meal maps for 40 consecutive days.</span>
+                <span>You are fully willing to commit steady effort to daily practice and custom meal maps for 40–60 consecutive days.</span>
               </li>
             </ul>
           </div>
