@@ -1274,7 +1274,7 @@ export default function AdminView() {
                     />
                   </div>
                   <div>
-                    <label className={labelCls}>60-Day Program amount (₹)</label>
+                    <label className={labelCls}>40-Day Program amount (₹)</label>
                     <input
                       type="number"
                       min={1}
@@ -1284,7 +1284,7 @@ export default function AdminView() {
                     />
                   </div>
                   <div>
-                    <label className={labelCls}>60-Day strike-through / original (₹)</label>
+                    <label className={labelCls}>40-Day strike-through / original (₹)</label>
                     <input
                       type="number"
                       min={0}
