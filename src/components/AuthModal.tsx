@@ -96,7 +96,7 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
 
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-md bg-gradient-to-b from-[#143f29] to-[#0c2a1b] text-cream rounded-3xl shadow-2xl border border-green-700/40 p-7 sm:p-8">
+      <div className="relative w-full max-w-md bg-gradient-to-b from-[#003A40] to-[#002A2E] text-cream rounded-3xl shadow-2xl border border-green-700/40 p-7 sm:p-8">
         <button onClick={onClose} className="absolute top-4 right-4 text-green-200 hover:text-white" aria-label="Close">
           <X className="w-5 h-5" />
         </button>

@@ -155,7 +155,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
         
         {/* Header Title */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">
             Discover Vedic Wisdom Pipelines
           </span>
           <h1 className="font-heading font-bold text-3xl sm:text-4xl text-green-900 mt-2 mb-4 leading-tight">
@@ -177,7 +177,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
                 className={`py-2 px-4 rounded-xl text-xs font-semibold uppercase tracking-wider border cursor-pointer transition-colors duration-200 ${
                   selectedCategory === cat
                     ? "bg-green-700 text-cream border-green-750 font-bold"
-                    : "bg-[#F2F9F2] text-slate-700 border-green-100 hover:bg-green-100"
+                    : "bg-[#EEF6F6] text-slate-700 border-green-100 hover:bg-green-100"
                 }`}
               >
                 {cat}
@@ -222,7 +222,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
 
         {filteredCourses.length === 0 && (
           <div className="text-center py-24 bg-white rounded-3xl border border-green-100 p-6">
-            <HelpCircle className="w-12 h-12 text-[#E8943A] mx-auto mb-4 animate-pulse" />
+            <HelpCircle className="w-12 h-12 text-[#EF8321] mx-auto mb-4 animate-pulse" />
             <h3 className="font-heading font-bold text-lg text-green-900">No Corresponding Pathways Found</h3>
             <p className="text-xs text-slate-700 mt-2 max-w-sm mx-auto">
               We couldn't locate courses matching your criteria. Try resetting filtering states or try search term variations!
@@ -255,7 +255,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-green-950/90 via-green-955/40 to-transparent p-6 sm:p-10 flex flex-col justify-end text-cream">
-                <span className="px-3 py-1 bg-[#EFAF3C] text-[#FAFBF7] text-[9px] font-bold tracking-widest uppercase rounded-full w-fit mb-2">
+                <span className="px-3 py-1 bg-[#F49B3E] text-[#FAFBF7] text-[9px] font-bold tracking-widest uppercase rounded-full w-fit mb-2">
                   {selectedCourse.category}
                 </span>
                 {selectedCourse.altName && (
@@ -286,7 +286,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
                 
                 {/* description */}
                 <div>
-                  <h3 className="text-xs uppercase font-bold tracking-widest text-[#E8943A] mb-2">
+                  <h3 className="text-xs uppercase font-bold tracking-widest text-[#EF8321] mb-2">
                     Pathway Overview
                   </h3>
                   <p className="text-sm leading-relaxed text-slate-705">
@@ -311,7 +311,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
 
                 {/* Syllabus Modules Audit */}
                 <div>
-                  <h3 className="font-heading font-bold text-sm text-[#E8943A] uppercase tracking-widest mb-4">
+                  <h3 className="font-heading font-bold text-sm text-[#EF8321] uppercase tracking-widest mb-4">
                     Course Syllabus / Curriculum
                   </h3>
                   
@@ -386,7 +386,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
 
               {/* Right panel checkouts CTAs cards */}
               <div className="lg:col-span-4 bg-white border border-green-100 rounded-2xl p-6 shadow-sm sticky top-24">
-                <h4 className="font-heading font-bold text-xs text-[#E8943A] uppercase tracking-widest mb-4 border-b border-green-50 pb-2">
+                <h4 className="font-heading font-bold text-xs text-[#EF8321] uppercase tracking-widest mb-4 border-b border-green-50 pb-2">
                   Enrollment Panel
                 </h4>
 
@@ -438,7 +438,7 @@ export default function CoursesView({ onSetBanner, onStatsUpdated }: CoursesView
                 ) : selectedCourse.isUpcoming ? (
                   <button
                     onClick={() => handleEnroll(selectedCourse.id)}
-                    className="w-full py-4.5 bg-[#E8943A] text-cream font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:scale-101 border border-amber-300"
+                    className="w-full py-4.5 bg-[#EF8321] text-cream font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:scale-101 border border-amber-300"
                   >
                     Pre-Register / Reserve Space
                   </button>

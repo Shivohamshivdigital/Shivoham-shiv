@@ -72,7 +72,7 @@ export default function ThankYouView() {
         )}
 
         <div className="bg-green-50 border border-green-200 rounded-2xl p-4 mb-6 text-left">
-          <p className="text-xs font-bold uppercase tracking-wider text-[#2F5233] mb-1">
+          <p className="text-xs font-bold uppercase tracking-wider text-[#004C53] mb-1">
             {isChallenge ? "Also do this" : "Required next step"}
           </p>
           <p className="text-xs text-slate-600 leading-relaxed">

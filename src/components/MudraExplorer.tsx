@@ -95,7 +95,7 @@ export default function MudraExplorer() {
             className={`px-4 py-2 text-xs font-semibold rounded-full border tracking-wide uppercase transition-all duration-200 cursor-pointer ${
               activeElementFilter === el
                 ? "bg-green-700 text-cream border-green-700 font-bold shadow-sm"
-                : "bg-[#F2F9F2] text-slate-700 border-green-100/60 hover:bg-green-100"
+                : "bg-[#EEF6F6] text-slate-700 border-green-100/60 hover:bg-green-100"
             }`}
           >
             <div className="flex items-center space-x-1.5">
@@ -155,20 +155,20 @@ export default function MudraExplorer() {
                     {selectedMudra.image}
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321]">
                       {selectedMudra.element} Element Alignment
                     </span>
                     <h3 className="font-heading font-bold text-2xl text-green-900">
                       {selectedMudra.name}
                     </h3>
-                    <p className="text-xs text-[#E8943A] font-medium font-sans">
+                    <p className="text-xs text-[#EF8321] font-medium font-sans">
                       "{selectedMudra.translation}"
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-1 bg-white px-3 py-1 border border-green-100 rounded-full text-xs font-medium text-slate-700 shrink-0">
-                  <Timer className="w-3.5 h-3.5 text-[#E8943A]" />
+                  <Timer className="w-3.5 h-3.5 text-[#EF8321]" />
                   <span>{selectedMudra.practiceDuration.split(" ")[0]} mins</span>
                 </div>
               </div>

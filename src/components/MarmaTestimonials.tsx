@@ -26,8 +26,8 @@ export default function MarmaTestimonials({
       />
 
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">{eyebrow}</span>
-        <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">{heading}</h2>
+        <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">{eyebrow}</span>
+        <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">{heading}</h2>
       </div>
 
       <div className="mt-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
@@ -37,13 +37,13 @@ export default function MarmaTestimonials({
               key={i}
               className="w-[300px] sm:w-[360px] shrink-0 bg-white border border-green-100 rounded-2xl p-6 shadow-xs flex flex-col"
             >
-              <span className="inline-block self-start px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md mb-3">
+              <span className="inline-block self-start px-2.5 py-1 text-[11px] font-bold bg-[#D6E9EA] text-green-800 rounded-md mb-3">
                 {t.cond}
               </span>
               <div className="text-amber-400 text-sm mb-2" aria-hidden="true">★★★★★</div>
               <p className="text-sm text-[#3A4A40]/85 italic leading-relaxed flex-1">"{t.quote}"</p>
               <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-3">
-                <span className="relative w-10 h-10 rounded-full bg-[#2F5D50] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
+                <span className="relative w-10 h-10 rounded-full bg-[#004C53] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
                   {t.name.charAt(0)}
                   {t.img && (
                     <img
@@ -55,8 +55,8 @@ export default function MarmaTestimonials({
                   )}
                 </span>
                 <div className="text-xs">
-                  <b className="text-[#2F5233] block">{t.name}</b>
-                  <span className="text-[#E8943A]">{t.role}</span>
+                  <b className="text-[#004C53] block">{t.name}</b>
+                  <span className="text-[#EF8321]">{t.role}</span>
                 </div>
               </div>
             </div>

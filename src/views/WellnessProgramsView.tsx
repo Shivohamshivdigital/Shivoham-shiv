@@ -65,7 +65,7 @@ export default function WellnessProgramsView() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
         <div className="max-w-4xl mx-auto px-4 lg:px-6 py-16 sm:py-24 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <Leaf className="w-3.5 h-3.5" /> Wellness · Transform
@@ -81,7 +81,7 @@ export default function WellnessProgramsView() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
               onClick={() => navigate("/weight-loss")}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
             >
               Start with Weight Management <ArrowRight className="w-4 h-4" />
             </button>
@@ -106,8 +106,8 @@ export default function WellnessProgramsView() {
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className="text-center max-w-2xl mx-auto mb-8">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">{group.label}</span>
-              <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mt-1">{group.heading}</h2>
+              <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">{group.label}</span>
+              <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mt-1">{group.heading}</h2>
               <p className="text-sm text-slate-600 leading-relaxed mt-2">{group.blurb}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -122,14 +122,14 @@ export default function WellnessProgramsView() {
                       <p.icon className="w-6 h-6" />
                     </div>
                     {p.tag && (
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#E8943A] bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-full">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#EF8321] bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-full">
                         {p.tag}
                       </span>
                     )}
                   </div>
-                  <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug mb-2">{p.title}</h3>
+                  <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug mb-2">{p.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed mb-4 flex-grow">{p.desc}</p>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2F5D50] group-hover:text-[#23483E]">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#003A40]">
                     Explore <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
@@ -141,14 +141,14 @@ export default function WellnessProgramsView() {
 
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white rounded-3xl p-10 sm:p-14">
+        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#004C53] to-[#003A40] text-white rounded-3xl p-10 sm:p-14">
           <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-3">Not sure where to start?</h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
             Book a free 15-minute consultation and our team will point you to the right program for your goals.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all"
           >
             Book a free consultation <ArrowRight className="w-4 h-4" />
           </Link>

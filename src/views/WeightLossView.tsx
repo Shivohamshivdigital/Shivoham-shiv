@@ -290,7 +290,7 @@ export default function WeightLossView() {
     <div className="bg-[#FAFBF7] min-h-screen font-sans text-[#3A4A40] overflow-x-clip selection:bg-green-150">
       {/* Floating toast (payment + form messages) */}
       {bannerText && (
-        <div className="fixed bottom-6 right-6 z-[60] max-w-sm w-[calc(100%-3rem)] sm:w-full bg-[#0F3320] text-cream shadow-2xl p-4 rounded-2xl flex items-start gap-3 animate-fadeIn border border-green-800">
+        <div className="fixed bottom-6 right-6 z-[60] max-w-sm w-[calc(100%-3rem)] sm:w-full bg-[#002A2E] text-cream shadow-2xl p-4 rounded-2xl flex items-start gap-3 animate-fadeIn border border-green-800">
           <AlertCircle className="w-5 h-5 text-[#F3C969] shrink-0 mt-0.5" />
           <span className="text-xs leading-relaxed font-medium flex-1">{bannerText}</span>
           <button onClick={() => setBannerText(null)} className="text-green-200 hover:text-white shrink-0" aria-label="Close">✕</button>
@@ -314,7 +314,7 @@ export default function WeightLossView() {
       />
       
       {/* 2. HERO SECTION — challenge-style dark green, centered */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
         <div className="max-w-[1400px] mx-auto px-4 lg:px-6 py-16 sm:py-24 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <Sparkles className="w-3.5 h-3.5" /> 100% Natural · Ayurvedic Root
@@ -340,7 +340,7 @@ export default function WeightLossView() {
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <button
                 onClick={scrollToEnroll}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
               >
                 <Clock3 className="w-4 h-4" />
                 Get Started in 24 Hrs
@@ -380,8 +380,8 @@ export default function WeightLossView() {
       </section>
 
       {/* Hero Stats Strip */}
-      <section className="relative bg-gradient-to-r from-[#0c2a1a] via-green-950 to-[#0c2a1a] text-cream py-9 px-4 sm:px-6 lg:px-8 border-y-4 border-[#E8943A] overflow-hidden">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-[#E8943A]/10 to-transparent" />
+      <section className="relative bg-gradient-to-r from-[#002A2E] via-green-950 to-[#002A2E] text-cream py-9 px-4 sm:px-6 lg:px-8 border-y-4 border-[#EF8321] overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-[#EF8321]/10 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
           {[
             { value: "6–9kg", label: "avg loss / 60 days" },
@@ -390,7 +390,7 @@ export default function WeightLossView() {
             { value: "0", label: "Supplements Required" }
           ].map((stat, idx) => (
             <div key={idx} className="space-y-1">
-              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading bg-gradient-to-b from-amber-100 to-[#E8943A] bg-clip-text text-transparent">{stat.value}</span>
+              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading bg-gradient-to-b from-amber-100 to-[#EF8321] bg-clip-text text-transparent">{stat.value}</span>
               <span className="block text-[10px] sm:text-xs uppercase tracking-widest text-green-200/80 font-semibold">{stat.label}</span>
             </div>
           ))}
@@ -403,7 +403,7 @@ export default function WeightLossView() {
           
           {/* LEFT — rotating before/after transformations (admin-managed) */}
           <div className="lg:col-span-5 flex">
-            <div className="w-full rounded-2xl shadow-md overflow-hidden relative border border-[#2F5D50]/5 flex bg-[#F2F9F2]">
+            <div className="w-full rounded-2xl shadow-md overflow-hidden relative border border-[#004C53]/5 flex bg-[#EEF6F6]">
               {transformations.map((t, i) => (
                 <img
                   key={i}
@@ -436,7 +436,7 @@ export default function WeightLossView() {
 
           {/* RIGHT — text */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-semibold font-serif text-[#2F5233] leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-semibold font-serif text-[#004C53] leading-tight">
               Dieting hard but seeing no difference?
             </h2>
             
@@ -452,7 +452,7 @@ export default function WeightLossView() {
             <div className="pt-2">
               <button
                 onClick={handleHeroScroll}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#C96E29] hover:bg-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#D9741A] hover:bg-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
               >
                 <span>Start Your Reset →</span>
               </button>
@@ -465,9 +465,9 @@ export default function WeightLossView() {
       {/* 3. #why-it-returns SECTION */}
       <section id="why-it-returns" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Real Reason</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
-            This isn't a weight problem — it's a <span className="text-[#E8943A] italic font-serif">disconnection</span> problem
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The Real Reason</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
+            This isn't a weight problem — it's a <span className="text-[#EF8321] italic font-serif">disconnection</span> problem
           </h2>
           <p className="text-sm leading-relaxed text-[#3A4A40]/80">
             Traditional diets focus purely on caloric calculations and numbers. The Veda teaches us that excess weight is 
@@ -495,10 +495,10 @@ export default function WeightLossView() {
               desc: "They completely ignore your unique dosha profile (Vata, Pitta, or Kapha) which regulates your natural structure."
             }
           ].map((card, idx) => (
-            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FFFCF7] rounded-2xl p-6 border-b-4 border-[#E8943A] shadow-xs hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between border border-green-100">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FFFCF7] rounded-2xl p-6 border-b-4 border-[#EF8321] shadow-xs hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between border border-green-100">
               <div className="space-y-3 prose">
                 <span className="text-2xl block text-amber-500 font-bold">0{idx + 1}</span>
-                <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug">{card.title}</h3>
+                <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">{card.title}</h3>
                 <p className="text-xs text-[#3A4A40]/85 leading-relaxed">{card.desc}</p>
               </div>
             </div>
@@ -507,12 +507,12 @@ export default function WeightLossView() {
       </section>
 
       {/* 4. THE MECHANISM (Cortisol weight-loss line chart) */}
-      <section className="bg-[#F2F9F2] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E3F1E3]">
+      <section className="bg-[#EEF6F6] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#D6E9EA]">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-6 space-y-6 text-left">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Scientific Mechanism</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The Scientific Mechanism</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
               The one thing every diet misses — cortisol
             </h2>
             <p className="text-sm leading-relaxed text-[#3A4A40]/80">
@@ -528,11 +528,11 @@ export default function WeightLossView() {
                 { step: "3", title: "Fat-Storage Switch Turned Off", text: "Your core thyroid metabolism awakens. Weight begins decreasing without metabolic starvation." }
               ].map((step, idx) => (
                 <div key={idx} className="flex gap-4 items-start bg-white/70 backdrop-blur-md p-4 rounded-xl border border-green-100">
-                  <div className="w-8 h-8 rounded-full bg-[#4A7C59] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[#005461] text-white flex items-center justify-center font-bold text-sm shrink-0">
                     {step.step}
                   </div>
                   <div>
-                    <h4 className="font-bold text-sm text-[#2F5233]">{step.title}</h4>
+                    <h4 className="font-bold text-sm text-[#004C53]">{step.title}</h4>
                     <p className="text-xs text-slate-650 mt-0.5">{step.text}</p>
                   </div>
                 </div>
@@ -545,10 +545,10 @@ export default function WeightLossView() {
             <div className="bg-white p-6 sm:p-8 rounded-[32px] border border-green-100 shadow-xl relative">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A] block">Averages Database</span>
-                  <h4 className="font-heading font-semibold text-base text-[#2F5233]">Average Weight Change (60 Days)</h4>
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321] block">Averages Database</span>
+                  <h4 className="font-heading font-semibold text-base text-[#004C53]">Average Weight Change (60 Days)</h4>
                 </div>
-                <div className="flex items-center gap-1 bg-[#F2F9F2] px-2 py-1 rounded-lg text-[10px] font-bold text-[#4A7C59]">
+                <div className="flex items-center gap-1 bg-[#EEF6F6] px-2 py-1 rounded-lg text-[10px] font-bold text-[#005461]">
                   <TrendingDown className="w-3 h-3" />
                   <span>-8 kg average tracking</span>
                 </div>
@@ -567,8 +567,8 @@ export default function WeightLossView() {
                   {/* Subtle area gradient fallback filled shadow under line */}
                   <defs>
                     <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#4A7C59" stopOpacity="0.15" />
-                      <stop offset="100%" stopColor="#4A7C59" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#005461" stopOpacity="0.15" />
+                      <stop offset="100%" stopColor="#005461" stopOpacity="0" />
                     </linearGradient>
                   </defs>
                   
@@ -580,17 +580,17 @@ export default function WeightLossView() {
                   <path
                     d="M 0 20 Q 20 22 40 45 T 80 80 Q 90 85 100 90"
                     fill="none"
-                    stroke="#4A7C59"
+                    stroke="#005461"
                     strokeWidth="3"
                     strokeLinecap="round"
                     className="transition-all duration-1000"
                   />
 
                   {/* Nodes */}
-                  <circle cx="0" cy="20" r="2.5" fill="#E8943A" />
-                  <circle cx="40" cy="45" r="2.5" fill="#E8943A" />
-                  <circle cx="80" cy="80" r="2.5" fill="#E8943A" />
-                  <circle cx="100" cy="90" r="2.5" fill="#E8943A" />
+                  <circle cx="0" cy="20" r="2.5" fill="#EF8321" />
+                  <circle cx="40" cy="45" r="2.5" fill="#EF8321" />
+                  <circle cx="80" cy="80" r="2.5" fill="#EF8321" />
+                  <circle cx="100" cy="90" r="2.5" fill="#EF8321" />
                 </svg>
 
                 {/* Y-Axis guide labels */}
@@ -602,7 +602,7 @@ export default function WeightLossView() {
                 </div>
 
                 {/* X-Axis labels */}
-                <div className="flex justify-between text-[9px] font-mono font-bold text-[#2F5233] mt-2 select-none border-t border-green-100/60 pt-2 relative z-10">
+                <div className="flex justify-between text-[9px] font-mono font-bold text-[#004C53] mt-2 select-none border-t border-green-100/60 pt-2 relative z-10">
                   <span>Day 0 (Start)</span>
                   <span>Day 15</span>
                   <span>Day 30</span>
@@ -622,8 +622,8 @@ export default function WeightLossView() {
       {/* 5. #the-program SECTION */}
       <section id="the-program" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The 60-Day Natural Program</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The 60-Day Natural Program</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
             Five ancient practices. One structured system.
           </h2>
           <p className="text-sm leading-relaxed text-[#3A4A40]/80">
@@ -664,10 +664,10 @@ export default function WeightLossView() {
               icon: "👥"
             }
           ].map((item, idx) => (
-            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FBFDF9] rounded-3xl p-6 border border-[#E3F1E3] hover:shadow-xl hover:shadow-green-900/10 hover:-translate-y-1 hover:border-green-600 transition-all duration-300 flex flex-col justify-between">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FBFDF9] rounded-3xl p-6 border border-[#D6E9EA] hover:shadow-xl hover:shadow-green-900/10 hover:-translate-y-1 hover:border-green-600 transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
                 <span className="text-4xl block">{item.icon}</span>
-                <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug">{item.title}</h3>
+                <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">{item.title}</h3>
                 <p className="text-xs text-[#3A4A40]/85 leading-relaxed">{item.desc}</p>
               </div>
             </div>
@@ -676,10 +676,10 @@ export default function WeightLossView() {
       </section>
 
       {/* 6. HOLISTIC APPROACH SECTION */}
-      <section className="relative bg-gradient-to-br from-[#0c2a1a] via-green-950 to-[#102e1d] text-cream py-20 px-4 sm:px-6 lg:px-8 border-y-4 border-[#E8943A] overflow-hidden">
-        <div aria-hidden="true" className="pointer-events-none absolute -top-20 right-0 w-96 h-96 rounded-full bg-[#E8943A]/10 blur-3xl" />
+      <section className="relative bg-gradient-to-br from-[#002A2E] via-green-950 to-[#002A2E] text-cream py-20 px-4 sm:px-6 lg:px-8 border-y-4 border-[#EF8321] overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute -top-20 right-0 w-96 h-96 rounded-full bg-[#EF8321]/10 blur-3xl" />
         <div className="relative z-10 max-w-7xl mx-auto text-center space-y-4">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Holistic Approach</span>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Holistic Approach</span>
           <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white">
             One complete system — body, mind and diet, together
           </h2>
@@ -729,8 +729,8 @@ export default function WeightLossView() {
       {/* 7. #results SECTION */}
       <section id="results" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Progress Map</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The Progress Map</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
             How the weight comes off — week by week
           </h2>
           <p className="text-sm leading-relaxed text-[#3A4A40]/80">
@@ -761,12 +761,12 @@ export default function WeightLossView() {
               desc: "Sustained lifestyle integration completes, establishing full biological equilibrium from the root up."
             }
           ].map((progress, idx) => (
-            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FBFDF9] p-6 rounded-2xl border border-green-150 relative hover:border-[#4A7C59] hover:shadow-lg hover:shadow-green-900/10 hover:-translate-y-1 transition-all duration-300 shadow-xs">
-              <span className="absolute top-4 right-4 text-xs font-bold text-[#E8943A] font-mono bg-amber-50 px-2 py-0.5 rounded-md">
+            <div key={idx} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-auto bg-gradient-to-b from-white to-[#FBFDF9] p-6 rounded-2xl border border-green-150 relative hover:border-[#005461] hover:shadow-lg hover:shadow-green-900/10 hover:-translate-y-1 transition-all duration-300 shadow-xs">
+              <span className="absolute top-4 right-4 text-xs font-bold text-[#EF8321] font-mono bg-amber-50 px-2 py-0.5 rounded-md">
                 {progress.week}
               </span>
               <div className="space-y-4 mt-2">
-                <h3 className="font-heading font-bold text-base text-[#2F5233] leading-snug">{progress.title}</h3>
+                <h3 className="font-heading font-bold text-base text-[#004C53] leading-snug">{progress.title}</h3>
                 <p className="text-xs text-[#3A4A40]/80 leading-relaxed">{progress.desc}</p>
               </div>
             </div>
@@ -777,8 +777,8 @@ export default function WeightLossView() {
       {/* 10b. THE HUMAN TEAM — real people, not an app */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Not an app — real people</span>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 leading-tight">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Not an app — real people</span>
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#004C53] mt-2 leading-tight">
             The human team in your corner
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed mt-3">
@@ -794,7 +794,7 @@ export default function WeightLossView() {
             { icon: Heart, title: "Guidance for your health conditions", desc: "Thyroid, PCOS, BP, diabetes & any medications are reviewed and factored into your plan from day one." },
           ].map((m) => (
             <div key={m.title} className="flex gap-4 bg-white border border-green-100 rounded-3xl p-6 shadow-xs">
-              <div className="w-12 h-12 rounded-2xl bg-[#E3F1E3] text-green-700 flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-[#D6E9EA] text-green-700 flex items-center justify-center shrink-0">
                 <m.icon className="w-6 h-6" />
               </div>
               <div>
@@ -806,9 +806,9 @@ export default function WeightLossView() {
         </div>
 
         {/* Named expert + verifiable credentials (transparency) */}
-        <div className="mt-8 max-w-3xl mx-auto bg-[#F2F9F2] border border-green-100 rounded-2xl px-5 py-4 text-center">
+        <div className="mt-8 max-w-3xl mx-auto bg-[#EEF6F6] border border-green-100 rounded-2xl px-5 py-4 text-center">
           <p className="text-sm text-slate-700 leading-relaxed">
-            Your plan is designed under <strong className="text-[#2F5233]">Pooja Chaturvedi</strong> — Founder,
+            Your plan is designed under <strong className="text-[#004C53]">Pooja Chaturvedi</strong> — Founder,
             Shivoham Shiv · Yoga Alliance USA (RYS-200), certified in Acupressure, Panchakarma &amp; Reiki.{" "}
             <Link to="/about" className="text-green-700 font-semibold underline underline-offset-2 hover:text-green-900">
               View her verified certificates →
@@ -823,15 +823,15 @@ export default function WeightLossView() {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             {/* Left: rich content so the sticky price box stays beside it while scrolling */}
             <div className="lg:pt-4">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple Pricing</span>
-              <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#2F5233] mt-2 mb-3 leading-tight">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Simple Pricing</span>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#004C53] mt-2 mb-3 leading-tight">
                 Start your transformation today
               </h2>
               <p className="text-sm text-slate-700 leading-relaxed mb-8">
                 Enroll in the full 60-Day Natural Program — backed by our results guarantee.
               </p>
 
-              <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-4">What's included</h3>
+              <h3 className="font-heading font-bold text-lg text-[#004C53] mb-4">What's included</h3>
               <ul className="space-y-3.5 mb-9">
                 {[
                   ["Personal onboarding call", "with a certified Ayurvedic counselor to map your body type (Prakriti) & goals"],
@@ -845,12 +845,12 @@ export default function WeightLossView() {
                 ].map(([title, sub], i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
                     <Check className="w-4 h-4 text-green-600 shrink-0 mt-1" />
-                    <span><strong className="text-[#2F5233]">{title}</strong> — {sub}</span>
+                    <span><strong className="text-[#004C53]">{title}</strong> — {sub}</span>
                   </li>
                 ))}
               </ul>
 
-              <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-4">Why members choose us</h3>
+              <h3 className="font-heading font-bold text-lg text-[#004C53] mb-4">Why members choose us</h3>
               <ul className="grid grid-cols-2 gap-x-4 gap-y-3.5 lg:grid-cols-1 mb-9">
                 {[
                   "Prakriti-personalized plan for your body type",
@@ -869,11 +869,11 @@ export default function WeightLossView() {
                 <p className="text-sm text-slate-700 leading-relaxed italic">
                   "If you don't notice a real transition in your first 14 days, the rest of your journey is on us — until you reach your goal."
                 </p>
-                <span className="block mt-2 text-xs font-bold text-[#2F5233]">— The Shivoham Shiv Promise</span>
+                <span className="block mt-2 text-xs font-bold text-[#004C53]">— The Shivoham Shiv Promise</span>
               </div>
 
               <div className="mt-9">
-                <h3 className="font-heading font-bold text-lg text-[#2F5233] mb-5">Your 60-day journey</h3>
+                <h3 className="font-heading font-bold text-lg text-[#004C53] mb-5">Your 60-day journey</h3>
                 <ol className="relative border-l-2 border-green-100 ml-1 space-y-6">
                   {[
                     { w: "Week 1", t: "Detox & onboarding", d: "Water bloat drains, routine begins, onboarding call within 24 hrs." },
@@ -882,9 +882,9 @@ export default function WeightLossView() {
                     { w: "Week 8", t: "Lasting balance (~8 kg)", d: "Full biological equilibrium — results that actually hold." },
                   ].map((s, i) => (
                     <li key={i} className="ml-5">
-                      <span className="absolute -left-[9px] w-4 h-4 rounded-full bg-[#4A7C59] border-2 border-[#FAFBF7]" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-[#E8943A]">{s.w}</span>
-                      <h4 className="font-heading font-bold text-sm text-[#2F5233] mt-0.5">{s.t}</h4>
+                      <span className="absolute -left-[9px] w-4 h-4 rounded-full bg-[#005461] border-2 border-[#FAFBF7]" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-[#EF8321]">{s.w}</span>
+                      <h4 className="font-heading font-bold text-sm text-[#004C53] mt-0.5">{s.t}</h4>
                       <p className="text-xs text-slate-600 leading-relaxed mt-1">{s.d}</p>
                     </li>
                   ))}
@@ -897,9 +897,9 @@ export default function WeightLossView() {
               {(() => {
               const plan = PLAN_INFO[selectedPlan];
               return (
-                <div className="relative bg-gradient-to-b from-[#143f29] to-[#0c2a1b] text-cream rounded-3xl shadow-2xl shadow-green-950/30 p-8 flex flex-col border border-green-700/40 ring-1 ring-amber-400/10">
+                <div className="relative bg-gradient-to-b from-[#003A40] to-[#002A2E] text-cream rounded-3xl shadow-2xl shadow-green-950/30 p-8 flex flex-col border border-green-700/40 ring-1 ring-amber-400/10">
                   {plan.discount && (
-                    <span className="absolute -top-3 right-6 bg-[#E8943A] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                    <span className="absolute -top-3 right-6 bg-[#EF8321] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
                       {plan.discount}
                     </span>
                   )}
@@ -1000,12 +1000,12 @@ export default function WeightLossView() {
       </section>
 
       {/* 8. REAL NUMBERS · REAL CLIENTS */}
-      <section className="bg-[#F2F9F2] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E3F1E3]">
+      <section className="bg-[#EEF6F6] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#D6E9EA]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-4 text-left space-y-6">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Real Numbers · Real Clients</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Real Numbers · Real Clients</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
               Clients who had tried for 10 years — saw results in 60 days
             </h2>
             <p className="text-sm text-[#3A4A40]/85 leading-relaxed">
@@ -1014,19 +1014,19 @@ export default function WeightLossView() {
 
             <div className="pt-4 border-t border-green-200 grid grid-cols-2 gap-4 text-left">
               <div>
-                <span className="block text-2xl font-bold text-[#4A7C59]">1,200+</span>
+                <span className="block text-2xl font-bold text-[#005461]">1,200+</span>
                 <span className="text-[10px] uppercase text-gray-500 font-semibold tracking-wide">Transformations Guided</span>
               </div>
               <div>
-                <span className="block text-2xl font-bold text-[#4A7C59]">6–9 kg</span>
+                <span className="block text-2xl font-bold text-[#005461]">6–9 kg</span>
                 <span className="text-[10px] uppercase text-gray-500 font-semibold tracking-wide">Average Loss</span>
               </div>
               <div className="pt-2">
-                <span className="block text-2xl font-bold text-[#4A7C59]">92%</span>
+                <span className="block text-2xl font-bold text-[#005461]">92%</span>
                 <span className="text-[10px] uppercase text-gray-500 font-semibold tracking-wide">Fewer Cravings (Wk 3)</span>
               </div>
               <div className="pt-2">
-                <span className="block text-2xl font-bold text-[#4A7C59]">0</span>
+                <span className="block text-2xl font-bold text-[#005461]">0</span>
                 <span className="text-[10px] uppercase text-gray-500 font-semibold tracking-wide">Pills / Supplements</span>
               </div>
             </div>
@@ -1050,13 +1050,13 @@ export default function WeightLossView() {
                     className="w-[270px] sm:w-[300px] shrink-0 bg-white p-6 rounded-2xl border border-green-150/60 shadow-xs flex flex-col justify-between text-left"
                   >
                     <div className="space-y-4">
-                      <span className="inline-block px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md">
+                      <span className="inline-block px-2.5 py-1 text-[11px] font-bold bg-[#D6E9EA] text-green-800 rounded-md">
                         {testim.loss}
                       </span>
                       <p className="text-xs text-[#3A4A40]/80 italic mt-2 leading-relaxed">"{testim.text}"</p>
                     </div>
                     <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-3">
-                      <span className="relative w-10 h-10 rounded-full bg-[#2F5D50] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
+                      <span className="relative w-10 h-10 rounded-full bg-[#004C53] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
                         {testim.client.charAt(0)}
                         {testim.img && (
                           <img
@@ -1068,8 +1068,8 @@ export default function WeightLossView() {
                         )}
                       </span>
                       <div className="text-xs leading-tight">
-                        <b className="text-[#2F5233] block">{testim.client}</b>
-                        <span className="text-[#E8943A] font-normal text-[10px]">{testim.loc}</span>
+                        <b className="text-[#004C53] block">{testim.client}</b>
+                        <span className="text-[#EF8321] font-normal text-[10px]">{testim.loc}</span>
                       </div>
                     </div>
                   </div>
@@ -1085,8 +1085,8 @@ export default function WeightLossView() {
       {/* 8b. REAL TRANSFORMATIONS — before / after photos */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-2 mb-12">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Real People · Real Results</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">Real Transformations</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Real People · Real Results</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">Real Transformations</h2>
           <p className="text-sm text-slate-705 leading-relaxed">
             Actual before &amp; after results from our Ayurvedic natural weight-loss program — no pills, no crash diets.
           </p>
@@ -1096,7 +1096,7 @@ export default function WeightLossView() {
           {transformations.map((t, i) => (
             <figure
               key={i}
-              className="bg-[#F2F9F2] border border-[#E3F1E3] rounded-3xl overflow-hidden shadow-xs flex flex-col"
+              className="bg-[#EEF6F6] border border-[#D6E9EA] rounded-3xl overflow-hidden shadow-xs flex flex-col"
             >
               <div className="flex items-center justify-center bg-white">
                 <img
@@ -1107,8 +1107,8 @@ export default function WeightLossView() {
                 />
               </div>
               <figcaption className="px-5 py-4 flex items-center justify-between">
-                <span className="text-sm font-bold text-[#2F5233]">{t.caption}</span>
-                <span className="text-[10px] uppercase font-bold tracking-wider text-[#E8943A]">Verified result</span>
+                <span className="text-sm font-bold text-[#004C53]">{t.caption}</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-[#EF8321]">Verified result</span>
               </figcaption>
             </figure>
           ))}
@@ -1122,8 +1122,8 @@ export default function WeightLossView() {
       {/* 9. #is-it-for-you SECTION */}
       <section id="is-it-for-you" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-2 mb-16">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Candidate Alignment</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Candidate Alignment</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
             Is this program right for you?
           </h2>
           <p className="text-sm text-slate-705 leading-relaxed">
@@ -1135,7 +1135,7 @@ export default function WeightLossView() {
           
           {/* Column IS for you */}
           <div className="bg-white p-8 rounded-3xl border border-green-100 shadow-xs space-y-6">
-            <h3 className="font-heading font-extrabold text-xl text-[#2F5233] border-b border-green-100 pb-3 flex items-center gap-2">
+            <h3 className="font-heading font-extrabold text-xl text-[#004C53] border-b border-green-100 pb-3 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-green-500"></span>
               This IS for you, if —
             </h3>
@@ -1162,24 +1162,24 @@ export default function WeightLossView() {
           {/* Column ISN'T for you */}
           <div className="bg-white p-8 rounded-3xl border border-red-100/60 shadow-xs space-y-6">
             <h3 className="font-heading font-extrabold text-xl text-red-900 border-b border-red-50 pb-3 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#E8943A]"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#EF8321]"></span>
               This ISN'T for you, if —
             </h3>
             <ul className="space-y-4 text-xs tracking-wide">
               <li className="flex items-start gap-2 text-slate-755 leading-relaxed">
-                <span className="text-[#E8943A] font-bold shrink-0">✕</span>
+                <span className="text-[#EF8321] font-bold shrink-0">✕</span>
                 <span>You are chasing a magic chemical pill, synthetic powder, or instant 7-day starvation breakthrough.</span>
               </li>
               <li className="flex items-start gap-2 text-slate-755 leading-relaxed">
-                <span className="text-[#E8943A] font-bold shrink-0">✕</span>
+                <span className="text-[#EF8321] font-bold shrink-0">✕</span>
                 <span>You suffer from severe physiological clinical illness where active lifestyle adjustments must be managed on-site by medical clinicians.</span>
               </li>
               <li className="flex items-start gap-2 text-slate-755 leading-relaxed">
-                <span className="text-[#E8943A] font-bold shrink-0">✕</span>
+                <span className="text-[#EF8321] font-bold shrink-0">✕</span>
                 <span>You expect deep results to manifest without engaging in basic breathing sadhana or whole ingredients.</span>
               </li>
               <li className="flex items-start gap-2 text-slate-755 leading-relaxed">
-                <span className="text-[#E8943A] font-bold shrink-0">✕</span>
+                <span className="text-[#EF8321] font-bold shrink-0">✕</span>
                 <span>You place permanent trust in superficial fitness shortcuts over verified, structured Vedic healing laws.</span>
               </li>
             </ul>
@@ -1191,8 +1191,8 @@ export default function WeightLossView() {
       {/* 10. STRAIGHT ANSWERS - FAQ ACCORDION */}
       <section className="bg-[#FAFBF7] py-20 px-4 sm:px-6 lg:px-8 border-t border-green-100 max-w-4xl mx-auto">
         <div className="text-center space-y-2 mb-12">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Straight answers</span>
-          <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#2F5233]">Frequently Asked Queries</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Straight answers</span>
+          <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53]">Frequently Asked Queries</h2>
         </div>
 
         <div className="space-y-4 text-left">
@@ -1204,7 +1204,7 @@ export default function WeightLossView() {
                   onClick={() => setFaqOpen(isOpen ? null : idx)}
                   className="w-full p-5 sm:p-6 flex items-center justify-between text-left focus:outline-none focus:ring-1 focus:ring-green-500"
                 >
-                  <span className="font-heading font-semibold text-[#2F5233] text-sm sm:text-base leading-relaxed">
+                  <span className="font-heading font-semibold text-[#004C53] text-sm sm:text-base leading-relaxed">
                     {faq.q}
                   </span>
                   <ChevronDown className={`w-5 h-5 text-green-700 shrink-0 transition-transform duration-300 ${isOpen ? "transform rotate-180" : ""}`} />
@@ -1222,10 +1222,10 @@ export default function WeightLossView() {
       </section>
 
       {/* 10b. RESULTS GUARANTEE / OFFER BAND */}
-      <section id="guarantee" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#0F3320] via-[#0c2a1b] to-[#143f29] text-cream overflow-hidden">
+      <section id="guarantee" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#002A2E] via-[#002A2E] to-[#003A40] text-cream overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-10 w-[28rem] h-[28rem] rounded-full bg-[#F3C969]/10 blur-3xl" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1F4D45] rounded-full text-xs font-bold uppercase tracking-widest border border-green-800 text-[#F3C969]">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#004C53] rounded-full text-xs font-bold uppercase tracking-widest border border-green-800 text-[#F3C969]">
             <ShieldCheck className="w-4 h-4" />
             Our Results Guarantee
           </span>
@@ -1248,7 +1248,7 @@ export default function WeightLossView() {
               { t: "Beyond 1.5 Months", d: "No tangible results? We continue free of cost." },
               { t: "Until the Goal", d: "We don't stop until your target is achieved." },
             ].map((item, idx) => (
-              <div key={idx} className="bg-[#1F4D45]/60 border border-green-800/60 rounded-2xl p-5">
+              <div key={idx} className="bg-[#004C53]/60 border border-green-800/60 rounded-2xl p-5">
                 <ShieldCheck className="w-5 h-5 text-[#F3C969] mb-2" />
                 <h3 className="font-bold text-sm text-white mb-1">{item.t}</h3>
                 <p className="text-xs text-green-100/80 leading-relaxed">{item.d}</p>
@@ -1259,7 +1259,7 @@ export default function WeightLossView() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-10">
             <button
               onClick={scrollToEnroll}
-              className="px-8 py-4 bg-[#E8943A] hover:bg-[#EFAF3C] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 border-b-2 border-amber-600"
+              className="px-8 py-4 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 border-b-2 border-amber-600"
             >
               <Clock3 className="w-4 h-4" />
               Get Started in 24 Hrs
@@ -1271,8 +1271,8 @@ export default function WeightLossView() {
       {/* 11. CTA BAND (Heal your body from within) */}
       <section className="bg-gradient-to-b from-[#EFFFDF]/80 to-[#FAFBF7] py-16 px-4 sm:px-6 lg:px-8 border-y border-green-100">
         <div className="max-w-4xl mx-auto text-center space-y-6">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A] block">Free Space Evaluation</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233] leading-tight">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321] block">Free Space Evaluation</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
             Heal your body from within — naturally and sustainably.
           </h2>
           <p className="text-sm sm:text-base text-slate-705 leading-relaxed max-w-2xl mx-auto">
@@ -1282,7 +1282,7 @@ export default function WeightLossView() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
             <button
               onClick={handleHeroScroll}
-              className="px-8 py-3.5 bg-[#4A7C59] hover:bg-[#2F5233] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all border border-green-600"
+              className="px-8 py-3.5 bg-[#005461] hover:bg-[#004C53] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all border border-green-600"
             >
               Book Your FREE Consultation
             </button>
@@ -1297,7 +1297,7 @@ export default function WeightLossView() {
             </a>
           </div>
 
-          <span className="block text-[10px] text-[#4A7C59] font-bold uppercase tracking-wider">
+          <span className="block text-[10px] text-[#005461] font-bold uppercase tracking-wider">
             🚨 Spots limited to 15 slots this week. Register to reserve space.
           </span>
         </div>
@@ -1311,13 +1311,13 @@ export default function WeightLossView() {
           <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-green-105 shadow-sm text-left">
             
             <div className="mb-6">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">Vedic Registry</span>
-              <h3 className="font-heading font-bold text-2xl text-[#2F5233]">Book your FREE consultation</h3>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321]">Vedic Registry</span>
+              <h3 className="font-heading font-bold text-2xl text-[#004C53]">Book your FREE consultation</h3>
               <p className="text-xs text-slate-500 mt-1">Submit your profile to map natural solutions with a counselor.</p>
             </div>
 
             {isSuccess ? (
-              <div className="p-8 bg-[#E3F1E3] border border-green-200 text-[#2F5233] rounded-2xl text-center space-y-3">
+              <div className="p-8 bg-[#D6E9EA] border border-green-200 text-[#004C53] rounded-2xl text-center space-y-3">
                 <Check className="w-10 h-10 text-green-700 bg-white rounded-full p-2 mx-auto shadow-sm" />
                 <h4 className="font-bold text-base">Inquiry secured!</h4>
                 <p className="text-xs leading-relaxed max-w-md mx-auto">
@@ -1327,7 +1327,7 @@ export default function WeightLossView() {
                   href="https://wa.me/917317778215"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-2 px-6 py-2.5 bg-[#4A7C59] hover:bg-[#2F5233] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-green-600"
+                  className="inline-block mt-2 px-6 py-2.5 bg-[#005461] hover:bg-[#004C53] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-green-600"
                 >
                   Converse on WhatsApp Now
                 </a>
@@ -1398,7 +1398,7 @@ export default function WeightLossView() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-[#4A7C59] hover:bg-[#2F5233] text-cream rounded-xl text-xs font-bold uppercase tracking-widest transition-all shadow-md cursor-pointer text-center"
+                  className="w-full py-4 bg-[#005461] hover:bg-[#004C53] text-cream rounded-xl text-xs font-bold uppercase tracking-widest transition-all shadow-md cursor-pointer text-center"
                 >
                   {isSubmitting ? "Locking Profile..." : "Submit &amp; Chat on WhatsApp"}
                 </button>
@@ -1408,10 +1408,10 @@ export default function WeightLossView() {
           </div>
 
           {/* Contact Details Column Right */}
-          <div className="lg:col-span-5 bg-[#F2F9F2] p-8 sm:p-10 rounded-3xl border border-[#E3F1E3] space-y-6 text-left">
+          <div className="lg:col-span-5 bg-[#EEF6F6] p-8 sm:p-10 rounded-3xl border border-[#D6E9EA] space-y-6 text-left">
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">Main Headquarters</span>
-              <h4 className="font-heading font-bold text-lg text-[#2F5233] mt-1">Shivoham Shiv Center</h4>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321]">Main Headquarters</span>
+              <h4 className="font-heading font-bold text-lg text-[#004C53] mt-1">Shivoham Shiv Center</h4>
               <p className="text-xs text-[#3A4A40]/80 mt-2 leading-relaxed">
                 We provide full clinical review checks in-person and digital counseling slots. Our main office traces directly into the heart of India:
               </p>
@@ -1452,7 +1452,7 @@ export default function WeightLossView() {
             <div className="bg-white p-4 rounded-2xl border border-green-100 shadow-3xs flex items-center gap-3">
               <span className="text-2xl">🕉️</span>
               <div>
-                <p className="text-[11px] text-[#2F5233] font-bold">The Shivoham Oath</p>
+                <p className="text-[11px] text-[#004C53] font-bold">The Shivoham Oath</p>
                 <p className="text-[10px] text-gray-500 font-serif italic">"No commercial supplement traps. Only timeless Vedic wisdom."</p>
               </div>
             </div>
@@ -1462,8 +1462,8 @@ export default function WeightLossView() {
       </section>
 
       {/* FOOTER VARIANT */}
-      <footer className="bg-[#2F5233] text-cream/70 py-12 px-4 sm:px-6 lg:px-8 border-t-2 border-[#E8943A]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 uppercase tracking-widest text-[10px] text-[#E3F1E3]/70 font-bold">
+      <footer className="bg-[#004C53] text-cream/70 py-12 px-4 sm:px-6 lg:px-8 border-t-2 border-[#EF8321]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 uppercase tracking-widest text-[10px] text-[#D6E9EA]/70 font-bold">
           <span>© Shivoham Shiv Academy 2026</span>
           <span className="text-center md:text-right font-serif text-xs capitalize italic tracking-normal text-amber-100">
             "Explore The Timeless Knowledge Of Vedas — The Right Path. The Right Result."

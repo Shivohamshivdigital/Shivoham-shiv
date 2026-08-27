@@ -51,7 +51,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
   }, [location.pathname]);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#2F5D50] shadow-md transition-all duration-300">
+    <header className="sticky top-0 z-50 bg-[#004C53] shadow-md transition-all duration-300">
       {/* Promotional announcement bar (live) */}
       <Link
         to="/challenge"
@@ -114,14 +114,14 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               </NavLink>
               <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-3 z-50">
                 <div className="w-64 rounded-2xl bg-white shadow-xl border border-green-100 p-2">
-                  <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#E8943A]">Transform yourself</span>
+                  <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#EF8321]">Transform yourself</span>
                   {WELLNESS.map((t) => (
                     <NavLink
                       key={t.label}
                       to={t.to}
                       className={({ isActive }) =>
                         `block px-3 py-2 rounded-xl text-[13px] font-semibold transition-colors ${
-                          isActive ? "bg-green-50 text-[#2F5D50]" : "text-slate-700 hover:bg-green-50 hover:text-[#2F5D50]"
+                          isActive ? "bg-green-50 text-[#004C53]" : "text-slate-700 hover:bg-green-50 hover:text-[#004C53]"
                         }`
                       }
                     >
@@ -129,7 +129,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                     </NavLink>
                   ))}
                   <div className="my-1 border-t border-green-50" />
-                  <NavLink to="/wellness-programs" className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#2F5D50] hover:bg-green-50 transition-colors">
+                  <NavLink to="/wellness-programs" className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#004C53] hover:bg-green-50 transition-colors">
                     View all Wellness Programs →
                   </NavLink>
                 </div>
@@ -151,14 +151,14 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               </NavLink>
               <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-3 z-50">
                 <div className="w-64 rounded-2xl bg-white shadow-xl border border-green-100 p-2">
-                  <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#E8943A]">Become a practitioner</span>
+                  <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#EF8321]">Become a practitioner</span>
                   {ACADEMY.map((t) => (
                     <NavLink
                       key={t.label}
                       to={t.to}
                       className={({ isActive }) =>
                         `block px-3 py-2 rounded-xl text-[13px] font-semibold transition-colors ${
-                          isActive ? "bg-green-50 text-[#2F5D50]" : "text-slate-700 hover:bg-green-50 hover:text-[#2F5D50]"
+                          isActive ? "bg-green-50 text-[#004C53]" : "text-slate-700 hover:bg-green-50 hover:text-[#004C53]"
                         }`
                       }
                     >
@@ -166,7 +166,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                     </NavLink>
                   ))}
                   <div className="my-1 border-t border-green-50" />
-                  <NavLink to="/academy" className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#2F5D50] hover:bg-green-50 transition-colors">
+                  <NavLink to="/academy" className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#004C53] hover:bg-green-50 transition-colors">
                     View all Certifications →
                   </NavLink>
                 </div>
@@ -248,7 +248,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
             {/* Primary CTA — Start Your Journey */}
             <Link
               to="/wellness-programs"
-              className="h-11 px-5 bg-gradient-to-br from-[#F0A64E] to-[#E8943A] hover:from-[#F3B05E] hover:to-[#EFAF3C] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap"
+              className="h-11 px-5 bg-gradient-to-br from-[#F49B3E] to-[#EF8321] hover:from-[#F6A24E] hover:to-[#F49B3E] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap"
             >
               <Sparkles className="w-4 h-4" />
               <span>Start Your Journey</span>
@@ -262,7 +262,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               href="https://wa.me/917317778215"
               target="_blank"
               rel="noopener noreferrer"
-              className="h-9 px-2.5 bg-white hover:bg-neutral-50 text-[#2F5D50] rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center space-x-1 shrink-0"
+              className="h-9 px-2.5 bg-white hover:bg-neutral-50 text-[#004C53] rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center space-x-1 shrink-0"
             >
               <svg className="w-3.5 h-3.5 fill-current text-[#25D366]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.993L2 22l5.13-1.347a9.945 9.945 0 0 0 4.887 1.277h.005c5.505 0 9.988-4.478 9.989-9.985C22 6.478 17.518 2 12.012 2zm6.05 14.153c-.333.931-1.637 1.77-2.228 1.833-.591.064-1.183.344-3.793-.733-3.132-1.293-5.115-4.47-5.271-4.678-.156-.208-1.254-1.666-1.254-3.178 0-1.513.788-2.257 1.068-2.558.28-.3.61-.375.813-.375h.582c.18 0 .422.016.649.525.234.526.8 1.944.869 2.083.07.139.116.301.023.486-.092.185-.139.3-.277.463-.14.163-.292.366-.417.49-.139.14-.284.293-.122.571.162.278.718 1.184 1.54 1.916.611.544 1.12.822 1.442.97.278.127.44.11.602-.07.162-.185.718-.834.908-1.112.19-.278.379-.232.616-.139.236.093 1.513.714 1.774.843.26.129.431.194.494.301.063.107.063.62-.27 1.551z"/>
@@ -292,7 +292,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
 
       {/* Mobile Menu Drawer Overlay */}
       {isOpen && (
-        <div className="lg:hidden absolute top-16 sm:top-20 left-0 w-full bg-[#2F5D50] border-t border-green-600/30 shadow-2xl py-6 px-5 z-50 animate-fadeIn">
+        <div className="lg:hidden absolute top-16 sm:top-20 left-0 w-full bg-[#004C53] border-t border-green-600/30 shadow-2xl py-6 px-5 z-50 animate-fadeIn">
           <div className="flex flex-col space-y-4 text-left">
 
             {/* 14-DAY CHALLENGE — highlighted promo */}
@@ -433,7 +433,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               <Link
                 to="/wellness-programs"
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-br from-[#F0A64E] to-[#E8943A] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md transition-all"
+                className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-br from-[#F49B3E] to-[#EF8321] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md transition-all"
               >
                 <Sparkles className="w-4 h-4" /> Start Your Journey
               </Link>
@@ -442,7 +442,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 href="https://wa.me/917317778215"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 bg-white hover:bg-neutral-50 text-[#2F5D50] rounded-full text-xs font-bold uppercase tracking-widest shadow-md transition-all flex items-center justify-center space-x-2"
+                className="w-full py-3.5 bg-white hover:bg-neutral-50 text-[#004C53] rounded-full text-xs font-bold uppercase tracking-widest shadow-md transition-all flex items-center justify-center space-x-2"
               >
                 <svg className="w-4 h-4 fill-current text-[#25D366]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.993L2 22l5.13-1.347a9.945 9.945 0 0 0 4.887 1.277h.005c5.505 0 9.988-4.478 9.989-9.985C22 6.478 17.518 2 12.012 2zm6.05 14.153c-.333.931-1.637 1.77-2.228 1.833-.591.064-1.183.344-3.793-.733-3.132-1.293-5.115-4.47-5.271-4.678-.156-.208-1.254-1.666-1.254-3.178 0-1.513.788-2.257 1.068-2.558.28-.3.61-.375.813-.375h.582c.18 0 .422.016.649.525.234.526.8 1.944.869 2.083.07.139.116.301.023.486-.092.185-.139.3-.277.463-.14.163-.292.366-.417.49-.139.14-.284.293-.122.571.162.278.718 1.184 1.54 1.916.611.544 1.12.822 1.442.97.278.127.44.11.602-.07.162-.185.718-.834.908-1.112.19-.278.379-.232.616-.139.236.093 1.513.714 1.774.843.26.129.431.194.494.301.063.107.063.62-.27 1.551z"/>

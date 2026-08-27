@@ -153,7 +153,7 @@ export default function ChallengeView() {
     <button
       onClick={startJoin}
       disabled={paying}
-      className={`challenge-cta inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 ${className}`}
+      className={`challenge-cta inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 ${className}`}
     >
       {paying ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
       {paying ? "Opening payment…" : "Join the challenge — ₹999"}
@@ -168,7 +168,7 @@ export default function ChallengeView() {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -235,7 +235,7 @@ export default function ChallengeView() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="py-16 px-4 sm:px-6 max-w-3xl mx-auto text-center"
       >
-        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mb-4">
+        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mb-4">
           Small daily habits, done consistently
         </h2>
         <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -273,8 +273,8 @@ export default function ChallengeView() {
         className="py-12 px-4 sm:px-6 max-w-6xl mx-auto"
       >
         <div className="text-center mb-10">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Journey</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The Journey</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">
             3 phases. 14 days. A calmer, lighter you.
           </h2>
         </div>
@@ -284,7 +284,7 @@ export default function ChallengeView() {
               <div className="w-12 h-12 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center mb-4">
                 <p.icon className="w-6 h-6" />
               </div>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">{p.tag}</span>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321]">{p.tag}</span>
               <h3 className="font-heading font-bold text-lg text-green-900 mt-1 mb-2">{p.title}</h3>
               <p className="text-sm text-slate-600 leading-relaxed">{p.desc}</p>
             </div>
@@ -295,8 +295,8 @@ export default function ChallengeView() {
       {/* QUALIFICATION CHECKLIST */}
       <section className="py-14 px-4 sm:px-6 max-w-3xl mx-auto">
         <div className="text-center mb-8">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Is this for you?</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mt-1">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Is this for you?</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mt-1">
             Check the boxes where your answer is YES
           </h2>
         </div>
@@ -316,7 +316,7 @@ export default function ChallengeView() {
           ))}
         </div>
         <p className="text-center text-sm text-slate-600 mt-6">
-          Checked 3 or more? <b className="text-[#2F5233]">This challenge is built for you.</b>
+          Checked 3 or more? <b className="text-[#004C53]">This challenge is built for you.</b>
         </p>
       </section>
 
@@ -329,13 +329,13 @@ export default function ChallengeView() {
         className="py-12 px-4 sm:px-6 max-w-4xl mx-auto"
       >
         <div className="text-center mb-8">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">What you'll unlock</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mt-1">Your 14-day roadmap</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">What you'll unlock</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mt-1">Your 14-day roadmap</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {DAYS.map((d, i) => (
             <div key={i} className="flex items-start gap-3 bg-white border border-green-100 rounded-2xl px-4 py-3">
-              <span className="shrink-0 w-7 h-7 rounded-full bg-[#2F5D50] text-white text-xs font-bold flex items-center justify-center">
+              <span className="shrink-0 w-7 h-7 rounded-full bg-[#004C53] text-white text-xs font-bold flex items-center justify-center">
                 {i + 1}
               </span>
               <span className="text-sm text-slate-700 leading-snug">{d}</span>
@@ -347,8 +347,8 @@ export default function ChallengeView() {
       {/* WHAT YOU'LL DISCOVER (numbered) */}
       <section className="py-14 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Inside the 14 days</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">What you'll discover</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Inside the 14 days</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">What you'll discover</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
@@ -358,7 +358,7 @@ export default function ChallengeView() {
             { n: "04", t: "Your 5-minute ritual", d: "By day 13 it all comes together into one simple daily habit you can keep for life." },
           ].map((f, i) => (
             <div key={i} className="flex gap-4 bg-white border border-green-100 rounded-3xl p-6 shadow-xs">
-              <span className="font-heading font-bold text-3xl text-[#E8943A] shrink-0 leading-none">{f.n}</span>
+              <span className="font-heading font-bold text-3xl text-[#EF8321] shrink-0 leading-none">{f.n}</span>
               <div>
                 <h3 className="font-heading font-bold text-lg text-green-900 mb-1">{f.t}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{f.d}</p>
@@ -389,7 +389,7 @@ export default function ChallengeView() {
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white p-8 flex flex-col justify-center text-center">
+            <div className="bg-gradient-to-b from-[#004C53] to-[#003A40] text-white p-8 flex flex-col justify-center text-center">
               <p className="text-xs uppercase tracking-widest text-green-100/70 mb-1">Your price today</p>
               <div className="flex items-center justify-center gap-3 mb-1">
                 <span className="text-5xl font-extrabold">₹999</span>
@@ -410,8 +410,8 @@ export default function ChallengeView() {
       {/* FREE BONUSES */}
       <section className="py-14 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Included free</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">Free bonuses with your ₹999</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Included free</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">Free bonuses with your ₹999</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
@@ -423,7 +423,7 @@ export default function ChallengeView() {
               <div className="w-11 h-11 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center mx-auto mb-3">
                 <Gift className="w-6 h-6" />
               </div>
-              <span className="inline-block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1">Bonus {i + 1}</span>
+              <span className="inline-block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1">Bonus {i + 1}</span>
               <h3 className="font-heading font-bold text-base text-green-900 mb-1">{b.title}</h3>
               <p className="text-xs text-slate-500 leading-relaxed mb-3">{b.d}</p>
               <span className="text-xs text-slate-400 line-through mr-1.5">{b.was}</span>
@@ -442,8 +442,8 @@ export default function ChallengeView() {
       {/* FOUNDER / YOUR GUIDE */}
       <section className="py-14 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto bg-white border border-green-100 rounded-3xl shadow-md overflow-hidden grid md:grid-cols-5">
-          <div className="md:col-span-2 bg-[#F2F9F2] flex flex-col items-center justify-center p-8 gap-3">
-            <div className="relative w-40 h-40 rounded-full overflow-hidden bg-[#2F5D50] text-white flex items-center justify-center shadow-lg shrink-0">
+          <div className="md:col-span-2 bg-[#EEF6F6] flex flex-col items-center justify-center p-8 gap-3">
+            <div className="relative w-40 h-40 rounded-full overflow-hidden bg-[#004C53] text-white flex items-center justify-center shadow-lg shrink-0">
               <span className="font-heading font-bold text-4xl">
                 {guideName.trim().charAt(0).toUpperCase() || "S"}
               </span>
@@ -456,11 +456,11 @@ export default function ChallengeView() {
             </div>
             <div className="text-center">
               <p className="font-heading font-bold text-green-900 leading-tight">{guideName}</p>
-              <p className="text-xs text-[#E8943A] font-semibold">{guideTitle}</p>
+              <p className="text-xs text-[#EF8321] font-semibold">{guideTitle}</p>
             </div>
           </div>
           <div className="md:col-span-3 p-8">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Your guide</span>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Your guide</span>
             <h2 className="font-heading font-bold text-2xl text-green-900 mt-1 mb-3">Rooted in authentic Vedic practice</h2>
             <p className="text-sm text-slate-600 leading-relaxed mb-3">
               At Shivoham Shiv we've spent 7+ years guiding 1,200+ people back to balance using traditional Mudra,
@@ -468,10 +468,10 @@ export default function ChallengeView() {
               same path, simplified into 20 mindful minutes a day.
             </p>
             <p className="text-[11px] text-slate-500 mb-3">
-              <span className="font-semibold text-[#2F5233]">Certified:</span> Yoga Alliance USA (RYS-200) · Acupressure
+              <span className="font-semibold text-[#004C53]">Certified:</span> Yoga Alliance USA (RYS-200) · Acupressure
               · Panchakarma · Electro-Acupuncture · Reiki
             </p>
-            <p className="text-sm font-bold text-[#2F5233]">— {guideName}</p>
+            <p className="text-sm font-bold text-[#004C53]">— {guideName}</p>
           </div>
         </div>
       </section>
@@ -483,7 +483,7 @@ export default function ChallengeView() {
 
       {/* FAQ */}
       <section className="py-12 px-4 sm:px-6 max-w-3xl mx-auto">
-        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] text-center mb-8">
+        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] text-center mb-8">
           Quick questions
         </h2>
         <div className="space-y-3">
@@ -510,7 +510,7 @@ export default function ChallengeView() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="py-16 px-4 sm:px-6"
       >
-        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white rounded-3xl p-10 sm:p-14">
+        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#004C53] to-[#003A40] text-white rounded-3xl p-10 sm:p-14">
           <h2 className="font-heading font-bold text-2xl sm:text-4xl mb-4 text-white">
             Start your 14-day reset — for ₹999
           </h2>
@@ -528,14 +528,14 @@ export default function ChallengeView() {
 
       {/* Sticky mobile CTA — hidden whenever a real Join button is on screen */}
       <div
-        className={`md:hidden fixed inset-x-0 bottom-0 z-40 px-3 pb-3 pt-6 bg-gradient-to-t from-[#23483E] via-[#23483E]/95 to-transparent transition-all duration-300 ${
+        className={`md:hidden fixed inset-x-0 bottom-0 z-40 px-3 pb-3 pt-6 bg-gradient-to-t from-[#003A40] via-[#003A40]/95 to-transparent transition-all duration-300 ${
           ctaOnScreen ? "translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
         }`}
       >
         <button
           onClick={startJoin}
           disabled={paying}
-          className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl disabled:opacity-70"
+          className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl disabled:opacity-70"
         >
           {paying ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
           {paying ? "Opening payment…" : "Join the challenge — ₹999"}

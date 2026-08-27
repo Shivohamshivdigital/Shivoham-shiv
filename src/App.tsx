@@ -139,7 +139,7 @@ function AppContent() {
             <Bell className="w-4 h-4 animate-ping" />
           </div>
           <div className="flex-1 text-left">
-            <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A] block mb-0.5">Vedic System Status</span>
+            <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321] block mb-0.5">Vedic System Status</span>
             <p className="text-xs leading-relaxed font-semibold">{bannerMessage}</p>
           </div>
           <button
@@ -204,7 +204,7 @@ function AppContent() {
                   ]}
                 />
                 <div className="max-w-3xl mx-auto mb-10 text-center">
-                  <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Interactive Energetic Circuits</span>
+                  <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Interactive Energetic Circuits</span>
                   <h1 className="font-heading font-bold text-3xl sm:text-4xl text-green-900 mt-2 mb-4 leading-tight">
                     Classical Hasta Mudra Explorer
                   </h1>
@@ -232,11 +232,11 @@ function AppContent() {
                   ]}
                 />
                 <div className="max-w-3xl mx-auto mb-10 text-center animate-fadeIn">
-                  <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Self-Discovery Alignment Quiz</span>
+                  <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Self-Discovery Alignment Quiz</span>
                   <h1 className="font-heading font-bold text-3xl sm:text-4xl text-green-900 mt-2 mb-4 leading-tight">
                     Calculate Your Vedic Body-Mind Constitution
                   </h1>
-                  <p className="text-sm leading-relaxed text-[#4A7C59] font-medium max-w-xl mx-auto">
+                  <p className="text-sm leading-relaxed text-[#005461] font-medium max-w-xl mx-auto">
                     "When you stabilize the elements, vitality returns naturally." Use our multi-choice Ayurvedic quiz to balance your primary energies!
                   </p>
                 </div>
@@ -329,7 +329,7 @@ function AppContent() {
             ) : (
               <form onSubmit={handleModalSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="modal-name">
+                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="modal-name">
                     Full Name *
                   </label>
                   <input
@@ -344,7 +344,7 @@ function AppContent() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="modal-email">
+                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="modal-email">
                     Email Address *
                   </label>
                   <input
@@ -359,7 +359,7 @@ function AppContent() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="modal-whatsapp">
+                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="modal-whatsapp">
                     WhatsApp Mobile *
                   </label>
                   <input
@@ -374,7 +374,7 @@ function AppContent() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="modal-message">
+                  <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="modal-message">
                     Symptoms or Wellness Request (Optional)
                   </label>
                   <textarea
@@ -407,7 +407,7 @@ function AppContent() {
         href="https://wa.me/917317778215"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 bg-white border border-[#2F5D50]/25 hover:border-[#2F5D50]/50 shadow-xl rounded-full p-1.5 sm:p-2 flex items-center max-w-[280px] sm:max-w-xs transition-all duration-300 hover:-translate-y-1 group"
+        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 bg-white border border-[#004C53]/25 hover:border-[#004C53]/50 shadow-xl rounded-full p-1.5 sm:p-2 flex items-center max-w-[280px] sm:max-w-xs transition-all duration-300 hover:-translate-y-1 group"
       >
         <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-slate-100 bg-white flex items-center justify-center shrink-0 shadow-md relative">
           <img
@@ -421,7 +421,7 @@ function AppContent() {
           <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#25D366] rounded-full border border-white" />
         </div>
         <div className="ml-2.5 mr-3 text-left hidden sm:block">
-          <p className="text-[9px] font-bold text-[#2F5D50] uppercase tracking-wider leading-none">Shivoham Shiv</p>
+          <p className="text-[9px] font-bold text-[#004C53] uppercase tracking-wider leading-none">Shivoham Shiv</p>
           <p className="text-xs text-slate-700 font-semibold mt-0.5 leading-none">Hi, how can we help?</p>
         </div>
       </a>
@@ -429,7 +429,7 @@ function AppContent() {
       {/* "Contact us" bubble bottom-RIGHT */}
       <button
         onClick={handleOpenConsultationModal}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-[#2F5D50] hover:bg-[#23483E] text-cream p-3 sm:px-5 sm:py-3.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-2xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-center space-x-2 border border-green-600/20 cursor-pointer"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-[#004C53] hover:bg-[#003A40] text-cream p-3 sm:px-5 sm:py-3.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-2xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-center space-x-2 border border-green-600/20 cursor-pointer"
         title="Contact Us"
       >
         <PhoneCall className="w-4 h-4 text-cream animate-pulse shrink-0" />

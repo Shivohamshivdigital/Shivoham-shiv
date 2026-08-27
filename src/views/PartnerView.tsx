@@ -136,14 +136,14 @@ export default function PartnerView() {
   };
 
   const inputCls =
-    "w-full px-4 py-3 rounded-xl border border-green-200 bg-white text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition";
+    "w-full px-4 py-3 rounded-xl border border-green-200 bg-white text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#004C53]/30 focus:border-[#004C53] transition";
 
   const scrollToForm = () => document.getElementById("partner-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const CTA = ({ className = "" }: { className?: string }) => (
     <button
       onClick={scrollToForm}
-      className={`inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all ${className}`}
+      className={`inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all ${className}`}
     >
       <Handshake className="w-4 h-4" /> Become a partner
     </button>
@@ -166,7 +166,7 @@ export default function PartnerView() {
       ) : (
         <>
           <div className="text-center max-w-md mx-auto mb-6">
-            <span className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#E8943A]">
+            <span className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#EF8321]">
               <Sparkles className="w-3.5 h-3.5" /> Let's talk
             </span>
             <h2 className="font-heading font-bold text-2xl sm:text-3xl text-green-900 mt-1">Become a partner</h2>
@@ -224,7 +224,7 @@ export default function PartnerView() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all disabled:opacity-70"
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all disabled:opacity-70"
             >
               {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Handshake className="w-4 h-4" />}
               {submitting ? "Sending…" : "Send partnership enquiry"}
@@ -253,8 +253,8 @@ export default function PartnerView() {
       />
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Watch</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">See Shivoham Shiv in action</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Watch</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">See Shivoham Shiv in action</h2>
         </div>
         <div className="pv-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
           <div className="pv-track gap-5">
@@ -281,7 +281,7 @@ export default function PartnerView() {
       />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -344,13 +344,13 @@ export default function PartnerView() {
         className="py-12 px-4 sm:px-6 max-w-6xl mx-auto"
       >
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Who it's for</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">Who can partner with us</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Who it's for</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">Who can partner with us</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {WHO.map((w) => (
             <div key={w.title} className="bg-white border border-green-100 rounded-3xl p-6 shadow-xs hover:shadow-md transition-all">
-              <div className="w-12 h-12 rounded-2xl bg-[#E3F1E3] text-green-700 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-[#D6E9EA] text-green-700 flex items-center justify-center mb-4">
                 <w.icon className="w-6 h-6" />
               </div>
               <h3 className="font-heading font-bold text-base text-green-900 mb-1.5">{w.title}</h3>
@@ -361,16 +361,16 @@ export default function PartnerView() {
       </motion.section>
 
       {/* BENEFITS */}
-      <section className="bg-[#F2F9F2] border-y border-[#E3F1E3] py-16 px-4 sm:px-6">
+      <section className="bg-[#EEF6F6] border-y border-[#D6E9EA] py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Why partner</span>
-            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">What you get</h2>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Why partner</span>
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">What you get</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {BENEFITS.map((b) => (
               <div key={b.title} className="flex gap-4 bg-white border border-green-100 rounded-3xl p-6 shadow-xs">
-                <div className="w-12 h-12 rounded-2xl bg-[#E3F1E3] text-green-700 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-[#D6E9EA] text-green-700 flex items-center justify-center shrink-0">
                   <b.icon className="w-6 h-6" />
                 </div>
                 <div>
@@ -392,13 +392,13 @@ export default function PartnerView() {
         className="py-16 px-4 sm:px-6 max-w-6xl mx-auto"
       >
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Simple &amp; quick</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-1">How it works</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Simple &amp; quick</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-1">How it works</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {STEPS.map((s) => (
             <div key={s.n} className="bg-white border border-green-100 rounded-3xl p-7 shadow-xs">
-              <span className="font-heading font-bold text-3xl text-[#E8943A]">{s.n}</span>
+              <span className="font-heading font-bold text-3xl text-[#EF8321]">{s.n}</span>
               <h3 className="font-heading font-bold text-lg text-green-900 mt-2 mb-1.5">{s.title}</h3>
               <p className="text-sm text-slate-600 leading-relaxed">{s.desc}</p>
             </div>
@@ -408,7 +408,7 @@ export default function PartnerView() {
 
       {/* WHAT CLIENTS GET */}
       <section className="pb-4 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto bg-[#2F5D50] text-white rounded-3xl p-8 sm:p-10">
+        <div className="max-w-4xl mx-auto bg-[#004C53] text-white rounded-3xl p-8 sm:p-10">
           <div className="text-center max-w-2xl mx-auto mb-7">
             <span className="text-xs uppercase font-bold tracking-widest text-amber-300">For your clients</span>
             <h2 className="font-heading font-bold text-2xl sm:text-3xl text-white mt-1">Programs you can offer</h2>
@@ -426,7 +426,7 @@ export default function PartnerView() {
 
       {/* FAQ */}
       <section className="py-16 px-4 sm:px-6 max-w-3xl mx-auto">
-        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] text-center mb-8">Common questions</h2>
+        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] text-center mb-8">Common questions</h2>
         <div className="space-y-3">
           {FAQS.map((f, i) => (
             <div key={i} className="bg-white border border-green-100 rounded-2xl overflow-hidden">

@@ -67,7 +67,7 @@ export default function AcademyView() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#23423A] to-[#16302A] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#003A40] to-[#002A2E] text-white">
         <div className="max-w-4xl mx-auto px-4 lg:px-6 py-16 sm:py-24 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <GraduationCap className="w-3.5 h-3.5" /> Academy · Become
@@ -83,7 +83,7 @@ export default function AcademyView() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               to="/courses/mudra-therapy"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
             >
               Explore Certifications <ArrowRight className="w-4 h-4" />
             </Link>
@@ -121,8 +121,8 @@ export default function AcademyView() {
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className="text-center max-w-2xl mx-auto mb-8">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">{group.label}</span>
-              <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mt-1">{group.heading}</h2>
+              <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">{group.label}</span>
+              <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mt-1">{group.heading}</h2>
               <p className="text-sm text-slate-600 leading-relaxed mt-2">{group.blurb}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -133,7 +133,7 @@ export default function AcademyView() {
                   className="group flex flex-col bg-white border border-green-100 rounded-3xl p-6 shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-11 h-11 rounded-2xl bg-[#EAF4EC] text-[#2F5D50] flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-2xl bg-[#E3F1F1] text-[#004C53] flex items-center justify-center">
                       <c.icon className="w-6 h-6" />
                     </div>
                     {c.tag && (
@@ -141,16 +141,16 @@ export default function AcademyView() {
                         className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
                           c.tag === "Coming soon"
                             ? "text-slate-500 bg-slate-50 border-slate-200"
-                            : "text-[#E8943A] bg-amber-50 border-amber-100"
+                            : "text-[#EF8321] bg-amber-50 border-amber-100"
                         }`}
                       >
                         {c.tag}
                       </span>
                     )}
                   </div>
-                  <h3 className="font-heading font-bold text-lg text-[#2F5233] leading-snug mb-2">{c.title}</h3>
+                  <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug mb-2">{c.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed mb-4 flex-grow">{c.desc}</p>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2F5D50] group-hover:text-[#23483E]">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#003A40]">
                     {c.tag === "Coming soon" ? "Register interest" : "View certification"}
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -163,14 +163,14 @@ export default function AcademyView() {
 
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#23423A] to-[#16302A] text-white rounded-3xl p-10 sm:p-14">
+        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#003A40] to-[#002A2E] text-white rounded-3xl p-10 sm:p-14">
           <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-3">Ready to become a practitioner?</h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
             Tell us your goals and we'll help you choose the right certification pathway.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all"
           >
             Talk to an advisor <ArrowRight className="w-4 h-4" />
           </Link>

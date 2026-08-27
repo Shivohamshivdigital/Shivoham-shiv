@@ -163,7 +163,7 @@ export default function CourseDetailView() {
         />
 
         {/* 1. HERO */}
-        <section className="bg-teal-950 text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#C96E29] relative overflow-hidden">
+        <section className="bg-teal-950 text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#D9741A] relative overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&q=80&w=1600"
@@ -171,10 +171,10 @@ export default function CourseDetailView() {
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover opacity-35 filter brightness-75"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-905/85 to-[#0F3320]/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-905/85 to-[#002A2E]/60" />
           </div>
           <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#1F4D45] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#004C53] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
               <Sparkles className="w-3 text-[#C9A24B] fill-[#C9A24B]" />
               Online Mudra Pathways
             </span>
@@ -187,7 +187,7 @@ export default function CourseDetailView() {
             <div className="pt-2">
               <button 
                 onClick={() => handleScrollToSegment("mudra-contact-form")}
-                className="px-8 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
+                className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
               >
                 Book a Session
               </button>
@@ -213,16 +213,16 @@ export default function CourseDetailView() {
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#FAF5EC] border border-[#2F5D50]/20 rounded-2xl flex flex-col items-center justify-center p-3 text-center shadow-lg">
-                <span className="block font-heading text-[#C96E29] font-bold text-xl leading-none">100%</span>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#FAF5EC] border border-[#004C53]/20 rounded-2xl flex flex-col items-center justify-center p-3 text-center shadow-lg">
+                <span className="block font-heading text-[#D9741A] font-bold text-xl leading-none">100%</span>
                 <span className="text-[9px] uppercase tracking-wider text-green-905 font-bold mt-1">ONLINE</span>
               </div>
             </div>
 
             {/* Text right */}
             <div className="lg:col-span-7 text-left space-y-6">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Core Definition</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Core Definition</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
                 What is Mudra Therapy?
               </h2>
               <div className="space-y-4 text-sm leading-relaxed text-[#3A463F]/90">
@@ -235,7 +235,7 @@ export default function CourseDetailView() {
               </div>
 
               <div className="space-y-3">
-                <p className="font-bold text-[#1F4D45] text-sm">
+                <p className="font-bold text-[#004C53] text-sm">
                   Mudra Therapy helps by:
                 </p>
                 <ul className="space-y-2.5 text-xs text-[#3A463F]/90 md:pl-2">
@@ -266,8 +266,8 @@ export default function CourseDetailView() {
         <section className="bg-[#FAF5EC] py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Stellar Value Additions</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Stellar Value Additions</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
                 Special Offer: Enroll in Mudra Therapy and Get Exclusive Benefits
               </h2>
               <p className="text-[#3A463F]/90 max-w-2xl mx-auto leading-relaxed text-sm">
@@ -290,7 +290,7 @@ export default function CourseDetailView() {
                       <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-700">
                         <Leaf className="w-6 h-6" />
                       </div>
-                      <h3 className="font-heading font-bold text-lg text-[#1F4D45] leading-snug">
+                      <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">
                         1-Month Free Meditation Subscription
                       </h3>
                       <p className="text-xs text-[#3A463F]/85 leading-relaxed">
@@ -328,7 +328,7 @@ export default function CourseDetailView() {
                       <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-700">
                         <Brain className="w-6 h-6" />
                       </div>
-                      <h3 className="font-heading font-bold text-lg text-[#1F4D45] leading-snug">
+                      <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">
                         6 Free Psychiatrist Meetings
                       </h3>
                       <p className="text-xs text-[#3A463F]/85 leading-relaxed">
@@ -346,7 +346,7 @@ export default function CourseDetailView() {
                       <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-700">
                         <GraduationCap className="w-6 h-6" />
                       </div>
-                      <h3 className="font-heading font-bold text-lg text-[#1F4D45] leading-snug">
+                      <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">
                         Vedic Math Course Complimentary
                       </h3>
                       <p className="text-xs text-[#3A463F]/85 leading-relaxed">
@@ -375,10 +375,10 @@ export default function CourseDetailView() {
         {/* 4. SECTION "Why Practice Mudra Therapy?" */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
           <div className="space-y-3 mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
               Why Practice Mudra Therapy?
             </h2>
-            <p className="text-sm font-bold text-[#1F4D45] block font-heading uppercase tracking-wide">
+            <p className="text-sm font-bold text-[#004C53] block font-heading uppercase tracking-wide">
               Key Benefits of Mudra Therapy:
             </p>
           </div>
@@ -424,7 +424,7 @@ export default function CourseDetailView() {
 
             {/* Sliding White Overlap Card info */}
             <div className="bg-white/95 backdrop-blur-xs p-8 sm:p-10 rounded-2xl max-w-2xl mx-12 shadow-xl z-10 text-center space-y-4">
-              <h3 className="font-heading font-bold text-[#1F4D45] text-xl sm:text-2xl leading-snug">
+              <h3 className="font-heading font-bold text-[#004C53] text-xl sm:text-2xl leading-snug">
                 {carouselSlides[currentSlide].title}
               </h3>
               <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed max-w-lg mx-auto">
@@ -433,7 +433,7 @@ export default function CourseDetailView() {
               <div className="pt-2">
                 <button 
                   onClick={() => handleScrollToSegment("mudra-contact-form")}
-                  className="px-6 py-2.5 bg-[#1F4D45] hover:bg-green-905 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all"
+                  className="px-6 py-2.5 bg-[#004C53] hover:bg-green-905 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all"
                 >
                   Explore More
                 </button>
@@ -458,24 +458,24 @@ export default function CourseDetailView() {
             {/* Elegant Custom meditating SVG illustration left */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative max-w-sm w-full aspect-square bg-[#FAFBF7] rounded-[48px] border border-teal-100 shadow-xl flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(#1F4D45_1px,transparent_1px)] [background-size:16px_16px] opacity-10" />
+                <div className="absolute inset-0 bg-[radial-gradient(#004C53_1px,transparent_1px)] [background-size:16px_16px] opacity-10" />
                 
                 <svg className="w-4/5 h-4/5 relative z-10 filter drop-shadow-md" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="200" cy="230" r="100" stroke="#1F4D45" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
+                  <circle cx="200" cy="230" r="100" stroke="#004C53" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
                   <circle cx="200" cy="230" r="140" fill="#EADCC9" fillOpacity="0.15" />
                   
                   {/* Outer body contour */}
                   <path d="M120 330 C120 330, 200 350, 280 330 C290 320, 310 260, 270 230 C250 215, 250 180, 240 140 C235 120, 165 120, 160 140 C150 180, 150 215, 130 230 C90 260, 110 320, 120 330 Z" fill="#EADCC9" />
                   
                   {/* Sports top green */}
-                  <path d="M165 140 C165 140, 200 155, 235 140 C238 160, 243 190, 230 220 C215 225, 185 225, 170 220 C157 190, 162 160, 165 140 Z" fill="#1F4D45" />
+                  <path d="M165 140 C165 140, 200 155, 235 140 C238 160, 243 190, 230 220 C215 225, 185 225, 170 220 C157 190, 162 160, 165 140 Z" fill="#004C53" />
                   
                   {/* Straps */}
-                  <path d="M170 140 L178 120 L188 120 L180 140 Z" fill="#1F4D45" />
-                  <path d="M230 140 L222 120 L212 120 L220 140 Z" fill="#1F4D45" />
+                  <path d="M170 140 L178 120 L188 120 L180 140 Z" fill="#004C53" />
+                  <path d="M230 140 L222 120 L212 120 L220 140 Z" fill="#004C53" />
 
                   {/* Pants green */}
-                  <path d="M136 290 C155 315, 245 315, 264 290 C280 300, 290 320, 280 330 C230 345, 170 345, 120 330 C110 320, 120 300, 136 290 Z" fill="#1F4D45" />
+                  <path d="M136 290 C155 315, 245 315, 264 290 C280 300, 290 320, 280 330 C230 345, 170 345, 120 330 C110 320, 120 300, 136 290 Z" fill="#004C53" />
                   
                   {/* Left arm */}
                   <path d="M160 155 C140 170, 90 220, 80 260 C75 280, 95 285, 105 270 C115 255, 140 210, 160 185" fill="none" stroke="#EADCC9" strokeWidth="14" strokeLinecap="round" />
@@ -484,10 +484,10 @@ export default function CourseDetailView() {
 
                   {/* Hands Mudra detail */}
                   <path d="M78 260 C70 260, 65 268, 70 273 C75 278, 85 270, 85 264" fill="#EADCC9" />
-                  <circle cx="74" cy="264" r="3.5" fill="#C96E29" /> 
+                  <circle cx="74" cy="264" r="3.5" fill="#D9741A" /> 
                   
                   <path d="M322 260 C330 260, 335 268, 330 273 C325 278, 315 270, 315 264" fill="#EADCC9" />
-                  <circle cx="326" cy="264" r="3.5" fill="#C96E29" /> 
+                  <circle cx="326" cy="264" r="3.5" fill="#D9741A" /> 
 
                   {/* Head */}
                   <circle cx="200" cy="95" r="24" fill="#EADCC9" />
@@ -503,8 +503,8 @@ export default function CourseDetailView() {
 
             {/* Text right */}
             <div className="lg:col-span-7 text-left space-y-6">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Vedic Credentials</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Vedic Credentials</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
                 Why Choose Shivoham Shiv for Mudra Therapy?
               </h2>
               <div className="space-y-4 text-sm text-[#3A463F]/90 leading-relaxed text-left">
@@ -517,7 +517,7 @@ export default function CourseDetailView() {
               </div>
 
               <div className="space-y-3">
-                <p className="font-bold text-[#1F4D45] text-sm">
+                <p className="font-bold text-[#004C53] text-sm">
                   What sets our Mudra Therapy approach apart:
                 </p>
                 <ul className="space-y-3.5 text-xs text-[#3A463F]/90 text-left">
@@ -541,7 +541,7 @@ export default function CourseDetailView() {
               <div className="pt-2">
                 <button 
                   onClick={() => handleScrollToSegment("mudra-contact-form")}
-                  className="px-8 py-4 bg-[#1F4D45] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all cursor-pointer"
+                  className="px-8 py-4 bg-[#004C53] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all cursor-pointer"
                 >
                   Enroll Now
                 </button>
@@ -556,8 +556,8 @@ export default function CourseDetailView() {
           <div className="max-w-7xl mx-auto text-center">
             
             <div className="space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Comprehensive Integration</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Comprehensive Integration</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
                 Benefits of Our Mudra Therapy Services
               </h2>
               <p className="text-xs sm:text-sm text-[#3A463F]/85 italic leading-relaxed">
@@ -592,7 +592,7 @@ export default function CourseDetailView() {
                   <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mx-auto">
                     {card.icon}
                   </div>
-                  <h3 className="font-heading font-bold text-center text-[#1F4D45] text-sm uppercase tracking-wide leading-snug">
+                  <h3 className="font-heading font-bold text-center text-[#004C53] text-sm uppercase tracking-wide leading-snug">
                     {card.title}
                   </h3>
                   <p className="text-xs text-center text-[#3A463F]/85 leading-relaxed">
@@ -613,8 +613,8 @@ export default function CourseDetailView() {
               {/* Form Column */}
               <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-green-150 shadow-xl">
                 <div className="space-y-2 mb-8">
-                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#C96E29]">Vedic Diagnostic Gate</span>
-                  <h3 className="font-heading font-bold text-2xl text-[#1F4D45]">
+                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#D9741A]">Vedic Diagnostic Gate</span>
+                  <h3 className="font-heading font-bold text-2xl text-[#004C53]">
                     Get in Touch
                   </h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
@@ -623,7 +623,7 @@ export default function CourseDetailView() {
                 </div>
 
                 {isSuccess ? (
-                  <div className="p-8 bg-[#E3F1E3] border border-green-200 text-[#1F4D45] rounded-2xl text-center space-y-4">
+                  <div className="p-8 bg-[#D6E9EA] border border-green-200 text-[#004C53] rounded-2xl text-center space-y-4">
                     <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto animate-bounce" />
                     <h4 className="font-bold text-base">Pranama, evaluation information recorded!</h4>
                     <p className="text-xs leading-relaxed max-w-md mx-auto text-slate-705">
@@ -633,7 +633,7 @@ export default function CourseDetailView() {
                       href="https://wa.me/917317778215" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
+                      className="inline-block px-7 py-3 bg-[#004C53] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
                     >
                       Converse on WhatsApp
                     </a>
@@ -728,7 +728,7 @@ export default function CourseDetailView() {
                       <button 
                         type="submit"
                         disabled={isSubmitting}
-                        className="px-8 py-3.5 bg-[#1F4D45] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-md cursor-pointer"
+                        className="px-8 py-3.5 bg-[#004C53] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-md cursor-pointer"
                       >
                         {isSubmitting ? "Submitting..." : "Submit"}
                       </button>
@@ -741,7 +741,7 @@ export default function CourseDetailView() {
               <div className="lg:col-span-5 flex flex-col h-full justify-between text-left">
                 <div className="bg-[#FAF5EC]/50 border border-green-100 rounded-3xl p-6 shadow-sm space-y-4 flex-grow flex flex-col">
                   <div className="space-y-1 text-left">
-                    <h4 className="font-heading font-extrabold text-[#1F4D45] text-base">
+                    <h4 className="font-heading font-extrabold text-[#004C53] text-base">
                       Office Location Base
                     </h4>
                     <p className="text-xs text-[#3A463F]/90 leading-relaxed">
@@ -833,9 +833,9 @@ export default function CourseDetailView() {
         `}} />
 
         {/* 1. HERO */}
-        <section className="bg-[#0F3320] text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#C96E29] relative overflow-hidden">
+        <section className="bg-[#002A2E] text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#D9741A] relative overflow-hidden">
           <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#1F4D45] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#004C53] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
               <Sparkles className="w-3 text-[#C9A24B] fill-[#C9A24B]" />
 Online Marma Dab Chikitsa (Acupressure) Pathways
             </span>
@@ -848,7 +848,7 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
             <div className="pt-2">
               <button 
                 onClick={() => handleScrollToSegment("acupressure-contact-form")}
-                className="px-8 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer border-none"
+                className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer border-none"
               >
                 Book a Session
               </button>
@@ -871,9 +871,9 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
         <div className="bg-[#EFFFDF] border-y border-green-150 py-4 overflow-hidden relative w-full font-sans">
           <div className="animate-marquee-custom gap-8">
             {Array(5).fill("Marma Dab Chikitsa (Acupressure) Live Course - Coming Soon").map((text, idx) => (
-              <div key={idx} className="flex items-center gap-4 shrink-0 text-[#1F4D45] text-xs sm:text-sm font-bold uppercase tracking-widest font-heading pr-8">
+              <div key={idx} className="flex items-center gap-4 shrink-0 text-[#004C53] text-xs sm:text-sm font-bold uppercase tracking-widest font-heading pr-8">
                 <span>{text}</span>
-                <Leaf className="w-4 h-4 fill-[#C96E29]/20 text-[#C96E29]" />
+                <Leaf className="w-4 h-4 fill-[#D9741A]/20 text-[#D9741A]" />
               </div>
             ))}
           </div>
@@ -894,8 +894,8 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-[#FAF5EC] border border-[#2F5D50]/20 rounded-2xl flex flex-col items-center justify-center p-3 text-center shadow-lg">
-                <span className="block font-heading text-[#C96E29] font-bold text-2xl leading-none">100%</span>
+              <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-[#FAF5EC] border border-[#004C53]/20 rounded-2xl flex flex-col items-center justify-center p-3 text-center shadow-lg">
+                <span className="block font-heading text-[#D9741A] font-bold text-2xl leading-none">100%</span>
                 <span className="text-[10px] uppercase font-bold tracking-wider text-green-905 mt-1 leading-none">ONLINE</span>
                 <span className="text-[8px] text-slate-400 mt-1 uppercase tracking-wide">Live Studies</span>
               </div>
@@ -903,8 +903,8 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
 
             {/* Text block right */}
             <div className="lg:col-span-7 space-y-6 text-left">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Core Knowledge</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Core Knowledge</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
                 What is Marma Dab Chikitsa (Acupressure Therapy)?
               </h2>
               <div className="space-y-4 text-sm leading-relaxed text-[#3A463F]/95">
@@ -916,7 +916,7 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
                 </p>
                 
                 <div className="space-y-3 pt-2">
-                  <p className="font-bold text-[#1F4D45]">Acupressure Therapy works by:</p>
+                  <p className="font-bold text-[#004C53]">Acupressure Therapy works by:</p>
                   <ul className="space-y-2.5">
                     {[
                       "Applying precise pressure to specific energy and reflex points",
@@ -925,7 +925,7 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
                       "Supporting the body's ability to heal itself naturally"
                     ].map((bullet, idx) => (
                       <li key={idx} className="flex items-start gap-2.5 text-xs text-[#3A463F]">
-                        <CheckCircle2 className="w-4 h-4 text-[#C96E29] mt-0.5 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-[#D9741A] mt-0.5 shrink-0" />
                         <span>{bullet}</span>
                       </li>
                     ))}
@@ -946,8 +946,8 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
           <div className="max-w-7xl mx-auto">
             
             <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Healing Philosophy</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Healing Philosophy</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
 Marma Dab Chikitsa (Acupressure) – Natural Healing Through Touch
               </h2>
               <p className="text-sm leading-relaxed text-[#3A463F]/90 max-w-2xl mx-auto">
@@ -989,14 +989,14 @@ Marma Dab Chikitsa (Acupressure) – Natural Healing Through Touch
                       {/* Left Column (Content or Filler) */}
                       <div className={`w-full lg:w-[45%] ${isEven ? 'lg:order-1 text-left lg:text-right' : 'lg:order-2 text-left'}`}>
                         <div className="bg-white border border-green-100 p-6 md:p-8 rounded-3xl shadow-sm hover:shadow-md transition-all space-y-3 relative z-10">
-                          <span className="text-[10px] uppercase font-mono font-bold text-[#C96E29]">Step 0{idx+1}</span>
-                          <h3 className="font-heading font-bold text-lg md:text-xl text-[#1F4D45]">{card.title}</h3>
+                          <span className="text-[10px] uppercase font-mono font-bold text-[#D9741A]">Step 0{idx+1}</span>
+                          <h3 className="font-heading font-bold text-lg md:text-xl text-[#004C53]">{card.title}</h3>
                           <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed font-light">{card.desc}</p>
                         </div>
                       </div>
 
                       {/* Timeline Center Point Indicator */}
-                      <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1F4D45] border-4 border-white text-cream items-center justify-center font-mono text-xs font-bold z-20 shadow-md">
+                      <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#004C53] border-4 border-white text-cream items-center justify-center font-mono text-xs font-bold z-20 shadow-md">
                         {idx + 1}
                       </div>
 
@@ -1014,8 +1014,8 @@ Marma Dab Chikitsa (Acupressure) – Natural Healing Through Touch
 
         {/* 5. SECTION "Why Practice Acupressure Therapy?" */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Physical Yield</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] mt-2 mb-2">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Physical Yield</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] mt-2 mb-2">
 Why Practice Marma Dab Chikitsa (Acupressure)?
           </h2>
           <p className="text-sm uppercase font-bold tracking-wider text-slate-500 mb-10 block font-heading">
@@ -1049,8 +1049,8 @@ Why Practice Marma Dab Chikitsa (Acupressure)?
             <div className="space-y-4">
               {currentSlide === 0 ? (
                 <div className="space-y-4">
-                  <h3 className="font-heading font-extrabold text-lg sm:text-xl text-[#1F4D45] flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#C96E29]" />
+                  <h3 className="font-heading font-extrabold text-lg sm:text-xl text-[#004C53] flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#D9741A]" />
                     Relieves pain and muscular tension
                   </h3>
                   <p className="text-sm sm:text-base leading-relaxed text-[#3A463F]/95">
@@ -1058,7 +1058,7 @@ Why Practice Marma Dab Chikitsa (Acupressure)?
                     {" "}
                     <button 
                       onClick={() => handleScrollToSegment("acupressure-benefits")}
-                      className="font-bold text-[#C96E29] hover:text-[#B85F22] underline cursor-pointer inline-flex items-center gap-1 border-none bg-transparent py-0 px-1 font-sans text-sm"
+                      className="font-bold text-[#D9741A] hover:text-[#B85F22] underline cursor-pointer inline-flex items-center gap-1 border-none bg-transparent py-0 px-1 font-sans text-sm"
                     >
                       [Explore More]
                     </button>
@@ -1066,7 +1066,7 @@ Why Practice Marma Dab Chikitsa (Acupressure)?
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <h3 className="font-heading font-extrabold text-lg sm:text-xl text-[#1F4D45] flex items-center gap-2">
+                  <h3 className="font-heading font-extrabold text-lg sm:text-xl text-[#004C53] flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-green-700" />
                     {acupressureSlides[currentSlide].title}
                   </h3>
@@ -1085,14 +1085,14 @@ Why Practice Marma Dab Chikitsa (Acupressure)?
               <div className="flex space-x-2">
                 <button 
                   onClick={prevSlide}
-                  className="p-2 border border-green-150 rounded-xl hover:bg-green-50 text-[#1F4D45] transition-all cursor-pointer bg-white"
+                  className="p-2 border border-green-150 rounded-xl hover:bg-green-50 text-[#004C53] transition-all cursor-pointer bg-white"
                   aria-label="Previous Benefit"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button 
                   onClick={nextSlide}
-                  className="p-2 bg-[#1F4D45] hover:bg-green-905 text-white rounded-xl transition-all cursor-pointer border-none"
+                  className="p-2 bg-[#004C53] hover:bg-green-905 text-white rounded-xl transition-all cursor-pointer border-none"
                   aria-label="Next Benefit"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -1109,7 +1109,7 @@ Why Practice Marma Dab Chikitsa (Acupressure)?
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-250">
               <Clock className="w-3" /> Upcoming Interactive Batch
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#1F4D45] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53] tracking-tight">
 Marma Dab Chikitsa (Acupressure) – Live Course (Coming Soon)
             </h2>
             
@@ -1125,7 +1125,7 @@ Marma Dab Chikitsa (Acupressure) – Live Course (Coming Soon)
             <div className="pt-2">
               <button 
                 onClick={() => handleScrollToSegment("acupressure-contact-form")}
-                className="px-8 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all cursor-pointer border-none"
+                className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all cursor-pointer border-none"
               >
                 Enroll Now
               </button>
@@ -1155,8 +1155,8 @@ Marma Dab Chikitsa (Acupressure) – Live Course (Coming Soon)
 
             {/* Text block right with bullets */}
             <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Vedic Standard</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Vedic Standard</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
 Why Choose Shivoham Shiv for Marma Dab Chikitsa (Acupressure)?
               </h2>
               
@@ -1170,7 +1170,7 @@ Why Choose Shivoham Shiv for Marma Dab Chikitsa (Acupressure)?
               </div>
 
               <div className="space-y-3.5 pt-2 text-left">
-                <p className="font-extrabold text-sm text-[#1F4D45]">What sets our Acupressure Therapy approach apart:</p>
+                <p className="font-extrabold text-sm text-[#004C53]">What sets our Acupressure Therapy approach apart:</p>
                 <div className="grid grid-cols-1 gap-4">
                   {[
                     {
@@ -1199,7 +1199,7 @@ Why Choose Shivoham Shiv for Marma Dab Chikitsa (Acupressure)?
                         <CheckCircle2 className="w-3.5 h-3.5 text-green-755 font-bold animate-pulse" />
                       </div>
                       <div className="space-y-0.5">
-                        <h4 className="font-bold text-[#1F4D45]">{bullet.label}</h4>
+                        <h4 className="font-bold text-[#004C53]">{bullet.label}</h4>
                         <p className="text-slate-500 font-light leading-relaxed">{bullet.detail}</p>
                       </div>
                     </div>
@@ -1210,7 +1210,7 @@ Why Choose Shivoham Shiv for Marma Dab Chikitsa (Acupressure)?
               <div className="pt-4 text-left">
                 <button 
                   onClick={() => handleScrollToSegment("acupressure-contact-form")}
-                  className="px-8 py-4 bg-[#1F4D45] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer border-none"
+                  className="px-8 py-4 bg-[#004C53] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all cursor-pointer border-none"
                 >
                   Enroll Now
                 </button>
@@ -1226,8 +1226,8 @@ Why Choose Shivoham Shiv for Marma Dab Chikitsa (Acupressure)?
           <div className="max-w-7xl mx-auto">
             
             <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Systemic Restoration</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Systemic Restoration</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
 Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               </h2>
               <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed italic max-w-md mx-auto">
@@ -1259,10 +1259,10 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                   className="bg-white border border-green-100 p-6 rounded-3xl shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between"
                 >
                   <div className="space-y-4">
-                    <span className="w-8 h-8 rounded-full bg-[#1F4D45] text-cream flex items-center justify-center">
+                    <span className="w-8 h-8 rounded-full bg-[#004C53] text-cream flex items-center justify-center">
                       <Leaf className="w-4 h-4 text-cream" />
                     </span>
-                    <h3 className="font-heading font-extrabold text-base text-[#1F4D45] leading-snug">{card.title}</h3>
+                    <h3 className="font-heading font-extrabold text-base text-[#004C53] leading-snug">{card.title}</h3>
                     <p className="text-xs text-[#3A463F]/85 leading-relaxed font-light">{card.desc}</p>
                   </div>
                 </div>
@@ -1275,8 +1275,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         {/* 8.5 CLIENT TESTIMONIALS */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-left">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Real People · Real Stories</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233] mt-1">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Real People · Real Stories</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] mt-1">
               What our Marma Dab Chikitsa clients say
             </h2>
           </div>
@@ -1288,13 +1288,13 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 <div className="animate-marquee-custom gap-6 py-2 group-hover:[animation-play-state:paused]">
                   {[...T, ...T].map((t, i) => (
                     <div key={i} className="w-[300px] sm:w-[360px] shrink-0 bg-white border border-green-100 rounded-2xl p-6 shadow-xs flex flex-col">
-                      <span className="inline-block self-start px-2.5 py-1 text-[11px] font-bold bg-[#E3F1E3] text-green-800 rounded-md mb-3">
+                      <span className="inline-block self-start px-2.5 py-1 text-[11px] font-bold bg-[#D6E9EA] text-green-800 rounded-md mb-3">
                         {t.cond}
                       </span>
                       <div className="text-amber-400 text-sm mb-2" aria-hidden="true">★★★★★</div>
                       <p className="text-sm text-[#3A4A40]/85 italic leading-relaxed flex-1">"{t.quote}"</p>
                       <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-3">
-                        <span className="relative w-10 h-10 rounded-full bg-[#2F5D50] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
+                        <span className="relative w-10 h-10 rounded-full bg-[#004C53] text-white text-sm font-bold flex items-center justify-center shrink-0 overflow-hidden">
                           {t.name.charAt(0)}
                           {t.img && (
                             <img
@@ -1306,8 +1306,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                           )}
                         </span>
                         <div className="text-xs">
-                          <b className="text-[#2F5233] block">{t.name}</b>
-                          <span className="text-[#E8943A]">{t.role}</span>
+                          <b className="text-[#004C53] block">{t.name}</b>
+                          <span className="text-[#EF8321]">{t.role}</span>
                         </div>
                       </div>
                     </div>
@@ -1332,8 +1332,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               {/* Form Block Left */}
               <div className="lg:col-span-7 bg-[#FAFBF7] border border-green-105 p-6 sm:p-10 rounded-3xl shadow-lg">
                 <div className="space-y-2 mb-8">
-                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#C96E29]">Course Admission Evaluation</span>
-                  <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#1F4D45]">
+                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#D9741A]">Course Admission Evaluation</span>
+                  <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">
                     Begin Your Transformation Journey
                   </h3>
                   <p className="text-xs sm:text-sm text-[#3A463F]/85 leading-relaxed font-light">
@@ -1342,17 +1342,17 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 </div>
 
                 {isSuccess ? (
-                  <div className="p-8 bg-[#E3F1E3] border border-green-200 text-[#1F4D45] rounded-2xl text-center space-y-4">
+                  <div className="p-8 bg-[#D6E9EA] border border-green-200 text-[#004C53] rounded-2xl text-center space-y-4">
                     <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto animate-pulse" />
                     <h4 className="font-bold text-base">Pranama, evaluation information recorded!</h4>
-                    <p className="text-xs leading-relaxed max-w-md mx-auto text-[#1F4D45]">
+                    <p className="text-xs leading-relaxed max-w-md mx-auto text-[#004C53]">
                       Your details have been locked into the local dashboard. Conversing direct on WhatsApp with Pooja's certified team is now opening in a new tab!
                     </p>
                     <a 
                       href="https://wa.me/917317778215" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0 text-center"
+                      className="inline-block px-7 py-3 bg-[#004C53] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0 text-center"
                     >
                       Converse on WhatsApp
                     </a>
@@ -1429,7 +1429,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                       <button 
                         type="submit"
                         disabled={isSubmitting}
-                        className="px-8 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer border-none"
+                        className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer border-none"
                       >
                         {isSubmitting ? "Submitting Request..." : "Pre-register / Book Evaluation Session"}
                       </button>
@@ -1442,7 +1442,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               <div className="lg:col-span-5 flex flex-col h-full justify-between">
                 <div className="bg-[#FAF5EC]/50 border border-green-100 rounded-3xl p-6 shadow-sm space-y-4 flex-grow flex flex-col text-left">
                   <div className="space-y-1">
-                    <h4 className="font-heading font-extrabold text-[#1F4D45] text-base">
+                    <h4 className="font-heading font-extrabold text-[#004C53] text-base">
                       Office Location Base
                     </h4>
                     <p className="text-xs text-[#3A463F]/90 leading-relaxed font-light font-sans">
@@ -1479,7 +1479,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
   if (courseId === "corp-wellness") {
     const faqs = [
       { q: "Can these sessions be held live online?", a: "Yes. All our corporate programs and adult alignment sessions are delivered entirely online through live, interactive streams. We support team setups worldwide." },
-      { q: "How long are the recommended daily micro-breaks?", a: "We design simple, science-backed 10-minute breaks that fit cleanly even between intense workspace calendars without interrupting team focus." },
+      { q: "How long are the recommended daily micro-breaks?", a: "We design simple 10-minute breaks that fit cleanly even between busy workspace calendars without interrupting team focus." },
       { q: "Is there customized scheduling?", a: "Absolutely. We align schedules directly with your company's timelines, delivering flexible group sessions across multiple time zones." }
     ];
 
@@ -1487,12 +1487,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       <div className="bg-[#FAFBF7] min-h-screen font-sans selection:bg-green-105 selection:text-green-900 text-[#3A463F]">
         <SEO 
           title="Corporate & Adult Wellness Program | Workplace Well-Being — Shivoham Shiv"
-          description="Holistic corporate & adult wellness programs that reduce workplace stress, improve focus and support employee well-being."
+          description="Holistic corporate & adult wellness programs designed to support stress management, focus and employee well-being."
           focusKeyword="corporate wellness program"
           isCourseDetail={true}
           courseData={{
             name: "Corporate & Adult Wellness: Well-Being at Work",
-            description: "At Shivoham Shiv, we help organizations improve employee well-being through holistic, science-backed wellness programs rooted in ancient wisdom and adapted for modern workplaces.",
+            description: "At Shivoham Shiv, we help organizations support employee well-being through holistic, practical wellness programs rooted in traditional practices and adapted for modern workplaces.",
             lessonsCount: 18
           }}
           isBreadcrumb={true}
@@ -1504,9 +1504,9 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         />
 
         {/* 1. HERO */}
-        <section className="bg-[#0F3320] text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#C96E29] relative overflow-hidden">
+        <section className="bg-[#002A2E] text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#D9741A] relative overflow-hidden">
           <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#1F4D45] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#004C53] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
               <Sparkles className="w-3 text-[#C9A24B] fill-[#C9A24B]" />
               Online Corporate Pathways
             </span>
@@ -1514,12 +1514,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               Corporate & Adult Wellness: Well-Being at Work
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
-              At Shivoham Shiv, we help organizations improve employee well-being through holistic, science-backed wellness programs rooted in ancient wisdom and adapted for modern workplaces.
+              At Shivoham Shiv, we help organizations support employee well-being through holistic, practical wellness programs rooted in traditional practices and adapted for modern workplaces.
             </p>
             <div className="pt-2">
               <button 
                 onClick={() => handleScrollToSegment("evaluation-form")}
-                className="px-8 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
+                className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
               >
                 Book a Session
               </button>
@@ -1545,24 +1545,24 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#FAF5EC] border border-[#2F5D50]/20 rounded-2xl flex flex-col items-center justify-center p-3 text-center shadow-lg">
-                <span className="block font-heading text-[#C96E29] font-bold text-xl leading-none">100%</span>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#FAF5EC] border border-[#004C53]/20 rounded-2xl flex flex-col items-center justify-center p-3 text-center shadow-lg">
+                <span className="block font-heading text-[#D9741A] font-bold text-xl leading-none">100%</span>
                 <span className="text-[9px] uppercase tracking-wider text-green-905 font-bold mt-1">ONLINE</span>
               </div>
             </div>
 
             {/* Text block right */}
             <div className="lg:col-span-7 text-left space-y-6">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Core Definition</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Core Definition</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
                 What is Corporate & Adult Wellness?
               </h2>
               <div className="space-y-4 text-sm leading-relaxed text-[#3A463F]/90">
                 <p>
-                  Corporate & Adult Wellness is a holistic approach focused on improving the physical, mental, and emotional well-being of employees within the workplace. It aims to create a healthier, more balanced, and productive work environment by addressing stress, burnout, lifestyle-related issues, and overall employee health.
+                  Corporate & Adult Wellness is a holistic approach focused on supporting the physical, mental, and emotional well-being of employees within the workplace. It's designed to encourage a healthier, more balanced work environment by supporting stress management, mindful movement and everyday wellbeing.
                 </p>
                 <p>
-                  In today's fast-paced corporate culture, long working hours, screen exposure, and constant pressure often lead to fatigue, reduced focus, and health concerns. Corporate Wellness programs are designed to support employees through natural, preventive, and sustainable practices.
+                  In today's fast-paced corporate culture, long working hours, screen exposure, and constant pressure often leave people feeling fatigued and less focused. These sessions are designed to support employees through simple, sustainable daily practices. Individual experiences may vary.
                 </p>
               </div>
             </div>
@@ -1575,8 +1575,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           <div className="max-w-7xl mx-auto">
             
             <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Organizational Yield</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Organizational Yield</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
                 How do corporate wellness programs benefit organizations?
               </h2>
               <p className="text-xs sm:text-sm text-[#3A463F]/80 leading-relaxed font-medium italic">
@@ -1587,12 +1587,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  title: "Increased Productivity",
-                  desc: "Healthy and stress-free employees perform significantly better, excel in decision-making, and maintain high enthusiasm levels throughout the working day."
+                  title: "Sharper Focus & Presence",
+                  desc: "Calmer, well-rested employees can bring steadier focus and presence to their work. Individual experiences may vary."
                 },
                 {
-                  title: "Reduced Absenteeism",
-                  desc: "Preventive health habits and simple daily breathing techniques reduce physical illnesses, chronic fatigue, and sick leaves."
+                  title: "Healthier Daily Habits",
+                  desc: "Simple daily breathing and movement routines encourage healthier everyday habits and better recovery between busy days."
                 },
                 {
                   title: "High Retentiveness",
@@ -1605,10 +1605,10 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               ].map((b, i) => (
                 <div key={i} className="bg-white border border-green-100 p-6 rounded-2xl shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between">
                   <div className="space-y-3">
-                    <span className="w-8 h-8 rounded-full bg-[#1F4D45] text-cream font-mono font-bold text-xs flex items-center justify-center">
+                    <span className="w-8 h-8 rounded-full bg-[#004C53] text-cream font-mono font-bold text-xs flex items-center justify-center">
                       0{i+1}
                     </span>
-                    <h3 className="font-heading font-bold text-lg text-[#1F4D45]">{b.title}</h3>
+                    <h3 className="font-heading font-bold text-lg text-[#004C53]">{b.title}</h3>
                     <p className="text-xs leading-relaxed text-[#3A463F]/85">{b.desc}</p>
                   </div>
                 </div>
@@ -1623,8 +1623,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Vedic Edge</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Vedic Edge</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
                 Why Choose Shivoham Shiv?
               </h2>
               <p className="text-sm leading-relaxed text-[#3A463F]/90">
@@ -1655,7 +1655,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                       <div className="p-1 bg-green-100 rounded-lg text-green-800">
                         <CheckCircle2 className="w-4 h-4 text-green-700" />
                       </div>
-                      <h4 className="font-heading font-bold text-sm text-[#1F4D45]">{item.title}</h4>
+                      <h4 className="font-heading font-bold text-sm text-[#004C53]">{item.title}</h4>
                     </div>
                     <p className="text-xs text-[#3A463F]/85 leading-relaxed pl-8">{item.desc}</p>
                   </div>
@@ -1666,10 +1666,10 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
             {/* Static Mockup Laptop/Workspace display on the right */}
             <div className="lg:col-span-6">
               <div className="bg-white p-6 rounded-[32px] border border-green-100 shadow-xl space-y-4">
-                <span className="text-[10px] uppercase font-bold tracking-widest text-[#C96E29] block">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-[#D9741A] block">
                   Corporate Dashboard Audit
                 </span>
-                <div className="aspect-[16/10] bg-[#0F3320] rounded-2xl overflow-hidden relative border border-green-900 flex items-center justify-center p-6 text-cream">
+                <div className="aspect-[16/10] bg-[#002A2E] rounded-2xl overflow-hidden relative border border-green-900 flex items-center justify-center p-6 text-cream">
                   <div className="text-center space-y-3">
                     <GraduationCap className="w-12 h-12 text-[#C9A24B] mx-auto animate-pulse" />
                     <h4 className="font-heading font-semibold text-lg text-white">Shivoham Shiv Corporate Portal</h4>
@@ -1684,7 +1684,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 </div>
                 <div className="flex justify-between items-center text-xs pt-2">
                   <span className="font-semibold text-slate-500">Program Duration:</span>
-                  <span className="font-bold text-[#1F4D45]">6 Weeks (Self-Paced + Live)</span>
+                  <span className="font-bold text-[#004C53]">6 Weeks (Self-Paced + Live)</span>
                 </div>
               </div>
             </div>
@@ -1693,12 +1693,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         </section>
 
         {/* 5. CORE WELL-BEING MODULES */}
-        <section className="bg-[#F2F9F2] py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100 text-left">
+        <section className="bg-[#EEF6F6] py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100 text-left">
           <div className="max-w-5xl mx-auto">
             
             <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Systematic Path</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Systematic Path</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
                 Our Core Well-Being Modules
               </h2>
               <p className="text-xs sm:text-sm text-[#3A463F]/85 leading-relaxed">
@@ -1725,11 +1725,11 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 }
               ].map((m, idx) => (
                 <div key={idx} className="bg-white p-6 sm:p-8 rounded-3xl border border-green-100 flex flex-col md:flex-row gap-6 items-start">
-                  <div className="px-3.5 py-1.5 bg-[#C96E29] text-white rounded-lg text-xs font-mono font-bold shrink-0">
+                  <div className="px-3.5 py-1.5 bg-[#D9741A] text-white rounded-lg text-xs font-mono font-bold shrink-0">
                     {m.mod}
                   </div>
                   <div className="space-y-2">
-                    <h3 className="font-heading font-bold text-lg text-[#1F4D45]">{m.title}</h3>
+                    <h3 className="font-heading font-bold text-lg text-[#004C53]">{m.title}</h3>
                     <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed">{m.desc}</p>
                   </div>
                 </div>
@@ -1742,8 +1742,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         {/* 6. FAQ ACCORDION */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto text-left">
           <div className="text-center space-y-2 mb-12">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Clear Up Doubts</span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#1F4D45]">Frequently Asked Corporate Queries</h2>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Clear Up Doubts</span>
+            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53]">Frequently Asked Corporate Queries</h2>
           </div>
           
           <div className="space-y-4">
@@ -1753,9 +1753,9 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 <div key={idx} className="bg-white border border-green-100 rounded-2xl overflow-hidden shadow-xs">
                   <button 
                     onClick={() => setFaqOpen(isOpen ? null : idx)}
-                    className="w-full p-5 text-left font-semibold text-[#1F4D45] flex justify-between items-center bg-white cursor-pointer hover:bg-[#FAFBF7] transition-all"
+                    className="w-full p-5 text-left font-semibold text-[#004C53] flex justify-between items-center bg-white cursor-pointer hover:bg-[#FAFBF7] transition-all"
                   >
-                    <span className="font-heading text-sm text-[#1F4D45]">{faq.q}</span>
+                    <span className="font-heading text-sm text-[#004C53]">{faq.q}</span>
                     <ChevronDown className={`w-4 h-4 text-green-700 transition-transform ${isOpen ? "rotate-180" : ""}`} />
                   </button>
                   {isOpen && (
@@ -1775,17 +1775,17 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
             
             <div className="bg-white p-6 sm:p-10 rounded-3xl border border-green-105 shadow-xl max-w-2xl mx-auto">
               <div className="text-center mb-8 space-y-2">
-                <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#C96E29]">Vedic Corporate Registry</span>
-                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#1F4D45]">
+                <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#D9741A]">Vedic Corporate Registry</span>
+                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">
                   Introduce Authentic Well-Being to Your Workplace
                 </h3>
                 <p className="text-xs sm:text-sm text-[#3A463F]/85 leading-relaxed">
-                  Ready to assist your team in neutralizing burnout and building resilient, focused daily habits? Connect with our chief counselor to plan a custom program. Registered in local diagnostic storage.
+                  Ready to help your team manage workplace stress and build resilient, focused daily habits? Connect with our team to plan a custom program.
                 </p>
               </div>
 
               {isSuccess ? (
-                <div className="p-8 bg-[#E3F1E3] border border-green-200 text-[#1F4D45] rounded-2xl text-center space-y-4">
+                <div className="p-8 bg-[#D6E9EA] border border-green-200 text-[#004C53] rounded-2xl text-center space-y-4">
                   <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto" />
                   <h4 className="font-bold text-base">Corporate diagnostic request saved!</h4>
                   <p className="text-xs leading-relaxed max-w-md mx-auto text-slate-705">
@@ -1795,7 +1795,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                     href="https://wa.me/917317778215" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
+                    className="inline-block px-7 py-3 bg-[#004C53] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
                   >
                     Discuss details on WhatsApp
                   </a>
@@ -1871,7 +1871,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:scale-101 cursor-pointer mt-2"
+                    className="w-full py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:scale-101 cursor-pointer mt-2"
                   >
                     {isSubmitting ? "Securing Evaluation Slot..." : "Secure a Free Corporate Evaluation Session"}
                   </button>
@@ -1883,6 +1883,15 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           </div>
         </section>
 
+        {/* Wellness disclaimer */}
+        <section className="px-4 sm:px-6 lg:px-8 pb-14 max-w-4xl mx-auto">
+          <p className="text-[11px] leading-relaxed text-[#3A463F]/60 text-center border-t border-green-100 pt-6">
+            These are educational wellness sessions designed to support healthy daily habits. They are not medical
+            treatment and are not a substitute for professional medical care. They do not diagnose, treat, cure or
+            prevent any condition, and individual experiences may vary.
+          </p>
+        </section>
+
       </div>
     );
   }
@@ -1891,13 +1900,13 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
   if (courseId === "kids-eq") {
     const kidsSlides = [
       {
-        title: "Better Focus & Learning Ability",
-        description: "Helps children improve concentration, attention span, and mental clarity, supporting better learning and daily activities.",
+        title: "Better Focus & Learning Habits",
+        description: "Designed to help children practise concentration and attention, supporting healthier learning habits in everyday activities.",
         image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1200"
       },
       {
-        title: "Emotional Self-Regulation & Calm",
-        description: "Teaches kids how to recognize and manage intense emotions like anxiety, fear, or frustration safely.",
+        title: "Emotional Awareness & Calm",
+        description: "Gentle practices that help children notice and work through big feelings like worry, frustration or overwhelm.",
         image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=1200"
       },
       {
@@ -1919,12 +1928,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       <div className="bg-[#FAFBF7] min-h-screen font-sans selection:bg-green-105 selection:text-green-900 text-[#3A463F] text-left">
         <SEO 
           title="Mindfulness & EQ Training for Kids | Focus and Emotional Growth — Shivoham Shiv"
-          description="Build focus, emotional balance, and self-awareness through gentle, age-appropriate practices—supporting calm minds and emotional growth."
-          focusKeyword="EQ training for kids"
+          description="A Mindfulness & Focus Program designed to help children practise concentration, develop emotional awareness and build healthier responses to everyday stress."
+          focusKeyword="mindfulness and focus program for kids"
           isCourseDetail={true}
           courseData={{
             name: "Mindfulness & Focus Training for Kids",
-            description: "At Shivoham Shiv, our Mindfulness & EQ Program for Kids helps children build focus, emotional balance, and self-awareness through gentle, age-appropriate practices—supporting calm minds and healthy emotional growth in a natural, holistic way.",
+            description: "A Mindfulness & Focus Program designed to help children manage everyday distractions, practise concentration, develop emotional awareness and build healthier responses to everyday stress. Individual experiences may vary.",
             lessonsCount: 12
           }}
           isBreadcrumb={true}
@@ -1936,7 +1945,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         />
 
         {/* 1. HERO */}
-        <section className="relative bg-[#0F3320] text-cream py-20 lg:py-32 px-4 sm:px-6 lg:px-8 border-b-4 border-[#C96E29] overflow-hidden">
+        <section className="relative bg-[#002A2E] text-cream py-20 lg:py-32 px-4 sm:px-6 lg:px-8 border-b-4 border-[#D9741A] overflow-hidden">
           {/* Subtle Ambient Background Overlay */}
           <div className="absolute inset-0 z-0 opacity-15">
             <img 
@@ -1947,22 +1956,21 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
             />
           </div>
           <div className="max-w-4xl mx-auto space-y-6 relative z-10 text-center">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#1F4D45] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#004C53] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
               <Sparkles className="w-3 text-amber-500 fill-amber-500" />
               Active Admissions Open
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-tight">
-              Mindfulness & Focus Training for Kids
+              Help Your Child Build Better Focus, Emotional Balance &amp; Healthy Mind Habits.
             </h1>
             <p className="text-sm sm:text-base lg:text-lg text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
-              At Shivoham Shiv, our Mindfulness & EQ Program for Kids helps children build focus, 
-              emotional balance, and self-awareness through gentle, age-appropriate practices—supporting calm 
-              minds and healthy emotional growth in a natural, holistic way.
+              A Mindfulness &amp; Focus Program designed to help children manage everyday distractions, practise
+              concentration, develop emotional awareness and build healthier responses to everyday stress.
             </p>
             <div className="pt-4">
               <button 
                 onClick={() => handleScrollToSegment("kids-contact-form")}
-                className="px-8 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
+                className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
               >
                 Book a Session
               </button>
@@ -1990,25 +1998,25 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
 
             {/* Text Context (Right) */}
             <div className="space-y-6 text-left">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Child Mind Roots</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Child Mind Roots</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
                 What is Mindfulness & EQ Training for Kids?
               </h2>
               <p className="text-sm leading-relaxed text-[#3A463F]/90">
                 Mindfulness & Emotional Intelligence (EQ) Training for Kids is a gentle, structured approach that helps children understand their thoughts, emotions, and reactions in a healthy way. Rooted in mindful awareness and emotional learning, this program supports a child's mental focus, emotional balance, and self-awareness during their key developmental years.
               </p>
               <p className="text-sm leading-relaxed text-[#3A463F]/90">
-                Through simple mindfulness exercises, breathing practices, and age-appropriate EQ activities, children learn how to calm their minds, recognize emotions, improve concentration, and respond positively to everyday situations at home, school, and social environments.
+                Through simple mindfulness exercises, breathing practices, and age-appropriate EQ activities, children can learn to calm their minds, notice emotions, practise concentration, and respond more positively to everyday situations at home, school, and social settings.
               </p>
               
               <div className="pt-2">
-                <p className="text-sm font-bold text-[#1F4D45] mb-3">Mindfulness & EQ Training works by:</p>
+                <p className="text-sm font-bold text-[#004C53] mb-3">Mindfulness & EQ Training works by:</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {[
-                    "Teaching children to become aware of their thoughts and emotions",
-                    "Improving focus, attention, and listening skills",
-                    "Helping manage stress, anxiety, and emotional overwhelm",
-                    "Building self-confidence, empathy, and emotional regulation"
+                    "Helping children become aware of their thoughts and emotions",
+                    "Practising focus, attention, and listening skills",
+                    "Supporting calm, and healthier responses to everyday stress and overwhelm",
+                    "Encouraging self-confidence, empathy, and emotional awareness"
                   ].map((bullet, idx) => (
                     <div key={idx} className="flex items-start space-x-2.5 text-xs text-[#3A463F]/95">
                       <CheckCircle2 className="w-4 h-4 text-green-750 shrink-0 mt-0.5" />
@@ -2030,8 +2038,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-              <span className="text-xs uppercase font-semibold tracking-widest text-[#C96E29]">Guided Evolution Pathways</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+              <span className="text-xs uppercase font-semibold tracking-widest text-[#D9741A]">Guided Evolution Pathways</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
                 Mindfulness & EQ Training for Kids – Nurturing Calm & Emotional Awareness
               </h2>
               <p className="text-sm text-[#3A463F]/90 leading-relaxed max-w-2xl mx-auto">
@@ -2049,15 +2057,15 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 {/* Timeline Card 1 */}
                 <div className="flex flex-col md:flex-row items-center justify-between relative">
                   <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <Brain className="w-3.5 h-3.5 text-[#1F4D45]" />
+                    <Brain className="w-3.5 h-3.5 text-[#004C53]" />
                   </div>
                   <div className="w-full md:w-[45%] text-left md:text-right order-1">
                     <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
                       <div className="flex md:flex-row-reverse items-center gap-3.5 mb-3">
                         <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <Brain className="w-5 h-5 text-[#1F4D45]" />
+                          <Brain className="w-5 h-5 text-[#004C53]" />
                         </div>
-                        <h3 className="font-heading font-extrabold text-[#1F4D45] text-lg">
+                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
                           Improved Focus & Attention Skills
                         </h3>
                       </div>
@@ -2072,16 +2080,16 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 {/* Timeline Card 2 */}
                 <div className="flex flex-col md:flex-row items-center justify-between relative">
                   <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <Heart className="w-3.5 h-3.5 text-[#1F4D45]" />
+                    <Heart className="w-3.5 h-3.5 text-[#004C53]" />
                   </div>
                   <div className="w-full md:w-[45%] hidden md:block order-1" />
                   <div className="w-full md:w-[45%] text-left order-2">
                     <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
                       <div className="flex items-center gap-3.5 mb-3">
                         <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <Heart className="w-5 h-5 text-[#1F4D45]" />
+                          <Heart className="w-5 h-5 text-[#004C53]" />
                         </div>
-                        <h3 className="font-heading font-extrabold text-[#1F4D45] text-lg">
+                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
                           Emotional Awareness & Regulation
                         </h3>
                       </div>
@@ -2095,15 +2103,15 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 {/* Timeline Card 3 */}
                 <div className="flex flex-col md:flex-row items-center justify-between relative">
                   <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <Leaf className="w-3.5 h-3.5 text-[#1F4D45]" />
+                    <Leaf className="w-3.5 h-3.5 text-[#004C53]" />
                   </div>
                   <div className="w-full md:w-[45%] text-left md:text-right order-1">
                     <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
                       <div className="flex md:flex-row-reverse items-center gap-3.5 mb-3">
                         <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <Leaf className="w-5 h-5 text-[#1F4D45]" />
+                          <Leaf className="w-5 h-5 text-[#004C53]" />
                         </div>
-                        <h3 className="font-heading font-extrabold text-[#1F4D45] text-lg">
+                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
                           Calm Mind & Stress Management
                         </h3>
                       </div>
@@ -2118,16 +2126,16 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 {/* Timeline Card 4 */}
                 <div className="flex flex-col md:flex-row items-center justify-between relative">
                   <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <User className="w-3.5 h-3.5 text-[#1F4D45]" />
+                    <User className="w-3.5 h-3.5 text-[#004C53]" />
                   </div>
                   <div className="w-full md:w-[45%] hidden md:block order-1" />
                   <div className="w-full md:w-[45%] text-left order-2">
                     <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
                       <div className="flex items-center gap-3.5 mb-3">
                         <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <User className="w-5 h-5 text-[#1F4D45]" />
+                          <User className="w-5 h-5 text-[#004C53]" />
                         </div>
-                        <h3 className="font-heading font-extrabold text-[#1F4D45] text-lg">
+                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
                           Confidence & Positive Social Behavior
                         </h3>
                       </div>
@@ -2149,8 +2157,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           <div className="max-w-5xl mx-auto space-y-12">
             
             <div className="text-center space-y-3 max-w-2xl mx-auto">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Interactive Exploration</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Interactive Exploration</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
                 Why Choose Mindfulness & EQ Training for Kids?
               </h2>
               <p className="text-sm text-slate-600 font-semibold max-w-md mx-auto text-center">
@@ -2192,14 +2200,14 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between z-20">
                 <button 
                   onClick={prevKidsSlide}
-                  className="p-3 rounded-full bg-white/90 hover:bg-white text-[#1F4D45] transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+                  className="p-3 rounded-full bg-white/90 hover:bg-white text-[#004C53] transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
                   aria-label="Previous Slide"
                 >
                   <ChevronLeft className="w-5 h-5 font-bold" />
                 </button>
                 <button 
                   onClick={nextKidsSlide}
-                  className="p-3 rounded-full bg-white/90 hover:bg-white text-[#1F4D45] transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+                  className="p-3 rounded-full bg-white/90 hover:bg-white text-[#004C53] transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
                   aria-label="Next Slide"
                 >
                   <ChevronRight className="w-5 h-5 font-bold" />
@@ -2220,7 +2228,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 <div className="pt-2">
                   <button 
                     onClick={() => handleScrollToSegment("kids-contact-form")}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-md hover:shadow-lg"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-md hover:shadow-lg"
                   >
                     Explore More
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -2253,8 +2261,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
 
             {/* Bullets (Right) */}
             <div className="space-y-6 text-left">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Shivoham Shiv Standards</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Shivoham Shiv Standards</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
                 Why Choose Shivoham Shiv for Mindfulness & EQ Training for Kids?
               </h2>
               <p className="text-sm leading-relaxed text-[#3A463F]/90">
@@ -2262,7 +2270,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               </p>
 
               <div>
-                <p className="text-sm font-bold text-[#1F4D45] mb-4">What sets our Mindfulness & EQ Training for Kids apart:</p>
+                <p className="text-sm font-bold text-[#004C53] mb-4">What sets our Mindfulness & EQ Training for Kids apart:</p>
                 <div className="space-y-4">
                   {[
                     {
@@ -2287,11 +2295,11 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                     }
                   ].map((bullet, idx) => (
                     <div key={idx} className="flex items-start space-x-3.5 text-xs text-[#3A463F]/95">
-                      <div className="w-5 h-5 rounded-full bg-green-110 flex items-center justify-center text-[#1F4D45] font-bold text-[10px] shrink-0 mt-0.5">
+                      <div className="w-5 h-5 rounded-full bg-green-110 flex items-center justify-center text-[#004C53] font-bold text-[10px] shrink-0 mt-0.5">
                         {idx + 1}
                       </div>
                       <div className="space-y-0.5">
-                        <strong className="text-sm font-heading font-extrabold text-[#1F4D45] block leading-snug">
+                        <strong className="text-sm font-heading font-extrabold text-[#004C53] block leading-snug">
                           {bullet.title}
                         </strong>
                         <p className="text-xs text-[#3A463F]/85 leading-relaxed">{bullet.desc}</p>
@@ -2304,7 +2312,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               <div className="pt-4">
                 <button 
                   onClick={() => handleScrollToSegment("kids-contact-form")}
-                  className="px-8.5 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg cursor-pointer"
+                  className="px-8.5 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg cursor-pointer"
                 >
                   Enroll Now
                 </button>
@@ -2319,8 +2327,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-t border-green-100 text-left">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Somatic Milestones</span>
-              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#1F4D45]">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Somatic Milestones</span>
+              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53]">
                 Benefits of Our Mindfulness & EQ Training Services
               </h2>
               <p className="text-sm text-[#3A463F]/85 italic leading-relaxed max-w-md mx-auto text-center">
@@ -2355,10 +2363,10 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 return (
                   <div key={idx} className="bg-[#FAFBF7] border border-green-50 p-6 rounded-2xl shadow-xs hover:shadow-md transition-all">
                     <div className="space-y-3">
-                      <div className="w-10 h-10 rounded-2xl bg-green-105 text-[#1F4D45] flex items-center justify-center font-bold">
+                      <div className="w-10 h-10 rounded-2xl bg-green-105 text-[#004C53] flex items-center justify-center font-bold">
                         <IconComponent className="w-5 h-5" />
                       </div>
-                      <h3 className="font-heading font-extrabold text-[#1F4D45] text-base leading-tight">{b.title}</h3>
+                      <h3 className="font-heading font-extrabold text-[#004C53] text-base leading-tight">{b.title}</h3>
                       <p className="text-xs leading-relaxed text-[#3A463F]/85">{b.desc}</p>
                     </div>
                   </div>
@@ -2376,8 +2384,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               {/* Form Input Container */}
               <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-green-150 shadow-xl">
                 <div className="space-y-2 mb-8">
-                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#C96E29]">Vedic Diagnostic Gate</span>
-                  <h3 className="font-heading font-bold text-2xl text-[#1F4D45]">
+                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#D9741A]">Vedic Diagnostic Gate</span>
+                  <h3 className="font-heading font-bold text-2xl text-[#004C53]">
                     Get in Touch
                   </h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
@@ -2386,7 +2394,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 </div>
 
                 {isSuccess ? (
-                  <div className="p-8 bg-[#E3F1E3] border border-green-200 text-[#1F4D45] rounded-2xl text-center space-y-4">
+                  <div className="p-8 bg-[#D6E9EA] border border-green-200 text-[#004C53] rounded-2xl text-center space-y-4">
                     <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto animate-bounce" />
                     <h4 className="font-bold text-base">Pranama, evaluation information recorded!</h4>
                     <p className="text-xs leading-relaxed max-w-md mx-auto text-slate-705">
@@ -2396,7 +2404,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                       href="https://wa.me/917317778215" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
+                      className="inline-block px-7 py-3 bg-[#004C53] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
                     >
                       Converse on WhatsApp
                     </a>
@@ -2491,7 +2499,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                       <button 
                         type="submit"
                         disabled={isSubmitting}
-                        className="px-8 py-3.5 bg-[#1F4D45] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-md cursor-pointer"
+                        className="px-8 py-3.5 bg-[#004C53] hover:bg-green-905 text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-md cursor-pointer"
                       >
                         {isSubmitting ? "Submitting..." : "Submit"}
                       </button>
@@ -2504,7 +2512,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               <div className="lg:col-span-5 flex flex-col h-full justify-between text-left">
                 <div className="bg-[#FAF5EC]/50 border border-green-100 rounded-3xl p-6 shadow-sm flex-grow flex flex-col">
                   <div className="space-y-1 text-left">
-                    <h4 className="font-heading font-extrabold text-[#1F4D45] text-base">
+                    <h4 className="font-heading font-extrabold text-[#004C53] text-base">
                       Office Location Base
                     </h4>
                     <p className="text-xs text-[#3A463F]/90 leading-relaxed">
@@ -2531,6 +2539,16 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
 
             </div>
           </div>
+        </section>
+
+        {/* Wellness disclaimer */}
+        <section className="px-4 sm:px-6 lg:px-8 pb-14 max-w-4xl mx-auto">
+          <p className="text-[11px] leading-relaxed text-[#3A463F]/60 text-center border-t border-green-100 pt-6">
+            This is an educational wellness program and is not a substitute for medical, psychological or
+            developmental assessment or treatment. It does not diagnose or treat any condition, including ADHD or
+            anxiety disorders. If you have concerns about your child's development, focus or wellbeing, please
+            consult a qualified professional. Individual experiences may vary.
+          </p>
         </section>
 
       </div>
@@ -2640,7 +2658,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         "Digital badge and Certificate of Kids EQ Grounding"
       ],
       modules: [
-        { title: "Module 1: Emotional Geographies for Kids", desc: "Learn to identify physical feelings of happiness, anxiety, and anger, and practice animal-inspired breathing games." },
+        { title: "Module 1: Emotional Geographies for Kids", desc: "Learn to identify physical feelings of happiness, worry, and anger, and practice animal-inspired breathing games." },
         { title: "Module 2: Digital Decongestion & Focus", desc: "Practice five fun sensory checks to restore cognitive calm from tablet over-exposure and steady attention routines." }
       ],
       isUpcoming: true,
@@ -2677,9 +2695,9 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       />
 
       {/* Hero Banner */}
-      <section className="bg-[#0F3320] text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#C96E29] relative overflow-hidden">
+      <section className="bg-[#002A2E] text-cream py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b-4 border-[#D9741A] relative overflow-hidden">
         <div className="max-w-4xl mx-auto space-y-6 relative z-10 text-center">
-          <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#1F4D45] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
+          <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#004C53] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
             <Sparkles className="w-3 text-[#C9A24B] fill-[#C9A24B]" />
             {d.isSelfPaced ? "Recorded Classes" : d.isUpcoming ? "Pre-register Batch" : "Authentic Vedic Path"}
           </span>
@@ -2692,7 +2710,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           <div className="pt-2">
             <button 
               onClick={() => handleScrollToSegment("evaluation-form")}
-              className="px-8 py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
+              className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
             >
               Book a Session
             </button>
@@ -2724,8 +2742,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
 
           {/* Text Description */}
           <div className="lg:col-span-7 space-y-6">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Core Insights</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45] leading-tight">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Core Insights</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
               {d.subH2}
             </h2>
             <p className="text-sm leading-relaxed text-[#3A463F]/90">
@@ -2740,8 +2758,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       <section className="bg-[#FAF5EC] py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Real Wellness Advantages</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Real Wellness Advantages</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
               Course Benefits & Somatic Outcomes
             </h2>
             <p className="text-xs text-[#3A463F]/80 leading-relaxed font-semibold max-w-md mx-auto">
@@ -2755,10 +2773,10 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               return (
                 <div key={idx} className="bg-white border border-green-100 p-6 rounded-2xl shadow-xs hover:shadow-md transition-all">
                   <div className="space-y-3">
-                    <div className="w-8 h-8 rounded-full bg-[#1F4D45] text-cream flex items-center justify-center font-bold text-xs">
+                    <div className="w-8 h-8 rounded-full bg-[#004C53] text-cream flex items-center justify-center font-bold text-xs">
                       {idx + 1}
                     </div>
-                    <h3 className="font-heading font-bold text-base text-[#1F4D45]">{bTitle}</h3>
+                    <h3 className="font-heading font-bold text-base text-[#004C53]">{bTitle}</h3>
                     <p className="text-xs leading-relaxed text-[#3A463F]/85">{bDesc}</p>
                   </div>
                 </div>
@@ -2773,8 +2791,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-6 space-y-6">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Authentic Systems</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#1F4D45]">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Authentic Systems</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
               Why Learn With Shivoham Shiv?
             </h2>
             <p className="text-sm leading-relaxed text-[#3A463F]/90">
@@ -2793,15 +2811,15 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           {/* Syllabus modules */}
           <div className="lg:col-span-6">
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-green-100 shadow-xl space-y-4">
-              <h3 className="font-heading font-extrabold text-[#1F4D45] text-base border-b border-green-50 pb-2 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-[#C96E29]" />
+              <h3 className="font-heading font-extrabold text-[#004C53] text-base border-b border-green-50 pb-2 flex items-center gap-2">
+                <Layers className="w-4 h-4 text-[#D9741A]" />
                 Curriculum Syllabus
               </h3>
               <div className="space-y-4">
                 {d.modules.map((m, i) => (
                   <div key={i} className="p-4 bg-[#FAFBF7] border border-green-50 rounded-xl space-y-1">
-                    <span className="text-[10px] uppercase font-mono font-bold text-[#C96E29]">Module {i+1}</span>
-                    <h4 className="font-heading font-bold font-sm text-[#1F4D45] leading-tight">{m.title}</h4>
+                    <span className="text-[10px] uppercase font-mono font-bold text-[#D9741A]">Module {i+1}</span>
+                    <h4 className="font-heading font-bold font-sm text-[#004C53] leading-tight">{m.title}</h4>
                     <p className="text-xs text-[#3A463F]/80 leading-relaxed mt-1">{m.desc}</p>
                   </div>
                 ))}
@@ -2816,8 +2834,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       <section className="py-16 bg-[#FAF5EC]/30 border-t border-green-100 text-left">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center space-y-2 mb-10">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#C96E29]">Queries & Answers</span>
-            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#1F4D45]">Frequently Asked Course Queriess</h2>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Queries & Answers</span>
+            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53]">Frequently Asked Course Queriess</h2>
           </div>
           
           <div className="space-y-4">
@@ -2827,9 +2845,9 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 <div key={idx} className="bg-white border border-green-100 rounded-2xl overflow-hidden shadow-xs">
                   <button 
                     onClick={() => setFaqOpen(isOpen ? null : idx)}
-                    className="w-full p-5 text-left font-semibold text-[#1F4D45] flex justify-between items-center bg-white cursor-pointer hover:bg-[#FAFBF7] transition-all"
+                    className="w-full p-5 text-left font-semibold text-[#004C53] flex justify-between items-center bg-white cursor-pointer hover:bg-[#FAFBF7] transition-all"
                   >
-                    <span className="font-heading text-sm text-[#1F4D45]">{faq.q}</span>
+                    <span className="font-heading text-sm text-[#004C53]">{faq.q}</span>
                     <ChevronDown className={`w-4 h-4 text-green-700 transition-transform ${isOpen ? "rotate-180" : ""}`} />
                   </button>
                   {isOpen && (
@@ -2849,8 +2867,8 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         <div className="max-w-4xl mx-auto">
           <div className="bg-white p-6 sm:p-10 rounded-3xl border border-green-105 shadow-xl max-w-2xl mx-auto">
             <div className="text-center mb-8 space-y-2">
-              <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#C96E29]">Course Admission Evaluation</span>
-              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#1F4D45]">
+              <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#D9741A]">Course Admission Evaluation</span>
+              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">
                 Plan Your Natural Transformation Path
               </h3>
               <p className="text-xs sm:text-sm text-[#3A463F]/85 leading-relaxed">
@@ -2859,7 +2877,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
             </div>
 
             {isSuccess ? (
-              <div className="p-8 bg-[#E3F1E3] border border-green-200 text-[#1F4D45] rounded-2xl text-center space-y-4">
+              <div className="p-8 bg-[#D6E9EA] border border-green-200 text-[#004C53] rounded-2xl text-center space-y-4">
                 <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto animate-pulse" />
                 <h4 className="font-bold text-base">Pranama, evaluation information recorded!</h4>
                 <p className="text-xs leading-relaxed max-w-md mx-auto text-slate-705">
@@ -2869,7 +2887,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                   href="https://wa.me/917317778215" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-block px-7 py-3 bg-[#1F4D45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
+                  className="inline-block px-7 py-3 bg-[#004C53] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-101 shrink-0"
                 >
                   Converse on WhatsApp
                 </a>
@@ -2945,7 +2963,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-[#C96E29] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:scale-101 cursor-pointer mt-2"
+                  className="w-full py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:scale-101 cursor-pointer mt-2"
                 >
                   {isSubmitting ? "Submitting Request..." : "Pre-Register / Book Evaluation Session"}
                 </button>

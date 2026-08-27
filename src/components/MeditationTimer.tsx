@@ -165,7 +165,7 @@ export default function MeditationTimer() {
       {/* Title */}
       <div className="flex items-center space-x-2 mb-2 p-1.5 px-3 bg-green-50 rounded-full border border-green-100">
         <Wind className="w-4 h-4 text-green-700 animate-pulse" />
-        <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">
+        <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321]">
           Interactive Pranayama Cycle
         </span>
       </div>
@@ -190,7 +190,7 @@ export default function MeditationTimer() {
           onClick={handlePlayPause}
         >
           {/* Phase name */}
-          <span className="text-xs text-[#E8943A] uppercase tracking-widest font-bold mb-1">
+          <span className="text-xs text-[#EF8321] uppercase tracking-widest font-bold mb-1">
             {isActive ? breathState : "Paused"}
           </span>
 
@@ -215,7 +215,7 @@ export default function MeditationTimer() {
 
       {/* Elapsed Session Timer */}
       <div className="flex items-center space-x-1.5 text-[11px] text-slate-700 font-mono bg-white px-3 py-1 border border-green-150 rounded-full mb-8">
-        <Heart className="w-3.5 h-3.5 text-[#E8943A]" />
+        <Heart className="w-3.5 h-3.5 text-[#EF8321]" />
         <span>Session Duration: {elapsedMinutes.toString().padStart(2, "0")}:{elapsedSeconds.toString().padStart(2, "0")}</span>
       </div>
 
@@ -225,7 +225,7 @@ export default function MeditationTimer() {
           onClick={handleToggleAudio}
           className={`p-3 rounded-full border transition-all ${
             audioEnabled
-              ? "bg-[#E8943A]/10 border-[#E8943A] text-[#E8943A]"
+              ? "bg-[#EF8321]/10 border-[#EF8321] text-[#EF8321]"
               : "bg-white border-green-100 text-slate-705 hover:bg-green-50"
           }`}
           title={audioEnabled ? "Mute Cosmic Drone" : "Unmute Cosmic Drone"}

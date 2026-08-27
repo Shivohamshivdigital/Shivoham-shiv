@@ -50,7 +50,7 @@ export default function TreatmentsView() {
         {/* Hero / Intro */}
         <header className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-flex items-center space-x-1.5 bg-green-100 border border-green-200/60 rounded-full px-4.5 py-1.5 text-green-900 text-xs font-bold uppercase tracking-widest leading-none">
-            <Sparkles className="w-3.5 h-3.5 text-[#E8943A] fill-[#E8943A]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#EF8321] fill-[#EF8321]" />
             <span>Healing Directory</span>
           </span>
           <h1 className="font-heading font-bold text-3xl sm:text-5xl text-green-900 mt-3 mb-5 leading-tight">
@@ -86,13 +86,13 @@ export default function TreatmentsView() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {course.isUpcoming && (
-                      <span className="absolute top-3 left-3 bg-[#E8943A] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow">
+                      <span className="absolute top-3 left-3 bg-[#EF8321] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow">
                         Coming Soon
                       </span>
                     )}
                   </div>
                   <div className="flex flex-col flex-grow p-6">
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321]">
                       {course.category}
                     </span>
                     {course.altName && (
@@ -123,7 +123,7 @@ export default function TreatmentsView() {
                         <Layers className="w-3.5 h-3.5 text-green-600" /> {course.lessonsCount} lessons
                       </span>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2F5D50] group-hover:text-[#23483E] transition-colors">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#003A40] transition-colors">
                       Explore Treatment
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
@@ -154,7 +154,7 @@ export default function TreatmentsView() {
                   />
                 </figure>
                 <div>
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#E8943A]">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#EF8321]">
                     {course.category}
                   </span>
                   {course.altName && (
@@ -182,7 +182,7 @@ export default function TreatmentsView() {
                   </ul>
                   <Link
                     to={`/courses/${slug}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-2xl font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#004C53] hover:bg-[#003A40] text-white rounded-2xl font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
                   >
                     Learn More About {course.category}
                     <ArrowRight className="w-4 h-4" />
@@ -204,7 +204,7 @@ export default function TreatmentsView() {
             {FAQS.map((faq, i) => (
               <div key={i} className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm">
                 <h3 className="flex items-start gap-2.5 font-semibold text-green-900 text-sm mb-2">
-                  <HelpCircle className="w-4.5 h-4.5 text-[#E8943A] shrink-0 mt-0.5" />
+                  <HelpCircle className="w-4.5 h-4.5 text-[#EF8321] shrink-0 mt-0.5" />
                   {faq.q}
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-700 pl-7">{faq.a}</p>
@@ -217,7 +217,7 @@ export default function TreatmentsView() {
         <div className="text-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-2xl font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#004C53] hover:bg-[#003A40] text-white rounded-2xl font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
           >
             Not sure which one? Book a free consultation
             <ArrowRight className="w-4 h-4" />

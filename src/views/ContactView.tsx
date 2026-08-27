@@ -57,7 +57,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
         {/* Header Title */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-flex items-center space-x-1.5 bg-green-100 border border-green-200/60 rounded-full px-4.5 py-1.5 text-green-900 text-xs font-bold uppercase tracking-widest leading-none">
-            <Sparkles className="w-3.5 h-3.5 text-[#E8943A] fill-[#E8943A]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#EF8321] fill-[#EF8321]" />
             <span>Harmonise Your Energy</span>
           </span>
           <h1 className="font-heading font-bold text-3xl sm:text-5xl text-green-900 mt-3 mb-4 leading-tight">
@@ -165,7 +165,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="name">
+                      <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="name">
                         Full Name *
                       </label>
                       <input
@@ -179,7 +179,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="email">
+                      <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="email">
                         Email Address *
                       </label>
                       <input
@@ -195,7 +195,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="whatsapp">
+                    <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="whatsapp">
                       WhatsApp Mobile Number *
                     </label>
                     <input
@@ -210,7 +210,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] uppercase font-bold tracking-widest text-[#E8943A] mb-1.5" htmlFor="message">
+                    <label className="block text-[10px] uppercase font-bold tracking-widest text-[#EF8321] mb-1.5" htmlFor="message">
                       Your Wellness Quest / Question
                     </label>
                     <textarea
@@ -227,7 +227,7 @@ export default function ContactView({ onSetBanner }: ContactViewProps) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-[#2F5D50] hover:bg-[#23483E] text-cream font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2 cursor-pointer"
+                    className="w-full py-4 bg-[#004C53] hover:bg-[#003A40] text-cream font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2 cursor-pointer"
                   >
                     <span>{isSubmitting ? "Sending..." : "Submit Message"}</span>
                     <Send className="w-3.5 h-3.5" />
