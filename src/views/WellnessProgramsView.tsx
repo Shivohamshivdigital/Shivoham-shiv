@@ -70,7 +70,7 @@ export default function WellnessProgramsView() {
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <Leaf className="w-3.5 h-3.5" /> Wellness · Transform
           </span>
-          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5">
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-white">
             Transform your wellbeing,<br />
             <span className="text-amber-300">the natural Vedic way</span>
           </h1>
@@ -142,7 +142,7 @@ export default function WellnessProgramsView() {
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#004C53] to-[#003A40] text-white rounded-3xl p-10 sm:p-14">
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-3">Not sure where to start?</h2>
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-3 text-white">Not sure where to start?</h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
             Book a free 15-minute consultation and our team will point you to the right program for your goals.
           </p>

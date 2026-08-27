@@ -65,7 +65,7 @@ export default function CommunityView() {
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <Users className="w-3.5 h-3.5" /> Community · Belong
           </span>
-          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5">
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-white">
             Connect. Grow.<br />
             <span className="text-amber-300">Belong.</span>
           </h1>
@@ -134,7 +134,7 @@ export default function CommunityView() {
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#004C53] to-[#003A40] text-white rounded-3xl p-10 sm:p-14">
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-3">Grow together</h2>
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-3 text-white">Grow together</h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
             Not sure which community fits you? Message us and we'll welcome you into the right circle.
           </p>
