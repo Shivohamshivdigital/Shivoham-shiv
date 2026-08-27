@@ -145,9 +145,9 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
   return (
     <div className="bg-[#FAF5EC] min-h-screen text-[#1F4D45]/90 font-sans selection:bg-[#C96E29]/20 selection:text-[#C96E29]">
       <SEO
-        title="Shivoham Shiv — Vedic Wellness, Mudra Therapy & Holistic Healing Courses Online"
-        description="Explore the timeless knowledge of the Vedas with online courses in mudra therapy, meditation, acupressure, EQ training and corporate wellness."
-        focusKeyword="vedic wellness courses online"
+        title="Shivoham Shiv — Ancient Wisdom. Modern Wellness. | Vedic Wellness & Academy"
+        description="A global Vedic wellness & education platform. Transform your wellbeing with online wellness programs, or become a certified practitioner through our Academy — mudra therapy, acupressure, meditation and more."
+        focusKeyword="vedic wellness and education platform"
       />
 
       {/* 0. CHALLENGE PROMO BANNER */}
@@ -250,15 +250,16 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               
               <div className="inline-flex items-center space-x-2 bg-[#2F5D50]/10 border border-[#2F5D50]/20 rounded-full px-4 py-1.5 w-fit text-[#1F4D45] text-xs font-bold uppercase tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-[#C96E29]" />
-                <span>Vedic Wisdom for Modern Living</span>
+                <span>Ancient Wisdom · Modern Wellness</span>
               </div>
 
               <h1 className="font-heading font-semibold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#1F4D45] leading-[1.12]">
-                Transform your mind, body & life — <span className="italic text-[#2F5D50] font-heading font-medium">the Vedic way</span>
+                Ancient Wisdom.<br /><span className="italic text-[#2F5D50] font-heading font-medium">Modern Wellness.</span>
               </h1>
 
               <p className="text-base sm:text-lg text-[#1F4D45]/80 leading-relaxed max-w-xl">
-                Explore the timeless knowledge of the Vedas through online courses in mudra therapy, acupressure, meditation and mindfulness. Experience deep stillness and natural vitality.
+                Transform your wellbeing or build your expertise in traditional Indian wellness — through
+                structured online programs, professional certifications and a global learning community.
               </p>
 
               {/* Action Buttons */}
@@ -270,10 +271,10 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                   Book a Free Session
                 </button>
                 <Link
-                  to="/courses"
+                  to="/wellness-programs"
                   className="px-8 py-4 border-2 border-[#1F4D45] text-[#1F4D45] rounded-full font-bold text-sm uppercase tracking-wider text-center hover:bg-[#1F4D45]/5 transition-all duration-200 flex items-center justify-center space-x-2"
                 >
-                  <span>Explore Curriculum</span>
+                  <span>Explore Programs</span>
                 </Link>
               </div>
 
