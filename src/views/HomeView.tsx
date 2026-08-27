@@ -145,8 +145,8 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
   return (
     <div className="bg-[#FAF5EC] min-h-screen text-[#1F4D45]/90 font-sans selection:bg-[#C96E29]/20 selection:text-[#C96E29]">
       <SEO
-        title="Shivoham Shiv — Ancient Wisdom. Modern Wellness. | Vedic Wellness & Academy"
-        description="A global Vedic wellness & education platform. Transform your wellbeing with online wellness programs, or become a certified practitioner through our Academy — mudra therapy, acupressure, meditation and more."
+        title="Shivoham Shiv | Vedic Wellness Programs & Professional Academy"
+        description="Explore online wellness programs for individuals, children and organizations, or develop professional skills through Shivoham Shiv's traditional Indian wellness education and certification pathways."
         focusKeyword="vedic wellness and education platform"
       />
 
@@ -229,10 +229,37 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               </span>
             </Link>
           </div>
-          <p className="text-center text-xs text-slate-500 mt-8">
-            Wellness → Transform Yourself · Academy → Empower Others ·{" "}
-            <Link to="/community" className="font-semibold text-[#2F5D50] hover:underline">Community → Grow Together</Link>
-          </p>
+        </div>
+      </section>
+
+      {/* 0.6 THREE-PILLAR OVERVIEW */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">
+              One Platform. Two Paths. One Global Community.
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { to: "/wellness-programs", label: "Wellness Programs", sub: "Transform Yourself", desc: "Personal, family, children's and workplace wellness programs.", icon: Heart, accent: "bg-[#EAF4EC] text-[#004C53]" },
+              { to: "/academy", label: "Academy", sub: "Empower Others", desc: "Structured learning, practitioner training and specialized certifications.", icon: Award, accent: "bg-amber-50 text-[#EF8321]" },
+              { to: "/community", label: "Community", sub: "Grow Together", desc: "Ongoing learning, guided sessions, peer connection and practitioner development.", icon: Users, accent: "bg-[#EAF4EC] text-[#004C53]" },
+            ].map((p) => (
+              <Link
+                key={p.to}
+                to={p.to}
+                className="group flex flex-col items-center text-center bg-white border border-green-100 rounded-3xl p-8 shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all"
+              >
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${p.accent}`}>
+                  <p.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-heading font-bold text-lg text-[#004C53]">{p.label}</h3>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321] mt-1">{p.sub}</span>
+                <p className="text-xs text-slate-600 leading-relaxed mt-3">{p.desc}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -250,7 +277,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               
               <div className="inline-flex items-center space-x-2 bg-[#2F5D50]/10 border border-[#2F5D50]/20 rounded-full px-4 py-1.5 w-fit text-[#1F4D45] text-xs font-bold uppercase tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-[#C96E29]" />
-                <span>Ancient Wisdom · Modern Wellness</span>
+                <span>Traditional Indian Wellness Education, Delivered Globally</span>
               </div>
 
               <h1 className="font-heading font-semibold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#1F4D45] leading-[1.12]">
@@ -262,21 +289,35 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                 structured online programs, professional certifications and a global learning community.
               </p>
 
-              {/* Action Buttons */}
+              {/* Action Buttons — two paths, each with helper text */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <button
-                  onClick={onOpenConsultation}
-                  className="px-8 py-4 bg-[#C96E29] hover:bg-[#b05c1e] text-white rounded-full font-bold text-sm uppercase tracking-wider text-center shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
-                >
-                  Book a Free Session
-                </button>
-                <Link
-                  to="/wellness-programs"
-                  className="px-8 py-4 border-2 border-[#1F4D45] text-[#1F4D45] rounded-full font-bold text-sm uppercase tracking-wider text-center hover:bg-[#1F4D45]/5 transition-all duration-200 flex items-center justify-center space-x-2"
-                >
-                  <span>Explore Programs</span>
-                </Link>
+                <div className="flex flex-col items-start gap-1.5">
+                  <Link
+                    to="/wellness-programs"
+                    className="w-full sm:w-auto px-8 py-4 bg-[#EF8321] hover:bg-[#d9741a] text-white rounded-full font-bold text-sm uppercase tracking-wider text-center shadow-md hover:shadow-lg transition-all duration-200"
+                  >
+                    Explore Wellness Programs
+                  </Link>
+                  <span className="text-[11px] text-[#1F4D45]/60 px-1">For yourself, your family, your team or your organization.</span>
+                </div>
+                <div className="flex flex-col items-start gap-1.5">
+                  <Link
+                    to="/academy"
+                    className="w-full sm:w-auto px-8 py-4 border-2 border-[#004C53] text-[#004C53] rounded-full font-bold text-sm uppercase tracking-wider text-center hover:bg-[#004C53]/5 transition-all duration-200"
+                  >
+                    Explore Academy
+                  </Link>
+                  <span className="text-[11px] text-[#1F4D45]/60 px-1">Learn specialized wellness practices and develop practitioner skills.</span>
+                </div>
               </div>
+
+              {/* Tertiary — talk to us first */}
+              <button
+                onClick={onOpenConsultation}
+                className="text-sm font-semibold text-[#C96E29] hover:text-[#b05c1e] underline underline-offset-2 w-fit transition-colors"
+              >
+                Prefer to talk first? Book a free session →
+              </button>
 
               {/* Avatar Cluster with "1,258+ learners" */}
               <div className="flex items-center space-x-4 pt-4 border-t border-[#1F4D45]/10">

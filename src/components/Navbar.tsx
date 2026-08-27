@@ -4,19 +4,20 @@ import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight, ChevronDown } from 
 import { getSession, clearSession, displayName, onAuthChange, Session } from "../utils/session";
 
 // Two primary verticals. WELLNESS = "transform your own life". ACADEMY = "become a practitioner".
+// Items without a dedicated page point to the vertical's hub page (never a broken link).
 const WELLNESS: { label: string; to: string }[] = [
-  { label: "Natural Weight Management", to: "/weight-loss" },
-  { label: "14-Day Reset Challenge · ₹999", to: "/challenge" },
+  { label: "Personal Wellness", to: "/wellness-programs" },
   { label: "Kids Mindfulness & Focus", to: "/courses/mindfulness-kids" },
+  { label: "Weight Management & Wellness", to: "/weight-loss" },
   { label: "Corporate & Adult Wellness", to: "/courses/corporate-wellness" },
-  { label: "BMI Calculator", to: "/bmi-calculator" },
+  { label: "Yoga & Meditation", to: "/wellness-programs" },
 ];
 
 const ACADEMY: { label: string; to: string }[] = [
   { label: "Mudra Therapy", to: "/courses/mudra-therapy" },
+  { label: "Meditation & Pranayama", to: "/academy" },
   { label: "Ayurvedic Acupressure", to: "/courses/acupressure-therapy" },
   { label: "Marma Dab Chikitsa", to: "/courses/acupressure-therapy" },
-  { label: "Meditation & Pranayama", to: "/academy" },
   { label: "Advanced Certifications", to: "/academy" },
 ];
 
@@ -196,7 +197,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               About
             </NavLink>
 
-            {/* BLOG */}
+            {/* RESOURCES (blog) */}
             <NavLink
               to="/blog"
               className={({ isActive }) =>
@@ -205,7 +206,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 }`
               }
             >
-              Blog
+              Resources
             </NavLink>
 
           </div>
@@ -390,7 +391,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               onClick={() => setIsOpen(false)}
               className={`py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10`}
             >
-              Blog
+              Resources
             </Link>
 
             <Link
