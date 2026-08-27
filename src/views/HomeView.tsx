@@ -201,7 +201,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                 <Heart className="w-6 h-6" />
               </div>
               <span className="text-[11px] font-bold uppercase tracking-widest text-amber-300">Wellness · Transform</span>
-              <h3 className="font-heading font-bold text-2xl mt-1 mb-3">I want to transform my wellness</h3>
+              <h3 className="font-heading font-bold text-2xl mt-1 mb-3 text-white">I want to transform my wellness</h3>
               <p className="text-sm text-green-50/85 leading-relaxed mb-6">
                 Practical wellness programs for individuals, families, children and organizations — weight
                 management, meditation, yoga and stress relief.

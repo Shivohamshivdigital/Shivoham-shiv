@@ -17,7 +17,6 @@ const ACADEMY: { label: string; to: string }[] = [
   { label: "Mudra Therapy", to: "/courses/mudra-therapy" },
   { label: "Meditation & Pranayama", to: "/academy" },
   { label: "Ayurvedic Acupressure", to: "/courses/acupressure-therapy" },
-  { label: "Marma Dab Chikitsa", to: "/courses/acupressure-therapy" },
   { label: "Advanced Certifications", to: "/academy" },
 ];
 
