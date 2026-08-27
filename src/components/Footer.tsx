@@ -14,7 +14,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#2F5D50] text-white border-t border-green-600/30 pt-16 pb-8 font-sans">
+    <footer className="bg-[#004C53] text-white border-t border-green-600/30 pt-16 pb-8 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Four Column Matrix */}

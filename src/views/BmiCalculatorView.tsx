@@ -100,7 +100,7 @@ export default function BmiCalculatorView() {
   const bands = BANDS[standard];
 
   const inputBase =
-    "w-full rounded-xl border border-green-200 bg-white px-4 py-3 text-lg font-semibold text-[#2F5233] placeholder-slate-300 focus:border-[#5DBB63] focus:ring-2 focus:ring-[#5DBB63]/30 focus:outline-none transition";
+    "w-full rounded-xl border border-green-200 bg-white px-4 py-3 text-lg font-semibold text-[#004C53] placeholder-slate-300 focus:border-[#5DBB63] focus:ring-2 focus:ring-[#5DBB63]/30 focus:outline-none transition";
 
   return (
     <div className="min-h-screen bg-[#FAFBF7] font-sans">
@@ -113,7 +113,7 @@ export default function BmiCalculatorView() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-[#234036] to-[#2F5D50] text-white px-4 sm:px-6 lg:px-8 pt-14 pb-24">
+      <section className="bg-gradient-to-b from-[#003A40] to-[#004C53] text-white px-4 sm:px-6 lg:px-8 pt-14 pb-24">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-amber-200">
             <Activity className="w-3.5 h-3.5" /> Free Health Tool
@@ -139,7 +139,7 @@ export default function BmiCalculatorView() {
                   key={u}
                   onClick={() => setUnit(u)}
                   className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition ${
-                    unit === u ? "bg-[#2F5D50] text-white shadow" : "text-[#2F5233] hover:bg-green-100"
+                    unit === u ? "bg-[#004C53] text-white shadow" : "text-[#004C53] hover:bg-green-100"
                   }`}
                 >
                   {u === "metric" ? "Metric (cm / kg)" : "Imperial (ft / lb)"}
@@ -151,7 +151,7 @@ export default function BmiCalculatorView() {
           {/* Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2F5233] mb-2">
+              <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#004C53] mb-2">
                 <Ruler className="w-3.5 h-3.5 text-[#5DBB63]" /> Height
               </label>
               {unit === "metric" ? (
@@ -195,7 +195,7 @@ export default function BmiCalculatorView() {
             </div>
 
             <div>
-              <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2F5233] mb-2">
+              <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#004C53] mb-2">
                 <Scale className="w-3.5 h-3.5 text-[#5DBB63]" /> Weight
               </label>
               <div className="relative">
@@ -221,7 +221,7 @@ export default function BmiCalculatorView() {
               <button
                 onClick={() => setStandard("asian")}
                 className={`px-4 py-1.5 rounded-full font-bold transition ${
-                  standard === "asian" ? "bg-white text-[#2F5233] shadow-sm" : "text-slate-500 hover:text-[#2F5233]"
+                  standard === "asian" ? "bg-white text-[#004C53] shadow-sm" : "text-slate-500 hover:text-[#004C53]"
                 }`}
               >
                 Asian-Indian (ICMR)
@@ -229,7 +229,7 @@ export default function BmiCalculatorView() {
               <button
                 onClick={() => setStandard("who")}
                 className={`px-4 py-1.5 rounded-full font-bold transition ${
-                  standard === "who" ? "bg-white text-[#2F5233] shadow-sm" : "text-slate-500 hover:text-[#2F5233]"
+                  standard === "who" ? "bg-white text-[#004C53] shadow-sm" : "text-slate-500 hover:text-[#004C53]"
                 }`}
               >
                 WHO Standard
@@ -252,7 +252,7 @@ export default function BmiCalculatorView() {
               >
                 <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Your BMI</p>
                 <div className="mt-1 flex items-end justify-center gap-3">
-                  <span className="text-6xl font-bold text-[#2F5233] leading-none">{bmi.toFixed(1)}</span>
+                  <span className="text-6xl font-bold text-[#004C53] leading-none">{bmi.toFixed(1)}</span>
                   <span
                     className={`mb-1.5 inline-block rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide ${band.text}`}
                   >
@@ -272,7 +272,7 @@ export default function BmiCalculatorView() {
                     })}
                     {/* Marker */}
                     <span
-                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-6 w-6 rounded-full bg-white border-[3px] border-[#2F5233] shadow-md"
+                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-6 w-6 rounded-full bg-white border-[3px] border-[#004C53] shadow-md"
                       style={{ left: `${markerPct}%` }}
                       aria-hidden="true"
                     />
@@ -311,8 +311,8 @@ export default function BmiCalculatorView() {
 
                 {/* CTA when above normal */}
                 {(band.label === "Overweight" || band.label === "Obese") && (
-                  <div className="mt-8 rounded-2xl bg-[#F2F9F2] border border-[#D8ECD8] p-5 text-left">
-                    <p className="text-sm font-bold text-[#2F5233]">
+                  <div className="mt-8 rounded-2xl bg-[#EEF6F6] border border-[#D8ECD8] p-5 text-left">
+                    <p className="text-sm font-bold text-[#004C53]">
                       Your BMI is above the healthy range — a natural plan can help.
                     </p>
                     <p className="mt-1 text-xs text-slate-600 leading-relaxed">
@@ -353,7 +353,7 @@ export default function BmiCalculatorView() {
       {/* FAQ */}
       <section className="px-4 sm:px-6 lg:px-8 pb-24">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mb-8">
+          <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mb-8">
             BMI — quick answers
           </h2>
           <div className="space-y-3">
@@ -362,7 +362,7 @@ export default function BmiCalculatorView() {
                 key={f.q}
                 className="group rounded-2xl bg-white border border-green-100 px-5 py-4 shadow-sm"
               >
-                <summary className="flex items-center justify-between cursor-pointer list-none text-sm font-bold text-[#2F5233]">
+                <summary className="flex items-center justify-between cursor-pointer list-none text-sm font-bold text-[#004C53]">
                   {f.q}
                   <span className="ml-4 text-[#5DBB63] transition-transform group-open:rotate-45 text-xl leading-none">+</span>
                 </summary>

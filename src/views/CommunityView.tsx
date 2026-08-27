@@ -24,7 +24,7 @@ const TIERS = [
     icon: GraduationCap,
     label: "Practitioner Community",
     who: "For certified students & practitioners",
-    accent: "bg-[#EAF4EC] text-[#2F5D50]",
+    accent: "bg-[#E3F1F1] text-[#004C53]",
     features: [
       "Monthly practitioner sessions",
       "Case discussions & mentorship",
@@ -38,7 +38,7 @@ const TIERS = [
     icon: Globe,
     label: "Global Shivoham Community",
     who: "Our long-term global network",
-    accent: "bg-amber-50 text-[#E8943A]",
+    accent: "bg-amber-50 text-[#EF8321]",
     features: [
       "One worldwide Vedic wellness network",
       "Members from both paths — wellness & practice",
@@ -60,7 +60,7 @@ export default function CommunityView() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
         <div className="max-w-4xl mx-auto px-4 lg:px-6 py-16 sm:py-24 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-widest text-amber-200 mb-6">
             <Users className="w-3.5 h-3.5" /> Community · Belong
@@ -91,7 +91,7 @@ export default function CommunityView() {
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${t.accent}`}>
                 <t.icon className="w-6 h-6" />
               </div>
-              <h2 className="font-heading font-bold text-xl text-[#2F5233]">{t.label}</h2>
+              <h2 className="font-heading font-bold text-xl text-[#004C53]">{t.label}</h2>
               <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-1 mb-5">{t.who}</p>
               <ul className="space-y-2.5 mb-7 flex-grow">
                 {t.features.map((f) => (
@@ -130,7 +130,7 @@ export default function CommunityView() {
 
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#2F5D50] to-[#23483E] text-white rounded-3xl p-10 sm:p-14">
+        <div className="max-w-3xl mx-auto text-center bg-gradient-to-b from-[#004C53] to-[#003A40] text-white rounded-3xl p-10 sm:p-14">
           <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-3">Grow together</h2>
           <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto mb-8">
             Not sure which community fits you? Message us and we'll welcome you into the right circle.
@@ -139,7 +139,7 @@ export default function CommunityView() {
             href={WHATSAPP}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#E8943A] to-[#C96E29] hover:from-[#EFAF3C] hover:to-[#B25D1D] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg transition-all"
           >
             Say hello on WhatsApp <ArrowRight className="w-4 h-4" />
           </a>

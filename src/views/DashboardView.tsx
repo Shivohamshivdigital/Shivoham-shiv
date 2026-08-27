@@ -54,10 +54,10 @@ function Lotus({ className = "" }: { className?: string }) {
         <ellipse cx="60" cy="58" rx="8" ry="24" transform="rotate(14 60 84)" />
       </g>
       {/* seated meditation figure */}
-      <circle cx="60" cy="46" r="9" fill="#2F5D50" />
+      <circle cx="60" cy="46" r="9" fill="#004C53" />
       <path
         d="M60 56 C 47 60, 40 74, 44 82 C 53 87, 67 87, 76 82 C 80 74, 73 60, 60 56 Z"
-        fill="#2F5D50"
+        fill="#004C53"
       />
     </svg>
   );
@@ -131,7 +131,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white to-[#EEF7EE] border border-green-100 shadow-sm p-6 lg:p-9 pr-28 lg:pr-48">
           <span className="text-[11px] uppercase font-bold tracking-widest text-green-700">Your Wellness Journey</span>
           <h1 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-green-900 mt-1">Namaste, {firstName}</h1>
-          <p className="text-sm lg:text-base font-semibold text-[#E8943A] mt-1">Breathe. Heal. Glow.</p>
+          <p className="text-sm lg:text-base font-semibold text-[#EF8321] mt-1">Breathe. Heal. Glow.</p>
           <Lotus className="w-28 h-28 lg:w-44 lg:h-44 absolute -right-1 lg:right-4 top-1/2 -translate-y-1/2 opacity-95" />
         </div>
 
@@ -166,7 +166,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
               to={t.to}
               className="flex flex-col items-center justify-start gap-2 lg:gap-3 bg-white border border-green-100 rounded-2xl p-3 pt-4 lg:py-6 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all text-center"
             >
-              <span className="w-11 h-11 lg:w-14 lg:h-14 rounded-xl bg-[#EEF7EE] text-[#2F5D50] flex items-center justify-center">
+              <span className="w-11 h-11 lg:w-14 lg:h-14 rounded-xl bg-[#EEF7EE] text-[#004C53] flex items-center justify-center">
                 <t.icon className="w-5 h-5 lg:w-6 lg:h-6" />
               </span>
               <span className="text-[11px] lg:text-xs font-semibold text-[#3A4A40] leading-tight">{t.label}</span>
@@ -181,14 +181,14 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
           to="/challenge"
           className="flex items-center gap-4 rounded-2xl bg-[#E8F0EA] border border-green-100 p-4 lg:p-6 hover:bg-[#E2EDE4] transition-colors lg:h-full"
         >
-          <span className="w-12 h-12 rounded-2xl bg-[#2F5D50] text-white flex items-center justify-center shrink-0">
+          <span className="w-12 h-12 rounded-2xl bg-[#004C53] text-white flex items-center justify-center shrink-0">
             <PersonStanding className="w-6 h-6" />
           </span>
           <span className="flex-1">
             <b className="block font-heading font-bold text-green-900 text-sm">Daily Practice</b>
             <span className="text-xs text-slate-500">For a balanced you</span>
           </span>
-          <span className="flex items-center gap-1 text-[11px] font-bold text-[#2F5D50] whitespace-nowrap">
+          <span className="flex items-center gap-1 text-[11px] font-bold text-[#004C53] whitespace-nowrap">
             Start <ChevronRight className="w-4 h-4" />
           </span>
         </Link>
@@ -209,7 +209,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
               </p>
               <a
                 href="#my-assessment"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#004C53] hover:bg-[#003A40] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
               >
                 View my details <ArrowRight className="w-3.5 h-3.5" />
               </a>
@@ -221,7 +221,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
               </p>
               <Link
                 to={`/assessment?${assessmentQ.toString()}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#004C53] hover:bg-[#003A40] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
               >
                 Open assessment <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -325,7 +325,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
       {/* Bottom app nav (mobile only — desktop uses the site navbar) */}
       <div className="sticky bottom-0 z-30 pointer-events-none px-4 pb-3 lg:hidden">
         <nav className="pointer-events-auto max-w-md mx-auto bg-white/95 backdrop-blur border border-green-100 rounded-2xl shadow-lg flex items-center justify-around px-2 py-2">
-          <span className="flex flex-col items-center gap-0.5 px-3 py-1 text-[#E8943A]">
+          <span className="flex flex-col items-center gap-0.5 px-3 py-1 text-[#EF8321]">
             <Home className="w-5 h-5" />
             <span className="text-[10px] font-bold">Home</span>
           </span>

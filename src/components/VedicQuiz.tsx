@@ -126,10 +126,10 @@ export default function VedicQuiz({ onOpenConsultation }: VedicQuizProps) {
         <div className="animate-fadeIn">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#E8943A]">
+            <div className="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#EF8321]">
               <Sparkles className="w-6 h-6" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E8943A]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#EF8321]">
               Your Primary Vedic Constitution is
             </span>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl text-green-900 mt-1">

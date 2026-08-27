@@ -61,7 +61,7 @@ export default function BlogView() {
       {/* 2. Main Blog Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-12 sm:mb-16">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A] block mb-2">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321] block mb-2">
             Vedic Wisdom & Practical Wellness Guides
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-emerald-900 tracking-tight">
@@ -125,7 +125,7 @@ export default function BlogView() {
                   <div className="pt-2 border-t border-slate-100 mt-auto">
                     <Link
                       to={`/blog/${post.slug}`}
-                      className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-bold text-emerald-800 hover:text-[#2F5D50] transition-colors group/btn"
+                      className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-bold text-emerald-800 hover:text-[#004C53] transition-colors group/btn"
                     >
                       <span className="uppercase tracking-wider">Read More</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />

@@ -348,7 +348,7 @@ export default function AssessmentView() {
             </dl>
           )}
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link to="/dashboard" className="flex-1 text-center px-6 py-3 bg-[#2F5D50] hover:bg-[#23483E] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors">
+            <Link to="/dashboard" className="flex-1 text-center px-6 py-3 bg-[#004C53] hover:bg-[#003A40] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors">
               Go to my account
             </Link>
             <a href="https://wa.me/917317778215" target="_blank" rel="noreferrer" className="flex-1 text-center px-6 py-3 bg-[#25D366] hover:bg-[#1da851] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors">
@@ -374,7 +374,7 @@ export default function AssessmentView() {
             WhatsApp within 24 hours with your personalized plan.
           </p>
           <div className="flex flex-col gap-3">
-            <Link to="/dashboard" className="w-full px-6 py-3.5 bg-[#2F5D50] hover:bg-[#23483E] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all">
+            <Link to="/dashboard" className="w-full px-6 py-3.5 bg-[#004C53] hover:bg-[#003A40] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all">
               View my details
             </Link>
             {!paid && (
@@ -399,7 +399,7 @@ export default function AssessmentView() {
           <div className="w-12 h-12 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center mx-auto mb-3">
             <HeartPulse className="w-6 h-6" />
           </div>
-          <h1 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233]">Health Assessment</h1>
+          <h1 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">Health Assessment</h1>
           <p className="text-sm text-slate-600 mt-2">A few quick questions so we can build your personalized plan.</p>
         </div>
 
@@ -407,8 +407,8 @@ export default function AssessmentView() {
         <div className="flex items-center gap-2 mb-6">
           {STEPS.map((s, i) => (
             <div key={s} className="flex-1">
-              <div className={`h-1.5 rounded-full ${i <= step ? "bg-[#4A7C59]" : "bg-green-100"}`} />
-              <span className={`mt-1.5 block text-[10px] font-bold uppercase tracking-wider ${i === step ? "text-[#2F5233]" : "text-slate-400"}`}>{s}</span>
+              <div className={`h-1.5 rounded-full ${i <= step ? "bg-[#005461]" : "bg-green-100"}`} />
+              <span className={`mt-1.5 block text-[10px] font-bold uppercase tracking-wider ${i === step ? "text-[#004C53]" : "text-slate-400"}`}>{s}</span>
             </div>
           ))}
         </div>
@@ -479,7 +479,7 @@ export default function AssessmentView() {
                 <label className={label}>Do you have any of the following? (Select all that apply)</label>
                 <div className="grid grid-cols-2 gap-2 mt-1">
                   {CONDITIONS.map((c) => (
-                    <label key={c} className={`flex items-center gap-2 text-sm px-3 py-2 rounded-xl border cursor-pointer transition-colors ${form.conditions.includes(c) ? "border-[#4A7C59] bg-green-50 text-[#2F5233] font-semibold" : "border-green-150 text-slate-700"}`}>
+                    <label key={c} className={`flex items-center gap-2 text-sm px-3 py-2 rounded-xl border cursor-pointer transition-colors ${form.conditions.includes(c) ? "border-[#005461] bg-green-50 text-[#004C53] font-semibold" : "border-green-150 text-slate-700"}`}>
                       <input type="checkbox" checked={form.conditions.includes(c)} onChange={() => toggleCondition(c)} className="w-4 h-4 accent-green-700" />
                       {c}
                     </label>
@@ -526,7 +526,7 @@ export default function AssessmentView() {
               <ChevronLeft className="w-4 h-4" /> Back
             </button>
             {step < STEPS.length - 1 ? (
-              <button onClick={next} className="flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#2F5D50] hover:bg-[#23483E] text-white text-xs font-bold uppercase tracking-wider transition-colors">
+              <button onClick={next} className="flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#004C53] hover:bg-[#003A40] text-white text-xs font-bold uppercase tracking-wider transition-colors">
                 Next <ChevronRight className="w-4 h-4" />
               </button>
             ) : (

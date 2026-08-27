@@ -219,7 +219,7 @@ export default function CertificationView() {
       </section>
 
       {/* WHAT YOU'LL MASTER */}
-      <section className="bg-[#0C2318] py-16 px-4 sm:px-6 border-y border-white/5">
+      <section className="bg-[#002A2E] py-16 px-4 sm:px-6 border-y border-white/5">
         <div className="max-w-4xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs uppercase font-bold tracking-widest text-[#E8C24A]">Inside the program</span>

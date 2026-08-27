@@ -89,7 +89,7 @@ export default function CourseCard({
         />
         {isUpcoming && (
           <div className="absolute inset-0 bg-green-950/80 flex flex-col justify-center items-center text-center p-4">
-            <span className="bg-[#E8943A] text-cream text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full mb-2">
+            <span className="bg-[#EF8321] text-cream text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full mb-2">
               Upcoming Pre-Release
             </span>
             <p className="text-white text-xs font-medium">Starts {upcomingStartDate}</p>
@@ -116,7 +116,7 @@ export default function CourseCard({
           <Link to={coursePath}>{title}</Link>
         </h3>
         {altName && (
-          <p className="text-[11px] font-bold uppercase tracking-wider text-[#E8943A] mb-2">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-[#EF8321] mb-2">
             {altName}
           </p>
         )}

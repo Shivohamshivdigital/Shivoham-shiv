@@ -276,7 +276,7 @@ export default function BlogPostView() {
 
             <Link
               to={post.ctaLink}
-              className="inline-block px-6 py-3.5 bg-[#E8943A] hover:bg-[#d07b22] text-white font-bold text-xs uppercase tracking-widest rounded-xl shadow-md transition-all uppercase"
+              className="inline-block px-6 py-3.5 bg-[#EF8321] hover:bg-[#d07b22] text-white font-bold text-xs uppercase tracking-widest rounded-xl shadow-md transition-all uppercase"
             >
               {post.ctaText}
             </Link>
@@ -287,7 +287,7 @@ export default function BlogPostView() {
       {/* 5. "Related Articles" row (2-3 other cards) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 border-t border-green-100 pt-16">
         <div className="text-center mb-10">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A] block mb-2">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321] block mb-2">
             Continue Reading
           </span>
           <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-emerald-950">
@@ -326,7 +326,7 @@ export default function BlogPostView() {
                 
                 <Link
                   to={`/blog/${rPost.slug}`}
-                  className="text-xs font-bold text-emerald-800 hover:text-[#2F5D50] transition-colors mt-auto flex items-center space-x-1"
+                  className="text-xs font-bold text-emerald-800 hover:text-[#004C53] transition-colors mt-auto flex items-center space-x-1"
                 >
                   <span>Read Article</span>
                   <span>→</span>

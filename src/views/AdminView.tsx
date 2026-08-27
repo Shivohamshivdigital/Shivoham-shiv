@@ -561,7 +561,7 @@ export default function AdminView() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                className="w-full py-3 bg-[#004C53] hover:bg-[#003A40] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
               >
                 {loading ? "Checking…" : "Log In"}
               </button>
@@ -609,7 +609,7 @@ export default function AdminView() {
               <button
                 onClick={() => setTab("leads")}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "leads" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "leads" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <Users className="w-3.5 h-3.5" /> Leads ({leads.length})
@@ -617,7 +617,7 @@ export default function AdminView() {
               <button
                 onClick={() => setTab("payments")}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "payments" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "payments" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <CreditCard className="w-3.5 h-3.5" /> Payments ({payments.length})
@@ -625,7 +625,7 @@ export default function AdminView() {
               <button
                 onClick={() => setTab("users")}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "users" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "users" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <UserCheck className="w-3.5 h-3.5" /> Users ({users.length})
@@ -636,7 +636,7 @@ export default function AdminView() {
                   setAssessDetail(null);
                 }}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "assessments" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "assessments" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <ClipboardList className="w-3.5 h-3.5" /> Assessments ({assessments.length})
@@ -644,7 +644,7 @@ export default function AdminView() {
               <button
                 onClick={() => setTab("transformations")}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "transformations" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "transformations" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <ImagePlus className="w-3.5 h-3.5" /> Transformations ({transforms.length})
@@ -652,7 +652,7 @@ export default function AdminView() {
               <button
                 onClick={() => setTab("founder")}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "founder" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "founder" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <ImagePlus className="w-3.5 h-3.5" /> Founder
@@ -663,7 +663,7 @@ export default function AdminView() {
                   setEditing(null);
                 }}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "blog" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "blog" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" /> Blog ({posts.length})
@@ -671,7 +671,7 @@ export default function AdminView() {
               <button
                 onClick={() => setTab("settings")}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
-                  tab === "settings" ? "bg-[#2F5D50] text-white" : "bg-white border border-green-150 text-slate-600"
+                  tab === "settings" ? "bg-[#004C53] text-white" : "bg-white border border-green-150 text-slate-600"
                 }`}
               >
                 <SettingsIcon className="w-3.5 h-3.5" /> Settings
@@ -923,7 +923,7 @@ export default function AdminView() {
                   <p className="text-xs text-slate-500 max-w-md">
                     Before/after photos shown on the Weight-Loss page. Images are auto-compressed. Add up to 8, drag order with the arrows, then <strong>Save &amp; publish</strong>.
                   </p>
-                  <label className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold cursor-pointer transition-colors">
+                  <label className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#EF8321] hover:bg-[#F49B3E] text-white text-xs font-bold cursor-pointer transition-colors">
                     <ImagePlus className="w-4 h-4" /> Add image(s)
                     <input type="file" accept="image/*" multiple className="hidden" onChange={onPickTransform} />
                   </label>
@@ -937,7 +937,7 @@ export default function AdminView() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {transforms.map((t, i) => (
                       <div key={i} className="bg-white border border-green-100 rounded-2xl overflow-hidden shadow-xs">
-                        <img src={t.src} alt={`Transformation ${i + 1}`} className="w-full h-48 object-contain bg-[#F2F9F2]" />
+                        <img src={t.src} alt={`Transformation ${i + 1}`} className="w-full h-48 object-contain bg-[#EEF6F6]" />
                         <div className="p-3 space-y-2">
                           <input
                             className={inputCls}
@@ -984,7 +984,7 @@ export default function AdminView() {
                 <button
                   onClick={saveTransforms}
                   disabled={savingTransforms}
-                  className="px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                  className="px-5 py-2.5 bg-[#004C53] hover:bg-[#003A40] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
                 >
                   {savingTransforms ? "Saving…" : "Save & publish"}
                 </button>
@@ -1000,13 +1000,13 @@ export default function AdminView() {
 
                 <div className="bg-white border border-green-100 rounded-2xl p-5 space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="relative w-24 h-24 rounded-full overflow-hidden bg-[#2F5D50] text-white flex items-center justify-center shrink-0 shadow">
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden bg-[#004C53] text-white flex items-center justify-center shrink-0 shadow">
                       <span className="font-bold text-2xl">{(founder.name || "SS").trim().charAt(0).toUpperCase()}</span>
                       {founder.src && (
                         <img src={founder.src} alt="Founder preview" className="absolute inset-0 w-full h-full object-cover" />
                       )}
                     </div>
-                    <label className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold cursor-pointer transition-colors">
+                    <label className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#EF8321] hover:bg-[#F49B3E] text-white text-xs font-bold cursor-pointer transition-colors">
                       <ImagePlus className="w-4 h-4" /> {founder.src ? "Change photo" : "Upload photo"}
                       <input type="file" accept="image/*" className="hidden" onChange={onPickFounder} />
                     </label>
@@ -1045,7 +1045,7 @@ export default function AdminView() {
                 <button
                   onClick={saveFounder}
                   disabled={savingFounder}
-                  className="px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                  className="px-5 py-2.5 bg-[#004C53] hover:bg-[#003A40] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
                 >
                   {savingFounder ? "Saving…" : "Save & publish"}
                 </button>
@@ -1070,7 +1070,7 @@ export default function AdminView() {
                         setPostMsg(null);
                         setEditing({ ...emptyPost });
                       }}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E8943A] hover:bg-[#EFAF3C] text-white text-xs font-bold transition-colors"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#EF8321] hover:bg-[#F49B3E] text-white text-xs font-bold transition-colors"
                     >
                       <Plus className="w-4 h-4" /> New Post
                     </button>
@@ -1239,7 +1239,7 @@ export default function AdminView() {
                   <button
                     onClick={savePost}
                     disabled={savingPost}
-                    className="px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                    className="px-5 py-2.5 bg-[#004C53] hover:bg-[#003A40] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
                   >
                     {savingPost ? "Saving…" : "Save Post"}
                   </button>
@@ -1307,7 +1307,7 @@ export default function AdminView() {
                 <button
                   onClick={saveSettings}
                   disabled={savingSettings}
-                  className="mt-6 px-5 py-2.5 bg-[#2F5D50] hover:bg-[#23483E] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
+                  className="mt-6 px-5 py-2.5 bg-[#004C53] hover:bg-[#003A40] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60"
                 >
                   {savingSettings ? "Saving…" : "Save settings"}
                 </button>

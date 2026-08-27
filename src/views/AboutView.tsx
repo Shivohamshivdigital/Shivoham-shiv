@@ -18,10 +18,10 @@ export default function AboutView() {
       />
       
       {/* 1. Dark Hero Band */}
-      <section className="bg-green-950 text-cream py-20 px-4 sm:px-6 lg:px-8 border-b-4 border-[#E8943A]">
+      <section className="bg-green-950 text-cream py-20 px-4 sm:px-6 lg:px-8 border-b-4 border-[#EF8321]">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-900 rounded-full text-[#EFFFDF] text-xs font-bold uppercase tracking-widest border border-green-800">
-            <Sparkles className="w-3.5 h-3.5 text-[#E8943A] fill-[#E8943A]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#EF8321] fill-[#EF8321]" />
             About Us
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-none">
@@ -41,8 +41,8 @@ export default function AboutView() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-7 space-y-6 text-left">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Our Story</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233] leading-tight">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Story</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
               About Us – Shivoham Shiv
             </h2>
             <div className="space-y-4 text-sm leading-relaxed text-slate-700">
@@ -63,11 +63,11 @@ export default function AboutView() {
             {/* Stats row with real numbers */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 pt-6 border-t border-green-100">
               <div className="text-left">
-                <span className="block text-2xl sm:text-3xl font-bold text-[#E8943A] font-heading">1,258+</span>
+                <span className="block text-2xl sm:text-3xl font-bold text-[#EF8321] font-heading">1,258+</span>
                 <span className="text-[10px] sm:text-xs uppercase tracking-wider text-slate-600 font-medium">Happy Healing Souls</span>
               </div>
               <div className="text-left">
-                <span className="block text-2xl sm:text-3xl font-bold text-[#2F5233] font-heading">12+</span>
+                <span className="block text-2xl sm:text-3xl font-bold text-[#004C53] font-heading">12+</span>
                 <span className="text-[10px] sm:text-xs uppercase tracking-wider text-slate-600 font-medium">Workshops &amp; Retreats</span>
               </div>
               <div className="text-left">
@@ -86,10 +86,10 @@ export default function AboutView() {
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-[#4A7C59]/10 pointer-events-none" />
+              <div className="absolute inset-0 bg-[#005461]/10 pointer-events-none" />
             </div>
             {/* Hanging visual design badge */}
-            <div className="absolute -bottom-4 -left-4 bg-[#E8943A] text-white py-3 px-5 rounded-2xl shadow-lg text-xs font-bold leading-none select-none">
+            <div className="absolute -bottom-4 -left-4 bg-[#EF8321] text-white py-3 px-5 rounded-2xl shadow-lg text-xs font-bold leading-none select-none">
               Est. 8+ Years
             </div>
           </div>
@@ -98,24 +98,24 @@ export default function AboutView() {
       </section>
 
       {/* 3. Purpose & Path (eyebrow "Values") */}
-      <section className="bg-[#F2F9F2] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E3F1E3]">
+      <section className="bg-[#EEF6F6] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#D6E9EA]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center space-y-2 mb-14">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Values</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">Purpose &amp; Path</h2>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Values</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">Purpose &amp; Path</h2>
           </div>
 
           {/* Vertical Timeline with two cards */}
-          <div className="relative border-l-2 border-[#4A7C59]/30 ml-4 md:ml-32 space-y-12">
+          <div className="relative border-l-2 border-[#005461]/30 ml-4 md:ml-32 space-y-12">
             
             {/* Timeline node 1: Our Mission */}
             <div className="relative pl-8 sm:pl-12">
-              <div className="absolute -left-3.5 top-1.5 w-7 h-7 bg-white border-2 border-[#4A7C59] rounded-full flex items-center justify-center text-[#E8943A] font-bold text-[10px] shadow-sm">
+              <div className="absolute -left-3.5 top-1.5 w-7 h-7 bg-white border-2 border-[#005461] rounded-full flex items-center justify-center text-[#EF8321] font-bold text-[10px] shadow-sm">
                 1
               </div>
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-green-100 shadow-sm text-left hover:shadow-md transition-shadow">
-                <span className="text-xs uppercase font-bold text-[#E8943A] tracking-wider block mb-2">Our Calling</span>
-                <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#2F5233] mb-4">Our Mission</h3>
+                <span className="text-xs uppercase font-bold text-[#EF8321] tracking-wider block mb-2">Our Calling</span>
+                <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#004C53] mb-4">Our Mission</h3>
                 <p className="text-sm text-slate-705 leading-relaxed">
                   To revive ancient Indian wisdom through practical, science-backed learning that inspires real transformation; 
                   to make holistic healing simple and accessible; to empower people to build emotional balance, mental clarity, 
@@ -126,12 +126,12 @@ export default function AboutView() {
 
             {/* Timeline node 2: Our Vision */}
             <div className="relative pl-8 sm:pl-12">
-              <div className="absolute -left-3.5 top-1.5 w-7 h-7 bg-white border-2 border-[#4A7C59] rounded-full flex items-center justify-center text-[#E8943A] font-bold text-[10px] shadow-sm">
+              <div className="absolute -left-3.5 top-1.5 w-7 h-7 bg-white border-2 border-[#005461] rounded-full flex items-center justify-center text-[#EF8321] font-bold text-[10px] shadow-sm">
                 2
               </div>
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-green-100 shadow-sm text-left hover:shadow-md transition-shadow">
                 <span className="text-xs uppercase font-bold text-green-700 tracking-wider block mb-2">Our Vision</span>
-                <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#2F5233] mb-4">Our Vision</h3>
+                <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#004C53] mb-4">Our Vision</h3>
                 <p className="text-sm text-slate-705 leading-relaxed">
                   To become a global hub for authentic Vedic learning and holistic wellness where ancient wisdom and modern 
                   thinking meet; to use traditional Indian practices as practical tools for healing, peace, and purpose; 
@@ -159,7 +159,7 @@ export default function AboutView() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-4 left-4 right-4 bg-green-950/95 backdrop-blur-md p-4 rounded-2xl text-cream border border-green-900">
-                <span className="text-[10px] uppercase font-semibold text-[#E8943A] tracking-widest block mb-0.5">Lineage Guide</span>
+                <span className="text-[10px] uppercase font-semibold text-[#EF8321] tracking-widest block mb-0.5">Lineage Guide</span>
                 <p className="text-xs font-serif italic text-white">"Transforming lifestyles from the organic roots of the Himalayas."</p>
               </div>
             </div>
@@ -167,12 +167,12 @@ export default function AboutView() {
 
           {/* Bio text right */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Heart Behind Shivoham Shiv</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233] leading-tight">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The Heart Behind Shivoham Shiv</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
               Meet Our Founder – Pooja Chaturvedi
             </h2>
-            <div className="p-4.5 bg-[#F2F9F2] rounded-2xl border border-green-100 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-              <GraduationCap className="w-10 h-10 text-[#4A7C59] shrink-0" />
+            <div className="p-4.5 bg-[#EEF6F6] rounded-2xl border border-green-100 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <GraduationCap className="w-10 h-10 text-[#005461] shrink-0" />
               <div>
                 <h4 className="font-bold text-green-900 text-sm">Pooja Chaturvedi</h4>
                 <p className="text-xs text-slate-700">Certified Yoga Expert, Meditation Coach, and Holistic Wellness Practitioner with 8+ years of experience.</p>
@@ -199,11 +199,11 @@ export default function AboutView() {
       </section>
 
       {/* 5. Our Philosophy – The Shivoham Way (dark band) */}
-      <section className="bg-green-950 text-cream py-20 px-4 sm:px-6 lg:px-8 border-y-4 border-[#E8943A]">
+      <section className="bg-green-950 text-cream py-20 px-4 sm:px-6 lg:px-8 border-y-4 border-[#EF8321]">
         <div className="max-w-7xl mx-auto">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The core principles</span>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The core principles</span>
             <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white">
               Our Philosophy – The Shivoham Way
             </h2>
@@ -252,8 +252,8 @@ export default function AboutView() {
       {/* 6. Why Choose Shivoham Shiv? */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-2 mb-16">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Difference</span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The Difference</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
             Why Choose Shivoham Shiv?
           </h2>
           <p className="text-sm text-slate-705 leading-relaxed">
@@ -266,30 +266,30 @@ export default function AboutView() {
             {
               title: "Authentic Vedic Knowledge",
               desc: "100% textbook-faithful translations of Upanishads, Yoga Sutras, and Hasta scriptures, fully cleared of superficial guesswork.",
-              icon: <Globe className="w-6 h-6 text-[#4A7C59]" />
+              icon: <Globe className="w-6 h-6 text-[#005461]" />
             },
             {
               title: "Personalized Learning Path",
               desc: "Our interactive quizzes and elemental profiling adjust directly to your unique body composition (Prakriti) and current imbalances.",
-              icon: <Compass className="w-6 h-6 text-[#4A7C59]" />
+              icon: <Compass className="w-6 h-6 text-[#005461]" />
             },
             {
               title: "Global Learning Community",
               desc: "Join a passionate, cooperative network of over 1,258 active seekers who encourage and support each other's evolutionary journey.",
-              icon: <Users className="w-6 h-6 text-[#4A7C59]" />
+              icon: <Users className="w-6 h-6 text-[#005461]" />
             },
             {
               title: "Mind-Body-Soul Harmony",
               desc: "A completely holistic combination of physical postures, metabolic advice, energy hand mudras, and mental meditation locks.",
-              icon: <Award className="w-6 h-6 text-[#4A7C59]" />
+              icon: <Award className="w-6 h-6 text-[#005461]" />
             }
           ].map((item, idx) => (
-            <div key={idx} className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#4A7C59] transition-all flex flex-col justify-between">
+            <div key={idx} className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#005461] transition-all flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="w-12 h-12 bg-[#E3F1E3] rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#D6E9EA] rounded-xl flex items-center justify-center">
                   {item.icon}
                 </div>
-                <h3 className="font-heading font-bold text-base text-[#2F5233] leading-snug">{item.title}</h3>
+                <h3 className="font-heading font-bold text-base text-[#004C53] leading-snug">{item.title}</h3>
                 <p className="text-xs text-slate-700 leading-relaxed">{item.desc}</p>
               </div>
             </div>
@@ -298,11 +298,11 @@ export default function AboutView() {
       </section>
 
       {/* 6b. Founder's Credentials & Certifications */}
-      <section className="bg-[#F2F9F2] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E3F1E3]">
+      <section className="bg-[#EEF6F6] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#D6E9EA]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto space-y-2 mb-12">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">Trained &amp; Certified</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#2F5233]">Founder's Credentials</h2>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Trained &amp; Certified</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">Founder's Credentials</h2>
             <p className="text-sm text-slate-700 leading-relaxed">
               Our founder, <strong>Pooja Chaturvedi</strong>, has formal training across Yoga, Ayurveda and
               traditional energy therapies — so every practice we share is rooted in real, certified study.
@@ -312,35 +312,35 @@ export default function AboutView() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: <Award className="w-6 h-6 text-[#4A7C59]" />,
+                icon: <Award className="w-6 h-6 text-[#005461]" />,
                 title: "Yoga Alliance USA — RYS 200",
                 body: "200-Hour Yoga Teacher Training (Yoga Teachers Training Programme)",
                 org: "Arogya Yogshala, New Delhi",
                 year: "2025 · Yoga Alliance Reg. ID 277005",
               },
               {
-                icon: <GraduationCap className="w-6 h-6 text-[#4A7C59]" />,
+                icon: <GraduationCap className="w-6 h-6 text-[#005461]" />,
                 title: "Master Diploma in Acupressure",
                 body: "Master Diploma in Acupressure Therapy (M.D. Acu.)",
                 org: "Vishvas Alternative Treatment & Training Centre",
                 year: "2018",
               },
               {
-                icon: <Sparkles className="w-6 h-6 text-[#4A7C59]" />,
+                icon: <Sparkles className="w-6 h-6 text-[#005461]" />,
                 title: "Diploma in Panchakarma Therapy",
                 body: "Diploma in Panchakarma Therapy (D.Phk.)",
                 org: "Vishvas Alternative Treatment & Training Centre",
                 year: "2018",
               },
               {
-                icon: <GraduationCap className="w-6 h-6 text-[#4A7C59]" />,
+                icon: <GraduationCap className="w-6 h-6 text-[#005461]" />,
                 title: "Diploma in Electro-Acupuncture",
                 body: "Diploma in Electro-Acupuncture Therapy — TCM (D.Ac.)",
                 org: "Vishvas Alternative Treatment & Training Centre",
                 year: "2018",
               },
               {
-                icon: <Heart className="w-6 h-6 text-[#4A7C59]" />,
+                icon: <Heart className="w-6 h-6 text-[#005461]" />,
                 title: "Reiki — 2nd Degree Healer",
                 body: "2nd Degree in Reiki Therapy (Reiki Healer)",
                 org: "Vishvas Alternative Treatment & Training Centre",
@@ -349,15 +349,15 @@ export default function AboutView() {
             ].map((c, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#4A7C59] transition-all flex flex-col"
+                className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#005461] transition-all flex flex-col"
               >
-                <div className="w-12 h-12 bg-[#E3F1E3] rounded-xl flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-[#D6E9EA] rounded-xl flex items-center justify-center mb-4">
                   {c.icon}
                 </div>
-                <h3 className="font-heading font-bold text-base text-[#2F5233] leading-snug mb-1">{c.title}</h3>
+                <h3 className="font-heading font-bold text-base text-[#004C53] leading-snug mb-1">{c.title}</h3>
                 <p className="text-xs text-slate-700 leading-relaxed flex-1">{c.body}</p>
                 <div className="mt-4 pt-3 border-t border-green-100">
-                  <p className="text-xs font-semibold text-[#2F5233]">{c.org}</p>
+                  <p className="text-xs font-semibold text-[#004C53]">{c.org}</p>
                   <p className="text-[11px] text-slate-500 mt-0.5">{c.year}</p>
                 </div>
               </div>
@@ -376,7 +376,7 @@ export default function AboutView() {
       </section>
 
       {/* 7. Our Commitment to You (soft-green band, image left) */}
-      <section className="bg-[#E3F1E3]/60 py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E3F1E3]">
+      <section className="bg-[#D6E9EA]/60 py-16 px-4 sm:px-6 lg:px-8 border-t border-[#D6E9EA]">
         <div className="max-w-6xl mx-auto bg-white rounded-[32px] border border-green-100 overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-12">
           
           {/* Image left */}
@@ -388,13 +388,13 @@ export default function AboutView() {
               loading="lazy"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-[#4A7C59]/15" />
+            <div className="absolute inset-0 bg-[#005461]/15" />
           </div>
 
           {/* Text right */}
           <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-center text-left space-y-6">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">The Promise</span>
-            <h3 className="text-2xl sm:text-3xl font-bold font-heading text-[#2F5233]">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">The Promise</span>
+            <h3 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53]">
               Our Commitment to You
             </h3>
             <p className="text-sm leading-relaxed text-slate-700">
@@ -403,7 +403,7 @@ export default function AboutView() {
               for true transformation — from the inside out. Our promise is to walk beside you throughout your journey.
             </p>
             <div className="inline-flex items-center gap-2.5 text-xs text-green-700 font-bold tracking-wide">
-              <CheckCircle2 className="w-5 h-5 text-[#E8943A] fill-amber-100/50" />
+              <CheckCircle2 className="w-5 h-5 text-[#EF8321] fill-amber-100/50" />
               Structured Sadhana Tracking • Complete Mentorship Sphere
             </div>
           </div>

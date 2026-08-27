@@ -2,13 +2,31 @@
 @import "tailwindcss";
 
 @theme {
-  --color-green-900: #2F5233;
-  --color-green-700: #4A7C59;
-  --color-green-500: #6FA871;
-  --color-green-100: #E3F1E3;
-  --color-green-50: #F2F9F2;
-  --color-amber-500: #E8943A;
+  /* --- Shivoham Shiv brand palette --- */
+  --color-brand-orange: #EF8321;        /* primary orange */
+  --color-brand-orange-dark: #D9741A;
+  --color-brand-teal: #004C53;          /* primary deep teal */
+  --color-brand-teal-2: #005461;        /* secondary teal */
+  --color-brand-teal-dark: #003A40;
   --color-cream: #FAFBF7;
+
+  /* The "green-*" scale is retokenised to teal so every existing green-*
+     utility class picks up the brand teal automatically. */
+  --color-green-50: #EEF6F6;
+  --color-green-100: #D6E9EA;
+  --color-green-200: #B4D6D9;
+  --color-green-300: #86BBC0;
+  --color-green-500: #2E8A93;
+  --color-green-600: #1E7079;
+  --color-green-700: #005461;
+  --color-green-800: #004C53;
+  --color-green-900: #003A40;
+  --color-green-950: #002A2E;
+
+  /* amber-500/600 → brand orange (lighter amber-200/300/400 stay golden accents) */
+  --color-amber-500: #EF8321;
+  --color-amber-600: #D9741A;
+
   --color-slate-700: #3A4A40;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;

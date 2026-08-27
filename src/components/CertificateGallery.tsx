@@ -26,9 +26,9 @@ export default function CertificateGallery({
       />
 
       <div className="text-center mb-8">
-        <p className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">{eyebrow}</p>
+        <p className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">{eyebrow}</p>
         {heading && (
-          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#2F5233] mt-1">{heading}</h3>
+          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mt-1">{heading}</h3>
         )}
       </div>
 
@@ -40,10 +40,10 @@ export default function CertificateGallery({
               href={c.src}
               target="_blank"
               rel="noreferrer"
-              className="group w-[240px] sm:w-[270px] shrink-0 bg-white border border-green-100 rounded-2xl p-2.5 shadow-xs hover:shadow-md hover:border-[#4A7C59] transition-all"
+              className="group w-[240px] sm:w-[270px] shrink-0 bg-white border border-green-100 rounded-2xl p-2.5 shadow-xs hover:shadow-md hover:border-[#005461] transition-all"
               title={`${c.title} — ${c.org} (${c.year})`}
             >
-              <div className="overflow-hidden rounded-xl bg-[#F2F9F2]">
+              <div className="overflow-hidden rounded-xl bg-[#EEF6F6]">
                 <img
                   src={c.src}
                   alt={`${c.title} — ${c.org}, ${c.year}`}
@@ -53,7 +53,7 @@ export default function CertificateGallery({
                   className="w-full h-40 object-cover object-top opacity-0 transition-all duration-500 group-hover:scale-105"
                 />
               </div>
-              <p className="text-xs font-semibold text-[#2F5233] leading-snug mt-2 line-clamp-2">{c.title}</p>
+              <p className="text-xs font-semibold text-[#004C53] leading-snug mt-2 line-clamp-2">{c.title}</p>
               <p className="text-[10px] text-slate-500 mt-0.5">{c.year}</p>
             </a>
           ))}
