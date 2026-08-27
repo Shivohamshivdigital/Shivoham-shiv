@@ -7,7 +7,6 @@ import {
   Wind,
   Activity,
   Hand,
-  Sparkles,
   Award,
   ChevronRight,
   BookOpen,
@@ -40,7 +39,6 @@ const GROUPS: { label: string; heading: string; blurb: string; items: CertCard[]
     items: [
       { title: "Mudra Therapy Certification", desc: "The neurological basis, precise hand alignments and timing of 15 essential Hasta Mudras.", to: "/courses/mudra-therapy", icon: Fingerprint, tag: "Enrolling" },
       { title: "Ayurvedic Acupressure", desc: "Meridian sites and pressure techniques rooted in Vedic acupressure.", to: "/courses/acupressure-therapy", icon: Hand },
-      { title: "Marma Dab Chikitsa", desc: "Heal through energy points — release locked Marma nodes across the meridian lines.", to: "/courses/acupressure-therapy", icon: Sparkles },
       { title: "Meditation Therapy", desc: "Apply meditation as a therapeutic practice for stress and emotional balance.", to: "/contact", icon: Wind, tag: "Coming soon" },
     ],
   },
@@ -62,7 +60,7 @@ export default function AcademyView() {
     <div className="bg-[#FAFBF7] font-sans min-h-screen">
       <SEO
         title="Academy — Learn. Practice. Get Certified. | Shivoham Shiv"
-        description="Professional online education in traditional Indian wellness — Mudra Therapy, Ayurvedic Acupressure, Marma Dab Chikitsa and more. Structured certifications for aspiring practitioners."
+        description="Professional online education in traditional Indian wellness — Mudra Therapy, Ayurvedic Acupressure, Meditation Therapy and more. Structured certifications for aspiring practitioners."
         focusKeyword="wellness practitioner certification online"
       />
 
