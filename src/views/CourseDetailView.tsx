@@ -1479,7 +1479,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
   if (courseId === "corp-wellness") {
     const faqs = [
       { q: "Can these sessions be held live online?", a: "Yes. All our corporate programs and adult alignment sessions are delivered entirely online through live, interactive streams. We support team setups worldwide." },
-      { q: "How long are the recommended daily micro-breaks?", a: "We design simple, science-backed 10-minute breaks that fit cleanly even between intense workspace calendars without interrupting team focus." },
+      { q: "How long are the recommended daily micro-breaks?", a: "We design simple 10-minute breaks that fit cleanly even between busy workspace calendars without interrupting team focus." },
       { q: "Is there customized scheduling?", a: "Absolutely. We align schedules directly with your company's timelines, delivering flexible group sessions across multiple time zones." }
     ];
 
@@ -1487,12 +1487,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       <div className="bg-[#FAFBF7] min-h-screen font-sans selection:bg-green-105 selection:text-green-900 text-[#3A463F]">
         <SEO 
           title="Corporate & Adult Wellness Program | Workplace Well-Being — Shivoham Shiv"
-          description="Holistic corporate & adult wellness programs that reduce workplace stress, improve focus and support employee well-being."
+          description="Holistic corporate & adult wellness programs designed to support stress management, focus and employee well-being."
           focusKeyword="corporate wellness program"
           isCourseDetail={true}
           courseData={{
             name: "Corporate & Adult Wellness: Well-Being at Work",
-            description: "At Shivoham Shiv, we help organizations improve employee well-being through holistic, science-backed wellness programs rooted in ancient wisdom and adapted for modern workplaces.",
+            description: "At Shivoham Shiv, we help organizations support employee well-being through holistic, practical wellness programs rooted in traditional practices and adapted for modern workplaces.",
             lessonsCount: 18
           }}
           isBreadcrumb={true}
@@ -1514,7 +1514,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               Corporate & Adult Wellness: Well-Being at Work
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
-              At Shivoham Shiv, we help organizations improve employee well-being through holistic, science-backed wellness programs rooted in ancient wisdom and adapted for modern workplaces.
+              At Shivoham Shiv, we help organizations support employee well-being through holistic, practical wellness programs rooted in traditional practices and adapted for modern workplaces.
             </p>
             <div className="pt-2">
               <button 
@@ -1559,10 +1559,10 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               </h2>
               <div className="space-y-4 text-sm leading-relaxed text-[#3A463F]/90">
                 <p>
-                  Corporate & Adult Wellness is a holistic approach focused on improving the physical, mental, and emotional well-being of employees within the workplace. It aims to create a healthier, more balanced, and productive work environment by addressing stress, burnout, lifestyle-related issues, and overall employee health.
+                  Corporate & Adult Wellness is a holistic approach focused on supporting the physical, mental, and emotional well-being of employees within the workplace. It's designed to encourage a healthier, more balanced work environment by supporting stress management, mindful movement and everyday wellbeing.
                 </p>
                 <p>
-                  In today's fast-paced corporate culture, long working hours, screen exposure, and constant pressure often lead to fatigue, reduced focus, and health concerns. Corporate Wellness programs are designed to support employees through natural, preventive, and sustainable practices.
+                  In today's fast-paced corporate culture, long working hours, screen exposure, and constant pressure often leave people feeling fatigued and less focused. These sessions are designed to support employees through simple, sustainable daily practices. Individual experiences may vary.
                 </p>
               </div>
             </div>
@@ -1587,12 +1587,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  title: "Increased Productivity",
-                  desc: "Healthy and stress-free employees perform significantly better, excel in decision-making, and maintain high enthusiasm levels throughout the working day."
+                  title: "Sharper Focus & Presence",
+                  desc: "Calmer, well-rested employees can bring steadier focus and presence to their work. Individual experiences may vary."
                 },
                 {
-                  title: "Reduced Absenteeism",
-                  desc: "Preventive health habits and simple daily breathing techniques reduce physical illnesses, chronic fatigue, and sick leaves."
+                  title: "Healthier Daily Habits",
+                  desc: "Simple daily breathing and movement routines encourage healthier everyday habits and better recovery between busy days."
                 },
                 {
                   title: "High Retentiveness",
@@ -1780,7 +1780,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                   Introduce Authentic Well-Being to Your Workplace
                 </h3>
                 <p className="text-xs sm:text-sm text-[#3A463F]/85 leading-relaxed">
-                  Ready to assist your team in neutralizing burnout and building resilient, focused daily habits? Connect with our chief counselor to plan a custom program. Registered in local diagnostic storage.
+                  Ready to help your team manage workplace stress and build resilient, focused daily habits? Connect with our team to plan a custom program.
                 </p>
               </div>
 
@@ -1883,6 +1883,15 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           </div>
         </section>
 
+        {/* Wellness disclaimer */}
+        <section className="px-4 sm:px-6 lg:px-8 pb-14 max-w-4xl mx-auto">
+          <p className="text-[11px] leading-relaxed text-[#3A463F]/60 text-center border-t border-green-100 pt-6">
+            These are educational wellness sessions designed to support healthy daily habits. They are not medical
+            treatment and are not a substitute for professional medical care. They do not diagnose, treat, cure or
+            prevent any condition, and individual experiences may vary.
+          </p>
+        </section>
+
       </div>
     );
   }
@@ -1891,13 +1900,13 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
   if (courseId === "kids-eq") {
     const kidsSlides = [
       {
-        title: "Better Focus & Learning Ability",
-        description: "Helps children improve concentration, attention span, and mental clarity, supporting better learning and daily activities.",
+        title: "Better Focus & Learning Habits",
+        description: "Designed to help children practise concentration and attention, supporting healthier learning habits in everyday activities.",
         image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1200"
       },
       {
-        title: "Emotional Self-Regulation & Calm",
-        description: "Teaches kids how to recognize and manage intense emotions like anxiety, fear, or frustration safely.",
+        title: "Emotional Awareness & Calm",
+        description: "Gentle practices that help children notice and work through big feelings like worry, frustration or overwhelm.",
         image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=1200"
       },
       {
@@ -1919,12 +1928,12 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       <div className="bg-[#FAFBF7] min-h-screen font-sans selection:bg-green-105 selection:text-green-900 text-[#3A463F] text-left">
         <SEO 
           title="Mindfulness & EQ Training for Kids | Focus and Emotional Growth — Shivoham Shiv"
-          description="Build focus, emotional balance, and self-awareness through gentle, age-appropriate practices—supporting calm minds and emotional growth."
-          focusKeyword="EQ training for kids"
+          description="A Mindfulness & Focus Program designed to help children practise concentration, develop emotional awareness and build healthier responses to everyday stress."
+          focusKeyword="mindfulness and focus program for kids"
           isCourseDetail={true}
           courseData={{
             name: "Mindfulness & Focus Training for Kids",
-            description: "At Shivoham Shiv, our Mindfulness & EQ Program for Kids helps children build focus, emotional balance, and self-awareness through gentle, age-appropriate practices—supporting calm minds and healthy emotional growth in a natural, holistic way.",
+            description: "A Mindfulness & Focus Program designed to help children manage everyday distractions, practise concentration, develop emotional awareness and build healthier responses to everyday stress. Individual experiences may vary.",
             lessonsCount: 12
           }}
           isBreadcrumb={true}
@@ -1952,12 +1961,11 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
               Active Admissions Open
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-tight">
-              Mindfulness & Focus Training for Kids
+              Help Your Child Build Better Focus, Emotional Balance &amp; Healthy Mind Habits.
             </h1>
             <p className="text-sm sm:text-base lg:text-lg text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
-              At Shivoham Shiv, our Mindfulness & EQ Program for Kids helps children build focus, 
-              emotional balance, and self-awareness through gentle, age-appropriate practices—supporting calm 
-              minds and healthy emotional growth in a natural, holistic way.
+              A Mindfulness &amp; Focus Program designed to help children manage everyday distractions, practise
+              concentration, develop emotional awareness and build healthier responses to everyday stress.
             </p>
             <div className="pt-4">
               <button 
@@ -1998,17 +2006,17 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
                 Mindfulness & Emotional Intelligence (EQ) Training for Kids is a gentle, structured approach that helps children understand their thoughts, emotions, and reactions in a healthy way. Rooted in mindful awareness and emotional learning, this program supports a child's mental focus, emotional balance, and self-awareness during their key developmental years.
               </p>
               <p className="text-sm leading-relaxed text-[#3A463F]/90">
-                Through simple mindfulness exercises, breathing practices, and age-appropriate EQ activities, children learn how to calm their minds, recognize emotions, improve concentration, and respond positively to everyday situations at home, school, and social environments.
+                Through simple mindfulness exercises, breathing practices, and age-appropriate EQ activities, children can learn to calm their minds, notice emotions, practise concentration, and respond more positively to everyday situations at home, school, and social settings.
               </p>
               
               <div className="pt-2">
                 <p className="text-sm font-bold text-[#004C53] mb-3">Mindfulness & EQ Training works by:</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {[
-                    "Teaching children to become aware of their thoughts and emotions",
-                    "Improving focus, attention, and listening skills",
-                    "Helping manage stress, anxiety, and emotional overwhelm",
-                    "Building self-confidence, empathy, and emotional regulation"
+                    "Helping children become aware of their thoughts and emotions",
+                    "Practising focus, attention, and listening skills",
+                    "Supporting calm, and healthier responses to everyday stress and overwhelm",
+                    "Encouraging self-confidence, empathy, and emotional awareness"
                   ].map((bullet, idx) => (
                     <div key={idx} className="flex items-start space-x-2.5 text-xs text-[#3A463F]/95">
                       <CheckCircle2 className="w-4 h-4 text-green-750 shrink-0 mt-0.5" />
@@ -2533,6 +2541,16 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           </div>
         </section>
 
+        {/* Wellness disclaimer */}
+        <section className="px-4 sm:px-6 lg:px-8 pb-14 max-w-4xl mx-auto">
+          <p className="text-[11px] leading-relaxed text-[#3A463F]/60 text-center border-t border-green-100 pt-6">
+            This is an educational wellness program and is not a substitute for medical, psychological or
+            developmental assessment or treatment. It does not diagnose or treat any condition, including ADHD or
+            anxiety disorders. If you have concerns about your child's development, focus or wellbeing, please
+            consult a qualified professional. Individual experiences may vary.
+          </p>
+        </section>
+
       </div>
     );
   }
@@ -2640,7 +2658,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
         "Digital badge and Certificate of Kids EQ Grounding"
       ],
       modules: [
-        { title: "Module 1: Emotional Geographies for Kids", desc: "Learn to identify physical feelings of happiness, anxiety, and anger, and practice animal-inspired breathing games." },
+        { title: "Module 1: Emotional Geographies for Kids", desc: "Learn to identify physical feelings of happiness, worry, and anger, and practice animal-inspired breathing games." },
         { title: "Module 2: Digital Decongestion & Focus", desc: "Practice five fun sensory checks to restore cognitive calm from tablet over-exposure and steady attention routines." }
       ],
       isUpcoming: true,

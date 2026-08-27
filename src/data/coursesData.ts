@@ -6,7 +6,7 @@ export const mockCourses: Course[] = [
     title: "Corporate & Adult Wellness: Healthy Workplace, Strong Communities",
     tagline: "Reduce institutional burnout and foster resilient, harmonious team environments.",
     category: "Corporate & Adult Wellness",
-    description: "Vedic wisdom applied to modern organizational psychology. Learn to harmonise hectic professional workloads with simple, scientifically backable daily rituals (Dinacharya), nervous-system cooling breath sequences, and conscious communication practices designed to align teams.",
+    description: "Practical workplace wellness designed to support stress management, mindful movement, mental clarity and sustainable daily habits. Built around simple daily routines (Dinacharya), calming breath practices and conscious communication — for teams that sit long hours and juggle heavy workloads. Individual experiences may vary.",
     rating: 4.9,
     reviewsCount: 148,
     duration: "6 Weeks (Self-Paced + 4 Live Sessions)",
@@ -22,16 +22,16 @@ export const mockCourses: Course[] = [
       "Lifetime workspace dashboard and resources access"
     ],
     benefits: [
-      "Cut down physical fatigue and mind-fog within 7 days of starting.",
-      "Cultivate high-empathy listening and lower interpersonal conflict markers at work.",
-      "Achieve full quality sleep cycles naturally without relying on external sleep medicines."
+      "Designed to support relief from the stiffness and mental fatigue that build up during long desk hours.",
+      "Encourages more mindful listening and calmer, clearer team communication.",
+      "Supports relaxation and healthier evening wind-down and sleep habits. Individual experiences may vary."
     ],
     syllabus: [
       {
         title: "Module 1: Foundations of Corporate Mindfulness",
         lessons: [
           { id: "corp-1", title: "Identifying Corporate Stress Patterns", duration: "18:24" },
-          { id: "corp-2", title: "The Science of Chronic Cortisol and Vedic Antidotes", duration: "24:10" },
+          { id: "corp-2", title: "Understanding Workplace Stress & Calming Vedic Practices", duration: "24:10" },
           { id: "corp-3", title: "Prana in the Office: Breathing While Sitting", duration: "15:45" }
         ]
       },
@@ -166,9 +166,9 @@ export const mockCourses: Course[] = [
       "Interactive kids workspace and certification badge"
     ],
     benefits: [
-      "Give kids simple somatic check-ins when feeling emotional waves.",
-      "Boost active reading attention duration and reduce screen-time attachment.",
-      "Establish cooperative family communication rituals."
+      "Gives children simple, age-appropriate ways to notice and name big feelings.",
+      "Encourages healthier attention and screen-time habits during study.",
+      "Supports cooperative, calmer family communication routines."
     ],
     syllabus: [
       {

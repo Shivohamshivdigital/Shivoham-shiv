@@ -239,6 +239,9 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
             <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">
               One Platform. Two Paths. One Global Community.
             </h2>
+            <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#EEF6F6] border border-green-100 px-4 py-1.5 text-xs font-bold text-[#004C53]">
+              10,000+ Wellness Community &amp; Growing
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[

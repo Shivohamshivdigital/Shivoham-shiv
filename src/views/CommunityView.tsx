@@ -73,6 +73,9 @@ export default function CommunityView() {
             One platform, two paths, one global community. Whether you're transforming your own wellbeing
             or building your practice, you don't do it alone.
           </p>
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 text-xs font-bold text-amber-100">
+            <Users className="w-3.5 h-3.5" /> 10,000+ Wellness Community &amp; Growing
+          </div>
         </div>
       </section>
 
