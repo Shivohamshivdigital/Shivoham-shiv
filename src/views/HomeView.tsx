@@ -180,6 +180,62 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
         </Link>
       </section>
 
+      {/* 0.5 TWO PATHS — What are you looking for? */}
+      <section className="px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#E8943A]">One platform · Two paths</span>
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#2F5233] mt-2">What are you looking for?</h2>
+            <p className="text-sm text-slate-600 leading-relaxed mt-2">
+              Shivoham Shiv brings traditional Indian wellness into modern online learning — transform your own
+              wellbeing, or train to become a certified practitioner.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Wellness path */}
+            <Link
+              to="/wellness-programs"
+              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#2F5D50] to-[#23483E] text-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-amber-200 mb-5">
+                <Heart className="w-6 h-6" />
+              </div>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-amber-300">Wellness · Transform</span>
+              <h3 className="font-heading font-bold text-2xl mt-1 mb-3">I want to transform my wellness</h3>
+              <p className="text-sm text-green-50/85 leading-relaxed mb-6">
+                Practical wellness programs for individuals, families, children and organizations — weight
+                management, meditation, yoga and stress relief.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-white">
+                Explore Wellness Programs <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+            {/* Academy path */}
+            <Link
+              to="/academy"
+              className="group relative overflow-hidden rounded-3xl bg-white border border-green-100 p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-[#EAF4EC] flex items-center justify-center text-[#2F5D50] mb-5">
+                <Award className="w-6 h-6" />
+              </div>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#E8943A]">Academy · Become</span>
+              <h3 className="font-heading font-bold text-2xl text-[#2F5233] mt-1 mb-3">I want to become a practitioner</h3>
+              <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                Learn traditional wellness practices through structured online education, practical training and
+                certification.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-[#2F5D50]">
+                Explore Academy <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </div>
+          <p className="text-center text-xs text-slate-500 mt-8">
+            Wellness → Transform Yourself · Academy → Empower Others ·{" "}
+            <Link to="/community" className="font-semibold text-[#2F5D50] hover:underline">Community → Grow Together</Link>
+          </p>
+        </div>
+      </section>
+
       {/* 1. HERO SECTION — TWO-PART SPLIT */}
       <section className="relative overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32 bg-gradient-to-b from-[#FFFDF9] via-[#FAF5EC] to-[#FAF5EC]">
         {/* Decorative elements */}
