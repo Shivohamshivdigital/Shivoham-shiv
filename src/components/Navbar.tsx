@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight, Activity, ChevronDown } from "lucide-react";
+import { Menu, X, User, LogIn, LogOut, Sparkles, ArrowRight, ChevronDown } from "lucide-react";
 import { getSession, clearSession, displayName, onAuthChange, Session } from "../utils/session";
 
-// All treatments shown in the "Treatments" nav dropdown (slugs match the public course routes).
-const TREATMENTS: { label: string; to: string }[] = [
-  { label: "Marma Dab Chikitsa", to: "/courses/acupressure-therapy" },
-  { label: "Mudra Therapy", to: "/courses/mudra-therapy" },
+// Two primary verticals. WELLNESS = "transform your own life". ACADEMY = "become a practitioner".
+const WELLNESS: { label: string; to: string }[] = [
+  { label: "Natural Weight Management", to: "/weight-loss" },
+  { label: "14-Day Reset Challenge · ₹999", to: "/challenge" },
+  { label: "Kids Mindfulness & Focus", to: "/courses/mindfulness-kids" },
   { label: "Corporate & Adult Wellness", to: "/courses/corporate-wellness" },
-  { label: "Kids EQ Training", to: "/courses/mindfulness-kids" },
+  { label: "BMI Calculator", to: "/bmi-calculator" },
+];
+
+const ACADEMY: { label: string; to: string }[] = [
+  { label: "Mudra Therapy", to: "/courses/mudra-therapy" },
+  { label: "Ayurvedic Acupressure", to: "/courses/acupressure-therapy" },
+  { label: "Marma Dab Chikitsa", to: "/courses/acupressure-therapy" },
+  { label: "Meditation & Pranayama", to: "/academy" },
+  { label: "Advanced Certifications", to: "/academy" },
 ];
 
 interface NavbarProps {
@@ -18,7 +27,8 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [treatmentsOpen, setTreatmentsOpen] = useState(false);
+  const [wellnessOpen, setWellnessOpen] = useState(false);
+  const [academyOpen, setAcademyOpen] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -86,46 +96,27 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 pl-3">
-            
-            {/* ABOUT US */}
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
-                  isActive ? "text-amber-200" : "text-white hover:text-amber-100"
-                }`
-              }
-            >
-              ABOUT US
-            </NavLink>
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-5 pl-3">
 
-            {/* TREATMENTS (dropdown) */}
+            {/* WELLNESS PROGRAMS (dropdown) */}
             <div className="relative group">
               <NavLink
-                to="/treatments"
+                to="/wellness-programs"
                 className={({ isActive }) =>
                   `flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
                     isActive ? "text-amber-200" : "text-white hover:text-amber-100"
                   }`
                 }
               >
-                Treatments
+                Wellness Programs
                 <ChevronDown className="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" />
               </NavLink>
-              {/* Dropdown panel — pt-2 bridges the gap so hover survives */}
               <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-3 z-50">
                 <div className="w-64 rounded-2xl bg-white shadow-xl border border-green-100 p-2">
-                  <NavLink
-                    to="/treatments"
-                    className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#2F5D50] hover:bg-green-50 transition-colors"
-                  >
-                    All Treatments
-                  </NavLink>
-                  <div className="my-1 border-t border-green-50" />
-                  {TREATMENTS.map((t) => (
+                  <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#E8943A]">Transform yourself</span>
+                  {WELLNESS.map((t) => (
                     <NavLink
-                      key={t.to}
+                      key={t.label}
                       to={t.to}
                       className={({ isActive }) =>
                         `block px-3 py-2 rounded-xl text-[13px] font-semibold transition-colors ${
@@ -136,44 +127,73 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                       {t.label}
                     </NavLink>
                   ))}
+                  <div className="my-1 border-t border-green-50" />
+                  <NavLink to="/wellness-programs" className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#2F5D50] hover:bg-green-50 transition-colors">
+                    View all Wellness Programs →
+                  </NavLink>
                 </div>
               </div>
             </div>
 
-            {/* Ayurvedic / Natural Weight Loss */}
+            {/* ACADEMY (dropdown) */}
+            <div className="relative group">
+              <NavLink
+                to="/academy"
+                className={({ isActive }) =>
+                  `flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
+                    isActive ? "text-amber-200" : "text-white hover:text-amber-100"
+                  }`
+                }
+              >
+                Academy
+                <ChevronDown className="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" />
+              </NavLink>
+              <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-3 z-50">
+                <div className="w-64 rounded-2xl bg-white shadow-xl border border-green-100 p-2">
+                  <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#E8943A]">Become a practitioner</span>
+                  {ACADEMY.map((t) => (
+                    <NavLink
+                      key={t.label}
+                      to={t.to}
+                      className={({ isActive }) =>
+                        `block px-3 py-2 rounded-xl text-[13px] font-semibold transition-colors ${
+                          isActive ? "bg-green-50 text-[#2F5D50]" : "text-slate-700 hover:bg-green-50 hover:text-[#2F5D50]"
+                        }`
+                      }
+                    >
+                      {t.label}
+                    </NavLink>
+                  ))}
+                  <div className="my-1 border-t border-green-50" />
+                  <NavLink to="/academy" className="block px-3 py-2 rounded-xl text-[13px] font-bold text-[#2F5D50] hover:bg-green-50 transition-colors">
+                    View all Certifications →
+                  </NavLink>
+                </div>
+              </div>
+            </div>
+
+            {/* COMMUNITY */}
             <NavLink
-              to="/weight-loss"
+              to="/community"
               className={({ isActive }) =>
                 `text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
                   isActive ? "text-amber-200" : "text-white hover:text-amber-100"
                 }`
               }
             >
-              Weight Loss
+              Community
             </NavLink>
 
-            {/* BMI CALCULATOR */}
+            {/* ABOUT */}
             <NavLink
-              to="/bmi-calculator"
-              className={({ isActive }) =>
-                `flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
-                  isActive ? "text-amber-200" : "text-white hover:text-amber-100"
-                }`
-              }
-            >
-              <Activity className="w-3 h-3" /> BMI Calculator
-            </NavLink>
-
-            {/* CONTACT US */}
-            <NavLink
-              to="/contact"
+              to="/about"
               className={({ isActive }) =>
                 `text-[11px] font-bold uppercase tracking-wide whitespace-nowrap transition-colors duration-200 py-2 ${
                   isActive ? "text-amber-200" : "text-white hover:text-amber-100"
                 }`
               }
             >
-              CONTACT US
+              About
             </NavLink>
 
             {/* BLOG */}
@@ -185,15 +205,7 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 }`
               }
             >
-              BLOG
-            </NavLink>
-
-            {/* 14-DAY CHALLENGE — highlighted promo */}
-            <NavLink
-              to="/challenge"
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-[#5a3a12] text-[11px] font-extrabold uppercase tracking-wide shadow-sm transition-colors whitespace-nowrap"
-            >
-              <Sparkles className="w-3 h-3" /> 14-Day · ₹999
+              Blog
             </NavLink>
 
           </div>
@@ -228,23 +240,18 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 title="Log in"
               >
                 <LogIn className="w-3.5 h-3.5 shrink-0" />
-                <span>Start Your 60-Day Journey</span>
+                <span>Login</span>
               </Link>
             )}
 
-            {/* Whatsapp pill button */}
-            <a
-              href="https://wa.me/917317778215"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-11 px-5 bg-white hover:bg-neutral-50 text-[#2F5D50] rounded-full text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2"
+            {/* Primary CTA — Start Your Journey */}
+            <Link
+              to="/wellness-programs"
+              className="h-11 px-5 bg-gradient-to-br from-[#F0A64E] to-[#E8943A] hover:from-[#F3B05E] hover:to-[#EFAF3C] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap"
             >
-              {/* WhatsApp Green Icon */}
-              <svg className="w-4 h-4 fill-current text-[#25D366]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.993L2 22l5.13-1.347a9.945 9.945 0 0 0 4.887 1.277h.005c5.505 0 9.988-4.478 9.989-9.985C22 6.478 17.518 2 12.012 2zm6.05 14.153c-.333.931-1.637 1.77-2.228 1.833-.591.064-1.183.344-3.793-.733-3.132-1.293-5.115-4.47-5.271-4.678-.156-.208-1.254-1.666-1.254-3.178 0-1.513.788-2.257 1.068-2.558.28-.3.61-.375.813-.375h.582c.18 0 .422.016.649.525.234.526.8 1.944.869 2.083.07.139.116.301.023.486-.092.185-.139.3-.277.463-.14.163-.292.366-.417.49-.139.14-.284.293-.122.571.162.278.718 1.184 1.54 1.916.611.544 1.12.822 1.442.97.278.127.44.11.602-.07.162-.185.718-.834.908-1.112.19-.278.379-.232.616-.139.236.093 1.513.714 1.774.843.26.129.431.194.494.301.063.107.063.62-.27 1.551z"/>
-              </svg>
-              <span>Whatsapp</span>
-            </a>
+              <Sparkles className="w-4 h-4" />
+              <span>Start Your Journey</span>
+            </Link>
           </div>
 
           {/* Mobile hamburger button */}
@@ -296,36 +303,21 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               <Sparkles className="w-4 h-4" /> 14-Day Challenge · ₹999
             </Link>
 
-            <Link
-              to="/about"
-              onClick={() => setIsOpen(false)}
-              className={`py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10`}
-            >
-              ABOUT US
-            </Link>
-
-            {/* Mobile TREATMENTS (expandable submenu) */}
+            {/* Mobile WELLNESS PROGRAMS (expandable) */}
             <div>
               <button
-                onClick={() => setTreatmentsOpen((v) => !v)}
+                onClick={() => setWellnessOpen((v) => !v)}
                 className="w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
-                aria-expanded={treatmentsOpen}
+                aria-expanded={wellnessOpen}
               >
-                Treatments
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${treatmentsOpen ? "rotate-180" : ""}`} />
+                Wellness Programs
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${wellnessOpen ? "rotate-180" : ""}`} />
               </button>
-              {treatmentsOpen && (
+              {wellnessOpen && (
                 <div className="mt-1 ml-3 pl-3 border-l border-white/15 flex flex-col">
-                  <Link
-                    to="/treatments"
-                    onClick={() => setIsOpen(false)}
-                    className="py-2 px-3 rounded-xl text-[13px] font-bold text-amber-100 hover:bg-white/10"
-                  >
-                    All Treatments
-                  </Link>
-                  {TREATMENTS.map((t) => (
+                  {WELLNESS.map((t) => (
                     <Link
-                      key={t.to}
+                      key={t.label}
                       to={t.to}
                       onClick={() => setIsOpen(false)}
                       className="py-2 px-3 rounded-xl text-[13px] font-semibold text-white/90 hover:bg-white/10"
@@ -333,32 +325,64 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                       {t.label}
                     </Link>
                   ))}
+                  <Link
+                    to="/wellness-programs"
+                    onClick={() => setIsOpen(false)}
+                    className="py-2 px-3 rounded-xl text-[13px] font-bold text-amber-100 hover:bg-white/10"
+                  >
+                    View all Wellness Programs →
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile ACADEMY (expandable) */}
+            <div>
+              <button
+                onClick={() => setAcademyOpen((v) => !v)}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
+                aria-expanded={academyOpen}
+              >
+                Academy
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${academyOpen ? "rotate-180" : ""}`} />
+              </button>
+              {academyOpen && (
+                <div className="mt-1 ml-3 pl-3 border-l border-white/15 flex flex-col">
+                  {ACADEMY.map((t) => (
+                    <Link
+                      key={t.label}
+                      to={t.to}
+                      onClick={() => setIsOpen(false)}
+                      className="py-2 px-3 rounded-xl text-[13px] font-semibold text-white/90 hover:bg-white/10"
+                    >
+                      {t.label}
+                    </Link>
+                  ))}
+                  <Link
+                    to="/academy"
+                    onClick={() => setIsOpen(false)}
+                    className="py-2 px-3 rounded-xl text-[13px] font-bold text-amber-100 hover:bg-white/10"
+                  >
+                    View all Certifications →
+                  </Link>
                 </div>
               )}
             </div>
 
             <Link
-              to="/weight-loss"
+              to="/community"
               onClick={() => setIsOpen(false)}
               className={`py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10`}
             >
-              Ayurvedic / Natural Weight Loss
+              Community
             </Link>
 
             <Link
-              to="/bmi-calculator"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
-            >
-              <Activity className="w-4 h-4" /> BMI Calculator
-            </Link>
-
-            <Link
-              to="/contact"
+              to="/about"
               onClick={() => setIsOpen(false)}
               className={`py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10`}
             >
-              CONTACT US
+              About
             </Link>
 
             <Link
@@ -366,7 +390,15 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
               onClick={() => setIsOpen(false)}
               className={`py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10`}
             >
-              BLOG
+              Blog
+            </Link>
+
+            <Link
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className={`py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10`}
+            >
+              Contact
             </Link>
 
             {/* Mobile account / login */}
@@ -393,9 +425,17 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-2 py-2.5 px-3 rounded-xl text-sm font-bold uppercase tracking-wider text-white hover:bg-white/10"
                 >
-                  <LogIn className="w-4 h-4" /> Start Your 60-Day Journey
+                  <LogIn className="w-4 h-4" /> Login
                 </Link>
               )}
+
+              <Link
+                to="/wellness-programs"
+                onClick={() => setIsOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-br from-[#F0A64E] to-[#E8943A] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md transition-all"
+              >
+                <Sparkles className="w-4 h-4" /> Start Your Journey
+              </Link>
 
               <a
                 href="https://wa.me/917317778215"
