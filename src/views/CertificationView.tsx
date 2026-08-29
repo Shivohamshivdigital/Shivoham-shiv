@@ -28,6 +28,17 @@ const LEARN = [
   "Certification on completion of the 180-day program",
 ];
 
+// Specific techniques covered over the 180-day certification (from the program syllabus).
+const CURRICULUM = [
+  "Tongue, face & nail observation (diagnostic reading)",
+  "Marma (vital-point) techniques",
+  "Ayurvedic acupressure protocols",
+  "Colour-based practices",
+  "Structured case assessment",
+  "Seed-based practice",
+  "Byol magnet-based practice",
+];
+
 const WHO = [
   { icon: Stethoscope, title: "Physiotherapists", desc: "Add a drug-free, hands-on healing modality to your existing practice." },
   { icon: Sparkles, title: "Holistic & Ayurvedic practitioners", desc: "Deepen your toolkit with authentic Marma-based chronic-case protocols." },
@@ -234,6 +245,30 @@ export default function CertificationView() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* WHAT YOU'LL BE TRAINED IN — specific techniques from the syllabus */}
+      <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#E8C24A]">The methodology</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">What you'll be trained in</h2>
+          <p className="text-sm text-green-50/70 leading-relaxed mt-2">
+            Learn to systematically observe and assess physical indicators as part of the Ayurvedic Acupressure
+            methodology — over 180 days of practical, structured learning.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          {CURRICULUM.map((c) => (
+            <div key={c} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5">
+              <Sparkles className="w-4 h-4 text-[#E8C24A] shrink-0 mt-1" />
+              <span className="text-sm text-green-50/90">{c}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-[11px] text-green-100/50 leading-relaxed mt-6 max-w-2xl mx-auto">
+          Train live with Pooja Chaturvedi through practical learning, case discussions and expert mentorship.
+          These are traditional wellness practices and not a substitute for medical diagnosis or treatment.
+        </p>
       </section>
 
       {/* WHO IT'S FOR */}

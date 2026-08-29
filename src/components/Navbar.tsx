@@ -29,6 +29,8 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
   const [isOpen, setIsOpen] = useState(false);
   const [wellnessOpen, setWellnessOpen] = useState(false);
   const [academyOpen, setAcademyOpen] = useState(false);
+  // Desktop mega-menu: single source of truth so only ONE can ever be open.
+  const [desktopMenu, setDesktopMenu] = useState<null | "wellness" | "academy">(null);
   const [session, setSession] = useState<Session | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -44,9 +46,10 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
     navigate("/", { replace: true });
   };
 
-  // Close drawer on page change
+  // Close drawer + desktop mega-menu on page change
   useEffect(() => {
     setIsOpen(false);
+    setDesktopMenu(null);
   }, [location.pathname]);
 
   return (
@@ -99,7 +102,13 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
           <div className="hidden lg:flex items-center space-x-3 xl:space-x-5 pl-3">
 
             {/* WELLNESS PROGRAMS (dropdown) */}
-            <div className="relative group">
+            <div
+              className="relative"
+              onMouseEnter={() => setDesktopMenu("wellness")}
+              onMouseLeave={() => setDesktopMenu(null)}
+              onFocus={() => setDesktopMenu("wellness")}
+              onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setDesktopMenu(null); }}
+            >
               <NavLink
                 to="/wellness-programs"
                 className={({ isActive }) =>
@@ -109,9 +118,9 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 }
               >
                 Wellness Programs
-                <ChevronDown className="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" />
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${desktopMenu === "wellness" ? "rotate-180" : ""}`} />
               </NavLink>
-              <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-3 z-50">
+              <div className={`${desktopMenu === "wellness" ? "visible opacity-100 translate-y-0" : "invisible opacity-0 translate-y-1"} transition-all duration-150 absolute left-0 top-full pt-3 z-50`}>
                 <div className="w-64 rounded-2xl bg-white shadow-xl border border-green-100 p-2">
                   <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#EF8321]">Transform yourself</span>
                   {WELLNESS.map((t) => (
@@ -136,7 +145,13 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
             </div>
 
             {/* ACADEMY (dropdown) */}
-            <div className="relative group">
+            <div
+              className="relative"
+              onMouseEnter={() => setDesktopMenu("academy")}
+              onMouseLeave={() => setDesktopMenu(null)}
+              onFocus={() => setDesktopMenu("academy")}
+              onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setDesktopMenu(null); }}
+            >
               <NavLink
                 to="/academy"
                 className={({ isActive }) =>
@@ -146,9 +161,9 @@ export default function Navbar({ onOpenConsultation, updateTrigger }: NavbarProp
                 }
               >
                 Academy
-                <ChevronDown className="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" />
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${desktopMenu === "academy" ? "rotate-180" : ""}`} />
               </NavLink>
-              <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-3 z-50">
+              <div className={`${desktopMenu === "academy" ? "visible opacity-100 translate-y-0" : "invisible opacity-0 translate-y-1"} transition-all duration-150 absolute left-0 top-full pt-3 z-50`}>
                 <div className="w-64 rounded-2xl bg-white shadow-xl border border-green-100 p-2">
                   <span className="block px-3 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#EF8321]">Become a practitioner</span>
                   {ACADEMY.map((t) => (
