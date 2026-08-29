@@ -62,7 +62,7 @@ const STEPS = [
 ];
 
 const CLIENT_PROGRAMS = [
-  "Marma Dab Chikitsa (energy-point therapy)",
+  "Ayurvedic Acupressure (energy-point therapy)",
   "Mudra Therapy & guided breathing",
   "Ayurvedic / natural weight management",
   "Panchakarma & detox guidance",
