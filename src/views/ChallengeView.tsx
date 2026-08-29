@@ -437,7 +437,7 @@ export default function ChallengeView() {
       </section>
 
       {/* MARMA TESTIMONIALS CAROUSEL (auto-scrolling, with photos) */}
-      <MarmaTestimonials heading="What our Marma Dab Chikitsa clients say" />
+      <MarmaTestimonials heading="What our Ayurvedic Acupressure clients say" />
 
       {/* FOUNDER / YOUR GUIDE */}
       <section className="py-14 px-4 sm:px-6">

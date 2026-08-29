@@ -802,12 +802,12 @@ export default function CourseDetailView() {
     return (
       <div className="bg-[#FAFBF7] min-h-screen font-sans selection:bg-green-105 selection:text-green-900 text-[#3A463F] text-left">
         <SEO 
-          title="Marma Dab Chikitsa (Acupressure Therapy) Course: Energy Healing — Shivoham Shiv"
+          title="Ayurvedic Acupressure Course: Energy Healing — Shivoham Shiv"
           description="At Shivoham Shiv, experience the power of natural healing through Acupressure Therapy. This ancient practice works by activating specific pressure points in the body to relieve pain, restore energy balance, and support overall well-being."
           focusKeyword="acupressure therapy course"
           isCourseDetail={true}
           courseData={{
-            name: "Marma Dab Chikitsa (Acupressure Therapy): Energy Healing",
+            name: "Ayurvedic Acupressure: Energy Healing",
             description: "At Shivoham Shiv, experience the power of natural healing through Acupressure Therapy. This ancient practice works by activating specific pressure points in the body to relieve pain, restore energy balance, and support overall well-being – naturally and holistically.",
             lessonsCount: 16
           }}
@@ -815,7 +815,7 @@ export default function CourseDetailView() {
           breadcrumbItems={[
             { name: "Home", url: "/" },
             { name: "Courses", url: "/courses" },
-            { name: "Marma Dab Chikitsa", url: "/courses/acupressure-therapy" }
+            { name: "Ayurvedic Acupressure", url: "/courses/acupressure-therapy" }
           ]}
         />
         
@@ -837,26 +837,29 @@ export default function CourseDetailView() {
           <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
             <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#004C53] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
               <Sparkles className="w-3 text-[#C9A24B] fill-[#C9A24B]" />
-Online Marma Dab Chikitsa (Acupressure) Pathways
+Online Ayurvedic Acupressure Pathways
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-tight">
-              Marma Dab Chikitsa: Energy Healing
+              Ayurvedic Acupressure: Energy Healing
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
               At Shivoham Shiv, experience the power of natural healing through Acupressure Therapy. This ancient practice works by activating specific pressure points in the body to relieve pain, restore energy balance, and support overall well-being – naturally and holistically.
             </p>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#D9741A]/15 border border-[#D9741A]/40 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#F4A360]">
+              <Sparkles className="w-3.5 h-3.5" /> New Batch Begins · 25 September 2026
+            </div>
             <div className="pt-2">
-              <button 
+              <button
                 onClick={() => handleScrollToSegment("acupressure-contact-form")}
                 className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer border-none"
               >
-                Book a Session
+                Book Your Seat
               </button>
             </div>
             <div className="pt-6">
               <img
                 src="/marma-hero.jpg"
-                alt="Marma Dab Chikitsa transformation"
+                alt="Ayurvedic Acupressure transformation"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 className="mx-auto rounded-2xl shadow-2xl max-h-[440px] w-auto object-contain border border-green-800"
               />
@@ -870,7 +873,7 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
         {/* 2. MARQUEE STRIP */}
         <div className="bg-[#EFFFDF] border-y border-green-150 py-4 overflow-hidden relative w-full font-sans">
           <div className="animate-marquee-custom gap-8">
-            {Array(5).fill("Marma Dab Chikitsa (Acupressure) Live Course - Coming Soon").map((text, idx) => (
+            {Array(5).fill("Ayurvedic Acupressure Live Course · New Batch 25 September").map((text, idx) => (
               <div key={idx} className="flex items-center gap-4 shrink-0 text-[#004C53] text-xs sm:text-sm font-bold uppercase tracking-widest font-heading pr-8">
                 <span>{text}</span>
                 <Leaf className="w-4 h-4 fill-[#D9741A]/20 text-[#D9741A]" />
@@ -905,7 +908,7 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
             <div className="lg:col-span-7 space-y-6 text-left">
               <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Core Knowledge</span>
               <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
-                What is Marma Dab Chikitsa (Acupressure Therapy)?
+                What is Ayurvedic Acupressure?
               </h2>
               <div className="space-y-4 text-sm leading-relaxed text-[#3A463F]/95">
                 <p>
@@ -948,7 +951,7 @@ Online Marma Dab Chikitsa (Acupressure) Pathways
             <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
               <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Healing Philosophy</span>
               <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
-Marma Dab Chikitsa (Acupressure) – Natural Healing Through Touch
+Ayurvedic Acupressure – Natural Healing Through Touch
               </h2>
               <p className="text-sm leading-relaxed text-[#3A463F]/90 max-w-2xl mx-auto">
                 At Shivoham Shiv, our Acupressure Therapy services are designed to offer natural, effective, and practical healing support using time-tested techniques. We focus on correct methods, guided practice, and real-life application to ensure meaningful results.
@@ -1016,7 +1019,7 @@ Marma Dab Chikitsa (Acupressure) – Natural Healing Through Touch
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
           <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Physical Yield</span>
           <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] mt-2 mb-2">
-Why Practice Marma Dab Chikitsa (Acupressure)?
+Why Practice Ayurvedic Acupressure?
           </h2>
           <p className="text-sm uppercase font-bold tracking-wider text-slate-500 mb-10 block font-heading">
             Key Benefits of Acupressure Therapy:
@@ -1110,7 +1113,7 @@ Why Practice Marma Dab Chikitsa (Acupressure)?
               <Clock className="w-3" /> Upcoming Interactive Batch
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53] tracking-tight">
-Marma Dab Chikitsa (Acupressure) – Live Course (Coming Soon)
+Ayurvedic Acupressure – Live Course (Coming Soon)
             </h2>
             
             <div className="max-w-3xl mx-auto space-y-4 text-sm sm:text-base leading-relaxed text-[#3A463F]/90 font-light">
@@ -1157,7 +1160,7 @@ Marma Dab Chikitsa (Acupressure) – Live Course (Coming Soon)
             <div className="lg:col-span-7 space-y-6">
               <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Vedic Standard</span>
               <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
-Why Choose Shivoham Shiv for Marma Dab Chikitsa (Acupressure)?
+Why Choose Shivoham Shiv for Ayurvedic Acupressure?
               </h2>
               
               <div className="space-y-4 text-sm leading-relaxed text-[#3A463F]/90 font-light text-left">
@@ -1228,7 +1231,7 @@ Why Choose Shivoham Shiv for Marma Dab Chikitsa (Acupressure)?
             <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
               <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Systemic Restoration</span>
               <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
-Benefits of Our Marma Dab Chikitsa (Acupressure) Services
+Benefits of Our Ayurvedic Acupressure Services
               </h2>
               <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed italic max-w-md mx-auto">
                 Experience traditional acupressure practices adapted for modern, stress-free living.
@@ -1277,7 +1280,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Real People · Real Stories</span>
             <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] mt-1">
-              What our Marma Dab Chikitsa clients say
+              What our Ayurvedic Acupressure clients say
             </h2>
           </div>
 
@@ -1318,7 +1321,7 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
           })()}
 
           <p className="text-center text-[11px] text-slate-400 mt-8 max-w-2xl mx-auto">
-            Individual experiences shared by our clients — results vary from person to person. Marma Dab Chikitsa is a
+            Individual experiences shared by our clients — results vary from person to person. Ayurvedic Acupressure is a
             traditional wellness practice that supports wellbeing and is not a substitute for medical diagnosis or
             treatment. Please consult a doctor for any medical condition.
           </p>
@@ -2605,11 +2608,11 @@ Benefits of Our Marma Dab Chikitsa (Acupressure) Services
       ]
     },
     "acupressure-therapy": {
-      title: "Marma Dab Chikitsa: Heal Through Energy Points",
+      title: "Ayurvedic Acupressure: Heal Through Energy Points",
       description: "An ancient holistic wellness system detailing key meridian sites of the nervous system. Learn how gentle stimulation of Marma points on the head, feet, hands, and shoulders directly benefits internal organ health, resolves persistent somatic blocks, and triggers immediate endorphin release.",
       seoFocusWord: "acupressure therapy course",
       heroSubtitle: "Release locked energy nodes (Marma points) across your meridian lines. Pre-register for next month's batch today.",
-      category: "Marma Dab Chikitsa",
+      category: "Ayurvedic Acupressure",
       courseDuration: "5 Weeks (Fully Online Live Sessions)",
       studentCount: 194,
       lessons: 16,

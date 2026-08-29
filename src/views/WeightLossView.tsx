@@ -649,7 +649,7 @@ export default function WeightLossView() {
               icon: "🖐️"
             },
             {
-              title: "Marma Dab Chikitsa",
+              title: "Ayurvedic Acupressure",
               desc: "Focused physiological surface point activation to stimulate natural spleen, liver, and digestive meridian channels.",
               icon: "✨"
             },
@@ -837,7 +837,7 @@ export default function WeightLossView() {
                   ["Personal onboarding call", "with a certified Ayurvedic counselor to map your body type (Prakriti) & goals"],
                   ["Prakriti-personalized diet plan", "real home foods for your constitution — no shakes, no starving"],
                   ["Daily guided Yoga & Pranayama", "short structured routines you can do at home"],
-                  ["Mudra & Marma Dab Chikitsa", "acupressure/energy-point guidance to calm cortisol & aid digestion"],
+                  ["Mudra & Ayurvedic Acupressure", "acupressure/energy-point guidance to calm cortisol & aid digestion"],
                   ["1-on-1 practitioner support on WhatsApp", "ask questions and stay accountable, 6 days a week"],
                   ["Weekly progress reviews", "your plan is adjusted as your body responds"],
                   ["Adjusted for your health conditions", "thyroid, PCOS, BP, diabetes & medications reviewed first"],

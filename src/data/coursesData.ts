@@ -103,9 +103,9 @@ export const mockCourses: Course[] = [
   },
   {
     id: "acupressure-therapy",
-    title: "Marma Dab Chikitsa: Heal Through Energy Points",
-    tagline: "Release locked energy nodes (Marma points) across your meridian lines. Launches next month.",
-    category: "Marma Dab Chikitsa",
+    title: "Ayurvedic Acupressure: Heal Through Energy Points",
+    tagline: "Release locked energy nodes (Marma points) across your meridian lines. New batch begins 25 September.",
+    category: "Ayurvedic Acupressure",
     description: "An ancient holistic wellness system detailing key meridian sites of the nervous system. Learn how gentle stimulation of Marma points on the head, feet, hands, and shoulders directly benefits internal organ health, resolves persistent somatic blocks, and triggers immediate endorphin release.",
     rating: 4.8,
     reviewsCount: 88,
@@ -143,7 +143,7 @@ export const mockCourses: Course[] = [
       }
     ],
     isUpcoming: true,
-    upcomingStartDate: "July 12, 2026"
+    upcomingStartDate: "September 25, 2026"
   },
   {
     id: "kids-eq",

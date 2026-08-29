@@ -20,7 +20,7 @@ import { getAttribution } from "../utils/attribution";
 const SLOTS = ["Morning (10 AM – 12 PM)", "Afternoon (1 – 4 PM)", "Evening (5 – 8 PM)"];
 
 const LEARN = [
-  "A structured, step-by-step Marma Dab Chikitsa methodology",
+  "A structured, step-by-step Ayurvedic Acupressure methodology",
   "How to approach chronic & complex cases with more confidence",
   "Reading marma (vital) points and building a treatment plan",
   "Hands-on protocols you can use in your own clinic",
@@ -35,7 +35,7 @@ const WHO = [
 ];
 
 const FAQS = [
-  { q: "What is the strategy call?", a: "A free 45-minute 1:1 call where we understand your background and goals, and see whether the Marma Dab Chikitsa certification is the right fit for you. No obligation." },
+  { q: "What is the strategy call?", a: "A free 45-minute 1:1 call where we understand your background and goals, and see whether the Ayurvedic Acupressure certification is the right fit for you. No obligation." },
   { q: "Who is this certification for?", a: "Physiotherapists, holistic and Ayurvedic practitioners, and clinic owners who want a structured way to approach chronic cases and build a premium practice." },
   { q: "How long is the program?", a: "It's a guided 180-day program with a structured methodology, practice protocols and certification on completion. We'll walk you through the full structure on the call." },
   { q: "Do I need prior experience?", a: "Some healthcare or wellness background helps, but we'll assess your starting point on the call and guide you accordingly." },
@@ -62,7 +62,7 @@ export default function CertificationView() {
     const details = [
       form.date && `Preferred date: ${form.date}`,
       form.slot && `Slot: ${form.slot}`,
-      "45-min FREE 1:1 Strategy Call · Marma Dab Chikitsa certification",
+      "45-min FREE 1:1 Strategy Call · Ayurvedic Acupressure certification",
     ].filter(Boolean).join(" | ");
     // Forward the lead to the CRM (best-effort; key stays server-side).
     fetch("/api/lead", {
@@ -113,8 +113,8 @@ export default function CertificationView() {
   return (
     <div className="bg-[#0F2A1E] font-sans text-white">
       <SEO
-        title="Get Certified in Marma Dab Chikitsa — Shivoham Shiv"
-        description="A 180-day certification for physiotherapists, holistic & Ayurvedic practitioners and clinic owners to treat chronic cases with confidence using Marma Dab Chikitsa. Book a FREE 1:1 strategy call."
+        title="Get Certified in Ayurvedic Acupressure — Shivoham Shiv"
+        description="A 180-day certification for physiotherapists, holistic & Ayurvedic practitioners and clinic owners to treat chronic cases with confidence using Ayurvedic Acupressure. Book a FREE 1:1 strategy call."
       />
 
       {/* AUDIENCE BAR */}
@@ -133,7 +133,7 @@ export default function CertificationView() {
           className="max-w-3xl mx-auto text-center"
         >
           <h1 className="font-heading font-bold text-3xl sm:text-5xl leading-tight text-white">
-            Get Certified in <span className="text-[#E8C24A]">Marma Dab Chikitsa</span> — Treat Chronic Cases With
+            Get Certified in <span className="text-[#E8C24A]">Ayurvedic Acupressure</span> — Treat Chronic Cases With
             Confidence in <span className="text-[#E27C58]">180 Days</span>
           </h1>
           <p className="text-sm sm:text-lg text-green-50/80 leading-relaxed mt-5 max-w-2xl mx-auto">

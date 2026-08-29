@@ -65,7 +65,7 @@ export default function MarmaTestimonials({
       </div>
 
       <p className="text-center text-[11px] text-slate-400 mt-8 max-w-2xl mx-auto">
-        Individual experiences shared by our clients — results vary from person to person. Marma Dab Chikitsa is a
+        Individual experiences shared by our clients — results vary from person to person. Ayurvedic Acupressure is a
         traditional wellness practice that supports wellbeing and is not a substitute for medical care.
       </p>
     </section>

@@ -231,7 +231,7 @@ export default function AboutView() {
                 icon: "👶"
               },
               {
-                title: "Marma Dab Chikitsa",
+                title: "Ayurvedic Acupressure",
                 desc: "Stimulate localized nerve feedback loops and energy points to naturally relieve stress, remove blocks, and support whole-body recovery.",
                 icon: "✨"
               }

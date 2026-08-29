@@ -114,7 +114,7 @@ export default function DashboardView({ onSetBanner }: DashboardViewProps) {
     { label: "Yoga", to: "/courses", icon: PersonStanding },
     { label: "Meditation", to: "/challenge", icon: Wind },
     { label: "Mudra Therapy", to: "/courses/mudra-therapy", icon: Hand },
-    { label: "Marma Dab Chikitsa", to: "/courses/acupressure-therapy", icon: Fingerprint },
+    { label: "Ayurvedic Acupressure", to: "/courses/acupressure-therapy", icon: Fingerprint },
     { label: "Mindfulness", to: "/courses/corp-wellness", icon: Brain },
     { label: "Wellness Courses", to: "/courses", icon: GraduationCap },
   ];
