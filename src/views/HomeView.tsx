@@ -180,92 +180,6 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
         </Link>
       </section>
 
-      {/* 0.5 TWO PATHS — What are you looking for? */}
-      <section className="px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">One platform · Two paths</span>
-            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-2">What are you looking for?</h2>
-            <p className="text-sm text-slate-600 leading-relaxed mt-2">
-              Shivoham Shiv brings traditional Indian wellness into modern online learning — transform your own
-              wellbeing, or train to become a certified practitioner.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Wellness path */}
-            <Link
-              to="/wellness-programs"
-              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#004C53] to-[#003A40] text-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-amber-200 mb-5">
-                <Heart className="w-6 h-6" />
-              </div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-amber-300">Wellness · Transform</span>
-              <h3 className="font-heading font-bold text-2xl mt-1 mb-3 text-white">I want to transform my wellness</h3>
-              <p className="text-sm text-green-50/85 leading-relaxed mb-6">
-                Practical wellness programs for individuals, families, children and organizations — weight
-                management, meditation, yoga and stress relief.
-              </p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-white">
-                Explore Wellness Programs <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-            {/* Academy path */}
-            <Link
-              to="/academy"
-              className="group relative overflow-hidden rounded-3xl bg-white border border-green-100 p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-[#E3F1F1] flex items-center justify-center text-[#004C53] mb-5">
-                <Award className="w-6 h-6" />
-              </div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Academy · Become</span>
-              <h3 className="font-heading font-bold text-2xl text-[#004C53] mt-1 mb-3">I want to become a practitioner</h3>
-              <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Learn traditional wellness practices through structured online education, practical training and
-                certification.
-              </p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-[#004C53]">
-                Explore Academy <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 0.6 THREE-PILLAR OVERVIEW */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">
-              One Platform. Two Paths. One Global Community.
-            </h2>
-            <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#EEF6F6] border border-green-100 px-4 py-1.5 text-xs font-bold text-[#004C53]">
-              10,000+ Wellness Community &amp; Growing
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { to: "/wellness-programs", label: "Wellness Programs", sub: "Transform Yourself", desc: "Personal, family, children's and workplace wellness programs.", icon: Heart, accent: "bg-[#E3F1F1] text-[#004C53]" },
-              { to: "/academy", label: "Academy", sub: "Empower Others", desc: "Structured learning, practitioner training and specialized certifications.", icon: Award, accent: "bg-amber-50 text-[#EF8321]" },
-              { to: "/community", label: "Community", sub: "Grow Together", desc: "Ongoing learning, guided sessions, peer connection and practitioner development.", icon: Users, accent: "bg-[#E3F1F1] text-[#004C53]" },
-            ].map((p) => (
-              <Link
-                key={p.to}
-                to={p.to}
-                className="group flex flex-col items-center text-center bg-white border border-green-100 rounded-3xl p-8 shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all"
-              >
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${p.accent}`}>
-                  <p.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-[#004C53]">{p.label}</h3>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321] mt-1">{p.sub}</span>
-                <p className="text-xs text-slate-600 leading-relaxed mt-3">{p.desc}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 1. HERO SECTION — TWO-PART SPLIT */}
       <section className="relative overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32 bg-gradient-to-b from-[#FFFDF9] via-[#FAF5EC] to-[#FAF5EC]">
         {/* Decorative elements */}
@@ -419,6 +333,92 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* 0.5 TWO PATHS — What are you looking for? */}
+      <section className="px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">One platform · Two paths</span>
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-2">What are you looking for?</h2>
+            <p className="text-sm text-slate-600 leading-relaxed mt-2">
+              Shivoham Shiv brings traditional Indian wellness into modern online learning — transform your own
+              wellbeing, or train to become a certified practitioner.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Wellness path */}
+            <Link
+              to="/wellness-programs"
+              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#004C53] to-[#003A40] text-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-amber-200 mb-5">
+                <Heart className="w-6 h-6" />
+              </div>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-amber-300">Wellness · Transform</span>
+              <h3 className="font-heading font-bold text-2xl mt-1 mb-3 text-white">I want to transform my wellness</h3>
+              <p className="text-sm text-green-50/85 leading-relaxed mb-6">
+                Practical wellness programs for individuals, families, children and organizations — weight
+                management, meditation, yoga and stress relief.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-white">
+                Explore Wellness Programs <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+            {/* Academy path */}
+            <Link
+              to="/academy"
+              className="group relative overflow-hidden rounded-3xl bg-white border border-green-100 p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-[#E3F1F1] flex items-center justify-center text-[#004C53] mb-5">
+                <Award className="w-6 h-6" />
+              </div>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Academy · Become</span>
+              <h3 className="font-heading font-bold text-2xl text-[#004C53] mt-1 mb-3">I want to become a practitioner</h3>
+              <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                Learn traditional wellness practices through structured online education, practical training and
+                certification.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-[#004C53]">
+                Explore Academy <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 0.6 THREE-PILLAR OVERVIEW */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">
+              One Platform. Two Paths. One Global Community.
+            </h2>
+            <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#EEF6F6] border border-green-100 px-4 py-1.5 text-xs font-bold text-[#004C53]">
+              10,000+ Wellness Community &amp; Growing
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { to: "/wellness-programs", label: "Wellness Programs", sub: "Transform Yourself", desc: "Personal, family, children's and workplace wellness programs.", icon: Heart, accent: "bg-[#E3F1F1] text-[#004C53]" },
+              { to: "/academy", label: "Academy", sub: "Empower Others", desc: "Structured learning, practitioner training and specialized certifications.", icon: Award, accent: "bg-amber-50 text-[#EF8321]" },
+              { to: "/community", label: "Community", sub: "Grow Together", desc: "Ongoing learning, guided sessions, peer connection and practitioner development.", icon: Users, accent: "bg-[#E3F1F1] text-[#004C53]" },
+            ].map((p) => (
+              <Link
+                key={p.to}
+                to={p.to}
+                className="group flex flex-col items-center text-center bg-white border border-green-100 rounded-3xl p-8 shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all"
+              >
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${p.accent}`}>
+                  <p.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-heading font-bold text-lg text-[#004C53]">{p.label}</h3>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321] mt-1">{p.sub}</span>
+                <p className="text-xs text-slate-600 leading-relaxed mt-3">{p.desc}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
