@@ -262,113 +262,75 @@ export default function CourseDetailView() {
           </div>
         </section>
 
-        {/* 3. SECTION "Special Offer: Enroll in Mudra Therapy and Get Exclusive Benefits" */}
-        <section className="bg-[#FAF5EC] py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100">
+        {/* 3. SPECIAL ENROLLMENT BENEFITS — premium 3-card bundle */}
+        <section className="bg-[#FAF5EC] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#004C53]/10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Stellar Value Additions</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
-                Special Offer: Enroll in Mudra Therapy and Get Exclusive Benefits
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Included with enrollment</span>
+              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] mt-2">
+                Special Enrollment Benefits
               </h2>
-              <p className="text-[#3A463F]/90 max-w-2xl mx-auto leading-relaxed text-sm">
-                When you enroll in the <strong className="font-bold text-green-905">Mudra Therapy Course</strong>, you unlock the following exclusive benefits:
+              <p className="text-[#3A463F]/80 leading-relaxed text-sm mt-3">
+                Enroll in the Mudra Therapy Course and unlock additional wellness and learning benefits designed
+                to support your mind, focus and overall well-being.
               </p>
             </div>
 
-            {/* Timelines of special offer */}
-            <div className="relative">
-              {/* Center vertical Line (desktop) */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-sky-200 -translate-x-1/2 hidden md:block" />
-
-              <div className="space-y-12 md:space-y-0 relative">
-                
-                {/* 1) 1-Month Free Meditation Subscription */}
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-8">
-                  {/* Card Left */}
-                  <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-green-50 relative hover:-translate-y-0.5 transition-all">
-                    <div className="flex flex-col space-y-4">
-                      <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-700">
-                        <Leaf className="w-6 h-6" />
-                      </div>
-                      <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">
-                        1-Month Free Meditation Subscription
-                      </h3>
-                      <p className="text-xs text-[#3A463F]/85 leading-relaxed">
-                        Experience the calming effects of our Meditation Course with <strong>1 month of free access</strong>. This complimentary month allows you to explore meditation techniques designed to bring peace and clarity into your life.
-                      </p>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  num: "01",
+                  icon: Leaf,
+                  title: "1 Month Meditation Access",
+                  body: "Get 1 month of complimentary access to our Meditation Course. Explore guided meditation practices designed to support relaxation, mental clarity, mindfulness and a more balanced daily routine.",
+                },
+                {
+                  num: "02",
+                  icon: Heart,
+                  title: "6 Online Mental-Wellness Consultations",
+                  body: "Receive 6 complimentary online consultation sessions — one per month for six months. A structured space for emotional-wellness support and stress-management guidance.",
+                },
+                {
+                  num: "03",
+                  icon: GraduationCap,
+                  title: "Complimentary Vedic Math Course",
+                  body: "Get complimentary access to our Vedic Math Course. Learn traditional calculation techniques designed to strengthen numerical confidence, concentration and mental agility.",
+                },
+              ].map((b) => (
+                <div
+                  key={b.num}
+                  className="flex flex-col bg-white rounded-3xl border border-[#004C53]/10 shadow-sm hover:shadow-md transition-all p-7"
+                >
+                  {/* Illustration / media area */}
+                  <div className="relative h-28 rounded-2xl bg-[#EEF6F6] flex items-center justify-center mb-6 overflow-hidden">
+                    <b.icon className="w-12 h-12 text-[#004C53]" strokeWidth={1.4} />
+                    <span className="absolute top-3 left-3 font-heading text-lg font-extrabold text-[#EF8321]">{b.num}</span>
                   </div>
-
-                  {/* Node point */}
-                  <div className="flex justify-center z-15 relative">
-                    <div className="w-4 h-4 rounded-full bg-white border-2 border-sky-400 flex items-center justify-center shadow-xs">
-                      <div className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                    </div>
-                  </div>
-
-                  {/* Empty space */}
-                  <div className="hidden md:block" />
+                  <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug mb-2">{b.title}</h3>
+                  <p className="text-xs text-[#3A463F]/80 leading-relaxed flex-grow">{b.body}</p>
+                  <span className="mt-6 inline-flex items-center gap-1.5 self-start rounded-full bg-[#EF8321]/10 text-[#B85F22] text-[10px] font-bold uppercase tracking-wider px-3 py-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Included with enrollment
+                  </span>
                 </div>
-
-                {/* 2) 6 Free Psychiatrist Meetings */}
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-8 md:-mt-8">
-                  {/* Empty left */}
-                  <div className="hidden md:block" />
-
-                  {/* Node point */}
-                  <div className="flex justify-center z-15 relative">
-                    <div className="w-4 h-4 rounded-full bg-white border-2 border-green-500 flex items-center justify-center shadow-xs">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                    </div>
-                  </div>
-
-                  {/* Card Right */}
-                  <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-green-50 relative hover:-translate-y-0.5 transition-all">
-                    <div className="flex flex-col space-y-4">
-                      <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-700">
-                        <Brain className="w-6 h-6" />
-                      </div>
-                      <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">
-                        6 Free Psychiatrist Meetings
-                      </h3>
-                      <p className="text-xs text-[#3A463F]/85 leading-relaxed">
-                        As a special reward for enrolling in the Mudra Therapy Course, you'll receive <strong>6 free online psychiatrist meetings</strong>—one session each month for six months. These sessions are designed to support your mental health, help you manage stress, and enhance your emotional well-being.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 3) Vedic Math Course Complimentary */}
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-8 md:-mt-8">
-                  {/* Card Left */}
-                  <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-green-50 relative hover:-translate-y-0.5 transition-all">
-                    <div className="flex flex-col space-y-4">
-                      <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-700">
-                        <GraduationCap className="w-6 h-6" />
-                      </div>
-                      <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug">
-                        Vedic Math Course Complimentary
-                      </h3>
-                      <p className="text-xs text-[#3A463F]/85 leading-relaxed">
-                        Receive free access to the Vedic Math Course and learn ancient techniques to sharpen your mind and improve mental agility.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Node point */}
-                  <div className="flex justify-center z-15 relative">
-                    <div className="w-4 h-4 rounded-full bg-white border-2 border-sky-400 flex items-center justify-center shadow-xs">
-                      <div className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                    </div>
-                  </div>
-
-                  {/* Empty space */}
-                  <div className="hidden md:block" />
-                </div>
-
-              </div>
+              ))}
             </div>
 
+            {/* CTA */}
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => handleScrollToSegment("mudra-contact-form")}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#EF8321] hover:bg-[#004C53] text-white font-bold text-sm uppercase tracking-wider rounded-full shadow-md hover:shadow-lg transition-all"
+              >
+                Enroll in Mudra Therapy <ArrowRight className="w-4 h-4" />
+              </button>
+              <p className="text-xs text-[#3A463F]/70 mt-3 max-w-md mx-auto leading-relaxed">
+                Start learning practical Mudra techniques and unlock all included enrollment benefits.
+              </p>
+              <p className="text-[11px] text-[#3A463F]/50 mt-4 max-w-lg mx-auto leading-relaxed">
+                These are educational wellness practices that support healthy daily habits — not a substitute for
+                medical care or treatment for any condition. Individual experiences may vary.
+              </p>
+            </div>
           </div>
         </section>
 
