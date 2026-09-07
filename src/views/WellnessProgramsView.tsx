@@ -4,8 +4,6 @@ import {
   Sparkles,
   ArrowRight,
   Scale,
-  Wind,
-  Activity,
   Leaf,
   Baby,
   Building2,
@@ -30,9 +28,6 @@ const GROUPS: { label: string; heading: string; blurb: string; items: ProgramCar
     items: [
       { title: "Natural Weight Management", desc: "The 60-day Ayurvedic program — yoga, pranayama, mudra & a prakriti diet. No pills, no crash diets.", to: "/weight-loss", icon: Scale, tag: "Most popular" },
       { title: "14-Day Reset Challenge", desc: "A gentle 14-day daily ritual to beat bloating and feel lighter — just ₹999.", to: "/challenge", icon: Sparkles, tag: "₹999" },
-      { title: "Meditation & Stress Management", desc: "Guided meditation and breathing to calm the nervous system and sleep deeper.", to: "/contact", icon: Wind },
-      { title: "Yoga & Daily Movement", desc: "Simple, sustainable movement routines built around your body type.", to: "/contact", icon: Activity },
-      { title: "Lifestyle & Personal Wellness", desc: "A personalized Dinacharya (daily routine) for lasting balance.", to: "/contact", icon: Leaf },
       { title: "Check your BMI — free tool", desc: "See where your weight sits using Indian (ICMR) or WHO guidelines.", to: "/bmi-calculator", icon: HeartPulse },
     ],
   },
@@ -91,6 +86,27 @@ export default function WellnessProgramsView() {
             >
               Want to become a practitioner?
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="px-4 sm:px-6 lg:px-8 py-14 sm:py-16 bg-white border-b border-[#004C53]/10">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-3xl border border-[#004C53]/10 bg-[#EEF6F6] p-7">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Mission</span>
+            <p className="mt-3 text-sm sm:text-base text-[#004C53] leading-relaxed">
+              To make India's traditional wellness knowledge — Yoga, Meditation, Pranayama, Mudra and Ayurvedic
+              Acupressure — practical and accessible for modern life, by pairing it with a structured,
+              science-informed approach through our Wellness Programs and Academy.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-[#004C53]/10 bg-[#EEF6F6] p-7">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Vision</span>
+            <p className="mt-3 text-sm sm:text-base text-[#004C53] leading-relaxed">
+              A world where anyone, anywhere can learn authentic Indian wellness practices to care for their own
+              wellbeing — and where a new generation of responsible practitioners carries this knowledge forward.
+            </p>
           </div>
         </div>
       </section>

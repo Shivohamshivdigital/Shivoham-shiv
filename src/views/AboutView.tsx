@@ -117,9 +117,10 @@ export default function AboutView() {
                 <span className="text-xs uppercase font-bold text-[#EF8321] tracking-wider block mb-2">Our Calling</span>
                 <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#004C53] mb-4">Our Mission</h3>
                 <p className="text-sm text-slate-705 leading-relaxed">
-                  To revive ancient Indian wisdom through practical, science-backed learning that inspires real transformation; 
-                  to make holistic healing simple and accessible; to empower people to build emotional balance, mental clarity, 
-                  and physical vitality; and to help them naturally heal, prevent chronic illness, and live with true wellness.
+                  To make India's traditional wellness knowledge — Yoga, Meditation, Pranayama, Mudra and Ayurvedic
+                  Acupressure — practical and accessible for modern life, by pairing it with structured,
+                  science-informed learning through our Wellness Programs and Academy. We help people build healthier
+                  everyday habits and support aspiring practitioners to carry this knowledge forward responsibly.
                 </p>
               </div>
             </div>
@@ -133,9 +134,9 @@ export default function AboutView() {
                 <span className="text-xs uppercase font-bold text-green-700 tracking-wider block mb-2">Our Vision</span>
                 <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#004C53] mb-4">Our Vision</h3>
                 <p className="text-sm text-slate-705 leading-relaxed">
-                  To become a global hub for authentic Vedic learning and holistic wellness where ancient wisdom and modern 
-                  thinking meet; to use traditional Indian practices as practical tools for healing, peace, and purpose; 
-                  and to bridge spirituality with science through research, innovation, and community.
+                  A world where anyone, anywhere can learn authentic Indian wellness practices to care for their own
+                  wellbeing — and where a new generation of responsible wellness practitioners carries this knowledge
+                  forward, blending traditional wisdom with modern understanding through structured education and community.
                 </p>
               </div>
             </div>
