@@ -1950,22 +1950,37 @@ Benefits of Our Ayurvedic Acupressure Services
           <div className="max-w-4xl mx-auto space-y-6 relative z-10 text-center">
             <span className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#004C53] rounded-full text-[#FAFBF7] text-xs font-bold uppercase tracking-widest border border-green-800">
               <Sparkles className="w-3 text-amber-500 fill-amber-500" />
-              Active Admissions Open
+              Kids Mindfulness &amp; Focus Program
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-tight">
-              Help Your Child Build Better Focus, Emotional Balance &amp; Healthy Mind Habits.
+              Help Your Child Focus Better, Learn Better &amp; Grow With Confidence
             </h1>
             <p className="text-sm sm:text-base lg:text-lg text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
-              A Mindfulness &amp; Focus Program designed to help children manage everyday distractions, practise
-              concentration, develop emotional awareness and build healthier responses to everyday stress.
+              A structured wellness program designed to help children develop better focus, attention, mindfulness,
+              emotional awareness and healthy learning habits through age-appropriate yoga, breathing, meditation and
+              mindfulness activities.
             </p>
-            <div className="pt-4">
-              <button 
+            {/* Help Your Child Develop — chips */}
+            <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
+              {[
+                "🧠 Better Focus & Concentration",
+                "📚 Learning-Ready Habits",
+                "💡 Memory-Supportive Practices",
+                "🧘 Mindfulness & Self-Awareness",
+                "❤️ Emotional Regulation",
+                "🌱 Healthy Daily Routines",
+              ].map((chip) => (
+                <span key={chip} className="text-[11px] font-semibold rounded-full bg-white/10 border border-white/15 px-3 py-1.5 text-green-50/90">{chip}</span>
+              ))}
+            </div>
+            <div className="pt-2">
+              <button
                 onClick={() => handleScrollToSegment("kids-contact-form")}
                 className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
               >
-                Book a Session
+                Enroll Your Child Now →
               </button>
+              <p className="text-[11px] text-green-100/70 mt-3">Give your child the tools to focus, learn and grow.</p>
             </div>
           </div>
         </section>
