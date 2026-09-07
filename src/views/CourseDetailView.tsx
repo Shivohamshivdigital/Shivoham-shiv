@@ -182,20 +182,47 @@ export default function CourseDetailView() {
               Mudra Therapy Course
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
-              At Shivoham Shiv, discover the science of ancient hand gestures (Mudras) that help restore balance, reduce stress, and support holistic well-being. Learn simple, natural practices designed for modern life and lasting inner harmony.
+              A structured 3-month online course in the traditional science of ancient hand gestures (Hasta Mudras).
+              Learn simple, natural practices — designed for modern life — to support balance, relaxation and holistic
+              well-being, alongside Yoga, Meditation and Pranayama.
             </p>
             <div className="pt-2">
-              <button 
+              <button
                 onClick={() => handleScrollToSegment("mudra-contact-form")}
                 className="px-8 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-xl hover:shadow-2xl transition-all cursor-pointer"
               >
-                Book a Session
+                Join the Mudra Therapy Course
               </button>
             </div>
           </div>
           {/* Subtle geometric background filters */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-green-850/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-950/40 rounded-full blur-3xl pointer-events-none" />
+        </section>
+
+        {/* 1b. COURSE FORMAT STRIP */}
+        <section className="bg-[#004C53] text-white py-10 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 text-center">
+              {[
+                { icon: Clock, label: "Duration", value: "3 Months" },
+                { icon: Sparkles, label: "Mode", value: "Online" },
+                { icon: MessageSquare, label: "Live Classes", value: "3 / week" },
+                { icon: BookOpen, label: "Recorded", value: "Included" },
+                { icon: Layers, label: "Study Material", value: "Included" },
+                { icon: CheckCircle2, label: "Practical", value: "Included" },
+              ].map((f) => (
+                <div key={f.label} className="flex flex-col items-center gap-1.5">
+                  <f.icon className="w-6 h-6 text-[#E8C24A]" />
+                  <span className="font-heading font-bold text-sm sm:text-base text-white leading-none">{f.value}</span>
+                  <span className="text-[10px] uppercase tracking-widest text-green-100/70 font-semibold">{f.label}</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-[11px] text-green-100/70 mt-6">
+              3 Months · Online Live Classes · 3 Classes / Week · Recorded Sessions · Study Material · Guided Practical Training
+            </p>
+          </div>
         </section>
 
         {/* 2. SECTION "What is Mudra Therapy?" (image left, text right) */}
