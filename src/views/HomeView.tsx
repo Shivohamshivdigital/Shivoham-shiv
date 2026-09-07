@@ -198,12 +198,14 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               </div>
 
               <h1 className="font-heading font-semibold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#004C53] leading-[1.12]">
-                Ancient Wisdom.<br /><span className="italic text-[#004C53] font-heading font-medium">Modern Wellness.</span>
+                Vedic Wellness for Modern Life.<br /><span className="italic text-[#004C53] font-heading font-medium">Professional Learning for a Better Future.</span>
               </h1>
 
               <p className="text-base sm:text-lg text-[#004C53]/80 leading-relaxed max-w-xl">
-                Transform your wellbeing or build your expertise in traditional Indian wellness — through
-                structured online programs, professional certifications and a global learning community.
+                Discover a holistic approach to wellbeing through Yoga, Meditation, Pranayama, Mudra Therapy,
+                Ayurvedic Acupressure and mindfulness practices. We bring traditional Indian wellness knowledge into
+                structured programs designed for modern individuals, families, professionals and aspiring wellness
+                practitioners.
               </p>
 
               {/* Action Buttons — two paths, each with helper text */}
