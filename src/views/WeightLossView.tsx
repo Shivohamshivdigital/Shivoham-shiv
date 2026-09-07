@@ -320,20 +320,26 @@ export default function WeightLossView() {
             <Sparkles className="w-3.5 h-3.5" /> 100% Natural · Ayurvedic Root
           </span>
 
-          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-white">
-            Why does the weight keep coming back?<br />
-            <span className="text-amber-300">The 60-day natural system that finally stops it.</span>
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4 text-white">
+            Lose Weight. Build Healthy Habits.<br />
+            <span className="text-amber-300">Transform Your Lifestyle.</span>
           </h1>
 
-          <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto leading-relaxed mb-6">
-            Chemical pills, crash diets and starvation break the body down — they don't rebuild it. The 60-Day
-            Natural Program resets metabolism from within with Yoga, Pranayama, Mudra therapy, Acupressure and a
-            Prakriti-personalized natural diet.
+          <p className="text-sm sm:text-base font-semibold text-amber-100 mb-4">
+            A Holistic Weight Loss &amp; Wellness Program for Sustainable Transformation
+          </p>
+
+          <p className="text-sm sm:text-base text-green-50/85 max-w-2xl mx-auto leading-relaxed mb-4">
+            Our Weight Loss &amp; Wellness Program combines practical lifestyle guidance with Yoga, exercise, mindful
+            eating, breathing practices, meditation and wellness education to help you build healthier habits and
+            work toward a healthier weight. Your goal isn't just to lose weight — it's to build a healthier lifestyle
+            you can maintain.
           </p>
 
           <p className="text-[11px] sm:text-xs text-green-100/60 max-w-2xl mx-auto leading-relaxed mb-8">
-            These are traditional Ayurvedic wellness practices that support healthy daily habits — they don't
-            diagnose, treat or cure any condition, and results vary from person to person.
+            These are traditional wellness and lifestyle practices that support healthy daily habits — they don't
+            diagnose, treat or cure any condition. Individual results vary, and people with medical conditions should
+            continue working with their healthcare professional.
           </p>
 
           <div className="flex flex-col items-center gap-4">
@@ -813,6 +819,40 @@ export default function WeightLossView() {
             <Link to="/about" className="text-green-700 font-semibold underline underline-offset-2 hover:text-green-900">
               View her verified certificates →
             </Link>
+          </p>
+        </div>
+      </section>
+
+      {/* 10b. 5–10% WEIGHT LOSS — meaningful, honest motivator */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#EEF6F6] border-y border-[#004C53]/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Small change · Real benefit</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-[#004C53] mt-2">
+            You don't have to lose everything to start seeing benefits
+          </h2>
+          <p className="text-sm text-slate-600 leading-relaxed mt-3 max-w-2xl mx-auto">
+            For people with overweight or obesity, losing around <strong className="text-[#004C53]">5–10% of body weight</strong> can
+            provide meaningful health benefits. The goal isn't extreme weight loss — it's sustainable progress.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <div className="rounded-2xl bg-white border border-[#004C53]/10 px-6 py-4 shadow-sm">
+              <span className="block text-2xl font-bold text-[#004C53]">100 kg</span>
+              <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Starting weight</span>
+            </div>
+            <span className="text-[#EF8321] text-xl font-bold">→</span>
+            <div className="rounded-2xl bg-white border border-[#004C53]/10 px-6 py-4 shadow-sm">
+              <span className="block text-2xl font-bold text-[#EF8321]">−5 kg</span>
+              <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">5% loss</span>
+            </div>
+            <span className="text-[#EF8321] text-xl font-bold">→</span>
+            <div className="rounded-2xl bg-white border border-[#004C53]/10 px-6 py-4 shadow-sm">
+              <span className="block text-2xl font-bold text-[#EF8321]">−10 kg</span>
+              <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">10% loss</span>
+            </div>
+          </div>
+          <p className="text-[11px] text-slate-500 leading-relaxed mt-6 max-w-2xl mx-auto">
+            Individual results vary depending on age, starting weight, health conditions, medications, lifestyle and
+            other factors. This program supports healthy lifestyle habits and does not replace medical care.
           </p>
         </div>
       </section>
