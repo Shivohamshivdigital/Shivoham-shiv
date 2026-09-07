@@ -6,11 +6,11 @@ import { getSession, clearSession, displayName, onAuthChange, Session } from "..
 // Two primary verticals. WELLNESS = "transform your own life". ACADEMY = "become a practitioner".
 // Items without a dedicated page point to the vertical's hub page (never a broken link).
 const WELLNESS: { label: string; to: string }[] = [
-  { label: "Personal Wellness", to: "/wellness-programs" },
-  { label: "Kids Mindfulness & Focus", to: "/courses/mindfulness-kids" },
   { label: "Weight Management & Wellness", to: "/weight-loss" },
+  { label: "14-Day Reset Challenge · ₹999", to: "/challenge" },
+  { label: "Kids Mindfulness & Focus", to: "/courses/mindfulness-kids" },
   { label: "Corporate & Adult Wellness", to: "/courses/corporate-wellness" },
-  { label: "Yoga & Meditation", to: "/wellness-programs" },
+  { label: "BMI Calculator", to: "/bmi-calculator" },
 ];
 
 const ACADEMY: { label: string; to: string }[] = [

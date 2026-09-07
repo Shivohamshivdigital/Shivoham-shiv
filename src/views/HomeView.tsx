@@ -420,6 +420,15 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               </Link>
             ))}
           </div>
+
+          {/* Mission statement */}
+          <div className="mt-12 max-w-3xl mx-auto text-center">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Mission</span>
+            <p className="mt-3 font-heading text-lg sm:text-2xl text-[#004C53] leading-relaxed">
+              To bring India's traditional wellness knowledge into modern life — pairing Ayurvedic wisdom with a
+              structured, science-informed approach through our Wellness Programs and Academy.
+            </p>
+          </div>
         </div>
       </section>
 
