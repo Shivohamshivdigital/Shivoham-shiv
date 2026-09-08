@@ -78,6 +78,11 @@ export default function CourseDetailView() {
   }
 
   useEffect(() => {
+    // Corporate wellness now lives on its own dedicated landing page.
+    if (slug === "corporate-wellness" || slug === "corp-wellness") {
+      navigate("/corporate-wellness", { replace: true });
+      return;
+    }
     const validSlugs = ["corporate-wellness", "corp-wellness", "mudra-therapy", "mudra-therapy-course", "acupressure-therapy", "mindfulness-kids", "kids-eq"];
     if (slug && !validSlugs.includes(slug)) {
       navigate("/courses", { replace: true });

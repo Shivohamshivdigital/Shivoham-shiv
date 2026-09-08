@@ -9,7 +9,7 @@ const WELLNESS: { label: string; to: string }[] = [
   { label: "Weight Management & Wellness", to: "/weight-loss" },
   { label: "14-Day Reset Challenge · ₹999", to: "/challenge" },
   { label: "Kids Mindfulness & Focus", to: "/courses/mindfulness-kids" },
-  { label: "Corporate & Adult Wellness", to: "/courses/corporate-wellness" },
+  { label: "Corporate & Adult Wellness", to: "/corporate-wellness" },
   { label: "BMI Calculator", to: "/bmi-calculator" },
 ];
 

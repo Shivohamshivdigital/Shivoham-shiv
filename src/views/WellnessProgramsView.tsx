@@ -34,7 +34,7 @@ const PROGRAMS: Program[] = [
     subtitle: "Healthier People. Healthier Workplaces.",
     desc: "Modern professionals spend long hours working, sitting and managing demanding schedules. Our Corporate & Adult Wellness Programs introduce practical wellness practices such as yoga, mindfulness, breathing, movement and stress-management activities into everyday life.",
     button: "Explore Corporate Wellness",
-    to: "/courses/corporate-wellness",
+    to: "/corporate-wellness",
   },
   {
     emoji: "🕉️",
