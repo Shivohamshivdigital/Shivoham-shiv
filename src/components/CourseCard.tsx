@@ -1,6 +1,6 @@
 import React from "react";
 import { Course } from "../types";
-import { Star, Clock, BookOpen, Bookmark, BookmarkCheck, CalendarDays } from "lucide-react";
+import { Star, Bookmark, BookmarkCheck, CalendarDays } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface CourseCardProps {
@@ -17,7 +17,7 @@ export default function CourseCard({
   isBookmarked = false,
   onToggleBookmark
 }: CourseCardProps) {
-  const { id, title, tagline, category, rating, reviewsCount, duration, lessonsCount, studentCount, image, isUpcoming, upcomingStartDate, schedule, altName } = course;
+  const { id, title, tagline, category, rating, reviewsCount, studentCount, image, isUpcoming, upcomingStartDate, schedule, altName } = course;
 
   const getCoursePath = (uid: string) => {
     if (uid === "corp-wellness") return "/courses/corporate-wellness";
@@ -132,27 +132,14 @@ export default function CourseCard({
           </div>
         )}
 
-        {/* Details Footer */}
-        <div className="mt-auto border-t border-green-50 pt-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4 text-xs text-slate-750">
-            <div className="flex items-center space-x-1">
-              <Clock className="w-3.5 h-3.5 text-green-700" />
-              <span>{duration.split(" ")[0]} {duration.split(" ")[1]}</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <BookOpen className="w-3.5 h-3.5 text-green-700" />
-              <span>{lessonsCount} lessons</span>
-            </div>
+        {/* Enrolled badge */}
+        {isEnrolled && (
+          <div className="mt-auto border-t border-green-50 pt-4 flex items-center justify-end">
+            <span className="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full border border-green-200">
+              Enrolled
+            </span>
           </div>
-
-          {isEnrolled && (
-            <div className="flex flex-col items-end">
-              <span className="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full border border-green-200">
-                Enrolled
-              </span>
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );
