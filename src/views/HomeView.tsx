@@ -432,6 +432,28 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
             ))}
           </div>
 
+          {/* Wellness + Academy focus */}
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="rounded-3xl bg-[#EEF6F6] border border-green-100 p-6 sm:p-7">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Wellness Programs</span>
+              <p className="text-sm text-[#004C53] leading-relaxed mt-2">
+                Our wellness programs focus on holistic, natural, drug-free practices for mind-body balance —
+                supporting your everyday wellbeing and helping you manage stress and lifestyle-related concerns, as a
+                complement to professional medical care.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-[#EEF6F6] border border-green-100 p-6 sm:p-7">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Shivoham Shiv Academy</span>
+              <p className="text-sm text-[#004C53] leading-relaxed mt-2">
+                Our Academy is dedicated to reviving authentic Vedic sciences and training certified practitioners in
+                traditional, drug-free wellness techniques. Mudra Therapy courses equip practitioners to support
+                everyday stress and wellbeing through energy-channelling practices, while our Ayurvedic Acupressure
+                certification prepares them to support the body with long-standing, lifestyle-related concerns —
+                always within a responsible scope of practice.
+              </p>
+            </div>
+          </div>
+
           {/* Mission statement */}
           <div className="mt-12 max-w-3xl mx-auto text-center">
             <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Vision &amp; Mission</span>
