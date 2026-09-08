@@ -512,7 +512,12 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
       {/* 3. "HOW WE WORK" SECTION WITH VIDEO BLOCK */}
       <section className="py-20 lg:py-28 bg-[#FFFDF9] border-t border-b border-[#004C53]/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">See Inside</span>
+            <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] mt-2">A Glimpse Into Shivoham Shiv</h2>
+          </div>
+
           {/* Centerpiece: Elegant Video Block with Play Button Modal */}
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6">

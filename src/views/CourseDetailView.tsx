@@ -886,9 +886,9 @@ Online Ayurvedic Acupressure Pathways
             <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-white mb-8">Course Format</h2>
             <dl className="max-w-2xl mx-auto rounded-3xl bg-white/[0.06] border border-white/15 p-6 sm:p-8 space-y-3">
               {[
-                ["Duration", "3 Months"],
+                ["Duration", "6 Months"],
                 ["Mode", "Online"],
-                ["Live Classes", "3 Classes Every Week"],
+                ["Live Classes", "4 Classes Every Week"],
                 ["Recorded Classes", "Included for Revision"],
                 ["Study Material", "Included"],
                 ["Practical Training", "Included"],
@@ -901,7 +901,7 @@ Online Ayurvedic Acupressure Pathways
               ))}
             </dl>
             <p className="text-center text-xs sm:text-sm font-semibold text-green-50/80 mt-6">
-              3 Months | Online Live Classes | 3 Classes/Week | Recorded Sessions | Study Material Included
+              6 Months | Online Live Classes | 4 Classes/Week | Recorded Sessions | Study Material Included
             </p>
             <div className="text-center mt-6">
               <button
