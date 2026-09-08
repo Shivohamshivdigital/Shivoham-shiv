@@ -38,7 +38,7 @@ const GROUPS: { label: string; heading: string; blurb: string; items: CertCard[]
     blurb: "Structured online certifications with video modules, guidance and a certificate.",
     items: [
       { title: "Mudra Therapy Certification", desc: "The neurological basis, precise hand alignments and timing of 15 essential Hasta Mudras.", to: "/mudra-certification", icon: Fingerprint, tag: "Enrolling" },
-      { title: "Ayurvedic Acupressure", desc: "Meridian sites and pressure techniques rooted in Vedic acupressure.", to: "/courses/acupressure-therapy", icon: Hand },
+      { title: "Ayurvedic Acupressure", desc: "Meridian sites and pressure techniques rooted in Vedic acupressure.", to: "/marma-certification", icon: Hand },
       { title: "Meditation Therapy", desc: "Apply meditation as a therapeutic practice for stress and emotional balance.", to: "/contact", icon: Wind, tag: "Coming soon" },
     ],
   },

@@ -26,6 +26,7 @@ import WellnessProgramsView from "./views/WellnessProgramsView";
 import CorporateWellnessView from "./views/CorporateWellnessView";
 import KidsMindfulnessView from "./views/KidsMindfulnessView";
 import MudraCertificationView from "./views/MudraCertificationView";
+import AcupressureCourseView from "./views/AcupressureCourseView";
 import AcademyView from "./views/AcademyView";
 import CommunityView from "./views/CommunityView";
 import LoginView from "./views/LoginView";
@@ -279,8 +280,9 @@ function AppContent() {
 
           <Route path="/contact" element={<ContactView onSetBanner={setBannerMessage} />} />
           <Route path="/partner" element={<PartnerView />} />
-          <Route path="/certification" element={<CertificationView />} />
-          <Route path="/marma-certification" element={<CertificationView />} />
+          <Route path="/certification" element={<AcupressureCourseView />} />
+          <Route path="/marma-certification" element={<AcupressureCourseView />} />
+          <Route path="/ayurvedic-acupressure-course" element={<AcupressureCourseView />} />
           
           <Route path="/blog" element={<BlogView />} />
           <Route path="/blog/:slug" element={<BlogPostView />} />
