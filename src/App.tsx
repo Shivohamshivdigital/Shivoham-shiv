@@ -24,6 +24,7 @@ import AssessmentView from "./views/AssessmentView";
 import BmiCalculatorView from "./views/BmiCalculatorView";
 import WellnessProgramsView from "./views/WellnessProgramsView";
 import CorporateWellnessView from "./views/CorporateWellnessView";
+import KidsMindfulnessView from "./views/KidsMindfulnessView";
 import AcademyView from "./views/AcademyView";
 import CommunityView from "./views/CommunityView";
 import LoginView from "./views/LoginView";
@@ -263,6 +264,7 @@ function AppContent() {
           <Route path="/weight-management" element={<WeightLossView />} />
           <Route path="/wellness-programs" element={<WellnessProgramsView />} />
           <Route path="/corporate-wellness" element={<CorporateWellnessView />} />
+          <Route path="/kids-mindfulness" element={<KidsMindfulnessView />} />
           <Route path="/academy" element={<AcademyView />} />
           <Route path="/community" element={<CommunityView />} />
           <Route path="/challenge" element={<ChallengeView />} />
