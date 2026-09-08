@@ -406,8 +406,8 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { to: "/wellness-programs", label: "Wellness Programs", sub: "Transform Yourself", desc: "Personal, family, children's and workplace wellness programs.", icon: Heart, accent: "bg-[#E3F1F1] text-[#004C53]" },
-              { to: "/academy", label: "Academy", sub: "Empower Others", desc: "Structured learning, practitioner training and specialized certifications.", icon: Award, accent: "bg-amber-50 text-[#EF8321]" },
+              { to: "/wellness-programs", label: "Wellness Programs", sub: "Transform Your Mind, Body & Lifestyle", desc: "Practical programs designed to help you develop healthier habits, mindfulness, movement and balanced lifestyle practices.", icon: Heart, accent: "bg-[#E3F1F1] text-[#004C53]" },
+              { to: "/academy", label: "Shivoham Shiv Academy", sub: "Learn. Practice. Get Certified.", desc: "Structured education for people who want to develop deeper knowledge and practical skills in traditional Indian wellness practices.", icon: Award, accent: "bg-amber-50 text-[#EF8321]" },
               { to: "/community", label: "Community", sub: "Grow Together", desc: "Ongoing learning, guided sessions, peer connection and practitioner development.", icon: Users, accent: "bg-[#E3F1F1] text-[#004C53]" },
             ].map((p) => (
               <Link
@@ -658,28 +658,33 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                 {[
                   {
                     letter: "A",
-                    title: "Lineage Purity",
-                    desc: "Directly sourced from classical Sanskrit texts. No commercial alterations, generic theories, or unvouched concepts."
+                    title: "Traditional Knowledge",
+                    desc: "Explore practices rooted in India's rich wellness and knowledge traditions."
                   },
                   {
                     letter: "B",
-                    title: "Scientific Validation",
-                    desc: "We merge original neurological mappings with traditional Marma channels and fingertip electrical circuit sciences."
+                    title: "Structured Education",
+                    desc: "Learn through clearly designed programs rather than disconnected information."
                   },
                   {
                     letter: "C",
-                    title: "Active Live Mentorship",
-                    desc: "Benefit from bi-weekly alignment calls where chief guides evaluate individual hand locks and posture details."
+                    title: "Practical Learning",
+                    desc: "Move beyond theory and develop practical understanding through guided learning."
                   },
                   {
                     letter: "D",
-                    title: "Dynamic Simulators",
-                    desc: "Explore hands-on using element calculators, customized countdown intervals, and rhythmic breathers on-demand."
+                    title: "Guided Mentorship",
+                    desc: "Learn with support from experienced wellness educators and practitioners."
                   },
                   {
                     letter: "E",
-                    title: "Lifetime Dashboard Assets",
-                    desc: "Secure lifetime access. Log milestones, audit modules, and secure verifiable certifications seamlessly."
+                    title: "Professional Development",
+                    desc: "Build your knowledge through progressive courses and certification pathways."
+                  },
+                  {
+                    letter: "F",
+                    title: "Learn From Anywhere",
+                    desc: "Access online wellness education and learning opportunities from anywhere in the world."
                   }
                 ].map((item, i) => (
                   <div key={i} className="flex space-x-4 items-start pb-4 border-b border-[#004C53]/5 last:border-none">
