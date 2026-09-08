@@ -18,13 +18,13 @@ import { getAttribution } from "../utils/attribution";
 const SLOTS = ["Morning (10 AM – 12 PM)", "Afternoon (1 – 4 PM)", "Evening (5 – 8 PM)"];
 
 const COURSE_FORMAT: [string, string][] = [
-  ["Duration", "3 Months"],
+  ["Duration", "6 Months"],
   ["Mode", "Online"],
-  ["Live Classes", "3 Classes Every Week"],
+  ["Live Classes", "4 Classes Every Week"],
   ["Recorded Classes", "Included for Revision"],
   ["Study Material", "Included"],
   ["Practical Training", "Included"],
-  ["Certification", "90-Day Practitioner Certification"],
+  ["Learning Format", "Live + Recorded + Guided Practical Learning"],
 ];
 
 const OUTCOMES = [
@@ -134,7 +134,7 @@ const WHO_CAN_JOIN = [
 ];
 
 const WHY_CHOOSE = [
-  { t: "Structured Learning", d: "Traditional knowledge organized into a clear 3-month path — not disconnected videos." },
+  { t: "Structured Learning", d: "Traditional knowledge organized into a clear 6-month path — not disconnected videos." },
   { t: "Live Expert Instruction", d: "3 guided classes every week with real-time feedback from your mentor." },
   { t: "Recorded Sessions", d: "Revisit lessons and refine your technique at your own pace." },
   { t: "Comprehensive Study Material", d: "Anatomical guides, point maps, practice protocols and documentation templates." },
@@ -143,7 +143,7 @@ const WHY_CHOOSE = [
   { t: "Traditional & Modern Integration", d: "Traditional Marma wisdom within a modern understanding of anatomy and safety." },
   { t: "Responsible Practitioner Education", d: "Understand scope of practice and when to refer clients to medical professionals." },
   { t: "Live Community & Support", d: "Learn alongside other wellness seekers with peer support and accountability." },
-  { t: "Recognized Certification", d: "A 90-Day Practitioner Certification you can list in your professional credentials." },
+  { t: "Recognized Certification", d: "A Practitioner Certification you can list in your professional credentials." },
 ];
 
 const TESTIMONIALS = [
@@ -169,14 +169,14 @@ const TESTIMONIALS = [
 
 const GLANCE: [string, string][] = [
   ["Course Name", "Ayurvedic Acupressure & Marma Certification"],
-  ["Duration", "3 Months (12 weeks)"],
+  ["Duration", "6 Months (24 weeks)"],
   ["Mode", "Online"],
-  ["Live Classes", "3 per week"],
+  ["Live Classes", "4 per week"],
   ["Class Duration", "90 minutes each"],
   ["Recorded Classes", "Yes — all sessions recorded"],
   ["Study Material", "Yes — comprehensive, included"],
   ["Practical Training", "Yes — hands-on guided practice"],
-  ["Certification", "90-Day Practitioner Certification"],
+  ["Certification", "Practitioner Certification (on completion)"],
   ["Experience Required", "No — beginners welcome"],
   ["Prerequisites", "None — just curiosity and commitment"],
   ["Batch Size", "Max 15–20 students (intimate learning)"],
@@ -185,7 +185,7 @@ const GLANCE: [string, string][] = [
 
 const FAQS = [
   { q: "Do I need previous Ayurvedic knowledge to join?", a: "No. The course is designed for complete beginners. We start with Ayurvedic foundations and build systematically. If you're already familiar with Ayurveda, you'll deepen that knowledge and add practical Marma skills." },
-  { q: "How much time should I dedicate per week?", a: "Around 10–15 hours a week is recommended — roughly 4.5 hours for the 3 live classes, plus review, practice and study material. This gives you enough time to learn and practise properly." },
+  { q: "How much time should I dedicate per week?", a: "Around 12–18 hours a week is recommended — roughly 6 hours for the 4 live classes, plus review, practice and study material. This gives you enough time to learn and practise properly." },
   { q: "Can I practise professionally after completing the course?", a: "The certification qualifies you to offer Marma therapy as a supportive wellness practice within your scope. It does not qualify you to diagnose medical conditions or replace medical treatment. The ethics module covers scope of practice in detail." },
   { q: "What if I miss a live class?", a: "All live classes are recorded and available for review, so you can watch at your own pace. We still recommend attending live when possible for real-time feedback on your technique." },
   { q: "Is this certification recognised?", a: "It is a recognised professional wellness credential you can list on your profiles, website and business cards. It is not a medical licence, which would require separate regulatory approval." },
@@ -197,7 +197,7 @@ const COVERS = [
   { t: "Marma Techniques", d: "The science of Marma therapy — traditional Indian pressure points used for centuries to support balance and wellbeing." },
   { t: "Tongue, Face & Nail Observation", d: "Traditional Ayurvedic observation techniques — tongue, facial and nail assessment — to understand a client's wellness patterns." },
   { t: "Structured Case Assessment", d: "A systematic approach to case-taking, documentation and building individualized wellness plans." },
-  { t: "90-Day Practitioner Certification", d: "Complete the full course and receive your Ayurvedic Acupressure & Marma Practitioner Certification." },
+  { t: "Practitioner Certification", d: "Complete the full course and receive your Ayurvedic Acupressure & Marma Practitioner Certification." },
   { t: "Support for Chronic Concerns", d: "How Marma and acupressure may support clients managing everyday pain, stress, digestion and lifestyle-related concerns." },
   { t: "Responsibility & Scope of Practice", d: "Professional boundaries, when to refer clients to medical professionals, and how to practise ethically." },
 ];
@@ -306,7 +306,7 @@ export default function CertificationView() {
     <div className="bg-[#0F2A1E] font-sans text-white">
       <SEO
         title="Ayurvedic Acupressure & Marma Certification — Shivoham Shiv"
-        description="A 3-month online Ayurvedic Acupressure & Marma certification — live classes, recorded sessions, practical training and a 90-day practitioner certification. Beginners welcome. Book a free consultation."
+        description="A 6-month online Ayurvedic Acupressure & Marma certification — live classes, recorded sessions, practical training and a practitioner certification. Beginners welcome. Book a free consultation."
         focusKeyword="ayurvedic acupressure marma certification"
       />
 
@@ -329,7 +329,7 @@ export default function CertificationView() {
               </h1>
               <p className="text-sm sm:text-lg text-green-50/80 leading-relaxed mt-5">
                 Master Ayurvedic diagnosis, Marma therapy, acupressure and colour therapy under expert guidance. This
-                3-month online certification helps you understand how traditional Ayurvedic principles, Marma point
+                6-month online certification helps you understand how traditional Ayurvedic principles, Marma point
                 therapy and acupressure are used to support wellness and everyday health concerns.
               </p>
               <p className="text-sm text-green-50/70 leading-relaxed mt-3">
@@ -349,7 +349,7 @@ export default function CertificationView() {
                     </div>
                   ))}
                 </dl>
-                <p className="text-[11px] text-green-100/60 mt-4">3 Months | Online Live Classes | 3 Classes/Week | Recorded Sessions | Certification Included</p>
+                <p className="text-[11px] text-green-100/60 mt-4">6 Months | Online Live Classes | 4 Classes/Week | Recorded Sessions | Study Material Included</p>
                 <button onClick={scrollToBook} className="mt-5 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-b from-[#C0432F] to-[#9E3222] hover:from-[#CE4C36] hover:to-[#8E2C1E] text-white font-bold text-sm tracking-wide shadow-lg transition-all">
                   Join the Ayurvedic Certification Course <ArrowRight className="w-4 h-4" />
                 </button>
@@ -528,10 +528,10 @@ export default function CertificationView() {
       <section className="bg-[#002A2E] py-16 px-4 sm:px-6 border-y border-white/5">
         <div className="max-w-4xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <span className={goldLabel}>3 Months · Structured</span>
+            <span className={goldLabel}>6 Months · Structured</span>
             <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">Building Competence, Not Just Completion</h2>
             <p className="text-sm text-green-50/70 leading-relaxed mt-2">
-              Marma therapy shouldn't be learned by memorizing a chart of point locations. Three months gives you time to:
+              Marma therapy shouldn't be learned by memorizing a chart of point locations. Six months gives you time to:
             </p>
           </div>
           <ol className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -549,9 +549,9 @@ export default function CertificationView() {
       <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <span className={goldLabel}>Live Guidance</span>
-          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">3 Live Classes Every Week</h2>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">4 Live Classes Every Week</h2>
           <p className="text-sm text-green-50/70 leading-relaxed mt-2">
-            Attend three live online classes every week with real-time guidance from your instructor.
+            Attend four live online classes every week with real-time guidance from your instructor.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
