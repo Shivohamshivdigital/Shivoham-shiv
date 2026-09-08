@@ -259,6 +259,7 @@ function AppContent() {
           <Route path="/about" element={<AboutView />} />
           
           <Route path="/weight-loss" element={<WeightLossView />} />
+          <Route path="/weight-management" element={<WeightLossView />} />
           <Route path="/wellness-programs" element={<WellnessProgramsView />} />
           <Route path="/academy" element={<AcademyView />} />
           <Route path="/community" element={<CommunityView />} />
