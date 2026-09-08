@@ -45,7 +45,7 @@ const PILLARS = [
 
 const TRACKS = [
   { e: "🔄", dur: "14 Days", intensity: "Beginner-Friendly", t: "14-Day Metabolic Reset Challenge", d: "A kickstart focused on gentle gut cleansing, digestive reactivation and building consistent daily wellness habits.", inc: ["Gentle gut-cleansing protocols", "Digestive-fire (Agni) reactivation", "Daily wellness habit building", "Foundational mudra practice", "Introduction to Vedic nutrition"], best: "Anyone new to Vedic wellness or needing a quick reset", cta: "Start the 14-Day Challenge", action: "challenge" as const },
-  { e: "📅", dur: "60 Days", intensity: "Comprehensive", t: "60-Day Comprehensive Weight Management", d: "An immersive, guided track with personalized dietary guidelines, weekly Mudra routines, live movement sessions and one-on-one habit coaching.", inc: ["Personalized dietary guidelines", "Weekly Mudra routines", "Live movement sessions", "One-on-one habit coaching", "Progress tracking & adjustments", "Community support group", "Lifetime access to materials"], best: "Serious about sustainable, long-term change", cta: "Enroll in the 60-Day Program", action: "enroll" as const },
+  { e: "📅", dur: "60 Days", intensity: "Comprehensive", t: "60-Day Comprehensive Weight Management", d: "An immersive, guided track with personalized dietary guidelines, weekly Mudra routines, live movement sessions and one-on-one habit coaching.", inc: ["Personalized dietary guidelines", "Weekly Mudra routines", "Live movement sessions", "One-on-one habit coaching", "Progress tracking & adjustments", "Community support group", "Lifetime access to materials"], best: "Serious about sustainable, long-term change", cta: "Book a Consultation", action: "enroll" as const },
   { e: "💼", dur: "60 Days (Optimized)", intensity: "Time-Efficient", t: "Executive & Professional Track", d: "Time-efficient, desk-friendly movement, 5-minute desktop breathwork and metabolic meal-timing strategies for demanding schedules.", inc: ["Desk-friendly movement protocols", "5-minute desktop breathwork", "Metabolic meal-timing strategies", "Executive accountability coaching", "Flexible scheduling", "Corporate wellness integration"], best: "Busy professionals and corporate teams", cta: "Explore the Corporate Track", action: "consult" as const },
 ];
 
@@ -109,8 +109,8 @@ export default function WeightLossView() {
     }
   };
 
-  const scrollToEnroll = () => document.getElementById("enroll")?.scrollIntoView({ behavior: "smooth" });
   const goConsult = () => navigate("/contact");
+  const scrollToEnroll = goConsult;
 
   const sectionLabel = "text-xs uppercase font-bold tracking-widest text-[#EF8321]";
   const heading = "font-heading font-bold text-[#004C53]";
@@ -358,29 +358,6 @@ export default function WeightLossView() {
           <p className="text-center text-[11px] text-slate-500 mt-6 max-w-2xl mx-auto">
             Individual experiences shared by our participants; results vary from person to person and are not guaranteed.
           </p>
-        </div>
-      </section>
-
-      {/* ENROLL / PRICING (kept) */}
-      <section id="enroll" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md mx-auto rounded-3xl bg-gradient-to-b from-[#004C53] to-[#003A40] text-white p-8 sm:p-10 text-center shadow-xl">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-amber-300">60-Day Comprehensive Track</span>
-          <h3 className="font-heading font-bold text-2xl text-white mt-1">Weight Management Program</h3>
-          <div className="flex items-end justify-center gap-2 mt-4">
-            <span className="text-4xl font-bold text-white">{inr(pricing.courseAmount)}</span>
-            {pricing.courseOriginal ? <span className="text-lg text-green-100/50 line-through mb-1">{inr(pricing.courseOriginal)}</span> : null}
-            {pricing.discountLabel ? <span className="text-[11px] bg-amber-400 text-[#5a3a12] font-extrabold px-2 py-0.5 rounded-full mb-1.5">{pricing.discountLabel}</span> : null}
-          </div>
-          <ul className="text-left space-y-2.5 mt-6 mb-7">
-            {["Personalized Prakriti-based diet & lifestyle plan", "Yoga, Pranayama, Mudra & meditation guidance", "One-on-one habit coaching & progress tracking"].map((f) => (
-              <li key={f} className="flex items-start gap-2 text-sm text-green-50/90"><Check className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" /> {f}</li>
-            ))}
-          </ul>
-          <button onClick={() => handlePay("course")} disabled={payingPlan !== null} className="w-full py-4 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-md transition-all disabled:opacity-70">
-            {payingPlan === "course" ? "Processing…" : "Enroll in the 60-Day Program"}
-          </button>
-          <p className="text-[11px] text-green-100/60 mt-3 flex items-center justify-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Secure payment via Razorpay</p>
-          <button onClick={goConsult} className="text-xs font-semibold text-amber-100 underline underline-offset-2 mt-4">Prefer to talk first? Book a consultation →</button>
         </div>
       </section>
 
