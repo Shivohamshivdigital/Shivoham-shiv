@@ -118,20 +118,6 @@ const FAQS = [
   }
 ];
 
-const WELLNESS_PROGRAMS = [
-  { e: "⚖️", t: "Weight Management & Holistic Wellness", s: "Sustainable Health and Vitality", d: "Transform your relationship with food, movement and daily routines through Yoga, Pranayama, mindful eating and Ayurvedic lifestyle practices. No extreme diets — just sustainable, healthy changes.", to: "/weight-loss" },
-  { e: "🧠", t: "Kids Mindfulness & Focus", s: "Building Concentration & Emotional Balance in Children", d: "Help your child develop better focus, attention and emotional awareness through age-appropriate mindfulness, breathing and yoga practices — supporting both academic success and emotional wellbeing.", to: "/courses/mindfulness-kids" },
-  { e: "💼", t: "Corporate & Adult Wellness", s: "Stress Relief & Peak Vitality for Professionals", d: "Practical Yoga, meditation, breathing and mindfulness practices employees can use right at their desk. Create healthier, more productive teams.", to: "/courses/corporate-wellness" },
-  { e: "🔄", t: "14-Day Reset Challenge", s: "Quick Holistic Rejuvenation for Mind & Body", d: "A structured 14-day immersion combining Yoga, Pranayama, Meditation, Mudra and lifestyle practices to reset your energy, clarity and wellbeing.", to: "/14-day-challenge" },
-];
-
-const ACADEMY_PROGRAMS = [
-  { e: "🤲", t: "Mudra Therapy Certification", s: "Hands-On Training in Energy-Channel Practice", d: "Master the practice of Mudra Therapy through a 3-month course — correct techniques, traditional applications and responsible client work. 3 live classes per week + recorded sessions.", meta: "3 Months · Online Live + Recorded", to: "/courses/mudra-therapy" },
-  { e: "🧴", t: "Ayurvedic Acupressure Certification", s: "Marma & Pressure-Point Therapy", d: "Learn authentic Marma therapy with certified practitioner Pooja Chaturvedi — anatomical location, proper pressure application, client assessment and professional scope of practice.", meta: "3 Months · Online Live + Recorded", to: "/marma-certification" },
-  { e: "🌬️", t: "Meditation & Pranayama Intensive", s: "Master Breath & Mind-Training Techniques", d: "Structured training in traditional Pranayama and meditation methods — the practice of breath, energy management and how to guide others.", meta: "6 Weeks · Online Live + Recorded · Launching Soon", to: "/contact" },
-  { e: "🏆", t: "Advanced Professional Certifications", s: "3-Month & 6-Month Professional Diplomas", d: "Take your expertise further with advanced training, specialized modules, mentorship and professional development pathways.", meta: "3–6 Months · Online + Mentorship · For Existing Students", to: "/academy" },
-];
-
 export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewProps) {
   const [courses, setCourses] = useState<Course[]>([]);
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
@@ -496,73 +482,6 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
         </div>
       </section>
 
-      {/* 0.7 CORE PILLARS — PROGRAM DIRECTORY */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Wellness column */}
-          <div className="rounded-3xl bg-white border border-green-100 p-7 sm:p-8 shadow-xs">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-2xl">🌿</span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Shivoham Shiv Wellness</span>
-            </div>
-            <h3 className="font-heading font-bold text-xl text-[#004C53]">Holistic Healing &amp; Lifestyle Transformation</h3>
-            <p className="text-sm text-slate-600 leading-relaxed mt-2 mb-5">
-              Practical wellness programs designed to help you reclaim your health, build sustainable habits and
-              transform your lifestyle through ancient Vedic practices.
-            </p>
-            <div className="space-y-3">
-              {WELLNESS_PROGRAMS.map((p) => (
-                <Link key={p.t} to={p.to} className="group block rounded-2xl bg-[#FAF5EC] border border-[#004C53]/10 p-4 hover:border-[#EF8321]/40 transition-colors">
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl shrink-0">{p.e}</span>
-                    <div>
-                      <h4 className="font-heading font-bold text-sm text-[#004C53]">{p.t}</h4>
-                      <p className="text-[11px] font-semibold text-[#EF8321] mt-0.5">{p.s}</p>
-                      <p className="text-xs text-slate-600 leading-relaxed mt-1.5">{p.d}</p>
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#EF8321] mt-2">Learn More <ChevronRight className="w-3.5 h-3.5" /></span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <Link to="/wellness-programs" className="mt-5 inline-flex items-center justify-center gap-1.5 w-full px-6 py-3 bg-[#004C53] hover:bg-[#003A40] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-colors">
-              Explore All Wellness Programs <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
-          {/* Academy column */}
-          <div className="rounded-3xl bg-white border border-green-100 p-7 sm:p-8 shadow-xs">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-2xl">🎓</span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Shivoham Shiv Academy</span>
-            </div>
-            <h3 className="font-heading font-bold text-xl text-[#004C53]">Certified Training in Traditional Healing</h3>
-            <p className="text-sm text-slate-600 leading-relaxed mt-2 mb-5">
-              Professional certification programs combining ancient Vedic knowledge with modern scientific
-              understanding. Learn from certified experts and become a qualified wellness practitioner.
-            </p>
-            <div className="space-y-3">
-              {ACADEMY_PROGRAMS.map((p) => (
-                <Link key={p.t} to={p.to} className="group block rounded-2xl bg-[#FAF5EC] border border-[#004C53]/10 p-4 hover:border-[#EF8321]/40 transition-colors">
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl shrink-0">{p.e}</span>
-                    <div>
-                      <h4 className="font-heading font-bold text-sm text-[#004C53]">{p.t}</h4>
-                      <p className="text-[11px] font-semibold text-[#EF8321] mt-0.5">{p.s}</p>
-                      <p className="text-xs text-slate-600 leading-relaxed mt-1.5">{p.d}</p>
-                      <p className="text-[10px] font-semibold text-[#004C53]/60 uppercase tracking-wider mt-1.5">{p.meta}</p>
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#EF8321] mt-2">Learn More <ChevronRight className="w-3.5 h-3.5" /></span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <Link to="/academy" className="mt-5 inline-flex items-center justify-center gap-1.5 w-full px-6 py-3 bg-[#EF8321] hover:bg-[#d9741a] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-colors">
-              Explore Academy Programs <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* 2. ABOUT SECTION — "HELPING YOU HARMONIZE MIND, BODY & SPIRIT" */}
       <section className="py-20 lg:py-28 bg-[#FAF5EC] border-t border-[#004C53]/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -618,52 +537,6 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
       <section className="py-20 lg:py-28 bg-[#FFFDF9] border-t border-b border-[#004C53]/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">
-              Sequential Guidance
-            </span>
-            <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] mt-2 mb-4">
-              Our 4-Step Process
-            </h2>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#004C53]/70 max-w-xl mx-auto font-light">
-              We translate timeless Eastern scriptures into practical daily protocols, following a clear, lineage-backed healing sequence.
-            </p>
-          </div>
-
-          {/* Process Timeline Block */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {[
-              {
-                num: "01",
-                title: "Dosha Diagnostic",
-                desc: "Discover your unique body-mind constitution (Prakriti) using our classical element-calculating queries."
-              },
-              {
-                num: "02",
-                title: "Mudra Circuitry",
-                desc: "Unlock subtle energetic circuits in your hands using precise finger contact, duration, and pressure points."
-              },
-              {
-                num: "03",
-                title: "Prana Cooling",
-                desc: "Stabilize mental ripples using traditional breathing ratios and soothing acoustic drone alignments."
-              },
-              {
-                num: "04",
-                title: "Certified Checkout",
-                desc: "Receive customized posture reviews directly from chief mentors and log lifetime certificates."
-              }
-            ].map((step, idx) => (
-              <div key={idx} className="bg-[#FAF5EC] border border-[#004C53]/5 p-6 rounded-2xl flex flex-col justify-between text-left relative shadow-sm group hover:-translate-y-0.5 transition-transform duration-200">
-                <div>
-                  <span className="font-heading font-bold text-4xl text-[#004C53]/20 block group-hover:text-[#004C53]/45 transition-colors duration-250 mb-4">{step.num}</span>
-                  <h3 className="font-heading font-semibold text-base text-[#004C53] mb-2">{step.title}</h3>
-                  <p className="text-xs text-[#004C53]/80 font-light leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Centerpiece: Elegant Video Block with Play Button Modal */}
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6">
