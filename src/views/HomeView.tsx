@@ -439,30 +439,6 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               At Shivoham Shiv, our mission is to revive, modernize and share the healing wisdom of the Vedas —
               natural, drug-free wellness practices that work with the body's own capacity for balance and self-care.
             </p>
-            <div className="mt-7 space-y-4 text-left max-w-2xl mx-auto">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#EF8321]">Mudra Therapy — Everyday Balance &amp; Relief</p>
-                <p className="text-sm text-slate-600 leading-relaxed mt-1">
-                  Simple hand mudras, used in tradition to help redirect energy and support calm, focus and everyday
-                  relief as part of a daily wellness routine.
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#EF8321]">Ayurvedic Acupressure &amp; Marma — Ongoing Support</p>
-                <p className="text-sm text-slate-600 leading-relaxed mt-1">
-                  Working with the body's vital energy points to support wellbeing through long-standing, everyday
-                  lifestyle-related concerns.
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#EF8321]">Integrated Approach</p>
-                <p className="text-sm text-slate-600 leading-relaxed mt-1">
-                  Combined with Meditation, Pranayama and Yogic practice, our vision is to make ancient Vedic wisdom a
-                  practical, natural part of modern life — supporting your wellbeing alongside, not in place of,
-                  professional medical care.
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Three conceptual pillars */}
