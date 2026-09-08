@@ -16,7 +16,7 @@ const WELLNESS: { label: string; to: string }[] = [
 const ACADEMY: { label: string; to: string }[] = [
   { label: "Mudra Therapy", to: "/mudra-certification" },
   { label: "Meditation & Pranayama", to: "/academy" },
-  { label: "Ayurvedic Acupressure", to: "/courses/acupressure-therapy" },
+  { label: "Ayurvedic Acupressure", to: "/marma-certification" },
   { label: "Advanced Certifications", to: "/academy" },
 ];
 

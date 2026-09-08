@@ -22,7 +22,7 @@ export default function CourseCard({
   const getCoursePath = (uid: string) => {
     if (uid === "corp-wellness") return "/corporate-wellness";
     if (uid === "mudra-therapy") return "/mudra-certification";
-    if (uid === "acupressure-therapy") return "/courses/acupressure-therapy";
+    if (uid === "acupressure-therapy") return "/marma-certification";
     if (uid === "kids-eq") return "/courses/mindfulness-kids";
     return `/courses/${uid}`;
   };
