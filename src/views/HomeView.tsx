@@ -704,6 +704,57 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
         </div>
       </section>
 
+      {/* 4b. WHO WE SERVE */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-y border-[#004C53]/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Who We Serve</span>
+            <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] mt-2">A Wellness Journey for Every Stage of Life</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { e: "👨‍👩‍👧", t: "Individuals & Families", d: "Build practical wellness habits together." },
+              { e: "🧒", t: "Children", d: "Develop mindfulness, focus and healthy routines." },
+              { e: "💼", t: "Working Professionals", d: "Introduce movement, mindfulness and stress-management practices into busy lifestyles." },
+              { e: "🏢", t: "Organizations", d: "Create structured wellness initiatives for employees and teams." },
+              { e: "🧘", t: "Wellness Enthusiasts", d: "Explore traditional Indian wellness practices more deeply." },
+              { e: "🎓", t: "Aspiring Practitioners", d: "Develop professional knowledge through specialized Academy programs." },
+            ].map((w) => (
+              <div key={w.t} className="rounded-3xl bg-[#FAF5EC] border border-[#004C53]/10 p-6">
+                <div className="text-3xl mb-3">{w.e}</div>
+                <h3 className="font-heading font-bold text-base text-[#004C53] mb-1.5">{w.t}</h3>
+                <p className="text-xs text-[#004C53]/70 leading-relaxed">{w.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4c. HOW IT WORKS — 5 STEPS */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">How It Works</span>
+            <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] mt-2">Your Journey Starts Here</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {[
+              { n: "01", t: "Choose Your Goal", d: "Decide whether you want personal wellness or professional learning." },
+              { n: "02", t: "Choose Your Program", d: "Select the wellness program or Academy course that matches your needs." },
+              { n: "03", t: "Learn With Guidance", d: "Participate in structured online learning and guided sessions." },
+              { n: "04", t: "Practice", d: "Apply what you learn through regular practice." },
+              { n: "05", t: "Grow", d: "Continue your journey through advanced learning, certification and professional development." },
+            ].map((s) => (
+              <div key={s.n} className="rounded-2xl bg-white border border-[#004C53]/10 p-6">
+                <span className="font-heading text-xl font-extrabold text-[#EF8321]">{s.n}</span>
+                <h3 className="font-heading font-bold text-sm text-[#004C53] mt-1 mb-1.5">{s.t}</h3>
+                <p className="text-xs text-[#004C53]/70 leading-relaxed">{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 5. "COURSES" STRIP — LAYOUT OF THE 4 COURSE CARDS */}
       <section className="py-20 lg:py-28 bg-[#FFFDF9] border-t border-b border-[#004C53]/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1078,6 +1129,38 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
             </button>
           </div>
 
+        </div>
+      </section>
+
+      {/* 9. GLOBAL COMMUNITY */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-[#004C53]/10">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Global Wellness Community</span>
+          <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] mt-2">Bringing Traditional Indian Wellness to the World</h2>
+          <p className="mt-4 text-base text-[#004C53]/75 leading-relaxed">
+            Shivoham Shiv combines traditional Indian wellness practices with modern online education to make
+            structured learning accessible to people across the globe. Whether you are joining a wellness program for
+            yourself or pursuing professional education through the Academy, you can learn and grow from wherever you are.
+          </p>
+        </div>
+      </section>
+
+      {/* 10. FINAL CTA */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-white">Your Wellness Journey. Your Learning Journey. Your Next Step.</h2>
+          <p className="mt-4 text-base text-green-50/85 leading-relaxed">
+            Whether you want to transform your own wellbeing or build professional expertise in traditional Indian
+            wellness, Shivoham Shiv gives you a structured path to move forward.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link to="/wellness-programs" className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all">
+              Explore Wellness Programs <ChevronRight className="w-4 h-4" />
+            </Link>
+            <Link to="/academy" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#004C53] hover:bg-green-50 font-bold text-xs uppercase tracking-wider rounded-full transition-all">
+              Explore Academy <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
