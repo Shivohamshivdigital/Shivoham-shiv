@@ -1,51 +1,48 @@
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "motion/react";
-import {
-  Sparkles,
-  ArrowRight,
-  Scale,
-  Leaf,
-  Baby,
-  Building2,
-  HeartPulse,
-  ChevronRight,
-} from "lucide-react";
+import { ArrowRight, Leaf, ChevronRight } from "lucide-react";
 import SEO from "../components/SEO";
 
-interface ProgramCard {
+interface Program {
+  emoji: string;
   title: string;
+  subtitle: string;
   desc: string;
+  button: string;
   to: string;
-  icon: any;
-  tag?: string;
 }
 
-const GROUPS: { label: string; heading: string; blurb: string; items: ProgramCard[] }[] = [
+const PROGRAMS: Program[] = [
   {
-    label: "For Individuals",
-    heading: "Transform your own wellbeing",
-    blurb: "Natural, guided programs you can do from home — for energy, digestion, calm and a healthier weight.",
-    items: [
-      { title: "Natural Weight Management", desc: "The 60-day Ayurvedic program — yoga, pranayama, mudra & a prakriti diet. No pills, no crash diets.", to: "/weight-loss", icon: Scale, tag: "Most popular" },
-      { title: "14-Day Reset Challenge", desc: "A gentle 14-day daily ritual to beat bloating and feel lighter — just ₹999.", to: "/challenge", icon: Sparkles, tag: "₹999" },
-      { title: "Check your BMI — free tool", desc: "See where your weight sits using Indian (ICMR) or WHO guidelines.", to: "/bmi-calculator", icon: HeartPulse },
-    ],
+    emoji: "🧘",
+    title: "Kids Mindfulness & Focus",
+    subtitle: "Help Your Child Build Focus, Calmness & Healthy Habits",
+    desc: "Introduce children to age-appropriate mindfulness, breathing, yoga and focus-building practices that can become part of their daily routine. Designed to encourage greater awareness, concentration and positive lifestyle habits.",
+    button: "Explore Kids Mindfulness & Focus",
+    to: "/courses/mindfulness-kids",
   },
   {
-    label: "For Kids",
-    heading: "Focus, calm & healthy habits for children",
-    blurb: "Help your child manage distractions, build concentration and develop emotional balance.",
-    items: [
-      { title: "Mindfulness & Focus for Kids", desc: "Attention training, emotional awareness and calm-down techniques for ages 6–14.", to: "/courses/mindfulness-kids", icon: Baby },
-    ],
+    emoji: "⚖️",
+    title: "Weight Management & Wellness",
+    subtitle: "Build Healthier Habits. Create Sustainable Lifestyle Changes.",
+    desc: "Develop a healthier relationship with movement, daily routines, mindful practices and lifestyle habits. Our wellness approach focuses on building consistency rather than relying on short-term solutions.",
+    button: "Explore Weight Management & Wellness",
+    to: "/weight-loss",
   },
   {
-    label: "For Organizations",
-    heading: "Wellness for teams that sit all day",
-    blurb: "Reduce burnout, sluggish digestion and desk-fatigue with practical daily rituals for your team.",
-    items: [
-      { title: "Corporate & Adult Wellness", desc: "Dinacharya routines, breathing blueprints and live alignment sessions for workplaces.", to: "/courses/corporate-wellness", icon: Building2 },
-    ],
+    emoji: "💼",
+    title: "Corporate & Adult Wellness",
+    subtitle: "Healthier People. Healthier Workplaces.",
+    desc: "Modern professionals spend long hours working, sitting and managing demanding schedules. Our Corporate & Adult Wellness Programs introduce practical wellness practices such as yoga, mindfulness, breathing, movement and stress-management activities into everyday life.",
+    button: "Explore Corporate Wellness",
+    to: "/courses/corporate-wellness",
+  },
+  {
+    emoji: "🕉️",
+    title: "Yoga & Meditation",
+    subtitle: "Move Better. Breathe Better. Live With Greater Awareness.",
+    desc: "Build a consistent practice through Yoga, Meditation, Pranayama and mindfulness. Our programs are designed to make traditional practices practical and accessible for today's lifestyle.",
+    button: "Explore Yoga & Meditation",
+    to: "/contact",
   },
 ];
 
@@ -66,12 +63,12 @@ export default function WellnessProgramsView() {
             <Leaf className="w-3.5 h-3.5" /> Wellness · Transform
           </span>
           <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-white">
-            Transform your wellbeing,<br />
-            <span className="text-amber-300">the natural Vedic way</span>
+            Transform Your Health. Mind. <span className="text-amber-300">Lifestyle.</span>
           </h1>
-          <p className="text-sm sm:text-base text-green-50/85 max-w-xl mx-auto leading-relaxed mb-8">
-            Online wellness programs designed for individuals, children, families and organizations —
-            rooted in traditional Indian practices, built for modern life.
+          <p className="text-sm sm:text-base text-green-50/85 max-w-2xl mx-auto leading-relaxed mb-8">
+            Our wellness programs are designed for modern lifestyles and focus on practical, sustainable wellbeing.
+            Whether you want to improve your own lifestyle, support your family, help children develop healthy habits
+            or create a healthier workplace, there is a program for you.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
@@ -111,49 +108,28 @@ export default function WellnessProgramsView() {
         </div>
       </section>
 
-      {/* Program groups */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-16">
-        {GROUPS.map((group) => (
-          <motion.section
-            key={group.label}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className="text-center max-w-2xl mx-auto mb-8">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">{group.label}</span>
-              <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mt-1">{group.heading}</h2>
-              <p className="text-sm text-slate-600 leading-relaxed mt-2">{group.blurb}</p>
+      {/* Program cards */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {PROGRAMS.map((p) => (
+            <div
+              key={p.title}
+              className="flex flex-col bg-white border border-green-100 rounded-3xl p-7 shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="text-3xl mb-4">{p.emoji}</div>
+              <h2 className="font-heading font-bold text-xl text-[#004C53] leading-snug">{p.title}</h2>
+              <p className="text-sm font-semibold text-[#EF8321] mt-1 mb-2">{p.subtitle}</p>
+              <p className="text-sm text-slate-600 leading-relaxed flex-grow">{p.desc}</p>
+              <Link
+                to={p.to}
+                className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#004C53] hover:text-[#EF8321] transition-colors"
+              >
+                {p.button} <ChevronRight className="w-4 h-4" />
+              </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {group.items.map((p) => (
-                <Link
-                  key={p.title}
-                  to={p.to}
-                  className="group flex flex-col bg-white border border-green-100 rounded-3xl p-6 shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-11 h-11 rounded-2xl bg-green-100 text-green-700 flex items-center justify-center">
-                      <p.icon className="w-6 h-6" />
-                    </div>
-                    {p.tag && (
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#EF8321] bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-full">
-                        {p.tag}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-heading font-bold text-lg text-[#004C53] leading-snug mb-2">{p.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4 flex-grow">{p.desc}</p>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#003A40]">
-                    Explore <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </motion.section>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
 
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
