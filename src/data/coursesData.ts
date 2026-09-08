@@ -110,7 +110,7 @@ export const mockCourses: Course[] = [
     rating: 4.8,
     reviewsCount: 88,
     duration: "5 Weeks (Pre-registration open)",
-    schedule: "6 Months · 3 days a week",
+    schedule: "6 Months · 4 days a week",
     lessonsCount: 16,
     studentCount: 194,
     level: "Intermediate",
