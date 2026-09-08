@@ -618,52 +618,6 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
       <section className="py-20 lg:py-28 bg-[#FFFDF9] border-t border-b border-[#004C53]/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">
-              Sequential Guidance
-            </span>
-            <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] mt-2 mb-4">
-              Our 4-Step Process
-            </h2>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#004C53]/70 max-w-xl mx-auto font-light">
-              We translate timeless Eastern scriptures into practical daily protocols, following a clear, lineage-backed healing sequence.
-            </p>
-          </div>
-
-          {/* Process Timeline Block */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {[
-              {
-                num: "01",
-                title: "Dosha Diagnostic",
-                desc: "Discover your unique body-mind constitution (Prakriti) using our classical element-calculating queries."
-              },
-              {
-                num: "02",
-                title: "Mudra Circuitry",
-                desc: "Unlock subtle energetic circuits in your hands using precise finger contact, duration, and pressure points."
-              },
-              {
-                num: "03",
-                title: "Prana Cooling",
-                desc: "Stabilize mental ripples using traditional breathing ratios and soothing acoustic drone alignments."
-              },
-              {
-                num: "04",
-                title: "Certified Checkout",
-                desc: "Receive customized posture reviews directly from chief mentors and log lifetime certificates."
-              }
-            ].map((step, idx) => (
-              <div key={idx} className="bg-[#FAF5EC] border border-[#004C53]/5 p-6 rounded-2xl flex flex-col justify-between text-left relative shadow-sm group hover:-translate-y-0.5 transition-transform duration-200">
-                <div>
-                  <span className="font-heading font-bold text-4xl text-[#004C53]/20 block group-hover:text-[#004C53]/45 transition-colors duration-250 mb-4">{step.num}</span>
-                  <h3 className="font-heading font-semibold text-base text-[#004C53] mb-2">{step.title}</h3>
-                  <p className="text-xs text-[#004C53]/80 font-light leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Centerpiece: Elegant Video Block with Play Button Modal */}
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6">
