@@ -880,14 +880,48 @@ Online Ayurvedic Acupressure Pathways
           </div>
         </div>
 
+        {/* 2b. COURSE FORMAT */}
+        <section className="bg-[#004C53] text-white py-14 px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-white mb-8">Course Format</h2>
+            <dl className="max-w-2xl mx-auto rounded-3xl bg-white/[0.06] border border-white/15 p-6 sm:p-8 space-y-3">
+              {[
+                ["Duration", "3 Months"],
+                ["Mode", "Online"],
+                ["Live Classes", "3 Classes Every Week"],
+                ["Recorded Classes", "Included for Revision"],
+                ["Study Material", "Included"],
+                ["Practical Training", "Included"],
+                ["Learning Format", "Live + Recorded + Guided Practical Learning"],
+              ].map(([k, v]) => (
+                <div key={k} className="flex flex-wrap items-baseline gap-x-2 border-b border-white/10 pb-2.5 last:border-0 last:pb-0">
+                  <dt className="text-sm font-bold text-amber-200 sm:min-w-[160px]">{k}:</dt>
+                  <dd className="text-sm text-green-50/90">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="text-center text-xs sm:text-sm font-semibold text-green-50/80 mt-6">
+              3 Months | Online Live Classes | 3 Classes/Week | Recorded Sessions | Study Material Included
+            </p>
+            <div className="text-center mt-6">
+              <button
+                onClick={() => handleScrollToSegment("acupressure-contact-form")}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all"
+              >
+                Join the Ayurvedic Acupressure Course
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* 3. SECTION "What is Acupressure Therapy?" (image left, text right) */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Image left */}
             <div className="lg:col-span-5 relative">
               <div className="aspect-[4/3] sm:aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200"
                   alt="Acupressure, energy lines and reflexology points guide representation"
                   referrerPolicy="no-referrer"
