@@ -200,28 +200,37 @@ export default function CourseDetailView() {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-950/40 rounded-full blur-3xl pointer-events-none" />
         </section>
 
-        {/* 1b. COURSE FORMAT STRIP */}
-        <section className="bg-[#004C53] text-white py-10 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 text-center">
+        {/* 1b. COURSE FORMAT */}
+        <section className="bg-[#004C53] text-white py-14 px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-white mb-8">Course Format</h2>
+            <dl className="max-w-2xl mx-auto rounded-3xl bg-white/[0.06] border border-white/15 p-6 sm:p-8 space-y-3">
               {[
-                { icon: Clock, label: "Duration", value: "3 Months" },
-                { icon: Sparkles, label: "Mode", value: "Online" },
-                { icon: MessageSquare, label: "Live Classes", value: "3 / week" },
-                { icon: BookOpen, label: "Recorded", value: "Included" },
-                { icon: Layers, label: "Study Material", value: "Included" },
-                { icon: CheckCircle2, label: "Practical", value: "Included" },
-              ].map((f) => (
-                <div key={f.label} className="flex flex-col items-center gap-1.5">
-                  <f.icon className="w-6 h-6 text-[#E8C24A]" />
-                  <span className="font-heading font-bold text-sm sm:text-base text-white leading-none">{f.value}</span>
-                  <span className="text-[10px] uppercase tracking-widest text-green-100/70 font-semibold">{f.label}</span>
+                ["Duration", "3 Months"],
+                ["Mode", "Online"],
+                ["Live Classes", "3 Classes Every Week"],
+                ["Recorded Classes", "Included for Revision"],
+                ["Study Material", "Included"],
+                ["Practical Training", "Included"],
+                ["Learning Format", "Live + Recorded + Guided Practical Learning"],
+              ].map(([k, v]) => (
+                <div key={k} className="flex flex-wrap items-baseline gap-x-2 border-b border-white/10 pb-2.5 last:border-0 last:pb-0">
+                  <dt className="text-sm font-bold text-amber-200 sm:min-w-[160px]">{k}:</dt>
+                  <dd className="text-sm text-green-50/90">{v}</dd>
                 </div>
               ))}
-            </div>
-            <p className="text-center text-[11px] text-green-100/70 mt-6">
-              3 Months · Online Live Classes · 3 Classes / Week · Recorded Sessions · Study Material · Guided Practical Training
+            </dl>
+            <p className="text-center text-xs sm:text-sm font-semibold text-green-50/80 mt-6">
+              3 Months | Online Live Classes | 3 Classes/Week | Recorded Sessions | Study Material Included
             </p>
+            <div className="text-center mt-6">
+              <button
+                onClick={() => handleScrollToSegment("mudra-contact-form")}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all"
+              >
+                Join the Mudra Therapy Course
+              </button>
+            </div>
           </div>
         </section>
 
