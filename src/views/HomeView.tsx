@@ -203,9 +203,12 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
 
               <p className="text-base sm:text-lg text-[#004C53]/80 leading-relaxed max-w-xl">
                 Discover a holistic approach to wellbeing through Yoga, Meditation, Pranayama, Mudra Therapy,
-                Ayurvedic Acupressure and mindfulness practices. We bring traditional Indian wellness knowledge into
-                structured programs designed for modern individuals, families, professionals and aspiring wellness
-                practitioners.
+                Ayurvedic Acupressure and mindfulness practices.
+              </p>
+
+              <p className="text-sm sm:text-base text-[#004C53]/70 leading-relaxed max-w-xl">
+                At Shivoham Shiv, we bring traditional Indian wellness knowledge into structured programs designed for
+                modern individuals, families, professionals and aspiring wellness practitioners.
               </p>
 
               {/* Action Buttons — two paths, each with helper text */}
@@ -360,10 +363,9 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                 <Heart className="w-6 h-6" />
               </div>
               <span className="text-[11px] font-bold uppercase tracking-widest text-amber-300">Wellness · Transform</span>
-              <h3 className="font-heading font-bold text-2xl mt-1 mb-3 text-white">I want to transform my wellness</h3>
+              <h3 className="font-heading font-bold text-2xl mt-1 mb-3 text-white">🌿 I Want to Improve My Wellbeing</h3>
               <p className="text-sm text-green-50/85 leading-relaxed mb-6">
-                Practical wellness programs for individuals, families, children and organizations — weight
-                management, meditation, yoga and stress relief.
+                Explore practical wellness programs for yourself, your family, children or workplace.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-white">
                 Explore Wellness Programs <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -378,13 +380,13 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                 <Award className="w-6 h-6" />
               </div>
               <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Academy · Become</span>
-              <h3 className="font-heading font-bold text-2xl text-[#004C53] mt-1 mb-3">I want to become a practitioner</h3>
+              <h3 className="font-heading font-bold text-2xl text-[#004C53] mt-1 mb-3">🎓 I Want to Become a Wellness Practitioner</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Learn traditional wellness practices through structured online education, practical training and
-                certification.
+                Learn specialized wellness practices through structured training, practical learning and
+                certification pathways.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-[#004C53]">
-                Explore Academy <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Explore Shivoham Shiv Academy <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
           </div>
