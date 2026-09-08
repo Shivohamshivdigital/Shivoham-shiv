@@ -1985,400 +1985,174 @@ Benefits of Our Ayurvedic Acupressure Services
           </div>
         </section>
 
-        {/* 2. What is? (Image Left, Text Right) */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            
-            {/* Image (Left) */}
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-100">
-                <img 
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Teacher guiding young children in a calm mindfulness session"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#FAF5EC] -z-10 rounded-full" />
-            </div>
-
-            {/* Text Context (Right) */}
-            <div className="space-y-6 text-left">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Child Mind Roots</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
-                What is Mindfulness & EQ Training for Kids?
-              </h2>
-              <p className="text-sm leading-relaxed text-[#3A463F]/90">
-                Mindfulness & Emotional Intelligence (EQ) Training for Kids is a gentle, structured approach that helps children understand their thoughts, emotions, and reactions in a healthy way. Rooted in mindful awareness and emotional learning, this program supports a child's mental focus, emotional balance, and self-awareness during their key developmental years.
-              </p>
-              <p className="text-sm leading-relaxed text-[#3A463F]/90">
-                Through simple mindfulness exercises, breathing practices, and age-appropriate EQ activities, children can learn to calm their minds, notice emotions, practise concentration, and respond more positively to everyday situations at home, school, and social settings.
-              </p>
-              
-              <div className="pt-2">
-                <p className="text-sm font-bold text-[#004C53] mb-3">Mindfulness & EQ Training works by:</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {[
-                    "Helping children become aware of their thoughts and emotions",
-                    "Practising focus, attention, and listening skills",
-                    "Supporting calm, and healthier responses to everyday stress and overwhelm",
-                    "Encouraging self-confidence, empathy, and emotional awareness"
-                  ].map((bullet, idx) => (
-                    <div key={idx} className="flex items-start space-x-2.5 text-xs text-[#3A463F]/95">
-                      <CheckCircle2 className="w-4 h-4 text-green-750 shrink-0 mt-0.5" />
-                      <span>{bullet}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <p className="text-xs leading-relaxed text-[#3A463F]/80 italic pt-2">
-                Mindfulness & EQ Training is safe, non-invasive, and suitable for children of all ages. It can be easily integrated into daily routines and supports emotional stability, better behavior, improved learning ability, and overall mental well-being—naturally and holistically.
-              </p>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 3. Nurturing Calm & Emotional Awareness (Zigzag 4 cards) */}
-        <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-              <span className="text-xs uppercase font-semibold tracking-widest text-[#D9741A]">Guided Evolution Pathways</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
-                Mindfulness & EQ Training for Kids – Nurturing Calm & Emotional Awareness
-              </h2>
-              <p className="text-sm text-[#3A463F]/90 leading-relaxed max-w-2xl mx-auto">
-                At Shivoham Shiv, our Mindfulness & EQ program gently supports children in understanding their thoughts and emotions. Using simple mindfulness exercises and emotional learning activities, we help cultivate calm minds, emotional clarity, and balanced growth—naturally and holistically.
-              </p>
-            </div>
-
-            {/* Alternating Zigzag Timeline Grid style */}
-            <div className="relative max-w-5xl mx-auto py-8">
-              {/* Center vertical connector line */}
-              <div className="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 top-4 bottom-4 w-1 bg-green-100 hidden md:block" />
-
-              <div className="space-y-12 relative">
-                
-                {/* Timeline Card 1 */}
-                <div className="flex flex-col md:flex-row items-center justify-between relative">
-                  <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <Brain className="w-3.5 h-3.5 text-[#004C53]" />
-                  </div>
-                  <div className="w-full md:w-[45%] text-left md:text-right order-1">
-                    <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
-                      <div className="flex md:flex-row-reverse items-center gap-3.5 mb-3">
-                        <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <Brain className="w-5 h-5 text-[#004C53]" />
-                        </div>
-                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
-                          Improved Focus & Attention Skills
-                        </h3>
-                      </div>
-                      <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed">
-                        We offer guided mindfulness practices that help children strengthen concentration, listening ability, and mental clarity for better learning and daily activities.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full md:w-[45%] hidden md:block order-2" />
-                </div>
-
-                {/* Timeline Card 2 */}
-                <div className="flex flex-col md:flex-row items-center justify-between relative">
-                  <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <Heart className="w-3.5 h-3.5 text-[#004C53]" />
-                  </div>
-                  <div className="w-full md:w-[45%] hidden md:block order-1" />
-                  <div className="w-full md:w-[45%] text-left order-2">
-                    <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
-                      <div className="flex items-center gap-3.5 mb-3">
-                        <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <Heart className="w-5 h-5 text-[#004C53]" />
-                        </div>
-                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
-                          Emotional Awareness & Regulation
-                        </h3>
-                      </div>
-                      <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed">
-                        Our EQ-based activities help children recognize, understand, and manage their emotions in a healthy and balanced way.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Timeline Card 3 */}
-                <div className="flex flex-col md:flex-row items-center justify-between relative">
-                  <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <Leaf className="w-3.5 h-3.5 text-[#004C53]" />
-                  </div>
-                  <div className="w-full md:w-[45%] text-left md:text-right order-1">
-                    <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
-                      <div className="flex md:flex-row-reverse items-center gap-3.5 mb-3">
-                        <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <Leaf className="w-5 h-5 text-[#004C53]" />
-                        </div>
-                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
-                          Calm Mind & Stress Management
-                        </h3>
-                      </div>
-                      <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed">
-                        Simple breathing and relaxation practices support emotional calm, reduce restlessness, and promote a peaceful state of mind.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full md:w-[45%] hidden md:block order-2" />
-                </div>
-
-                {/* Timeline Card 4 */}
-                <div className="flex flex-col md:flex-row items-center justify-between relative">
-                  <div className="absolute left-[10px] md:left-1/2 transform -translate-x-[2px] md:-translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-green-800 flex items-center justify-center z-10 shadow hidden md:flex">
-                    <User className="w-3.5 h-3.5 text-[#004C53]" />
-                  </div>
-                  <div className="w-full md:w-[45%] hidden md:block order-1" />
-                  <div className="w-full md:w-[45%] text-left order-2">
-                    <div className="bg-[#FAFBF7] p-6 sm:p-8 rounded-3xl border border-green-50 shadow-sm hover:shadow-md transition-all duration-300">
-                      <div className="flex items-center gap-3.5 mb-3">
-                        <div className="p-2.5 bg-green-105 rounded-xl shrink-0">
-                          <User className="w-5 h-5 text-[#004C53]" />
-                        </div>
-                        <h3 className="font-heading font-extrabold text-[#004C53] text-lg">
-                          Confidence & Positive Social Behavior
-                        </h3>
-                      </div>
-                      <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed">
-                        Through emotional learning and self-awareness exercises, children build confidence, empathy, and positive interaction skills.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 4. Why Choose Mindfulness & EQ Training for Kids (Interactive Carousel) */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAF5EC]/40 text-left relative overflow-hidden">
-          <div className="max-w-5xl mx-auto space-y-12">
-            
-            <div className="text-center space-y-3 max-w-2xl mx-auto">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Interactive Exploration</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
-                Why Choose Mindfulness & EQ Training for Kids?
-              </h2>
-              <p className="text-sm text-slate-600 font-semibold max-w-md mx-auto text-center">
-                Key Benefits of Mindfulness & EQ Training for Kids:
-              </p>
-            </div>
-
-            {/* Slider Showcase Frame */}
-            <div 
-              onTouchStart={(e) => {
-                const touchX = e.touches[0].clientX;
-                (e.currentTarget as any)._startX = touchX;
-              }}
-              onTouchEnd={(e) => {
-                const startX = (e.currentTarget as any)._startX;
-                if (typeof startX !== "number") return;
-                const touchX = e.changedTouches[0].clientX;
-                const diff = startX - touchX;
-                if (diff > 50) {
-                  nextKidsSlide();
-                } else if (diff < -50) {
-                  prevKidsSlide();
-                }
-              }}
-              className="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl col-span-1 min-h-[460px] flex items-end"
-            >
-              {/* Background Slide Image */}
-              <div className="absolute inset-0 z-0 bg-slate-205">
-                <img 
-                  src={kidsSlides[currentKidsSlide].image} 
-                  alt={kidsSlides[currentKidsSlide].title}
-                  className="w-full h-full object-cover transition-all duration-705 ease-in-out select-none"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
-              </div>
-
-              {/* Slider Left/Right Arrows */}
-              <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between z-20">
-                <button 
-                  onClick={prevKidsSlide}
-                  className="p-3 rounded-full bg-white/90 hover:bg-white text-[#004C53] transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-                  aria-label="Previous Slide"
-                >
-                  <ChevronLeft className="w-5 h-5 font-bold" />
-                </button>
-                <button 
-                  onClick={nextKidsSlide}
-                  className="p-3 rounded-full bg-white/90 hover:bg-white text-[#004C53] transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-                  aria-label="Next Slide"
-                >
-                  <ChevronRight className="w-5 h-5 font-bold" />
-                </button>
-              </div>
-
-              {/* Content Panel Overlaid in center-bottom */}
-              <div className="p-8 sm:p-12 relative z-10 w-full max-w-3xl mx-auto text-center space-y-4">
-                <span className="inline-block px-3 py-1 bg-amber-500 rounded-full text-[#FAFBF7] text-[10px] font-bold uppercase tracking-widest leading-none">
-                  Core Wellness Slide {currentKidsSlide + 1} of {kidsSlides.length}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-bold font-heading text-white tracking-tight">
-                  {kidsSlides[currentKidsSlide].title}
-                </h3>
-                <p className="text-xs sm:text-sm text-green-50 max-w-xl mx-auto leading-relaxed">
-                  {kidsSlides[currentKidsSlide].description}
-                </p>
-                <div className="pt-2">
-                  <button 
-                    onClick={() => handleScrollToSegment("kids-contact-form")}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-md hover:shadow-lg"
-                  >
-                    Explore More
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-        {/* 5. Why Choose Shivoham Shiv... (Image Left, Bullet Items Right) */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-left">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            
-            {/* Image (Left) */}
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
-                <img 
-                  src="/images/kids-why-choose.jpg"
-                  alt="Children practicing mindfulness and calm breathing"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#FAF5EC] -z-10 rounded-full" />
-            </div>
-
-            {/* Bullets (Right) */}
-            <div className="space-y-6 text-left">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Shivoham Shiv Standards</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53] leading-tight">
-                Why Choose Shivoham Shiv for Mindfulness & EQ Training for Kids?
-              </h2>
-              <p className="text-sm leading-relaxed text-[#3A463F]/90">
-                At Shivoham Shiv, we offer a gentle, structured Mindfulness & EQ program designed specifically for children. Through age-appropriate practices and guided learning, we help children build focus, emotional awareness, and calm behavior in a safe and supportive environment—encouraging balanced emotional and mental growth.
-              </p>
-
-              <div>
-                <p className="text-sm font-bold text-[#004C53] mb-4">What sets our Mindfulness & EQ Training for Kids apart:</p>
-                <div className="space-y-4">
-                  {[
-                    {
-                      title: "Age-Appropriate & Child-Friendly Learning Methods",
-                      desc: "Our sessions are designed specifically for children, using simple language, engaging activities, and gentle practices that make learning mindfulness and emotional skills easy and enjoyable."
-                    },
-                    {
-                      title: "Focus on Emotional Awareness & Healthy Expression",
-                      desc: "We help children recognize, understand, and express their emotions in a positive and balanced way, supporting emotional maturity and resilience."
-                    },
-                    {
-                      title: "Safe, Gentle & Non-Intrusive Practices",
-                      desc: "All mindfulness and EQ activities are non-invasive, stress-free, and suitable for children of all ages, creating a comfortable and supportive learning environment."
-                    },
-                    {
-                      title: "Structured Guidance with Clear Demonstrations",
-                      desc: "Step-by-step guidance and practical demonstrations help children learn focus, breathing, and emotional regulation with clarity and confidence."
-                    },
-                    {
-                      title: "Holistic Support for Mental, Emotional & Social Growth",
-                      desc: "Our approach supports not only concentration and calmness, but also self-confidence, empathy, and positive social behavior—encouraging balanced overall development."
-                    }
-                  ].map((bullet, idx) => (
-                    <div key={idx} className="flex items-start space-x-3.5 text-xs text-[#3A463F]/95">
-                      <div className="w-5 h-5 rounded-full bg-green-110 flex items-center justify-center text-[#004C53] font-bold text-[10px] shrink-0 mt-0.5">
-                        {idx + 1}
-                      </div>
-                      <div className="space-y-0.5">
-                        <strong className="text-sm font-heading font-extrabold text-[#004C53] block leading-snug">
-                          {bullet.title}
-                        </strong>
-                        <p className="text-xs text-[#3A463F]/85 leading-relaxed">{bullet.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-4">
-                <button 
-                  onClick={() => handleScrollToSegment("kids-contact-form")}
-                  className="px-8.5 py-4 bg-[#D9741A] hover:bg-[#B85F22] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg cursor-pointer"
-                >
-                  Enroll Now
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-        {/* 6. Benefits (4 Cards Grid) */}
-        <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-t border-green-100 text-left">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Somatic Milestones</span>
-              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#004C53]">
-                Benefits of Our Mindfulness & EQ Training Services
-              </h2>
-              <p className="text-sm text-[#3A463F]/85 italic leading-relaxed max-w-md mx-auto text-center">
-                Helping children grow calm, focused, and emotionally strong through gentle, age-appropriate practices.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* 2. THE PROBLEM */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-y border-[#004C53]/10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl text-[#004C53]">Is Your Child Struggling to Stay Focused?</h2>
+            <p className="text-sm text-slate-600 mt-3">Many parents notice that their children:</p>
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
               {[
-                {
-                  title: "Building Strong Concentration Skills",
-                  desc: "Helps children strengthen focus, listening ability, and mental clarity to support better learning and daily activities.",
-                  icon: GraduationCap
-                },
-                {
-                  title: "Understanding & Managing Emotions",
-                  desc: "Supports children in recognizing their emotions and responding calmly, helping develop emotional stability and self-control.",
-                  icon: Heart
-                },
-                {
-                  title: "Encouraging Calm & Positive Responses",
-                  desc: "Teaches simple mindfulness and breathing practices that reduce restlessness and promote calm, balanced behavior.",
-                  icon: Leaf
-                },
-                {
-                  title: "Developing Healthy Social Interaction",
-                  desc: "Builds self-confidence, empathy, and positive communication skills, helping children connect better with others.",
-                  icon: User
-                }
-              ].map((b, idx) => {
-                const IconComponent = b.icon;
-                return (
-                  <div key={idx} className="bg-[#FAFBF7] border border-green-50 p-6 rounded-2xl shadow-xs hover:shadow-md transition-all">
-                    <div className="space-y-3">
-                      <div className="w-10 h-10 rounded-2xl bg-green-105 text-[#004C53] flex items-center justify-center font-bold">
-                        <IconComponent className="w-5 h-5" />
-                      </div>
-                      <h3 className="font-heading font-extrabold text-[#004C53] text-base leading-tight">{b.title}</h3>
-                      <p className="text-xs leading-relaxed text-[#3A463F]/85">{b.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
+                "Get distracted while studying",
+                "Find it difficult to sit and concentrate",
+                "Forget what they have just learned",
+                "Lose interest quickly during study time",
+                "Spend too much time on screens",
+                "Struggle to calm their minds",
+                "Have difficulty following instructions",
+                "Feel overwhelmed by schoolwork",
+                "Need frequent reminders to complete tasks",
+              ].map((p) => (
+                <div key={p} className="flex items-start gap-2.5 rounded-2xl bg-[#FAF5EC] border border-[#004C53]/10 px-4 py-3 text-sm text-[#004C53]">
+                  <span className="text-[#EF8321]">•</span> {p}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-slate-600 leading-relaxed mt-8 max-w-2xl mx-auto">
+              The problem isn't always a lack of ability. Sometimes children need support in developing the skills
+              that help them pay attention, regulate distractions, stay present and approach learning with greater
+              awareness. Our Kids Mindfulness &amp; Focus Program is designed to help build these foundational skills.
+            </p>
+          </div>
+        </section>
+
+        {/* 3. CORE PROMISE */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53]">🧠 Build the Skills Behind Better Learning</h2>
+            <p className="text-xs font-bold uppercase tracking-wider text-[#EF8321] mt-3">Focus → Attention → Understanding → Learning → Remembering</p>
+            <p className="text-sm text-slate-600 leading-relaxed mt-4">
+              When children learn to become more aware of their thoughts, surroundings and actions, they can develop
+              skills that support their ability to stay engaged with learning. Research on mindfulness-based programs
+              in children and adolescents has found promising improvements in areas such as attention and executive
+              functioning, although effects are generally modest and research is still developing. That's why our
+              program focuses on developing foundational learning and attention skills, rather than promising an
+              instant increase in memory.
+            </p>
+          </div>
+        </section>
+
+        {/* 4. WHAT YOUR CHILD WILL LEARN */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#EEF6F6] border-y border-[#004C53]/10">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mb-10">🌟 What Happens Inside the Program?</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                { e: "🧘", t: "Mindfulness", d: "Simple activities that teach children to become more aware of their thoughts, feelings, body and surroundings." },
+                { e: "🌬️", t: "Breathing Practices", d: "Age-appropriate breathing exercises to encourage calmness and attentive participation." },
+                { e: "🧠", t: "Focus Training", d: "Activities designed to practice sustained attention, observation and concentration." },
+                { e: "🕉️", t: "Meditation for Kids", d: "Simple guided meditation practices adapted for children." },
+                { e: "🧘", t: "Kids Yoga", d: "Movement-based activities that combine physical activity with awareness and attention." },
+                { e: "🎯", t: "Concentration Activities", d: "Fun exercises that encourage children to observe, listen, remember and respond." },
+                { e: "❤️", t: "Emotional Awareness", d: "Help children recognize and express emotions in healthier ways." },
+                { e: "📚", t: "Mindful Learning Habits", d: "Introduce simple practices that can be incorporated before homework, reading or study sessions." },
+              ].map((it) => (
+                <div key={it.t} className="rounded-2xl bg-white border border-[#004C53]/10 p-5">
+                  <div className="text-2xl mb-2">{it.e}</div>
+                  <h3 className="font-heading font-bold text-sm text-[#004C53] mb-1">{it.t}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{it.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. 7 BENEFITS */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mb-10">🌱 7 Ways Mindfulness Can Support Your Child</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                { t: "Better Focus", d: "Help children practice keeping their attention on one activity." },
+                { t: "Improved Concentration", d: "Encourage children to notice distractions and gently return their attention to the task." },
+                { t: "Support for Learning", d: "Develop attention and self-regulation skills that are important during learning." },
+                { t: "Memory-Supportive Learning", d: "Better attention can help children stay engaged with information they are learning and practicing." },
+                { t: "Emotional Balance", d: "Help children become more aware of their emotions and responses." },
+                { t: "Reduced Mental Overload", d: "Teach simple practices for slowing down and becoming more present." },
+                { t: "Healthy Daily Habits", d: "Create routines around mindful breathing, movement, attention and self-awareness." },
+              ].map((b, i) => (
+                <div key={b.t} className="rounded-2xl bg-[#FAF5EC] border border-[#004C53]/10 p-6">
+                  <span className="font-heading text-xl font-extrabold text-[#EF8321]">{i + 1}</span>
+                  <h3 className="font-heading font-bold text-base text-[#004C53] mt-1 mb-1.5">{b.t}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{b.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6. WHY SHIVOHAM SHIV */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-y border-[#004C53]/10">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mb-10">Why Choose Shivoham Shiv for Kids Mindfulness?</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { e: "🌿", t: "Holistic Approach", d: "We combine mindfulness with yoga, breathing, meditation and movement." },
+                { e: "🧒", t: "Child-Friendly Learning", d: "Activities are designed to be engaging and accessible for children." },
+                { e: "🧠", t: "Focus on Foundational Skills", d: "We focus on attention, awareness, concentration and healthy learning habits." },
+                { e: "🕉️", t: "Traditional Wellness Practices", d: "Introduce children to age-appropriate elements of Yoga, meditation and traditional Indian wellness." },
+                { e: "🏡", t: "Practical for Home", d: "Parents can continue simple practices with their children outside the sessions." },
+                { e: "🌱", t: "Long-Term Habit Building", d: "The goal isn't a quick fix. It is to help children develop healthy practices they can continue growing with." },
+              ].map((w) => (
+                <div key={w.t} className="rounded-3xl bg-[#FAF5EC] border border-[#004C53]/10 p-6">
+                  <div className="text-3xl mb-3">{w.e}</div>
+                  <h3 className="font-heading font-bold text-base text-[#004C53] mb-1.5">{w.t}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{w.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 7. RESULTS / TRANSFORMATION */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-center font-heading font-bold text-2xl sm:text-3xl text-[#004C53] mb-10">From Distracted to More Aware</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="rounded-3xl bg-white border border-red-100 p-6">
+                <h3 className="font-heading font-bold text-base text-slate-700 mb-4">Before</h3>
+                <ul className="space-y-2">
+                  {["Easily distracted", "Difficulty sitting for study", "Frequent interruptions", "Poor study routine", "Overwhelmed by schoolwork", "Difficulty calming down"].map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-sm text-slate-600"><span className="text-red-400">❌</span> {b}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-3xl bg-[#EEF6F6] border border-[#004C53]/10 p-6">
+                <h3 className="font-heading font-bold text-base text-[#004C53] mb-4">After Building Mindful Habits</h3>
+                <ul className="space-y-2">
+                  {["Greater awareness", "Better attention practice", "Healthier study routine", "Better emotional awareness", "More mindful learning", "Greater confidence in daily activities"].map((a) => (
+                    <li key={a} className="flex items-start gap-2 text-sm text-[#004C53]"><span className="text-[#2E8A93]">✅</span> {a}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <p className="text-[11px] text-slate-500 leading-relaxed mt-6 text-center max-w-2xl mx-auto">
+              Important: Individual results vary, and the program is not intended to guarantee academic or memory outcomes.
+            </p>
+          </div>
+        </section>
+
+        {/* 8. CTA */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white">🧠 Your Child's Mind Is Their Greatest Learning Tool</h2>
+            <p className="mt-4 text-sm sm:text-base text-green-50/85 leading-relaxed">
+              Help your child build the foundational skills that support focus, attention, mindfulness and healthy
+              learning habits.
+            </p>
+            <p className="mt-4 font-heading text-lg text-amber-200">Start Building Better Focus Today</p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                onClick={() => handleScrollToSegment("kids-contact-form")}
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all"
+              >
+                Enroll Now →
+              </button>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#004C53] hover:bg-green-50 font-bold text-xs uppercase tracking-wider rounded-full transition-all"
+              >
+                Book a Consultation →
+              </Link>
             </div>
           </div>
         </section>
