@@ -69,45 +69,52 @@ const STORIES = [
 
 const TESTIMONIALS = [
   {
-    quote: "In the middle of professional burnout and physical stagnation, I found a sanctuary of genuine Vedic wisdom. Shivoham Shiv does not teach trendy meditation—they restore the classical Sanskrit lineage with pristine guidance and scientifically sound practices. It changed my health forever.",
-    name: "Dr. Ananya Iyer",
-    role: "Chief Wellness Consultant & Clinical Biologist",
-    gradNum: "Graduate #1,024",
+    quote: "I came to Shivoham Shiv wanting to improve my own health. Three months later, I'm a certified Mudra therapist. The structured approach and live instruction made all the difference — my clients are already seeing results.",
+    name: "Rajesh Kumar",
+    role: "Former IT Professional, Now Wellness Practitioner",
+    gradNum: "★★★★★",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=200"
+  },
+  {
+    quote: "As a yoga teacher for 8 years, I thought I knew traditional practices. But this academy deepened my understanding completely. Now I can offer my students authentic, safe and science-informed techniques.",
+    name: "Priya Sharma",
+    role: "Certified Yoga Teacher",
+    gradNum: "★★★★★",
     image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=200"
   },
   {
-    quote: "The direct mentorship from certified Vedic teachers is incomparable. Unlike common apps, they review your finger alignments, answer real questions, and provide direct diagnostic checkpoints. It is a true classical classroom.",
-    name: "Rohan Deshmukh",
-    role: "Corporate Program Director",
-    gradNum: "Graduate #892",
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=200"
+    quote: "The weight management program changed how I think about health. It's not about restriction — it's about understanding your body and building sustainable habits. I've lost weight and kept it off.",
+    name: "Isha Desai",
+    role: "Wellness Transformation Student",
+    gradNum: "★★★★★",
+    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=200"
   }
 ];
 
 const FAQS = [
   {
-    q: "Are these courses completely online?",
-    a: "Yes, all our offerings are conducted online. They combine live interactive guidance, high-definition tutorial sequences, and home-accessible assignments, bringing true Vedic wisdom directly to your screen."
+    q: "What if I have no experience with Yoga or Ayurveda?",
+    a: "Perfect! Both our wellness programs and academy courses are designed for beginners. We start with the foundations and build progressively — no previous experience needed, just curiosity and commitment."
   },
   {
-    q: "Do I need prior experience in yoga or Ayurveda?",
-    a: "Not at all. Every curriculum is carefully structured to start from the foundational biological elements (Tattva systems), leading you step-by-step into advanced practices with ease and safety."
+    q: "Is this only for people wanting to become practitioners?",
+    a: "No. Our wellness programs are for anyone wanting to improve their own health, and our academy is for people wanting professional certification. Choose based on your goals."
   },
   {
-    q: "How does Mudra Therapy affect physical health?",
-    a: "Hand placements connect nerve endings on your fingertips. By forming these energetic seals, you direct vital energy (prana) to stimulate organ functions, soothe digestion, and regulate nervous stress signals."
+    q: "Are the courses really online? Can I get feedback?",
+    a: "Yes, completely online — but not just self-paced videos. We use live classes (3 per week) where instructors give real-time feedback on your technique, and recorded sessions are available for review."
   },
   {
-    q: "What happens after I pre-register?",
-    a: "Pre-registration reserves your space for upcoming releases, locking in early-bird advantages and complementary resources. You can track all reserved paths directly in your Learner Dashboard."
+    q: "How long does a certification take?",
+    a: "Most certifications are 3 months of structured learning. This isn't a shortcut course — it's designed to give you real depth and competence, not just a certificate."
   },
   {
-    q: "Are the schedules flexible for busy working professionals?",
-    a: "Absolutely. The core lecture material is fully recorded and self-paced. Live group alignment calls are held bimonthly, and all session replays are accessible 24/7."
+    q: "Can I really start a career as a wellness practitioner?",
+    a: "Yes. Many of our graduates launch their own practices or integrate these skills into existing careers such as yoga teaching, corporate wellness and coaching."
   },
   {
-    q: "How are student results evaluated?",
-    a: "Students submit simple checkpoint verification photographs or self-assessments. Certified instructors review these directly to ensure perfect posture and energetic alignments."
+    q: "Not sure which program is right for you?",
+    a: "Book a free consultation and our team will help you choose the wellness program or Academy course that best fits your goals."
   }
 ];
 
@@ -198,17 +205,17 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               </div>
 
               <h1 className="font-heading font-semibold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#004C53] leading-[1.12]">
-                Vedic Wellness for Modern Life.<br /><span className="italic text-[#004C53] font-heading font-medium">Professional Learning for a Better Future.</span>
+                Ancient Vedic Wisdom,<br /><span className="italic text-[#004C53] font-heading font-medium">Modern Scientific Healing.</span>
               </h1>
 
               <p className="text-base sm:text-lg text-[#004C53]/80 leading-relaxed max-w-xl">
-                Discover a holistic approach to wellbeing through Yoga, Meditation, Pranayama, Mudra Therapy,
-                Ayurvedic Acupressure and mindfulness practices.
+                Blending timeless Vedic practices — Mudra Therapy, Yoga, Pranayama and Ayurvedic Acupressure —
+                into structured, science-informed wellness and certification programs.
               </p>
 
               <p className="text-sm sm:text-base text-[#004C53]/70 leading-relaxed max-w-xl">
-                At Shivoham Shiv, we bring traditional Indian wellness knowledge into structured programs designed for
-                modern individuals, families, professionals and aspiring wellness practitioners.
+                Transform your health and your career through Shivoham Shiv's structured approach to ancient
+                wellness traditions — designed for modern individuals, families, professionals and aspiring practitioners.
               </p>
 
               {/* Action Buttons — two paths, each with helper text */}
@@ -218,7 +225,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                     to="/wellness-programs"
                     className="w-full sm:w-auto px-8 py-4 bg-[#EF8321] hover:bg-[#d9741a] text-white rounded-full font-bold text-sm uppercase tracking-wider text-center shadow-md hover:shadow-lg transition-all duration-200"
                   >
-                    Explore Wellness Programs
+                    Explore Programs
                   </Link>
                   <span className="text-[11px] text-[#004C53]/60 px-1">For yourself, your family, your team or your organization.</span>
                 </div>
@@ -227,7 +234,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
                     to="/academy"
                     className="w-full sm:w-auto px-8 py-4 border-2 border-[#004C53] text-[#004C53] rounded-full font-bold text-sm uppercase tracking-wider text-center hover:bg-[#004C53]/5 transition-all duration-200"
                   >
-                    Explore Academy
+                    Join the Academy
                   </Link>
                   <span className="text-[11px] text-[#004C53]/60 px-1">Learn specialized wellness practices and develop practitioner skills.</span>
                 </div>
@@ -401,13 +408,13 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               One Platform. Two Paths. One Global Community.
             </h2>
             <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#EEF6F6] border border-green-100 px-4 py-1.5 text-xs font-bold text-[#004C53]">
-              10,000+ Wellness Community &amp; Growing
+              A Growing Global Wellness Community
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { to: "/wellness-programs", label: "Wellness Programs", sub: "Transform Your Mind, Body & Lifestyle", desc: "Practical programs designed to help you develop healthier habits, mindfulness, movement and balanced lifestyle practices.", icon: Heart, accent: "bg-[#E3F1F1] text-[#004C53]" },
-              { to: "/academy", label: "Shivoham Shiv Academy", sub: "Learn. Practice. Get Certified.", desc: "Structured education for people who want to develop deeper knowledge and practical skills in traditional Indian wellness practices.", icon: Award, accent: "bg-amber-50 text-[#EF8321]" },
+              { to: "/wellness-programs", label: "Shivoham Shiv Wellness", sub: "Holistic Healing & Lifestyle Transformation", desc: "Practical wellness programs designed to help you reclaim your health, build sustainable habits and transform your lifestyle through ancient Vedic practices.", icon: Heart, accent: "bg-[#E3F1F1] text-[#004C53]" },
+              { to: "/academy", label: "Shivoham Shiv Academy", sub: "Learn. Practice. Get Certified.", desc: "Professional certification programs combining ancient Vedic knowledge with modern scientific understanding. Learn from certified experts and become a qualified wellness practitioner.", icon: Award, accent: "bg-amber-50 text-[#EF8321]" },
               { to: "/community", label: "Community", sub: "Grow Together", desc: "Ongoing learning, guided sessions, peer connection and practitioner development.", icon: Users, accent: "bg-[#E3F1F1] text-[#004C53]" },
             ].map((p) => (
               <Link
@@ -429,8 +436,9 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
           <div className="mt-12 max-w-3xl mx-auto text-center">
             <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Mission</span>
             <p className="mt-3 font-heading text-lg sm:text-2xl text-[#004C53] leading-relaxed">
-              To bring India's traditional wellness knowledge into modern life — pairing Ayurvedic wisdom with a
-              structured, science-informed approach through our Wellness Programs and Academy.
+              To revive, modernize and scientifically present the healing wisdom of the Vedas — bridging timeless
+              practices like Mudra Therapy, Meditation, Pranayama, Yoga and Ayurvedic Acupressure with modern
+              understanding, through structured Wellness Programs and certified Academy education.
             </p>
           </div>
         </div>
@@ -648,43 +656,43 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
             {/* Checklist Column */}
             <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
               <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">
-                Purity Points
+                What Makes Us Different
               </span>
               <h2 className="font-heading font-semibold text-3xl text-[#004C53] leading-tight">
-                Why you'll love learning with us
+                Why Choose Shivoham Shiv?
               </h2>
 
               <div className="space-y-6 pt-2">
                 {[
                   {
                     letter: "A",
-                    title: "Traditional Knowledge",
-                    desc: "Explore practices rooted in India's rich wellness and knowledge traditions."
+                    title: "Authentic Vedic Foundation",
+                    desc: "Rooted in genuine Vedic traditions with centuries of practice behind them — not modern reinterpretations."
                   },
                   {
                     letter: "B",
-                    title: "Structured Education",
-                    desc: "Learn through clearly designed programs rather than disconnected information."
+                    title: "Expert Instruction",
+                    desc: "Learn from experienced, certified practitioners — not social-media influencers."
                   },
                   {
                     letter: "C",
-                    title: "Practical Learning",
-                    desc: "Move beyond theory and develop practical understanding through guided learning."
+                    title: "Structured Learning",
+                    desc: "Organised programs that build progressively, from foundation to mastery — no random, disconnected information."
                   },
                   {
                     letter: "D",
-                    title: "Guided Mentorship",
-                    desc: "Learn with support from experienced wellness educators and practitioners."
+                    title: "Live + Recorded Flexibility",
+                    desc: "Attend live classes for real-time feedback and access recorded sessions to learn at your own pace."
                   },
                   {
                     letter: "E",
-                    title: "Professional Development",
-                    desc: "Build your knowledge through progressive courses and certification pathways."
+                    title: "Professional Certification",
+                    desc: "Credentials respected in the wellness industry — use them to build your career or deepen your practice."
                   },
                   {
                     letter: "F",
-                    title: "Learn From Anywhere",
-                    desc: "Access online wellness education and learning opportunities from anywhere in the world."
+                    title: "Global Community",
+                    desc: "Join a growing global community of wellness seekers and professionals learning together."
                   }
                 ].map((item, i) => (
                   <div key={i} className="flex space-x-4 items-start pb-4 border-b border-[#004C53]/5 last:border-none">
@@ -1013,10 +1021,10 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               Common Queries
             </span>
             <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] mt-2 mb-4">
-              Frequently Asked Questions
+              Quick Questions? We Have Answers.
             </h2>
             <p className="text-xs sm:text-sm leading-relaxed text-[#004C53]/70 max-w-xl mx-auto font-light">
-              Clear pathways demand clear answers. Review detailed elements below or click contact for specialized assessments.
+              Whether you want to improve your own wellbeing or train as a practitioner, here are the answers to the questions we hear most.
             </p>
           </div>
 
@@ -1119,7 +1127,7 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               Ready to start your path to holistic wellness?
             </h4>
             <p className="text-xs text-[#004C53]/70 max-w-sm mx-auto mt-1 mb-6 font-light">
-              Secure a detailed, personalized 3-month element diagnostic session with certified chief guides.
+              Book a free consultation with our team and we'll help you choose the right path for your goals.
             </p>
             <button
               onClick={onOpenConsultation}
@@ -1148,10 +1156,12 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
       {/* 10. FINAL CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#004C53] to-[#003A40] text-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-white">Your Wellness Journey. Your Learning Journey. Your Next Step.</h2>
+          <span className="text-xs uppercase font-bold tracking-widest text-amber-300">Your Transformation Starts Today</span>
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-white mt-2">Discover the Ancient Science That's Changing Modern Lives</h2>
           <p className="mt-4 text-base text-green-50/85 leading-relaxed">
-            Whether you want to transform your own wellbeing or build professional expertise in traditional Indian
-            wellness, Shivoham Shiv gives you a structured path to move forward.
+            Whether you're ready to transform your own health or ready to master ancient healing techniques and build a
+            meaningful career, Shivoham Shiv is your structured pathway. Our next batch is limited to a small group to
+            ensure personalized attention.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/wellness-programs" className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all">
