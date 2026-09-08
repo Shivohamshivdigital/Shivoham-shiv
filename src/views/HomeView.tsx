@@ -450,18 +450,41 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
           <div className="mt-12 max-w-3xl mx-auto text-center">
             <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Vision &amp; Mission</span>
             <p className="mt-3 font-heading text-lg sm:text-2xl text-[#004C53] leading-relaxed">
-              To revive, modernize and scientifically present the healing wisdom of the Vedas — bridging timeless
-              practices like Mudra Therapy, Meditation, Pranayama, Yoga and Ayurvedic Acupressure with modern
-              understanding, through structured Wellness Programs and certified Academy education.
+              At Shivoham Shiv, our mission is to revive, modernize and share the healing wisdom of the Vedas —
+              natural, drug-free wellness practices that work with the body's own capacity for balance and self-care.
             </p>
+            <div className="mt-7 space-y-4 text-left max-w-2xl mx-auto">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#EF8321]">Mudra Therapy — Everyday Balance &amp; Relief</p>
+                <p className="text-sm text-slate-600 leading-relaxed mt-1">
+                  Simple hand mudras, used in tradition to help redirect energy and support calm, focus and everyday
+                  relief as part of a daily wellness routine.
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#EF8321]">Ayurvedic Acupressure &amp; Marma — Ongoing Support</p>
+                <p className="text-sm text-slate-600 leading-relaxed mt-1">
+                  Working with the body's vital energy points to support wellbeing through long-standing, everyday
+                  lifestyle-related concerns.
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#EF8321]">Integrated Approach</p>
+                <p className="text-sm text-slate-600 leading-relaxed mt-1">
+                  Combined with Meditation, Pranayama and Yogic practice, our vision is to make ancient Vedic wisdom a
+                  practical, natural part of modern life — supporting your wellbeing alongside, not in place of,
+                  professional medical care.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Three conceptual pillars */}
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
             {[
-              { e: "📖", t: "Ancient Wisdom", d: "Rooted in thousands of years of Vedic knowledge and time-tested wellness traditions." },
-              { e: "🔬", t: "Scientific Approach", d: "Structured programs informed by a modern understanding of anatomy, safety and wellbeing." },
-              { e: "💪", t: "Practical Impact", d: "Real focus on outcomes — healthier habits, growing skills and confident practitioners." },
+              { e: "🌿", t: "Drug-Free Practices", d: "Natural, drug-free wellness practices that work with the body's own capacity for balance." },
+              { e: "⚡", t: "Dual Practice Approach", d: "Mudra for everyday relief and Marma for ongoing support — a complete natural wellness toolkit." },
+              { e: "💪", t: "Empowered Self-Care", d: "Learn to support your own wellbeing with time-tested, natural practices." },
             ].map((p) => (
               <div key={p.t} className="rounded-2xl bg-white border border-green-100 p-5 text-center">
                 <div className="text-2xl mb-2">{p.e}</div>
