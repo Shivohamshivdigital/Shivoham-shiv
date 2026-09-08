@@ -25,6 +25,7 @@ import BmiCalculatorView from "./views/BmiCalculatorView";
 import WellnessProgramsView from "./views/WellnessProgramsView";
 import CorporateWellnessView from "./views/CorporateWellnessView";
 import KidsMindfulnessView from "./views/KidsMindfulnessView";
+import MudraCertificationView from "./views/MudraCertificationView";
 import AcademyView from "./views/AcademyView";
 import CommunityView from "./views/CommunityView";
 import LoginView from "./views/LoginView";
@@ -265,6 +266,8 @@ function AppContent() {
           <Route path="/wellness-programs" element={<WellnessProgramsView />} />
           <Route path="/corporate-wellness" element={<CorporateWellnessView />} />
           <Route path="/kids-mindfulness" element={<KidsMindfulnessView />} />
+          <Route path="/mudra-certification" element={<MudraCertificationView />} />
+          <Route path="/mudra-course" element={<MudraCertificationView />} />
           <Route path="/academy" element={<AcademyView />} />
           <Route path="/community" element={<CommunityView />} />
           <Route path="/challenge" element={<ChallengeView />} />

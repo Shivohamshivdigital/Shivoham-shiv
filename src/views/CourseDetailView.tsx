@@ -83,6 +83,11 @@ export default function CourseDetailView() {
       navigate("/corporate-wellness", { replace: true });
       return;
     }
+    // Mudra Therapy now lives on its own dedicated course page.
+    if (slug === "mudra-therapy" || slug === "mudra-therapy-course") {
+      navigate("/mudra-certification", { replace: true });
+      return;
+    }
     const validSlugs = ["corporate-wellness", "corp-wellness", "mudra-therapy", "mudra-therapy-course", "acupressure-therapy", "mindfulness-kids", "kids-eq"];
     if (slug && !validSlugs.includes(slug)) {
       navigate("/courses", { replace: true });
