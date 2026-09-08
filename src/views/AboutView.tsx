@@ -1,5 +1,6 @@
 import React from "react";
-import { Compass, Sparkles, Award, Globe, Users, Heart, GraduationCap, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Compass, Sparkles, Award, Globe, Users, Heart, GraduationCap, CheckCircle2, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 import CertificateGallery from "../components/CertificateGallery";
 
@@ -28,10 +29,10 @@ export default function AboutView() {
             About
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-green-100/90 leading-relaxed max-w-3xl mx-auto">
-            At Shivoham Shiv, we bring ancient Vedic wisdom to modern life — through Corporate & Adult 
-            Wellness, Mudra Therapy, Meditation, and Mindfulness & Emotional Intelligence (EQ) Training 
-            for Kids — guiding individuals toward balance, clarity, and holistic well-being. Our mission 
-            is to make timeless healing accessible to all, helping you harmonize mind, body, and spirit.
+            Shivoham Shiv is dedicated to reviving, modernizing and sharing the healing wisdom of the Vedas —
+            natural, drug-free wellness practices such as Mudra Therapy, Ayurvedic Acupressure, Meditation and
+            Pranayama. We believe in the body's innate capacity to find balance, and we help you support it through
+            authentic practices designed for modern life — alongside, not in place of, professional medical care.
           </p>
         </div>
       </section>
@@ -117,10 +118,11 @@ export default function AboutView() {
                 <span className="text-xs uppercase font-bold text-[#EF8321] tracking-wider block mb-2">Our Calling</span>
                 <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#004C53] mb-4">Our Mission</h3>
                 <p className="text-sm text-slate-705 leading-relaxed">
-                  To make India's traditional wellness knowledge — Yoga, Meditation, Pranayama, Mudra and Ayurvedic
-                  Acupressure — practical and accessible for modern life, by pairing it with structured,
-                  science-informed learning through our Wellness Programs and Academy. We help people build healthier
-                  everyday habits and support aspiring practitioners to carry this knowledge forward responsibly.
+                  To make India's traditional, drug-free wellness knowledge — Mudra Therapy, Ayurvedic Acupressure,
+                  Meditation, Pranayama and Yoga — practical and accessible for modern life. We help people support
+                  the body's natural capacity for balance through authentic practices, build healthier everyday
+                  habits, and train aspiring practitioners to carry this knowledge forward responsibly — always as a
+                  complement to, not a replacement for, professional medical care.
                 </p>
               </div>
             </div>
@@ -134,14 +136,44 @@ export default function AboutView() {
                 <span className="text-xs uppercase font-bold text-green-700 tracking-wider block mb-2">Our Vision</span>
                 <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#004C53] mb-4">Our Vision</h3>
                 <p className="text-sm text-slate-705 leading-relaxed">
-                  A world where anyone, anywhere can learn authentic Indian wellness practices to care for their own
-                  wellbeing — and where a new generation of responsible wellness practitioners carries this knowledge
-                  forward, blending traditional wisdom with modern understanding through structured education and community.
+                  A world where authentic Vedic wellness practices — Mudra, Ayurvedic Acupressure, Meditation and
+                  Pranayama — are widely understood and used as natural, drug-free ways to support everyday health and
+                  wellbeing. We envision anyone, anywhere learning to care for themselves, and a new generation of
+                  responsible practitioners carrying this knowledge forward — blending traditional wisdom with modern
+                  understanding, alongside professional medical care.
                 </p>
               </div>
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* 3b. Five Pillars of Our Mission */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-14">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">How We Do It</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">Five Pillars of Our Mission</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            We pursue our vision through five focused areas — all rooted in natural, drug-free practice and a
+            responsible scope of care.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+          {[
+            { icon: "🌿", title: "Natural, Drug-Free Wellness", desc: "Support the body's own capacity for balance through traditional practices — as a complement to, not a replacement for, medical care." },
+            { icon: "🖐️", title: "Mudra for Everyday Support", desc: "Teach simple hand mudras used in tradition to support calm, focus and everyday relief as part of a daily routine." },
+            { icon: "🎯", title: "Marma for Ongoing Wellbeing", desc: "Use gentle Ayurvedic acupressure and Marma practices to support the body through long-standing, lifestyle-related concerns." },
+            { icon: "🧘", title: "Holistic Mind-Body Balance", desc: "Integrate guided Meditation and Pranayama to help ease stress, restore emotional harmony and sustain everyday vitality." },
+            { icon: "🎓", title: "Educate & Empower", desc: "Bridge scriptural heritage with a modern understanding of anatomy and safety, certifying confident, responsible practitioners." },
+            { icon: "🤝", title: "Responsible Scope of Practice", desc: "Be transparent about what these practices can and can't do, and about when to seek professional medical advice." },
+          ].map((p) => (
+            <div key={p.title} className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#005461] transition-all">
+              <span className="text-3xl block mb-3">{p.icon}</span>
+              <h3 className="font-heading font-bold text-base text-[#004C53] leading-snug mb-1.5">{p.title}</h3>
+              <p className="text-xs text-slate-700 leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -409,6 +441,86 @@ export default function AboutView() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* 8. Our Core Values */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-14">
+          <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">What We Stand For</span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">Our Core Values</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+          {[
+            { icon: "📖", title: "Ancient Wisdom First", desc: "We honour thousands of years of Vedic knowledge and time-tested wellness traditions." },
+            { icon: "🔬", title: "Grounded & Responsible", desc: "We pair traditional practice with a modern understanding of anatomy, safety and wellbeing — no magical claims." },
+            { icon: "🌿", title: "Natural & Drug-Free", desc: "We focus on natural, drug-free wellness practices that support the body — alongside professional medical care." },
+            { icon: "💪", title: "Practical Application", desc: "Knowledge without action is incomplete. We focus on real-world, practical learning and habits." },
+            { icon: "🤝", title: "Transparent & Ethical", desc: "We practise with honesty, clear scope-of-practice boundaries and professional integrity." },
+            { icon: "🌍", title: "Accessibility", desc: "Authentic Vedic wellness should be available to everyone, everywhere, whatever their background." },
+          ].map((v) => (
+            <div key={v.title} className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#005461] transition-all">
+              <span className="text-3xl block mb-3">{v.icon}</span>
+              <h3 className="font-heading font-bold text-base text-[#004C53] leading-snug mb-1.5">{v.title}</h3>
+              <p className="text-xs text-slate-700 leading-relaxed">{v.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 9. FAQ — About Shivoham Shiv */}
+      <section className="bg-[#EEF6F6] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#D6E9EA]">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto space-y-2 mb-12">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Good to Know</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">Frequently Asked Questions</h2>
+          </div>
+          <div className="space-y-3">
+            {[
+              { q: "Is Shivoham Shiv anti-medicine?", a: "No. We teach natural, drug-free wellness practices that support the body's own balance — as a complement to professional medical care, never a replacement. For any medical condition or emergency, always consult a qualified doctor." },
+              { q: "Are your methods scientifically proven?", a: "Our programs combine traditional practice with a modern understanding of anatomy, safety and wellbeing. We teach time-tested techniques responsibly and are always clear about what these practices can and can't do — we don't teach 'magical thinking'." },
+              { q: "Can Mudra therapy replace emergency medicine?", a: "No. Mudra and acupressure are supportive wellness practices, not emergency care. In any medical emergency, call your local emergency number or go to a hospital immediately." },
+              { q: "How is this different from regular yoga or wellness programs?", a: "Alongside yoga and meditation, we specialise in specific traditional practices — Mudra and Ayurvedic Acupressure / Marma — taught through structured, responsible programs rather than general lifestyle content." },
+              { q: "Who is qualified to teach these methods?", a: "Only people who complete our certified training programs. We keep strict standards because these practices require proper knowledge, ethics and a clear understanding of scope of practice." },
+              { q: "Can these practices support long-term health?", a: "Many people use them as part of a healthy daily routine to support everyday wellbeing. They are not a substitute for medication or medical treatment, and we're always clear about when to seek professional medical advice." },
+            ].map((f, i) => (
+              <details key={i} className="group bg-white border border-green-100 rounded-2xl px-5 py-4 shadow-sm">
+                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-heading font-bold text-sm text-[#004C53]">
+                  {f.q}
+                  <span className="text-[#EF8321] shrink-0 transition-transform group-open:rotate-45 text-lg leading-none">+</span>
+                </summary>
+                <p className="text-sm text-slate-700 leading-relaxed mt-3 pt-3 border-t border-green-100">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Final CTA */}
+      <section className="bg-green-950 text-cream py-20 px-4 sm:px-6 lg:px-8 border-t-4 border-[#EF8321]">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white">Begin Your Natural Wellness Journey</h2>
+          <p className="text-sm sm:text-base text-green-100/90 leading-relaxed max-w-2xl mx-auto">
+            Whether you want to transform your own health or become a certified practitioner, Shivoham Shiv gives you a
+            structured, responsible path rooted in authentic Vedic tradition. Start your journey toward natural,
+            drug-free wellness today.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Link to="/wellness-programs" className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#EF8321] hover:bg-[#F49B3E] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all">
+              Explore Our Programs <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/academy" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#004C53] hover:bg-green-50 font-bold text-xs uppercase tracking-wider rounded-full transition-all">
+              Join Our Academy <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/30 text-white hover:bg-white/10 font-bold text-xs uppercase tracking-wider rounded-full transition-all">
+              Contact Us <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-green-100/80 pt-4">
+            {["Certified, experienced instructors", "Rooted in authentic Vedic tradition", "Live + recorded classes", "Clear, responsible scope of practice"].map((t) => (
+              <span key={t} className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-[#EF8321]" /> {t}</span>
+            ))}
+          </div>
         </div>
       </section>
 
