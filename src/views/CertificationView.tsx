@@ -172,12 +172,14 @@ const GLANCE: [string, string][] = [
   ["Duration", "3 Months (12 weeks)"],
   ["Mode", "Online"],
   ["Live Classes", "3 per week"],
+  ["Class Duration", "90 minutes each"],
   ["Recorded Classes", "Yes — all sessions recorded"],
   ["Study Material", "Yes — comprehensive, included"],
   ["Practical Training", "Yes — hands-on guided practice"],
   ["Certification", "90-Day Practitioner Certification"],
   ["Experience Required", "No — beginners welcome"],
-  ["Batch Size", "Small, intimate batches"],
+  ["Prerequisites", "None — just curiosity and commitment"],
+  ["Batch Size", "Max 15–20 students (intimate learning)"],
   ["Lifetime Access", "Yes — revisit materials anytime"],
 ];
 
@@ -188,6 +190,50 @@ const FAQS = [
   { q: "What if I miss a live class?", a: "All live classes are recorded and available for review, so you can watch at your own pace. We still recommend attending live when possible for real-time feedback on your technique." },
   { q: "Is this certification recognised?", a: "It is a recognised professional wellness credential you can list on your profiles, website and business cards. It is not a medical licence, which would require separate regulatory approval." },
   { q: "Can I teach others after becoming certified?", a: "You can teach basic Marma concepts and techniques with appropriate disclosures. Training people to become professional practitioners requires a separate advanced instructor certification." },
+];
+
+const COVERS = [
+  { t: "Ayurvedic Acupressure", d: "Traditional pressure-point therapy and how to identify Marma points on the body for practical application." },
+  { t: "Marma Techniques", d: "The science of Marma therapy — traditional Indian pressure points used for centuries to support balance and wellbeing." },
+  { t: "Tongue, Face & Nail Observation", d: "Traditional Ayurvedic observation techniques — tongue, facial and nail assessment — to understand a client's wellness patterns." },
+  { t: "Structured Case Assessment", d: "A systematic approach to case-taking, documentation and building individualized wellness plans." },
+  { t: "90-Day Practitioner Certification", d: "Complete the full course and receive your Ayurvedic Acupressure & Marma Practitioner Certification." },
+  { t: "Support for Chronic Concerns", d: "How Marma and acupressure may support clients managing everyday pain, stress, digestion and lifestyle-related concerns." },
+  { t: "Responsibility & Scope of Practice", d: "Professional boundaries, when to refer clients to medical professionals, and how to practise ethically." },
+];
+
+const LEARN_METHODS = [
+  { t: "Live Online Classes", d: "3 guided sessions every week with real-time instruction." },
+  { t: "Recorded Sessions", d: "Revisit and practise lessons at your own pace." },
+  { t: "Structured Study Material", d: "Detailed anatomical guides, point maps and practice protocols." },
+  { t: "Practical Hands-On Training", d: "Learn palpation (finding points) and pressure techniques." },
+  { t: "Guided Learning", d: "Direct feedback from certified instructors on your technique." },
+];
+
+const TIMELINE = [
+  "Understand the Ayurvedic and anatomical foundations",
+  "Learn concepts progressively from basic to advanced",
+  "Practise locating Marma points until confident",
+  "Correct technique mistakes with live instructor feedback",
+  "Attend live doubt-clearing and Q&A sessions",
+  "Revise recorded lessons to deepen understanding",
+  "Use structured study material for self-paced learning",
+  "Understand practical application in real scenarios",
+  "Build confidence gradually through guided practice",
+  "Learn professional and ethical boundaries",
+];
+
+const LIVE_BENEFITS = [
+  "Learn the correct anatomical location of Marma points",
+  "Watch live demonstrations of palpation techniques",
+  "Ask questions and get immediate answers",
+  "Practise under guidance and receive real-time feedback",
+  "Improve your technique through expert observation",
+  "Understand traditional applications in context",
+  "Learn practical solutions for common mistakes",
+  "Discuss how to handle complex client scenarios",
+  "Build confidence through supportive group learning",
+  "Develop professional communication skills",
 ];
 
 export default function CertificationView() {
@@ -373,6 +419,25 @@ export default function CertificationView() {
         </motion.div>
       </section>
 
+      {/* WHAT THIS COURSE COVERS */}
+      <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className={goldLabel}>What You'll Work With</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">What This Course Covers</h2>
+          <p className="text-sm text-green-50/70 leading-relaxed mt-2">
+            From locating Marma points to responsible, client-centred practice — here's what you'll learn to do.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {COVERS.map((c) => (
+            <div key={c.t} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+              <h3 className="font-heading font-bold text-base text-[#E8C24A] mb-1.5">{c.t}</h3>
+              <p className="text-sm text-green-50/75 leading-relaxed">{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* WHAT IS */}
       <section className="bg-[#002A2E] py-16 px-4 sm:px-6 border-y border-white/5">
         <div className="max-w-3xl mx-auto text-center">
@@ -432,6 +497,75 @@ export default function CertificationView() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* HOW YOU'LL LEARN */}
+      <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className={goldLabel}>How You'll Learn</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">Learn Live From Anywhere</h2>
+          <p className="text-sm text-green-50/70 leading-relaxed mt-2">
+            This isn't a self-paced video course you watch alone. You learn through a combination of interactive,
+            structured methods:
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {LEARN_METHODS.map((m, i) => (
+            <div key={m.t} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+              <span className="font-heading text-xl font-extrabold text-[#E8C24A]">{i + 1}</span>
+              <h3 className="font-heading font-bold text-base text-white mt-1 mb-1.5">{m.t}</h3>
+              <p className="text-sm text-green-50/70 leading-relaxed">{m.d}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm text-green-50/75 leading-relaxed mt-8 max-w-3xl mx-auto text-center">
+          This hybrid approach gives you live expert guidance — crucial for learning proper hand position, pressure
+          and safety — combined with the flexibility to revise and practise on your own schedule.
+        </p>
+      </section>
+
+      {/* 3 MONTHS STRUCTURED */}
+      <section className="bg-[#002A2E] py-16 px-4 sm:px-6 border-y border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <span className={goldLabel}>3 Months · Structured</span>
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">Building Competence, Not Just Completion</h2>
+            <p className="text-sm text-green-50/70 leading-relaxed mt-2">
+              Marma therapy shouldn't be learned by memorizing a chart of point locations. Three months gives you time to:
+            </p>
+          </div>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {TIMELINE.map((s, i) => (
+              <li key={s} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                <span className="font-heading font-bold text-[#E8C24A] shrink-0">{i + 1}.</span>
+                <span className="text-sm text-green-50/85">{s}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* 3 LIVE CLASSES */}
+      <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <span className={goldLabel}>Live Guidance</span>
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mt-1">3 Live Classes Every Week</h2>
+          <p className="text-sm text-green-50/70 leading-relaxed mt-2">
+            Attend three live online classes every week with real-time guidance from your instructor.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {LIVE_BENEFITS.map((b) => (
+            <div key={b} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+              <CheckCircle2 className="w-4 h-4 text-[#E8C24A] shrink-0 mt-0.5" />
+              <span className="text-sm text-green-50/90">{b}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm text-green-50/75 leading-relaxed mt-8 max-w-3xl mx-auto text-center">
+          Live guidance matters for Marma training because small differences in hand position and pressure affect
+          safety and comfort. Real-time feedback helps you correct positioning and build proper technique from the start.
+        </p>
       </section>
 
       {/* WHO CAN JOIN */}
@@ -543,8 +677,8 @@ export default function CertificationView() {
 
       {/* FINAL CTA */}
       <section className="pb-20 px-4 sm:px-6 text-center">
-        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-2">Master Marma Therapy From a Certified Expert</h2>
-        <p className="text-sm text-green-50/70 mb-6 max-w-md mx-auto">A structured pathway from curious beginner to confident, responsible practitioner. Enrollment is limited to keep batches small.</p>
+        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-2">Your Opportunity to Master Marma Therapy From a Certified Expert</h2>
+        <p className="text-sm text-green-50/70 mb-6 max-w-lg mx-auto">A structured pathway from curious beginner to confident, responsible practitioner. Enrollment is limited to a small group per batch to keep learning personal — book a free consultation to find your place.</p>
         <button onClick={scrollToBook} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#E8C24A] hover:bg-[#f0cf63] text-[#0F2A1E] font-bold text-base tracking-wide shadow-lg transition-all">
           Book a Free Consultation <ArrowRight className="w-5 h-5" />
         </button>
