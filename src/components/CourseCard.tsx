@@ -20,7 +20,7 @@ export default function CourseCard({
   const { id, title, tagline, category, rating, reviewsCount, studentCount, image, isUpcoming, upcomingStartDate, schedule, altName } = course;
 
   const getCoursePath = (uid: string) => {
-    if (uid === "corp-wellness") return "/courses/corporate-wellness";
+    if (uid === "corp-wellness") return "/corporate-wellness";
     if (uid === "mudra-therapy") return "/courses/mudra-therapy";
     if (uid === "acupressure-therapy") return "/courses/acupressure-therapy";
     if (uid === "kids-eq") return "/courses/mindfulness-kids";
