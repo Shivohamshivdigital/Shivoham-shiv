@@ -118,6 +118,20 @@ const FAQS = [
   }
 ];
 
+const WELLNESS_PROGRAMS = [
+  { e: "⚖️", t: "Weight Management & Holistic Wellness", s: "Sustainable Health and Vitality", d: "Transform your relationship with food, movement and daily routines through Yoga, Pranayama, mindful eating and Ayurvedic lifestyle practices. No extreme diets — just sustainable, healthy changes.", to: "/weight-loss" },
+  { e: "🧠", t: "Kids Mindfulness & Focus", s: "Building Concentration & Emotional Balance in Children", d: "Help your child develop better focus, attention and emotional awareness through age-appropriate mindfulness, breathing and yoga practices — supporting both academic success and emotional wellbeing.", to: "/courses/mindfulness-kids" },
+  { e: "💼", t: "Corporate & Adult Wellness", s: "Stress Relief & Peak Vitality for Professionals", d: "Practical Yoga, meditation, breathing and mindfulness practices employees can use right at their desk. Create healthier, more productive teams.", to: "/courses/corporate-wellness" },
+  { e: "🔄", t: "14-Day Reset Challenge", s: "Quick Holistic Rejuvenation for Mind & Body", d: "A structured 14-day immersion combining Yoga, Pranayama, Meditation, Mudra and lifestyle practices to reset your energy, clarity and wellbeing.", to: "/14-day-challenge" },
+];
+
+const ACADEMY_PROGRAMS = [
+  { e: "🤲", t: "Mudra Therapy Certification", s: "Hands-On Training in Energy-Channel Practice", d: "Master the practice of Mudra Therapy through a 3-month course — correct techniques, traditional applications and responsible client work. 3 live classes per week + recorded sessions.", meta: "3 Months · Online Live + Recorded", to: "/courses/mudra-therapy" },
+  { e: "🧴", t: "Ayurvedic Acupressure Certification", s: "Marma & Pressure-Point Therapy", d: "Learn authentic Marma therapy with certified practitioner Pooja Chaturvedi — anatomical location, proper pressure application, client assessment and professional scope of practice.", meta: "3 Months · Online Live + Recorded", to: "/marma-certification" },
+  { e: "🌬️", t: "Meditation & Pranayama Intensive", s: "Master Breath & Mind-Training Techniques", d: "Structured training in traditional Pranayama and meditation methods — the practice of breath, energy management and how to guide others.", meta: "6 Weeks · Online Live + Recorded · Launching Soon", to: "/contact" },
+  { e: "🏆", t: "Advanced Professional Certifications", s: "3-Month & 6-Month Professional Diplomas", d: "Take your expertise further with advanced training, specialized modules, mentorship and professional development pathways.", meta: "3–6 Months · Online + Mentorship · For Existing Students", to: "/academy" },
+];
+
 export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewProps) {
   const [courses, setCourses] = useState<Course[]>([]);
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
@@ -434,12 +448,94 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
 
           {/* Mission statement */}
           <div className="mt-12 max-w-3xl mx-auto text-center">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Mission</span>
+            <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Our Vision &amp; Mission</span>
             <p className="mt-3 font-heading text-lg sm:text-2xl text-[#004C53] leading-relaxed">
               To revive, modernize and scientifically present the healing wisdom of the Vedas — bridging timeless
               practices like Mudra Therapy, Meditation, Pranayama, Yoga and Ayurvedic Acupressure with modern
               understanding, through structured Wellness Programs and certified Academy education.
             </p>
+          </div>
+
+          {/* Three conceptual pillars */}
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
+            {[
+              { e: "📖", t: "Ancient Wisdom", d: "Rooted in thousands of years of Vedic knowledge and time-tested wellness traditions." },
+              { e: "🔬", t: "Scientific Approach", d: "Structured programs informed by a modern understanding of anatomy, safety and wellbeing." },
+              { e: "💪", t: "Practical Impact", d: "Real focus on outcomes — healthier habits, growing skills and confident practitioners." },
+            ].map((p) => (
+              <div key={p.t} className="rounded-2xl bg-white border border-green-100 p-5 text-center">
+                <div className="text-2xl mb-2">{p.e}</div>
+                <h3 className="font-heading font-bold text-sm text-[#004C53] mb-1">{p.t}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{p.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 0.7 CORE PILLARS — PROGRAM DIRECTORY */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Wellness column */}
+          <div className="rounded-3xl bg-white border border-green-100 p-7 sm:p-8 shadow-xs">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-2xl">🌿</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Shivoham Shiv Wellness</span>
+            </div>
+            <h3 className="font-heading font-bold text-xl text-[#004C53]">Holistic Healing &amp; Lifestyle Transformation</h3>
+            <p className="text-sm text-slate-600 leading-relaxed mt-2 mb-5">
+              Practical wellness programs designed to help you reclaim your health, build sustainable habits and
+              transform your lifestyle through ancient Vedic practices.
+            </p>
+            <div className="space-y-3">
+              {WELLNESS_PROGRAMS.map((p) => (
+                <Link key={p.t} to={p.to} className="group block rounded-2xl bg-[#FAF5EC] border border-[#004C53]/10 p-4 hover:border-[#EF8321]/40 transition-colors">
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl shrink-0">{p.e}</span>
+                    <div>
+                      <h4 className="font-heading font-bold text-sm text-[#004C53]">{p.t}</h4>
+                      <p className="text-[11px] font-semibold text-[#EF8321] mt-0.5">{p.s}</p>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-1.5">{p.d}</p>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#EF8321] mt-2">Learn More <ChevronRight className="w-3.5 h-3.5" /></span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <Link to="/wellness-programs" className="mt-5 inline-flex items-center justify-center gap-1.5 w-full px-6 py-3 bg-[#004C53] hover:bg-[#003A40] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-colors">
+              Explore All Wellness Programs <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+          {/* Academy column */}
+          <div className="rounded-3xl bg-white border border-green-100 p-7 sm:p-8 shadow-xs">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-2xl">🎓</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#EF8321]">Shivoham Shiv Academy</span>
+            </div>
+            <h3 className="font-heading font-bold text-xl text-[#004C53]">Certified Training in Traditional Healing</h3>
+            <p className="text-sm text-slate-600 leading-relaxed mt-2 mb-5">
+              Professional certification programs combining ancient Vedic knowledge with modern scientific
+              understanding. Learn from certified experts and become a qualified wellness practitioner.
+            </p>
+            <div className="space-y-3">
+              {ACADEMY_PROGRAMS.map((p) => (
+                <Link key={p.t} to={p.to} className="group block rounded-2xl bg-[#FAF5EC] border border-[#004C53]/10 p-4 hover:border-[#EF8321]/40 transition-colors">
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl shrink-0">{p.e}</span>
+                    <div>
+                      <h4 className="font-heading font-bold text-sm text-[#004C53]">{p.t}</h4>
+                      <p className="text-[11px] font-semibold text-[#EF8321] mt-0.5">{p.s}</p>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-1.5">{p.d}</p>
+                      <p className="text-[10px] font-semibold text-[#004C53]/60 uppercase tracking-wider mt-1.5">{p.meta}</p>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-[#004C53] group-hover:text-[#EF8321] mt-2">Learn More <ChevronRight className="w-3.5 h-3.5" /></span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <Link to="/academy" className="mt-5 inline-flex items-center justify-center gap-1.5 w-full px-6 py-3 bg-[#EF8321] hover:bg-[#d9741a] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-colors">
+              Explore Academy Programs <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -452,10 +548,10 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
             {/* Left Column: Heading and Terracotta Card */}
             <div className="lg:col-span-5 flex flex-col space-y-6">
               <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">
-                Ancient Roots, Modern Compass
+                About Shivoham Shiv
               </span>
               <h2 className="font-heading font-semibold text-3xl sm:text-4xl text-[#004C53] leading-tight">
-                Helping you harmonize mind, body & spirit
+                Ancient Wisdom for Modern Life
               </h2>
 
               <div className="bg-[#D9741A]/5 border-l-4 border-[#D9741A] p-6 rounded-r-2xl text-left bg-white shadow-sm mt-4">
@@ -471,10 +567,13 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
             {/* Right Column: Multi-paragraph narrative */}
             <div className="lg:col-span-7 flex flex-col space-y-6 text-left text-sm sm:text-base text-[#004C53]/80 leading-relaxed font-light pt-2">
               <p>
-                Shivoham Shiv was created with a single, clear objective: to protect the purity and lineage of Sanskrit wellness traditions, making them highly approachable and clinically impactful for modern, busy lives. Our pathways do not follow standard fitness trends or superficial wellness fads. Instead, we dive straight into original Vedic sciences.
+                At Shivoham Shiv, we make authentic Vedic practices accessible, practical and science-informed —
+                turning timeless traditions like Mudra Therapy, Yoga, Pranayama and Ayurvedic Acupressure into
+                structured programs you can actually use in modern life.
               </p>
               <p>
-                Through classical Hasta Mudra Mudra maps, precise Marma pressure point stimulations, and Ayurvedic daily routines (Dinacharya), we help you activate physical self-healing systems and soothe overstimulated cortisol levels. Every exercise, lecture, and breathing sequence is tailored to return individual bodily elements to their unique original constitution (Prakriti).
+                Whether you want to improve your own wellbeing or train to become a certified practitioner, we give
+                you a clear, guided pathway rooted in tradition and designed for today.
               </p>
               
               <div className="pt-2">
@@ -1012,6 +1111,23 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
         </div>
       </section>
 
+      {/* 7b. TRUST BADGES */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-[#FAF5EC] border-t border-[#004C53]/5">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            { t: "Certified Mentors", d: "Learn from experienced instructors" },
+            { t: "Live + Recorded", d: "Real-time feedback, revisit anytime" },
+            { t: "Beginner Friendly", d: "No prior experience needed" },
+            { t: "Global Community", d: "Online learners worldwide" },
+          ].map((s) => (
+            <div key={s.t} className="rounded-2xl bg-white border border-green-100 p-5 text-center shadow-xs">
+              <p className="font-heading font-bold text-base text-[#004C53]">{s.t}</p>
+              <p className="text-[11px] text-slate-600 mt-1 leading-snug">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* 8. FAQ — TWO-COLUMN ACCORDION */}
       <section className="py-20 lg:py-28 bg-[#FAF5EC] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1168,8 +1284,13 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
               Explore Wellness Programs <ChevronRight className="w-4 h-4" />
             </Link>
             <Link to="/academy" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#004C53] hover:bg-green-50 font-bold text-xs uppercase tracking-wider rounded-full transition-all">
-              Explore Academy <ChevronRight className="w-4 h-4" />
+              Join the Academy <ChevronRight className="w-4 h-4" />
             </Link>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-green-50/85">
+            {["Certified Expert Instructors", "Live + Recorded Classes", "Beginner-Friendly", "Structured 3-Month Programs"].map((t) => (
+              <span key={t} className="inline-flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-amber-300" /> {t}</span>
+            ))}
           </div>
         </div>
       </section>
