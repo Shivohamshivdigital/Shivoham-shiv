@@ -1727,53 +1727,6 @@ Benefits of Our Ayurvedic Acupressure Services
           </div>
         </section>
 
-        {/* 5. CORE WELL-BEING MODULES */}
-        <section className="bg-[#EEF6F6] py-20 px-4 sm:px-6 lg:px-8 border-y border-green-100 text-left">
-          <div className="max-w-5xl mx-auto">
-            
-            <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#D9741A]">Systematic Path</span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#004C53]">
-                Our Core Well-Being Modules
-              </h2>
-              <p className="text-xs sm:text-sm text-[#3A463F]/85 leading-relaxed">
-                We split our corporate modules into three targeted stages to guide teams from initial fatigue to long-term resilience:
-              </p>
-            </div>
-
-            <div className="space-y-6 max-w-4xl mx-auto">
-              {[
-                {
-                  mod: "Module 1",
-                  title: "Foundations of Corporate Mindfulness",
-                  desc: "Identify corporate stress cues, analyze biological stress responses, and practice basic sitting breathwork (Pranayama) to cool the nervous system instantly."
-                },
-                {
-                  mod: "Module 2",
-                  title: "Daily Cycle Synchronization (Dinacharya)",
-                  desc: "Incorporate Vedic circadian schedules, configure ergonomic mindful workspaces, and practice element-balancing finger locks (Hasta Mudra) to renew daily energy."
-                },
-                {
-                  mod: "Module 3",
-                  title: "Relational Harmony & Vedic Expression",
-                  desc: "Incorporate conscious communication models to decrease workplace friction, resolve conflicts with ease, and foster supportive team micro-communities."
-                }
-              ].map((m, idx) => (
-                <div key={idx} className="bg-white p-6 sm:p-8 rounded-3xl border border-green-100 flex flex-col md:flex-row gap-6 items-start">
-                  <div className="px-3.5 py-1.5 bg-[#D9741A] text-white rounded-lg text-xs font-mono font-bold shrink-0">
-                    {m.mod}
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-heading font-bold text-lg text-[#004C53]">{m.title}</h3>
-                    <p className="text-xs sm:text-sm text-[#3A463F]/90 leading-relaxed">{m.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
         {/* 6. FAQ ACCORDION */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto text-left">
           <div className="text-center space-y-2 mb-12">
