@@ -221,27 +221,25 @@ export default function WeightLossView() {
               health benefits:
             </p>
           </div>
-          <div className="overflow-x-auto rounded-3xl border border-[#004C53]/10 bg-white shadow-sm">
-            <table className="w-full text-left text-sm min-w-[560px]">
-              <thead>
-                <tr className="bg-[#004C53] text-white">
-                  <th className="px-4 py-3 font-heading font-bold">Baseline Weight</th>
-                  <th className="px-4 py-3 font-heading font-bold">5% Optimization</th>
-                  <th className="px-4 py-3 font-heading font-bold">10% Balance</th>
-                  <th className="px-4 py-3 font-heading font-bold">Wellness Marker Supported</th>
-                </tr>
-              </thead>
-              <tbody>
-                {OPTIMIZATION.map((row, i) => (
-                  <tr key={row.base} className={i % 2 ? "bg-[#FAF5EC]" : "bg-white"}>
-                    <td className="px-4 py-3 font-semibold text-[#004C53]">{row.base}</td>
-                    <td className="px-4 py-3 text-[#EF8321] font-semibold">{row.five}</td>
-                    <td className="px-4 py-3 text-[#EF8321] font-semibold">{row.ten}</td>
-                    <td className="px-4 py-3 text-slate-600">{row.marker}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {OPTIMIZATION.map((row) => (
+              <div key={row.base} className="rounded-3xl bg-white border border-[#004C53]/10 shadow-sm p-6 text-center">
+                <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Baseline</span>
+                <p className="text-2xl font-bold text-[#004C53] mt-1 mb-4">{row.base}</p>
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <div>
+                    <span className="block text-lg font-bold text-[#EF8321]">{row.five}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">5%</span>
+                  </div>
+                  <span className="text-[#EF8321] font-bold text-lg">·</span>
+                  <div>
+                    <span className="block text-lg font-bold text-[#EF8321]">{row.ten}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">10%</span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed border-t border-[#004C53]/10 pt-3">{row.marker}</p>
+              </div>
+            ))}
           </div>
           <p className="text-center text-sm text-slate-600 mt-6">
             These are sustainable, achievable targets — not extreme transformations. The goal is metabolic rebalancing,
