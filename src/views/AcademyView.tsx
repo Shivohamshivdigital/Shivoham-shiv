@@ -37,7 +37,7 @@ const GROUPS: { label: string; heading: string; blurb: string; items: CertCard[]
     heading: "Become a certified practitioner",
     blurb: "Structured online certifications with video modules, guidance and a certificate.",
     items: [
-      { title: "Mudra Therapy Certification", desc: "The neurological basis, precise hand alignments and timing of 15 essential Hasta Mudras.", to: "/courses/mudra-therapy", icon: Fingerprint, tag: "Enrolling" },
+      { title: "Mudra Therapy Certification", desc: "The neurological basis, precise hand alignments and timing of 15 essential Hasta Mudras.", to: "/mudra-certification", icon: Fingerprint, tag: "Enrolling" },
       { title: "Ayurvedic Acupressure", desc: "Meridian sites and pressure techniques rooted in Vedic acupressure.", to: "/courses/acupressure-therapy", icon: Hand },
       { title: "Meditation Therapy", desc: "Apply meditation as a therapeutic practice for stress and emotional balance.", to: "/contact", icon: Wind, tag: "Coming soon" },
     ],
@@ -80,7 +80,7 @@ export default function AcademyView() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
-              to="/courses/mudra-therapy"
+              to="/mudra-certification"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-br from-[#EF8321] to-[#D9741A] hover:from-[#F49B3E] hover:to-[#C56A15] text-white font-bold text-sm uppercase tracking-wider rounded-2xl shadow-lg hover:shadow-xl transition-all"
             >
               Explore Certifications <ArrowRight className="w-4 h-4" />

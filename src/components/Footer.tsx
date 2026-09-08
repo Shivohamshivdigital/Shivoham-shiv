@@ -9,7 +9,7 @@ export default function Footer() {
   const treatments = [
     { name: "Ayurvedic Acupressure", path: "/courses/acupressure-therapy" },
     { name: "Corporate & Adult Wellness", path: "/corporate-wellness" },
-    { name: "Mudra Therapy Course", path: "/courses/mudra-therapy" },
+    { name: "Mudra Therapy Course", path: "/mudra-certification" },
     { name: "Mindfulness & Focus Training for Kids", path: "/courses/mindfulness-kids" },
   ];
 
