@@ -964,13 +964,8 @@ export default function HomeView({ onOpenConsultation, onSetBanner }: HomeViewPr
 
                 {/* Graduate details */}
                 <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-3 pt-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border border-[#D9741A]/20 shadow-sm">
-                    <img
-                      src={TESTIMONIALS[activeTestimonialIndex].image}
-                      className="w-full h-full object-cover"
-                      alt={TESTIMONIALS[activeTestimonialIndex].name}
-                      referrerPolicy="no-referrer"
-                    />
+                  <div className="w-12 h-12 rounded-full bg-[#004C53] text-white font-heading font-bold flex items-center justify-center border border-[#D9741A]/20 shadow-sm shrink-0">
+                    {TESTIMONIALS[activeTestimonialIndex].name.charAt(0)}
                   </div>
                   <div className="text-left">
                     <p className="font-bold text-[#004C53] text-sm leading-tight">
