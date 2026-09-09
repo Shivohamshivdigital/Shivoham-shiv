@@ -57,26 +57,41 @@ const TESTIMONIALS: Testimonial[] = [
 ];
 
 /**
- * Reusable "What our community says" testimonials band. Self-contained
- * (own background + spacing) so it can drop onto any page before the CTA.
+ * Reusable "What our community says" testimonials — an auto-scrolling
+ * carousel (pauses on hover). Self-contained (own background, spacing and
+ * marquee keyframes) so it can drop onto any page before the CTA.
  */
 export default function Testimonials({ heading = "What Our Community Says" }: { heading?: string }) {
   return (
-    <section className="bg-[#EEF6F6] border-y border-[#004C53]/10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] text-center mb-10">{heading}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t) => (
-            <div key={t.name} className="flex flex-col rounded-3xl bg-white border border-[#004C53]/10 p-6 shadow-sm">
+    <section className="bg-[#EEF6F6] border-y border-[#004C53]/10 py-16 sm:py-20">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes tm-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+          .tm-track { display: flex; width: max-content; animation: tm-marquee 45s linear infinite; }
+          .tm-wrap:hover .tm-track { animation-play-state: paused; }
+          @media (prefers-reduced-motion: reduce) { .tm-track { animation: none; } }
+        `,
+        }}
+      />
+      <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#004C53] text-center mb-10 px-4">{heading}</h2>
+
+      <div className="tm-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+        <div className="tm-track gap-6">
+          {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+            <div
+              key={i}
+              className="w-[300px] sm:w-[360px] shrink-0 flex flex-col rounded-3xl bg-white border border-[#004C53]/10 p-6 shadow-sm"
+            >
               <span className="inline-flex w-fit items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider bg-[#EF8321]/15 text-[#D9741A] rounded-full px-3 py-1 mb-3">
                 {t.badge}
               </span>
               <div className="flex gap-0.5 text-[#EF8321] mb-3">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#EF8321]" />
+                {[0, 1, 2, 3, 4].map((s) => (
+                  <Star key={s} className="w-4 h-4 fill-[#EF8321]" />
                 ))}
               </div>
-              <p className="text-sm text-slate-600 leading-relaxed italic flex-grow">"{t.quote}"</p>
+              <p className="text-sm text-slate-600 leading-relaxed italic flex-grow line-clamp-6">"{t.quote}"</p>
               <div className="mt-4 pt-4 border-t border-[#004C53]/10 flex items-center gap-3">
                 {t.img ? (
                   <img
@@ -99,11 +114,12 @@ export default function Testimonials({ heading = "What Our Community Says" }: { 
             </div>
           ))}
         </div>
-        <p className="text-center text-[11px] text-slate-500 mt-6 max-w-2xl mx-auto">
-          Individual experiences shared by our clients; results vary from person to person and are not guaranteed.
-          These are personal accounts, not medical claims, and are not a substitute for professional medical care.
-        </p>
       </div>
+
+      <p className="text-center text-[11px] text-slate-500 mt-8 max-w-2xl mx-auto px-4">
+        Hover to pause · individual experiences shared by our clients; results vary from person to person and are not
+        guaranteed. These are personal accounts, not medical claims, and are not a substitute for professional medical care.
+      </p>
     </section>
   );
 }
