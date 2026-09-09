@@ -613,7 +613,7 @@ export default function CertificationView() {
             <h2 className="font-heading font-bold text-2xl text-white mt-1">Pooja Chaturvedi</h2>
             <p className="text-[#E8C24A] font-semibold text-sm mb-3">Founder · Shivoham Shiv</p>
             <ul className="space-y-1.5 mb-4">
-              {["Yoga Alliance USA — RYS-200", "Certified in Acupressure, Panchakarma & Reiki", "7+ years of teaching & practice", "Trains wellness practitioners in traditional Indian wellness"].map((c) => (
+              {["Yoga Alliance USA — RYS-200", "Certified in Acupressure, Panchakarma & Reiki", "8+ years of teaching & practice", "Trains wellness practitioners in traditional Indian wellness"].map((c) => (
                 <li key={c} className="flex items-start gap-2 text-sm text-green-50/85"><CheckCircle2 className="w-4 h-4 text-[#E8C24A] shrink-0 mt-0.5" /> {c}</li>
               ))}
             </ul>

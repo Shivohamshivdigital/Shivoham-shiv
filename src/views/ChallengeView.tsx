@@ -251,7 +251,7 @@ export default function ChallengeView() {
       <section className="py-6 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { icon: Award, label: "7+ years of practice" },
+            { icon: Award, label: "8+ years of practice" },
             { icon: Users, label: "1,200+ people guided" },
             { icon: HandHeart, label: "No pills or equipment" },
             { icon: ShieldCheck, label: "One-time ₹999 · no auto-debit" },
@@ -463,7 +463,7 @@ export default function ChallengeView() {
             <span className="text-xs uppercase font-bold tracking-widest text-[#EF8321]">Your guide</span>
             <h2 className="font-heading font-bold text-2xl text-green-900 mt-1 mb-3">Rooted in authentic Vedic practice</h2>
             <p className="text-sm text-slate-600 leading-relaxed mb-3">
-              At Shivoham Shiv we've spent 7+ years guiding 1,200+ people back to balance using traditional Mudra,
+              At Shivoham Shiv we've spent 8+ years guiding 1,200+ people back to balance using traditional Mudra,
               Marma and Ayurvedic practices — no pills, no shortcuts. This challenge is the gentle first step of that
               same path, simplified into 20 mindful minutes a day.
             </p>
