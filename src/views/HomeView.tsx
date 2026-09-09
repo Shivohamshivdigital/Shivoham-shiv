@@ -69,25 +69,46 @@ const STORIES = [
 
 const TESTIMONIALS = [
   {
-    quote: "I came to Shivoham Shiv wanting to improve my own health. Three months later, I'm a certified Mudra therapist. The structured approach and live instruction made all the difference — my clients are already seeing results.",
-    name: "Rajesh Kumar",
-    role: "Former IT Professional, Now Wellness Practitioner",
+    quote: "Long hours of desk work had caused persistent neck and cervical discomfort. Through Ayurvedic Acupressure the right marma points were worked on, and I experienced improved mobility, relaxation and better comfort through my whole workday — without depending on medication.",
+    name: "Rajesh Sharma",
+    role: "IT Professional",
     gradNum: "★★★★★",
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=200"
   },
   {
-    quote: "As a yoga teacher for 8 years, I thought I knew traditional practices. But this academy deepened my understanding completely. Now I can offer my students authentic, safe and science-informed techniques.",
-    name: "Priya Sharma",
-    role: "Certified Yoga Teacher",
+    quote: "Long working hours had led to L5–L6 disc gapping, severe back discomfort and restricted movement. Through Ayurvedic Acupressure my blocked marma points were released — I regained posture, mobility and lasting comfort, without relying on pills.",
+    name: "Vinod Kumar",
+    role: "Banker",
+    gradNum: "★★★★★",
+    image: "https://cdn.corenexis.com/f/Dg8EUGRq3om.png"
+  },
+  {
+    quote: "Irregular periods had started affecting my balance and daily routine. The Ayurvedic Acupressure sessions worked on exactly the right vital points and helped me feel more regulated, calm and confident — managing my body naturally, without any medication.",
+    name: "Neha Sharma",
+    role: "Working Professional",
     gradNum: "★★★★★",
     image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=200"
   },
   {
-    quote: "The weight management program changed how I think about health. It's not about restriction — it's about understanding your body and building sustainable habits. I've lost weight and kept it off.",
-    name: "Isha Desai",
-    role: "Wellness Transformation Student",
+    quote: "My hands had been shaking almost continuously for close to 48 hours, along with mental stress and fatigue. The precise pressure of Ayurvedic Acupressure calmed the tremors and left me feeling steady, stable and emotionally balanced.",
+    name: "Gitanjali",
+    role: "Teacher",
+    gradNum: "★★★★★",
+    image: "https://cdn.corenexis.com/f/A8hh8IjCwoa.png"
+  },
+  {
+    quote: "During pregnancy my body often felt heavy and I was emotionally very sensitive. The gentle marma points of Ayurvedic Acupressure helped me feel calmer, more balanced and connected with my body — simple, reassuring and a real comfort during that phase of life.",
+    name: "Sunita Verma",
+    role: "Homemaker",
     gradNum: "★★★★★",
     image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=200"
+  },
+  {
+    quote: "For nearly 15 years I faced continuous swelling and physical heaviness that affected my daily routine. Ayurvedic Acupressure released the blocked points and I finally felt lighter, balanced and comfortable. I truly appreciated the natural, pill-free approach.",
+    name: "Archana Gautam",
+    role: "Teacher",
+    gradNum: "★★★★★",
+    image: "https://cdn.corenexis.com/f/6lo5URS2WWn.png"
   }
 ];
 
