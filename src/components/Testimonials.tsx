@@ -93,19 +93,19 @@ export default function Testimonials({ heading = "What Our Community Says" }: { 
               </div>
               <p className="text-sm text-slate-600 leading-relaxed italic flex-grow line-clamp-6">"{t.quote}"</p>
               <div className="mt-4 pt-4 border-t border-[#004C53]/10 flex items-center gap-3">
-                {t.img ? (
-                  <img
-                    src={t.img}
-                    alt={t.name}
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    className="w-10 h-10 rounded-full object-cover ring-1 ring-[#004C53]/10 shrink-0"
-                  />
-                ) : (
-                  <span className="w-10 h-10 rounded-full bg-[#004C53] text-white font-heading font-bold flex items-center justify-center shrink-0">
-                    {t.name.charAt(0)}
-                  </span>
-                )}
+                <span className="relative w-10 h-10 rounded-full bg-[#004C53] text-white font-heading font-bold flex items-center justify-center shrink-0 overflow-hidden ring-1 ring-[#004C53]/10">
+                  {t.name.charAt(0)}
+                  {t.img && (
+                    <img
+                      src={t.img}
+                      alt={t.name}
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                </span>
                 <div>
                   <p className="font-heading font-bold text-sm text-[#004C53]">{t.name}</p>
                   <p className="text-xs text-slate-500">{t.role}</p>
