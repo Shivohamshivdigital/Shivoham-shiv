@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Award, GraduationCap, Sparkles, Heart, CheckCircle2, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 import CertificateGallery from "../components/CertificateGallery";
+import Testimonials from "../components/Testimonials";
 
 const BELIEFS = [
   "Ancient wisdom should be respected, structured, tested and taught with professional rigour — not diluted by commercialization or mysticism.",
@@ -386,6 +387,8 @@ export default function AboutView() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* 14. FINAL CTA */}
       <section className="bg-green-950 text-cream py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t-4 border-[#EF8321]">

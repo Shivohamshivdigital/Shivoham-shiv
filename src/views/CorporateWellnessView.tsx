@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
 import SEO from "../components/SEO";
+import Testimonials from "../components/Testimonials";
 
 const REALITY = [
   "Eye strain and screen fatigue", "Neck and shoulder stiffness", "Cervical discomfort",
@@ -446,6 +447,8 @@ export default function CorporateWellnessView() {
           <p className="text-center text-[11px] text-slate-500 mt-6 max-w-2xl mx-auto">Individual outcomes vary. The program is intended to support healthy lifestyles and does not replace medical care.</p>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* 16. FINAL CTA */}
       <section className="bg-gradient-to-b from-[#004C53] to-[#003A40] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">

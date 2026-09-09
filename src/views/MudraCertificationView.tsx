@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, AlertTriangle } from "lucide-react";
 import SEO from "../components/SEO";
+import Testimonials from "../components/Testimonials";
 
 const ALONGSIDE = ["Yoga", "Meditation", "Pranayama", "Mindfulness", "Relaxation practices", "Traditional Indian wellness routines"];
 const ELEMENTS = ["Earth", "Water", "Fire", "Air", "Space"];
@@ -474,6 +475,8 @@ export default function MudraCertificationView() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* 16. FINAL CTA */}
       <section className="bg-gradient-to-b from-[#004C53] to-[#003A40] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">

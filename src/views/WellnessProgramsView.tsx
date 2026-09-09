@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Leaf, ChevronRight } from "lucide-react";
 import SEO from "../components/SEO";
+import Testimonials from "../components/Testimonials";
 
 interface Program {
   emoji: string;
@@ -130,6 +131,8 @@ export default function WellnessProgramsView() {
           ))}
         </div>
       </section>
+
+      <Testimonials />
 
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
