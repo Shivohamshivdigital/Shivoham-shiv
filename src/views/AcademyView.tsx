@@ -12,6 +12,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import SEO from "../components/SEO";
+import Testimonials from "../components/Testimonials";
 
 interface CertCard {
   title: string;
@@ -158,6 +159,8 @@ export default function AcademyView() {
           </motion.section>
         ))}
       </div>
+
+      <Testimonials />
 
       {/* Closing CTA */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">

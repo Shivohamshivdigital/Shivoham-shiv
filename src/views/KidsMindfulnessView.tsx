@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
 import SEO from "../components/SEO";
+import Testimonials from "../components/Testimonials";
 
 const SIGNS = [
   { e: "📚", t: "Study-Time Distractions", d: "Losing interest within minutes and constantly looking away from books.", flag: "Can't sustain focus for even 15–20 minutes on one task." },
@@ -345,6 +346,8 @@ export default function KidsMindfulnessView() {
           </div>
         </div>
       </section>
+
+      <Testimonials heading="What Parents Say" />
 
       {/* 11. FINAL CTA */}
       <section className="bg-gradient-to-b from-[#004C53] to-[#003A40] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">

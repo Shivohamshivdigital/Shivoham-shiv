@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
 import SEO from "../components/SEO";
+import Testimonials from "../components/Testimonials";
 
 const WHAT_IS = [
   "Body points work within a wellness framework",
@@ -419,6 +420,8 @@ export default function AcupressureCourseView() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* 15. FINAL CTA */}
       <section className="bg-gradient-to-b from-[#004C53] to-[#003A40] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
