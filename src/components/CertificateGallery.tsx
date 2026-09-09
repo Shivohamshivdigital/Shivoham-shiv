@@ -54,7 +54,6 @@ export default function CertificateGallery({
                 />
               </div>
               <p className="text-xs font-semibold text-[#004C53] leading-snug mt-2 line-clamp-2">{c.title}</p>
-              <p className="text-[10px] text-slate-500 mt-0.5">{c.year}</p>
             </a>
           ))}
         </div>
