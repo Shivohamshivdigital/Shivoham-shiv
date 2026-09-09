@@ -5,6 +5,7 @@ import SEO from "../components/SEO";
 import AuthModal from "../components/AuthModal";
 import { startPayment, PaymentPlan } from "../services/paymentService";
 import { setSession } from "../utils/session";
+import Testimonials from "../components/Testimonials";
 
 interface Pricing {
   registerAmount: number;
@@ -58,12 +59,6 @@ const INCLUDES = [
   { t: "Habit Coaching", d: "One-on-one or group coaching to ease emotional-eating patterns and build lasting change." },
   { t: "Progress Tracking & Adjustment", d: "Regular check-ins to monitor progress, address challenges and adjust protocols." },
   { t: "Community Access", d: "Join a growing global community for ongoing support and accountability." },
-];
-
-const WL_TESTIMONIALS = [
-  { loss: "8 kg in 60 days", client: "Ritu S.", loc: "Jaipur", text: "I tried calorie counting workouts for years and only got fatigued. Changing my breathing and food to match Pitta digestion completely melted my bloating within several weeks!" },
-  { loss: "Lost 9 kg", client: "Anil K.", loc: "Delhi", text: "The combination of Surya Mudra with yogic posture flow was magical. I never felt starved, yet my stress cravings vanished before the end of class modules." },
-  { loss: "7 kg, and it stayed", client: "Pooja M.", loc: "Jhansi", text: "My thyroid counts had slowed down, but Ayurvedic practices helped reset my routine naturally. This isn't just weight management — it gave me a complete lifestyle recharge." },
 ];
 
 export default function WeightLossView() {
@@ -340,26 +335,7 @@ export default function WeightLossView() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-[#EEF6F6] border-y border-[#004C53]/10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className={`${heading} text-2xl sm:text-3xl text-center mb-10`}>Real People, Real Progress</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {WL_TESTIMONIALS.map((t) => (
-              <div key={t.client} className="flex flex-col rounded-3xl bg-white border border-[#004C53]/10 p-6 shadow-sm">
-                <span className="inline-flex w-fit items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider bg-[#EF8321]/15 text-[#D9741A] rounded-full px-3 py-1 mb-3">{t.loss}</span>
-                <p className="text-sm text-slate-600 leading-relaxed italic flex-grow">"{t.text}"</p>
-                <div className="mt-4 pt-4 border-t border-[#004C53]/10">
-                  <p className="font-heading font-bold text-sm text-[#004C53]">{t.client}</p>
-                  <p className="text-xs text-slate-500">{t.loc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-[11px] text-slate-500 mt-6 max-w-2xl mx-auto">
-            Individual experiences shared by our participants; results vary from person to person and are not guaranteed.
-          </p>
-        </div>
-      </section>
+      <Testimonials heading="Real People, Real Progress" />
 
       {/* 8. FINAL CTA */}
       <section className="bg-gradient-to-b from-[#004C53] to-[#003A40] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
