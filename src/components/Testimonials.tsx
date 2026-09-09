@@ -22,6 +22,7 @@ const TESTIMONIALS: Testimonial[] = [
       "Long working hours had led to L5–L6 disc gapping, severe back discomfort and restricted movement. Through Ayurvedic Acupressure my blocked marma points were released — I regained posture, mobility and lasting comfort, without relying on pills.",
     name: "Vinod Kumar",
     role: "Banker",
+    img: "/testimonials/vinod.jpg",
   },
   {
     badge: "Irregular Menstrual Cycle",
@@ -36,6 +37,7 @@ const TESTIMONIALS: Testimonial[] = [
       "My hands had been shaking almost continuously for close to 48 hours, along with mental stress and fatigue. The precise pressure of Ayurvedic Acupressure calmed the tremors and left me feeling steady, stable and emotionally balanced. The sessions were structured, reassuring and easy to follow.",
     name: "Gitanjali",
     role: "Teacher",
+    img: "/testimonials/gitanjali.jpg",
   },
   {
     badge: "Pregnancy Discomfort",
@@ -50,6 +52,7 @@ const TESTIMONIALS: Testimonial[] = [
       "For nearly 15 years I faced continuous swelling and physical heaviness that affected my daily routine. Ayurvedic Acupressure released the blocked points and I finally felt lighter, balanced and comfortable. I truly appreciated the natural, pill-free approach.",
     name: "Archana Gautam",
     role: "Teacher",
+    img: "/testimonials/archana.jpg",
   },
 ];
 
