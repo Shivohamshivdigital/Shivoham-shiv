@@ -52,7 +52,7 @@ const BENEFITS = [
   { icon: TrendingUp, title: "New income stream", desc: "Earn on every client you refer or serve — add value without building a wellness program from scratch." },
   { icon: HeartHandshake, title: "Real, certified practice", desc: "Partner with a certified team (Yoga Alliance RYS-200, Acupressure, Panchakarma, Reiki) — genuine value for your clients, not a fad." },
   { icon: Users, title: "Done-with-you support", desc: "Training, ready content, and guidance from our team on WhatsApp. We help you onboard and serve well." },
-  { icon: ShieldCheck, title: "Trusted brand", desc: "7+ years and 1,200+ people guided. Your clients get care backed by a real practice and a real founder." },
+  { icon: ShieldCheck, title: "Trusted brand", desc: "8+ years and 1,200+ people guided. Your clients get care backed by a real practice and a real founder." },
 ];
 
 const STEPS = [
@@ -322,7 +322,7 @@ export default function PartnerView() {
       <section className="py-10 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { icon: Award, label: "7+ years of practice" },
+            { icon: Award, label: "8+ years of practice" },
             { icon: Users, label: "1,200+ people guided" },
             { icon: ShieldCheck, label: "Yoga Alliance RYS-200" },
             { icon: HeartHandshake, label: "Drug-free, natural care" },

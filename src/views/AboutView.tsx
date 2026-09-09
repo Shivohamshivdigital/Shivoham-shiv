@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Award, GraduationCap, Sparkles, Heart, CheckCircle2, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
-import CertificateGallery from "../components/CertificateGallery";
 import Testimonials from "../components/Testimonials";
 
 const BELIEFS = [
@@ -44,14 +43,6 @@ const STEPS = [
   { n: "03", t: "Learn With Guidance", d: "Participate in structured online learning and guided sessions." },
   { n: "04", t: "Practice", d: "Apply what you learn through regular practice." },
   { n: "05", t: "Grow", d: "Continue through advanced learning, certification and professional development." },
-];
-
-const CREDENTIALS = [
-  { icon: <Award className="w-6 h-6 text-[#005461]" />, title: "Yoga Alliance USA — RYS 200", body: "200-Hour Yoga Teacher Training", org: "Arogya Yogshala, New Delhi", year: "2025 · Yoga Alliance Reg. ID 277005" },
-  { icon: <GraduationCap className="w-6 h-6 text-[#005461]" />, title: "Master Diploma in Acupressure", body: "Master Diploma in Acupressure Therapy (M.D. Acu.)", org: "Vishvas Alternative Treatment & Training Centre", year: "2018" },
-  { icon: <Sparkles className="w-6 h-6 text-[#005461]" />, title: "Diploma in Panchakarma Therapy", body: "Diploma in Panchakarma Therapy (D.Phk.)", org: "Vishvas Alternative Treatment & Training Centre", year: "2018" },
-  { icon: <GraduationCap className="w-6 h-6 text-[#005461]" />, title: "Diploma in Electro-Acupuncture", body: "Diploma in Electro-Acupuncture Therapy — TCM (D.Ac.)", org: "Vishvas Alternative Treatment & Training Centre", year: "2018" },
-  { icon: <Heart className="w-6 h-6 text-[#005461]" />, title: "Reiki — 2nd Degree Healer", body: "2nd Degree in Reiki Therapy (Reiki Healer)", org: "Vishvas Alternative Treatment & Training Centre", year: "2018" },
 ];
 
 const IMPACT = [
@@ -256,32 +247,6 @@ export default function AboutView() {
               scope of practice — so students learn technique, application and ethics together.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* 7b. CREDENTIALS */}
-      <section className="bg-[#EEF6F6] border-b border-[#D6E9EA] py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className={label}>Professional Standards &amp; Credentials</span>
-            <h2 className={`${h2} text-2xl sm:text-4xl mt-2`}>Trained &amp; Certified</h2>
-            <p className="text-sm text-slate-700 leading-relaxed mt-3">Our founder, <strong>Pooja Chaturvedi</strong>, holds formal training across Yoga, Ayurveda and traditional energy therapies — so every practice we share is rooted in real, certified study.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CREDENTIALS.map((c) => (
-              <div key={c.title} className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm flex flex-col">
-                <div className="w-12 h-12 bg-[#D6E9EA] rounded-xl flex items-center justify-center mb-4">{c.icon}</div>
-                <h3 className="font-heading font-bold text-base text-[#004C53] leading-snug mb-1">{c.title}</h3>
-                <p className="text-xs text-slate-700 leading-relaxed flex-1">{c.body}</p>
-                <div className="mt-4 pt-3 border-t border-green-100">
-                  <p className="text-xs font-semibold text-[#004C53]">{c.org}</p>
-                  <p className="text-[11px] text-slate-500 mt-0.5">{c.year}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12"><CertificateGallery /></div>
-          <p className="text-center text-[11px] text-slate-400 mt-8 max-w-2xl mx-auto">Vishvas Alternative Treatment &amp; Training Centre is registered with the Govt. of Rajasthan (Reg. No. 40/2002-2003).</p>
         </div>
       </section>
 
