@@ -175,6 +175,21 @@ export default function WeightLossView() {
             <button onClick={goConsult} className="inline-flex items-center justify-center px-7 py-4 border-2 border-white/25 text-white hover:bg-white/10 font-bold text-xs uppercase tracking-wider rounded-full transition-all">Book a Private Consultation →</button>
           </div>
         </div>
+        {/* Real people photo strip */}
+        <div className="w-full px-3 sm:px-4 pb-16 sm:pb-20 -mt-2 sm:-mt-6">
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto sm:overflow-visible pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <img
+                key={n}
+                src={`/challenge/hero-${n}.webp`}
+                alt={`Real people practising with Shivoham Shiv ${n}`}
+                loading="lazy"
+                className="shrink-0 sm:shrink w-32 sm:w-auto sm:flex-1 h-48 sm:h-64 lg:h-72 object-cover object-center rounded-2xl ring-1 ring-white/25 shadow-lg"
+              />
+            ))}
+          </div>
+          <p className="text-center text-[11px] text-green-100/60 mt-3">Real people, real daily practice.</p>
+        </div>
       </section>
 
       {/* 2. CLINICAL PERSPECTIVE */}
